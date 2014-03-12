@@ -1,0 +1,17 @@
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+ 
+<p>
+  <strong>Bio:</strong>
+  <%= @user.bio %>
+</p>
+
+  <% @user.posts.each do |post| %>
+    <tr>
+      <td><%= post.text %></td>
+    </tr>
+  <% end %>
+
+<%= link_to "Show All", users_path%>
