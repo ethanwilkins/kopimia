@@ -3,8 +3,6 @@ Social::Application.routes.draw do
   get "sessions/destroy"
   get "posts/create"
   get "posts/destroy"
-  get "users/sign_in"
-  get "users/register"
   get "welcome/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

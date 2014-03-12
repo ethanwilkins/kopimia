@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
-  def sign_in
-    @user = User.new
-  end
-
-  def register
+  
+  # http_basic_authenticate_with name: "admin", password: "pass", only: :destroy
+  
+  def new
     @user = User.new
   end
   

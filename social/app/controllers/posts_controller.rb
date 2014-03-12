@@ -1,4 +1,8 @@
 class PostsController < ApplicationController
+  def new
+    @post = Post.new
+  end
+  
   def create
     @user = User.find(params[:user_id])
     @post = @user.posts.create(params[:post].permit(:text))

@@ -5,11 +5,11 @@
       Logged in as <%= current_user.name %>.
       <%= link_to "Log out", sessions_destroy_path %>
     <% else %>
-      <%= link_to "Sign up", users_register_path %> or
+      <%= link_to "Sign up", new_user_path %> or
       <%= link_to "Log in", sessions_new_path %>
     <% end %>
 </p>
 
 <p>
-	<%= link_to "List Users", users_path%>
+	<%= link_to "List users", users_path%>
 </p>
