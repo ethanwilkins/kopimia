@@ -1,19 +1,25 @@
-<%= link_to "Home", root_path %>
+<!-- social users -->
+
+<h1>
+  <%= @user.name %>
+</h1>
 
 <p>
-  <strong>Name:</strong>
-  <%= @user.name %>
+  <%= link_to "New post", new_user_post_path(@user) %>
 </p>
  
 <p>
-  <strong>Bio:</strong>
+  <strong>My story:</strong>
   <%= @user.bio %>
 </p>
 
-<%= link_to "New post", new_user_post_path(@user) %>
-
-<% @user.posts.each do |post| %>
-  <tr>
-    <td><%= post.text %></td>
-  </tr>
-<% end %>
+<table>
+  <% @user.posts.each do |post| %>
+    <tr>
+      <td><%= post.text %></td>
+	  <td><%= link_to 'Show', user_post_path(current_user.id, post) %></td>
+      <td><%= link_to 'Destroy', user_post_path(current_user.id, post),
+		  method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>

@@ -8,7 +8,24 @@
 </head>
 <body>
 
-<%= yield %>
+  <% if current_user %>
+    <p>
+      Logged in as <%= link_to current_user.name.to_s,
+        user_path(current_user.id) %>.
+    </p>
+    <p>
+      <%= link_to "Log out", sessions_destroy_path %>
+    </p>
+  <% else %>
+    <p>
+      <%= link_to "Sign up", new_user_path %> or
+      <%= link_to "Log in", new_session_path %>
+    </p>
+  <% end %>
+
+  <%= link_to "Home", root_path %>
+
+  <%= yield %>
 
 </body>
 </html>

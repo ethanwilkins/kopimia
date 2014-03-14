@@ -1,7 +1,6 @@
 Social::Application.routes.draw do
-  get "sessions/new"
   get "sessions/destroy"
-  get "posts/create"
+  post "posts/create", :as => "posts"
   get "posts/destroy"
   get "welcome/index"
   # The priority is based upon order of creation: first created -> highest priority.
