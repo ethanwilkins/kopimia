@@ -3,10 +3,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
   
-  def new
-    @post = Post.new
-  end
-  
   def create
     @user = User.find(current_user.id)
     @post = @user.posts.create(params[:post].permit(:text))
