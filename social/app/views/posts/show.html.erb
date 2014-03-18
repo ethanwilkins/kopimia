@@ -6,7 +6,7 @@
 	<tr>
 		<td><h2><%= @post.text %></h2></td>
 		<td><%= @post.likes %></td>
-		<td><%= link_to "Like", user_post_path(params[:id], @post) %></td>
+		<td><%= link_to "Like", like_path(params[:user_id], @post) %></td>
 		<% if current_user %>
 			<td><%= link_to 'Destroy', user_post_path(params[:id], @post),
 				method: :delete, data: { confirm: 'Are you sure?' } %></td>
