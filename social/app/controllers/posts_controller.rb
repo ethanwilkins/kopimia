@@ -17,4 +17,11 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to user_path(@user)
   end
+  
+  def like
+    @user = User.find(params[:user_id])
+    @post = Post.find(params[:id])
+    @post.like!
+    redirect_to user_path(@user)
+  end
 end
