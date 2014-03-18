@@ -1,5 +1,39 @@
 <!-- posts -->
 
-<p>
-	<%= @post.text %>
-</p>
+<h1><%= @user.name %></h1>
+
+<table>
+	<tr>
+		<td><h2><%= @post.text %></h2></td>
+		<td><%= @post.likes %></td>
+		<td><%= link_to "Like", user_post_path(params[:id], @post) %></td>
+		<% if current_user %>
+			<td><%= link_to 'Destroy', user_post_path(params[:id], @post),
+				method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<% end %>
+	</tr>
+</table>
+
+<%= form_for @comment do |f| %>
+  <p>
+	<%= f.label :new_comment %>
+    <%= f.text_field :text %>
+	<%= hidden_field_tag :user_id, params[:user_id] %>
+	<%= hidden_field_tag :post_id, params[:id] %>
+    <%= f.submit "Comment" %>
+  </p>
+<% end %>
+
+
+<table>
+	<% @post.comments.each do |comment| %>
+	<tr>
+		<td><%= comment.text %></td>
+		<td><%= comment.likes %></td>
+		<% if current_user %>
+			<td><%= link_to 'Destroy', user_post_comment_path(params[:id], @post, comment),
+				method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<% end %>
+	</tr>
+	<% end %>
+</table>

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :posts
+  has_many :posts, dependent: :destroy
+  # need to add validations as well as error messages
   
   def self.authenticate(name, password)
     user = find_by_name(name)

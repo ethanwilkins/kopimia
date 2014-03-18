@@ -1,4 +1,4 @@
-<!-- social users -->
+<!-- users -->
 
 <h1>
   <%= @user.name %>
@@ -9,17 +9,16 @@
   <%= @user.bio %>
 </p>
 
-<%= render "posts/new" if current_user %>
+<%= render "posts/new" if current_user and current_user.id == @user.id %>
 
 <table>
   <% @user.posts.each do |post| %>
     <tr>
       <td><%= post.text %></td>
-	  <!-- this will be the like button -->
 	  <td><%= post.likes %></td>
-	  <td><%= button_to "Like", user_post_path(params[:id], post) %></td>
+	  <td><%= link_to "Like", user_post_path(params[:id], post) %></td>
 	  <td><%= link_to 'Show', user_post_path(params[:id], post) %></td>
-	  <% if current_user %>
+	  <% if current_user and current_user.id == @user.id %>
         <td><%= link_to 'Destroy', user_post_path(params[:id], post),
           method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	  <% end %>
