@@ -17,7 +17,7 @@
 			<% if current_user %>
 			<td>
 				Logged in as <%= link_to current_user.name.to_s,
-				user_path(current_user.id) %>.
+					user_path(current_user.id) %>.
 			</td>
 			<td>
 				<%= link_to "Log out", sessions_destroy_path %>

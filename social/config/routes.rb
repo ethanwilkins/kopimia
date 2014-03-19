@@ -4,7 +4,6 @@ Social::Application.routes.draw do
   get "users/:user_id/posts/:id/show", to: "posts#show", :as => "show_post"
   get "users/:user_id/posts/:id", to: "posts#like", :as => "like"
   get "sessions/destroy"
-  get "welcome/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -14,16 +14,7 @@
 	</tr>
 </table>
 
-<%= form_for @comment do |f| %>
-  <p>
-	<%= f.label :new_comment %>
-    <%= f.text_field :text %>
-	<%= hidden_field_tag :user_id, params[:user_id] %>
-	<%= hidden_field_tag :post_id, params[:id] %>
-    <%= f.submit "Comment" %>
-  </p>
-<% end %>
-
+<%= render "comments/new" if current_user %>
 
 <table>
 	<% @post.comments.each do |comment| %>
