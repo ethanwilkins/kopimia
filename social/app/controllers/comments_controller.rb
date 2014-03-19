@@ -13,4 +13,12 @@ class CommentsController < ApplicationController
     @comment.destroy
     redirect_to show_post_path(@user, @post)
   end
+  
+  def like
+    @user = User.find(params[:user_id])
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:id])
+    @comment.like!
+    redirect_to show_post_path(@user, @post)
+  end
 end

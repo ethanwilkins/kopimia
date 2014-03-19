@@ -1,8 +1,9 @@
 Social::Application.routes.draw do
-  post "posts/create", :as => "posts"
-  post "comments/create", :as => "comments"
+  get "users/:user_id/posts/:post_id/comments/:id", to: "comments#like", :as => "like_comment"
   get "users/:user_id/posts/:id/show", to: "posts#show", :as => "show_post"
   get "users/:user_id/posts/:id", to: "posts#like", :as => "like"
+  post "comments/create", :as => "comments"
+  post "posts/create", :as => "posts"
   get "sessions/destroy"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
