@@ -21,6 +21,7 @@ Social::Application.routes.draw do
   resources :sessions
   
   resources :users do
+    resources :relationships
     resources :posts do
       resources :comments
     end
