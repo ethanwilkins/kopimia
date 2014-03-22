@@ -19,8 +19,12 @@ Social::Application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :sessions
+  resources :connections
   
   resources :users do
+    member do
+      get :following, :followers
+    end
     resources :posts do
       resources :comments
     end
