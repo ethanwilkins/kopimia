@@ -1,0 +1,9 @@
+<h1>Followers</h1>
+
+<table>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+    </tr>
+  <% end %>
+</table>

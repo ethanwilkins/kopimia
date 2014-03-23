@@ -1,20 +1,27 @@
 <!-- users -->
 
-<h1>
-	<%= @user.name %>
-</h1>
+<table>
+	<tr>
+		<td>
+			<h1>
+				<%= @user.name %>
+			</h1>
+		</td>
+		<td>
+			<%= render "follow_form" %>
+		</td>
+	</tr>
+</table>
 
-<%= render "follow_form" %>
-
-<p>
+<div>
 	<strong>About me:</strong>
 	<%= @user.bio %>
-</p>
+</div>
 
-<p>
-	Followers: <%= @user.followers.count %>
-	Following: <%= @user.followed_users.count %>
-</p>
+<div>
+	<%= link_to "Followers: #{@user.followers.count}", followers_user_path(@user) %>
+	<%= link_to "Following: #{@user.followed_users.count}", following_user_path(@user) %>
+</div>
 
 <div>
 	<%= render "posts/new" if current_user and current_user.id == @user.id %>

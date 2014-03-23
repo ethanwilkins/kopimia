@@ -1,6 +1,18 @@
+# gotta use gravatar for profile pictures, validate presence of email in user creation
+
 class UsersController < ApplicationController
   
   # http_basic_authenticate_with name: "admin", password: "pass", only: :destroy
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers
+  end
+  
+  def following
+    @user = User.find(params[:id])
+    @users = @user.followed_users
+  end
   
   def new
     @user = User.new
