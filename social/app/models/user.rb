@@ -1,9 +1,11 @@
 class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :connections, foreign_key: "follower_id", dependent: :destroy
+  # overrides the default with a more natural name with source:
   has_many :followed_users, through: :connections, source: :followed
+  # simulates a table of reverse connections by setting followed_id as foreign key
   has_many :reverse_connections, foreign_key: "followed_id", class_name: "Connection", dependent: :destroy
-  has_many :followers, through: :reverse_relationships
+  has_many :followers, through: :reverse_connections
   validates :name, presence: true, length: { minimum: 3 }
   validates :password, presence: true, length: { minimum: 4 }
   validates :bio, presence: true, length: { minimum: 4 }

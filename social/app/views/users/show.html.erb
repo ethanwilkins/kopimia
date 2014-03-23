@@ -1,15 +1,24 @@
 <!-- users -->
 
 <h1>
-  <%= @user.name %>
+	<%= @user.name %>
 </h1>
- 
+
+<%= render "follow_form" %>
+
 <p>
-  <strong>About me:</strong>
-  <%= @user.bio %>
+	<strong>About me:</strong>
+	<%= @user.bio %>
 </p>
 
-<%= render "posts/new" if current_user and current_user.id == @user.id %>
+<p>
+	Followers: <%= @user.followers.count %>
+	Following: <%= @user.followed_users.count %>
+</p>
+
+<div>
+	<%= render "posts/new" if current_user and current_user.id == @user.id %>
+</div>
 
 <table>
   <% @user.posts.each do |post| %>
