@@ -1,12 +1,7 @@
-class CreateUsers < ActiveRecord::Migration
+class UpdateUsers < ActiveRecord::Migration
   def change
-    create_table :users do |t|
-      t.string :name
-      t.string :password
+    change_table :users do |t|
       t.string :email
-      t.text :bio
-
-      t.timestamps
     end
     add_index :users, :name
     add_index :users, :password

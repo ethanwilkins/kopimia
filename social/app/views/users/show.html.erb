@@ -13,15 +13,25 @@
 	</tr>
 </table>
 
+<div id="gravatar">
+	
+</div>
+
 <div>
 	<strong>About me:</strong>
 	<%= @user.bio %>
 </div>
 
-<div>
-	<%= link_to "Followers: #{@user.followers.count}", followers_user_path(@user) %>
-	<%= link_to "Following: #{@user.followed_users.count}", following_user_path(@user) %>
-</div>
+<table>
+	<tr>
+		<td>
+			<%= link_to "Followers: #{@user.followers.count}", followers_user_path(@user) %>
+		</td>
+		<td>
+			<%= link_to "Following: #{@user.followed_users.count}", following_user_path(@user) %>
+		</td>
+	</tr>
+</table>
 
 <div>
 	<%= render "posts/new" if current_user and current_user.id == @user.id %>

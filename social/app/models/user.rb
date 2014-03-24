@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_connections
   validates :name, presence: true, length: { minimum: 3 }
   validates :password, presence: true, length: { minimum: 4 }
+  validates :email, presence: true, length: { minimum: 6 }
   validates :bio, presence: true, length: { minimum: 4 }
   
   def following?(other_user)
