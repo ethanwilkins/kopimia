@@ -7,7 +7,7 @@
 		<td><h2><%= @post.text %></h2></td>
 		<td><%= @post.likes %></td>
 		<td><%= link_to "Like", like_path(params[:user_id], @post) %></td>
-		<% if current_user %>
+		<% if current_user and current_user == @user %>
 			<td><%= link_to 'Destroy', user_post_path(params[:id], @post),
 				method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		<% end %>
@@ -19,7 +19,7 @@
 <table>
 	<% @post.comments.each do |comment| %>
 	<tr>
-		<td><%= comment.commenter unless comment.commenter == nil else "no name" %></td>
+		<td><%= comment.commenter %></td>
 		<td><%= comment.text %></td>
 		<td><%= comment.likes %></td>
 		<td><%= link_to "Like", like_comment_path(params[:user_id], @post, comment) %></td>

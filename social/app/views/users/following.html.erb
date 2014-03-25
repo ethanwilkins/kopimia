@@ -3,7 +3,8 @@
 <table>
   <% @users.each do |user| %>
     <tr>
-      <td><%= user.name %></td>
+		<td><%= gravatar_for user %></td>
+		<td><%= link_to user.name, user_path(user) %></td>
     </tr>
   <% end %>
 </table>

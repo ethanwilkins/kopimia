@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { minimum: 6 }
   validates :bio, presence: true, length: { minimum: 4 }
   
+  def feed
+    Post.from_users_followed_by(self)
+  end
+  
   def following?(other_user)
     connections.find_by(followed_id: other_user.id)
   end

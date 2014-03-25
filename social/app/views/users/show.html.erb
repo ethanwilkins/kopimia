@@ -3,6 +3,9 @@
 <table>
 	<tr>
 		<td>
+			<%= gravatar_for @user %>
+		</td>
+		<td>
 			<h1>
 				<%= @user.name %>
 			</h1>
@@ -13,14 +16,14 @@
 	</tr>
 </table>
 
-<div>
-	<%= gravatar_for @user %>
-</div>
-
-<div>
-	<strong>About me:</strong>
-	<%= @user.bio %>
-</div>
+<table>
+	<tr>
+		<td>
+			<strong>About me:</strong>
+			<%= @user.bio %>
+		</td>
+	</tr>
+</table>
 
 <table>
 	<tr>
@@ -33,21 +36,25 @@
 	</tr>
 </table>
 
-<div>
-	<%= render "posts/new" if current_user and current_user.id == @user.id %>
-</div>
+<table>
+	<tr>
+		<td>
+			<%= render "posts/new" if current_user and current_user.id == @user.id %>
+		</td>
+	</tr>
+</table>
 
 <table>
-  <% @user.posts.each do |post| %>
-    <tr>
-      <td><%= post.text %></td>
-	  <td><%= post.likes %></td>
-	  <td><%= link_to "Like", like_path(params[:id], post) %></td>
-	  <td><%= link_to 'Show', show_post_path(params[:id], post) %></td>
-	  <% if current_user and current_user.id == @user.id %>
-        <td><%= link_to 'Destroy', user_post_path(params[:id], post),
-          method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	  <% end %>
-    </tr>
-  <% end %>
+	<% @user.posts.each do |post| %>
+	<tr>
+		<td><%= post.text %></td>
+		<td><%= post.likes %></td>
+		<td><%= link_to "Like", like_path(params[:id], post) %></td>
+		<td><%= link_to 'Show', show_post_path(params[:id], post) %></td>
+		<% if current_user and current_user.id == @user.id %>
+			<td><%= link_to 'Destroy', user_post_path(params[:id], post),
+				method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<% end %>
+		</tr>
+	<% end %>
 </table>

@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @post = @user.posts.find(params[:post_id])
-    @comment = @post.comments.create(params[:comment].permit(:commenter, :text))
+    @comment = @post.comments.create(params[:comment].permit(:text, :commenter))
     redirect_to show_post_path(@user, @post)
   end
   
