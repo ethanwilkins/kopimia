@@ -8,13 +8,13 @@
 			</h1>
 		</td>
 		<td>
-			<%= render "follow_form" %>
+			<%= render "follow_form" if current_user %>
 		</td>
 	</tr>
 </table>
 
-<div id="gravatar">
-	
+<div>
+	<%= gravatar_for @user %>
 </div>
 
 <div>

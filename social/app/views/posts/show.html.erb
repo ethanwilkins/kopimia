@@ -19,6 +19,7 @@
 <table>
 	<% @post.comments.each do |comment| %>
 	<tr>
+		<td><%= comment.commenter unless comment.commenter == nil else "no name" %></td>
 		<td><%= comment.text %></td>
 		<td><%= comment.likes %></td>
 		<td><%= link_to "Like", like_comment_path(params[:user_id], @post, comment) %></td>

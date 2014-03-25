@@ -4,6 +4,7 @@
   <p>
 	<%= f.label :new_comment %>
     <%= f.text_field :text %>
+	<%= hidden_field_tag :commenter, params[:user_id] %>
 	<%= hidden_field_tag :user_id, params[:user_id] %>
 	<%= hidden_field_tag :post_id, params[:id] %>
     <%= f.submit "Comment" %>
