@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324203724) do
+ActiveRecord::Schema.define(version: 20140326231409) do
 
   create_table "comments", force: true do |t|
     t.integer  "post_id"
-    t.integer  "commenter"
+    t.integer  "commenter_id"
     t.integer  "likes"
     t.text     "text"
     t.datetime "created_at"
