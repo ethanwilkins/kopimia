@@ -19,7 +19,7 @@
 <table>
 	<% @post.comments.each do |comment| %>
 	<tr>
-		<td><%= comment.commenter.try(:name) %></td>
+		<td><%= comment.commenter.name %></td>
 		<td><%= comment.text %></td>
 		<td><%= comment.likes %></td>
 		<td><%= link_to "Like", like_comment_path(params[:user_id], @post, comment) %></td>

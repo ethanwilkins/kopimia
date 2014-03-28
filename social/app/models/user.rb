@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   validates :bio, presence: true, length: { minimum: 4 }
   
   def feed
-    Post.from_users_followed_by(self)
+    posts = Post.from_users_followed_by(self).sort_by(&:created_at).reverse!
   end
   
   def following?(other_user)
