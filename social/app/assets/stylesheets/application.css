@@ -12,11 +12,6 @@
  *= require_tree .
  */
 
-* {
-/*	background: rgb(81, 127, 164);*/
-/*	color: black;*/
-}
-
 table {
 	border-spacing: 10px 5px;
 }

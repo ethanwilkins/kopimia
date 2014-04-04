@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   has_many :connections, foreign_key: "follower_id", dependent: :destroy
   # overrides the default with a more natural name with source:
   has_many :followed_users, through: :connections, source: :followed
@@ -26,6 +27,12 @@ class User < ActiveRecord::Base
 
   def unfollow!(other_user)
     connections.find_by(followed_id: other_user.id).destroy
+  end
+  
+  def notify!(action, other_user)
+    if action == "follow"
+      notifications.create!(message: "#{other_user.name} started following you.")
+    end
   end
   
   def self.authenticate(name, password)

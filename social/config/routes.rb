@@ -25,6 +25,7 @@ Social::Application.routes.draw do
     member do
       get :following, :followers
     end
+    resources :notifications
     resources :posts do
       resources :comments
     end

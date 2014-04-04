@@ -6,7 +6,7 @@
 	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 	<%= csrf_meta_tags %>
-	
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -19,12 +19,18 @@
 			<table>
 				<tr>
 					<td>
-						<%= link_to "Home", root_path %>
+						<%= button_to "Home", root_path, :method => "get" %>
+					</td>
+					<td>
+						<h3>Welcome to Social</h3>
 					</td>
 					<% if current_user %>
 					<td>
 						Logged in as <%= link_to current_user.name.to_s,
-						user_path(current_user.id) %>.
+						user_path(current_user) %>.
+					</td>
+					<td>
+						<%= link_to current_user.notifications.unchecked.size, user_notifications_path(current_user) %>
 					</td>
 					<td>
 						<%= link_to "Log out", sessions_destroy_path %>
