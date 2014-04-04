@@ -23,7 +23,7 @@
 		<td><%= comment.text %></td>
 		<td><%= comment.likes %></td>
 		<td><%= link_to "Like", like_comment_path(params[:user_id], @post, comment) %></td>
-		<% if current_user %>
+		<% if current_user and current_user.id == comment.commenter_id %>
 			<td><%= link_to 'Destroy', user_post_comment_path(params[:id], @post, comment),
 				method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		<% end %>

@@ -1,7 +1,7 @@
 class ConnectionsController < ApplicationController
   def create
     @user = User.find(params[:connection][:followed_id])
-    @user.notify!("follow", current_user)
+    @user.notify!(:follow, current_user)
     current_user.follow!(@user)
     redirect_to @user
   end

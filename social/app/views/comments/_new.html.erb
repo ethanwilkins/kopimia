@@ -2,7 +2,7 @@
 
 <%= form_for @comment do |f| %>
   <p>
-	<%= f.label :new_comment %>
+	<%= f.label :leave_a_comment %>
     <%= f.text_field :text %>
 	<%= hidden_field_tag :post_id, params[:id] %>
     <%= f.submit "Comment" %>

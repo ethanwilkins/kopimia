@@ -22,6 +22,8 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     @post = Post.find(params[:id])
     @post.like!
+    #creates notification
+    @user.notify!(:like_post, current_user)
     redirect_to user_path(@user)
   end
 end

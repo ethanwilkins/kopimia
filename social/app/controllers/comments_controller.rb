@@ -23,6 +23,9 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
     @comment.like!
+    # notify commenter their comment was liked
+    @commenter = User.find(@comment.commenter_id)
+    @commenter.notify!(:like_comment, current_user)
     redirect_to show_post_path(@user, @post)
   end
 end
