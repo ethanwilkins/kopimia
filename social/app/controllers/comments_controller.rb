@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(params[:comment].permit(:text))
 		@comment.commenter = current_user
 		if @comment.save
+      User.find(@post.user).notify!(:comment, current_user)
   	  redirect_to show_post_path(@post.user, @post)
 		else
  	   render "posts/show"

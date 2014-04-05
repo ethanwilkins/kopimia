@@ -23,8 +23,7 @@
 					</td>
 					<% if current_user %>
 					<td>
-						Logged in as <%= link_to current_user.name,
-							user_path(current_user) %>.
+						<%= button_to current_user.name, user_path(current_user), :method => "get" %>
 					</td>
 					<td>
 						<%= button_to current_user.notifications.unchecked.size,

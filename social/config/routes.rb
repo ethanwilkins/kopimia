@@ -1,6 +1,7 @@
 Social::Application.routes.draw do
   get "users/:user_id/posts/:post_id/comments/:id", to: "comments#like", :as => "like_comment"
   get "users/:user_id/posts/:id/show", to: "posts#show", :as => "show_post"
+  delete "users/:user_id", to: "notifications#clear", :as => "clear"
   get "users/:user_id/posts/:id", to: "posts#like", :as => "like"
   post "comments/create", :as => "comments"
   post "posts/create", :as => "posts"

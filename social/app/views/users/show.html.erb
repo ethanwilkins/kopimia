@@ -49,8 +49,8 @@
 	<tr>
 		<td><%= post.text %></td>
 		<td><%= post.likes %></td>
-		<td><%= link_to "Like", like_path(params[:id], post) %></td>
-		<td><%= link_to 'Show', show_post_path(params[:id], post) %></td>
+		<td><%= button_to "Like", like_path(params[:id], post), :method => "get" %></td>
+		<td><%= button_to 'Show', show_post_path(params[:id], post), :method => "get" %></td>
 		</tr>
 	<% end %>
 </table>

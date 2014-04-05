@@ -1,3 +1,12 @@
+<% if current_user %>
+
+<% if current_user.notifications.size > 0 %>
+	<%= button_to "Clear all", clear_path(current_user), :method => "delete" %>
+<% else %>
+	<p>You have zero notifications.</p>
+	<%= image_tag "forever_alone.png", size: "150" %>
+<% end %>
+
 <table>
 	<% @notes.each do |note| %>
 	<tr>
@@ -5,3 +14,5 @@
 	</tr>
 	<% end %>
 </table>
+
+<% end %>
