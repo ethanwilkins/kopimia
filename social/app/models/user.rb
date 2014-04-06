@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
+  has_many :messages, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :connections, foreign_key: "follower_id", dependent: :destroy
   # overrides the default with a more natural name with source:
@@ -13,10 +14,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { minimum: 6 }
   validates :bio, presence: true, length: { minimum: 4 }
   
-  def feed
-    posts = Post.from_users_followed_by(self).sort_by(&:created_at).reverse!
-  end
-  
   def following?(other_user)
     connections.find_by(followed_id: other_user.id)
   end
@@ -27,6 +24,14 @@ class User < ActiveRecord::Base
 
   def unfollow!(other_user)
     connections.find_by(followed_id: other_user.id).destroy
+  end
+  
+  def message!(sender, text)
+    messages.create!(sender: sender, receiver: self, text: text)
+  end
+  
+  def feed
+    posts = Post.from_users_followed_by(self).sort_by(&:created_at).reverse!
   end
   
   def notify!(action, other_user)

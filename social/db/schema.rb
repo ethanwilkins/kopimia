@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404044751) do
+ActiveRecord::Schema.define(version: 20140406041517) do
 
   create_table "comments", force: true do |t|
     t.integer  "post_id"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 20140404044751) do
   add_index "connections", ["followed_id"], name: "index_connections_on_followed_id"
   add_index "connections", ["follower_id", "followed_id"], name: "index_connections_on_follower_id_and_followed_id", unique: true
   add_index "connections", ["follower_id"], name: "index_connections_on_follower_id"
+
+  create_table "messages", force: true do |t|
+    t.integer  "sender"
+    t.integer  "receiver"
+    t.boolean  "seen",       default: false
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "notifications", force: true do |t|
     t.string   "message"

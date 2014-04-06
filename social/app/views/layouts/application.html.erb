@@ -23,7 +23,7 @@
 					</td>
 					<% if current_user %>
 					<td>
-						<%= button_to current_user.name, user_path(current_user), :method => "get" %>
+						<%= button_to current_user.name.capitalize, user_path(current_user), :method => "get" %>
 					</td>
 					<td>
 						<%= button_to current_user.notifications.unchecked.size,
