@@ -23,11 +23,13 @@ Social::Application.routes.draw do
   resources :connections
   
   resources :users do
+    resources :notifications
     member do
       get :following, :followers
     end
-    resources :notifications
-    resources :messages
+    resources :chats do
+      resources :messages
+    end
     resources :posts do
       resources :comments
     end

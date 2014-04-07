@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
-  has_many :messages, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :connections, foreign_key: "follower_id", dependent: :destroy
   # overrides the default with a more natural name with source:
@@ -26,8 +25,26 @@ class User < ActiveRecord::Base
     connections.find_by(followed_id: other_user.id).destroy
   end
   
-  def message!(sender, text)
-    messages.create!(sender: sender, receiver: self, text: text)
+  # called on receiver by sender
+  def message!(sender, text, chat)
+    chat.messages.create!(sender: sender, receiver: self, text: text, chat_id: chat)
+  end
+  
+  # called on and by creator
+  def start_chat(topic, members)
+    chats.create!(creator: self, topic: topic, members: members)
+    chats.last # to make sure its returned
+  end
+  
+  # finds chat with self and other
+  def chat_with(other_user)
+    if chats.any?
+      chats.each do |chat|
+        if chat.members.scan(other_user.name)
+          return chat
+        end
+      end
+    end
   end
   
   def feed
