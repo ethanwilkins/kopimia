@@ -10,14 +10,10 @@ class MessagesController < ApplicationController
   end
   
   def create
+    # get user of the page
     @user = User.find(params[:id])
-    # find chat if it exists
+    # find chat with current user
     @chat = @user.chat_with(current_user)
-    # test if chat exists
-    if @chat == nil
-      # start new chat otherwise
-      @chat = current_user.start_chat(params[:topic], @user.name)
-    end
     # send message to user and the correct chat
     @user.message!(current_user, params[:message].permit(:text), @chat)
   end

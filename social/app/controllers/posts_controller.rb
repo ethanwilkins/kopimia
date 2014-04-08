@@ -1,3 +1,5 @@
+# need if save for create and error messages if fail
+
 class PostsController < ApplicationController
   def show
     @user = User.find(params[:user_id])

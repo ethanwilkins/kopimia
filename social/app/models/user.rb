@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
+  has_many :chats, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :connections, foreign_key: "follower_id", dependent: :destroy
   # overrides the default with a more natural name with source:
@@ -31,8 +32,9 @@ class User < ActiveRecord::Base
   end
   
   # called on and by creator
-  def start_chat(topic, members)
-    chats.create!(creator: self, topic: topic, members: members)
+  # starts chat and returns it
+  def start_chat(creator, topic, members)
+    chats.create!(creator: creator.id, topic: topic, members: members)
     chats.last # to make sure its returned
   end
   
@@ -42,7 +44,7 @@ class User < ActiveRecord::Base
       chats.each do |chat|
         if chat.members.scan(other_user.name)
           return chat
-        end
+        else return nil end
       end
     end
   end
