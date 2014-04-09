@@ -7,6 +7,7 @@ class ChatsController < ApplicationController
   end
 
   def show
+    @chat = Chat.find(params[:id])
   end
   
   def new
@@ -16,12 +17,13 @@ class ChatsController < ApplicationController
   
   def create
     @user = User.find(params[:user_id])
-    # start chat between current user and other user
-    @chat = current_user.chats.new(params[:chat].permit(:members, :topic)) # throws unkown attr
-    @chat.creator = current_user
-    if @chat.save
-      # send message to user and the new chat
-      @user.message!(current_user, params[:message].permit(:text), @chat)
+    # build new chat and message between user
+    @chat = current_user.chats.new(params[:chat].permit(:members, :topic))
+    @message = @chat.messages.new(params[:message].permit(:text))
+    @message.sender = current_user.id
+    # verify that both are saved
+    if @chat.save and @message.save
+      # show the new chat to current user
       redirect_to user_chat_path(current_user, @chat)
     end
   end

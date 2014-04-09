@@ -26,18 +26,6 @@ class User < ActiveRecord::Base
     connections.find_by(followed_id: other_user.id).destroy
   end
   
-  # called on receiver by sender
-  def message!(sender, text, chat)
-    chat.messages.create!(sender: sender, receiver: self, text: text, chat_id: chat)
-  end
-  
-  # called on and by creator
-  # starts chat and returns it
-  def start_chat(creator, topic, members)
-    chats.create!(creator: creator.id, topic: topic, members: members)
-    chats.last # to make sure its returned
-  end
-  
   # finds chat with self and other
   def chat_with(other_user)
     if chats.any?

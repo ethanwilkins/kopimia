@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140407043909) do
+ActiveRecord::Schema.define(version: 20140409032603) do
 
   create_table "chats", force: true do |t|
-    t.integer  "creator"
+    t.integer  "user_id"
     t.boolean  "public",     default: false
     t.string   "members"
     t.integer  "votes"
@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 20140407043909) do
 
   create_table "messages", force: true do |t|
     t.integer  "sender"
-    t.integer  "receiver"
     t.boolean  "seen",       default: false
     t.text     "text"
     t.datetime "created_at"

@@ -1,3 +1,12 @@
-<!-- could be used instead of messages index or that embedded in this -->
+<!-- chats -->
+<!-- messages index could be embedded in this -->
 
-<p>This should show the chat with all its messages.</p>
+<table>
+	<% @chat.messages.each do |message| %>
+		<tr>
+			<td><%= link_to gravatar_for(User.find(message.sender)), user_path(message.sender) %></td>
+			<td><%= link_to User.find(message.sender).name.capitalize + ":", user_path(message.sender) %></td>
+			<td><%= message.text %></td>
+		</tr>
+	<% end %>
+</table>
