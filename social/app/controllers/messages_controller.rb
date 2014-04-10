@@ -17,8 +17,6 @@ class MessagesController < ApplicationController
     @user = @chat.user
     if @message.save
       redirect_to user_chat_path(@user, @chat)
-    else
-      render "chats/show"
     end
   end
 end

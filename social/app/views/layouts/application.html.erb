@@ -30,6 +30,9 @@
 							user_notifications_path(current_user), :method => "get" %>
 					</td>
 					<td>
+						<%= button_to "Chats", user_chats_path(current_user), :method => "get" %>
+					</td>
+					<td>
 						<%= button_to "Log out", sessions_destroy_path, :method => "get" %>
 					</td>
 					<% else %>

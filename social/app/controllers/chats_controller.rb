@@ -1,9 +1,6 @@
-# the chats view has to know if a chat exists between the users
-# whether to send message to existing chat or make a new one
-# such logic in a partial 
-
 class ChatsController < ApplicationController
   def index
+    @chats = all_chats_for current_user
   end
 
   def show
