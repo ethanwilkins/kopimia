@@ -23,7 +23,7 @@
 			<%= @user.bio %>
 		</td>
 		<td>
-			<%= button_to "Message", new_user_chat_path(@user), :method => "get" if current_user and @user != current_user %>
+			<%= render "message_button" %>
 		</td>
 	</tr>
 </table>

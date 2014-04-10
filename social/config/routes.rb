@@ -4,6 +4,7 @@ Social::Application.routes.draw do
   delete "users/:user_id", to: "notifications#clear", :as => "clear"
   get "users/:user_id/posts/:id", to: "posts#like", :as => "like"
   post "comments/create", :as => "comments"
+  post "messages/create", :as => "messages"
   post "posts/create", :as => "posts"
   post "chats/create", :as => "chats"
   get "sessions/destroy"

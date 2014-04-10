@@ -9,16 +9,16 @@ class MessagesController < ApplicationController
   def new
   end
   
-  # only called after checking chat_with from view
+  # called from within chats#show
   def create
-    # get user of the page
-    @user = User.find(params[:id])
-    # find chat with this user
-    @chat = current_user.chat_with(@user)
-    # send message to user and the correct chat
+    @chat = Chat.find(params[:chat_id])
     @message = @chat.messages.new(params[:message].permit(:text))
     @message.sender = current_user.id
+    @user = @chat.user
     if @message.save
-      redirect_to user_chat_path(current_user, @chat)
+      redirect_to user_chat_path(@user, @chat)
+    else
+      render "chats/show"
+    end
   end
 end

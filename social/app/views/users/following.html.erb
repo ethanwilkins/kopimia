@@ -4,7 +4,7 @@
   <% @users.each do |user| %>
     <tr>
 		<td><%= link_to gravatar_for(user), user_path(user) %></td>
-		<td><%= link_to user.name, user_path(user) %></td>
+		<td><%= link_to user.name.capitalize, user_path(user) %></td>
     </tr>
   <% end %>
 </table>

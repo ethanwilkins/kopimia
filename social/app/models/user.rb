@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 4 }
   validates :email, presence: true, length: { minimum: 6 }
   validates :bio, presence: true, length: { minimum: 4 }
+
+  def feed
+    posts = Post.from_users_followed_by(self).sort_by(&:created_at).reverse!
+  end
   
   def following?(other_user)
     connections.find_by(followed_id: other_user.id)
@@ -30,15 +34,12 @@ class User < ActiveRecord::Base
   def chat_with(other_user)
     if chats.any?
       chats.each do |chat|
-        if chat.members.scan(other_user.name)
+        if chat.members.include? other_user.name
           return chat
-        else return nil end
+        end
       end
     end
-  end
-  
-  def feed
-    posts = Post.from_users_followed_by(self).sort_by(&:created_at).reverse!
+    return nil
   end
   
   def notify!(action, other_user)

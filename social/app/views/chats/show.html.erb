@@ -1,5 +1,9 @@
 <!-- chats -->
-<!-- messages index could be embedded in this -->
+
+<div>
+	<h1>Chat: <%= @chat.topic %></h1>
+	<h2>Members: <%= @user.name + ", " + @chat.members %></h2>
+</div>
 
 <table>
 	<% @chat.messages.each do |message| %>
@@ -10,3 +14,7 @@
 		</tr>
 	<% end %>
 </table>
+
+<div>
+	<%= render "messages/new" %>
+</div>
