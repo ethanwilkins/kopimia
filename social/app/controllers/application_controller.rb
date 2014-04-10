@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
         chats.append the_user.chat_with(user)
       end
     end
-    chats
+    chats.sort_by(&:updated_at).reverse!
   end
 
   def current_user
