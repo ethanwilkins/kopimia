@@ -12,11 +12,9 @@ class CommentsController < ApplicationController
   end
   
   def destroy
-    @user = User.find(current_user.id)
-    @post = @user.posts.find(params[:post_id])
-    @comment = @post.comments.find(params[:id])
+    @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to show_post_path(@user, @post)
+    redirect_to show_post_path(User.find(params[:user_id]), Post.find(params[:post_id]))
   end
   
   def like

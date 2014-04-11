@@ -3,7 +3,8 @@
 <table>
 	<% @chats.each do |chat| %>
 		<tr>
-			<td><%= chat.topic %></td>
+			<td><%= button_to chat.topic.capitalize + ": #{pluralize(chat.messages.size, "message")}",
+				user_chat_path(chat.user, chat), :method => "get" %></td>
 		</tr>
 	<% end %>
 </table>

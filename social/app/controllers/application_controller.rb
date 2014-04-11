@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     chats = the_user.chats
     User.all.each do |user|
       if user != the_user and user.chat_with(the_user)
-        chats.append the_user.chat_with(user)
+        chats.append user.chat_with(the_user)
       end
     end
     chats.sort_by(&:updated_at).reverse!
