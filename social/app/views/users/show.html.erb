@@ -50,10 +50,13 @@
 <table>
 	<% @user.posts.each do |post| %>
 	<tr>
+		<td><%= link_to gravatar_for(post.user, "25x25"), user_path(post.user) %></td>
 		<td><%= post.text %></td>
 		<td><%= post.likes %></td>
-		<td><%= button_to "Like", like_path(params[:id], post), :method => "get" %></td>
-		<td><%= button_to 'Show', show_post_path(params[:id], post), :method => "get" %></td>
+		<td><%= button_to "Like", like_path(params[:id], post), :method => "get",
+				"data-icon" => "star", "data-iconpos" => "notext" %></td>
+		<td><%= button_to 'Show', show_post_path(params[:id], post), :method => "get",
+				"data-icon" => "delete", "data-iconpos" => "notext" %></td>
 		</tr>
 	<% end %>
 </table>

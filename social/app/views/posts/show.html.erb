@@ -1,14 +1,15 @@
 <!-- posts -->
 
-<h1><%= @user.name %></h1>
-
 <table>
 	<tr>
+		<td><h2><%= link_to gravatar_for(@user), user_path(@user) %></h2></td>
 		<td><h2><%= @post.text %></h2></td>
 		<td><%= @post.likes %></td>
-		<td><%= link_to "Like", like_path(params[:user_id], @post) %></td>
+		<td><%= button_to "Like", like_path(params[:user_id], @post),
+			"data-icon" => "star", "data-iconpos" => "notext", :method => "get" %></td>
 		<% if current_user and current_user == @user %>
-			<td><%= link_to 'Destroy', user_post_path(params[:id], @post),
+			<td><%= button_to 'Destroy', user_post_path(params[:id], @post),
+				"data-icon" => "delete", "data-iconpos" => "notext",
 				method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		<% end %>
 	</tr>
@@ -19,12 +20,14 @@
 <table>
 	<% @post.comments.each do |comment| %>
 	<tr>
-		<td><%= link_to comment.commenter.name + ":", user_path(comment.commenter) %></td>
+		<td><%= link_to gravatar_for(comment.commenter, "25x25"), user_path(comment.commenter) %></td>
 		<td><%= comment.text %></td>
 		<td><%= comment.likes %></td>
-		<td><%= link_to "Like", like_comment_path(params[:user_id], @post, comment) %></td>
+		<td><%= button_to "Like", like_comment_path(params[:user_id], @post, comment),
+			"data-icon" => "star", "data-iconpos" => "notext", :method => "get" %></td>
 		<% if current_user and current_user.id == comment.commenter_id %>
-			<td><%= link_to 'Destroy', user_post_comment_path(params[:id], @post, comment),
+			<td><%= button_to 'Destroy', user_post_comment_path(params[:id], @post, comment),
+				"data-icon" => "delete", "data-iconpos" => "notext",
 				method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		<% end %>
 	</tr>

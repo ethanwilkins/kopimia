@@ -1,7 +1,7 @@
 <table>
 	<% @feed.each do |post| %>
 	<tr>
-		<td><%= link_to gravatar_for(User.find(post.user_id)), user_path(post.user_id) %></td>
+		<td><%= link_to gravatar_for(User.find(post.user_id), "50x50"), user_path(post.user_id) %></td>
 		<td><%= link_to User.find(post.user_id).name.capitalize + ":", user_path(post.user_id) %></td>
 		<td><%= post.text %></td>
 	</tr>
