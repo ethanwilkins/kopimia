@@ -1,9 +1,8 @@
-<table>
-	<% @feed.each do |post| %>
-	<tr>
-		<td><%= link_to gravatar_for(User.find(post.user_id), "50x50"), user_path(post.user_id) %></td>
-		<td><%= link_to User.find(post.user_id).name.capitalize + ":", user_path(post.user_id) %></td>
-		<td><%= post.text %></td>
-	</tr>
-	<% end %>
-</table>
+<% @feed.each do |post| %>
+	<div class="ui-grid-b" border-color="black" border-style="solid" border-width="5">
+		<div class="ui-block-a"><%= link_to gravatar_for(User.find(post.user_id), "50x50"), user_path(post.user_id) %></div>
+		<div class="ui-block-b"><%= link_to User.find(post.user_id).name.capitalize + ":", user_path(post.user_id) %></div>
+		<div class="ui-block-c"><%= post.text %></div>
+	</div>
+	</br>
+<% end %>
