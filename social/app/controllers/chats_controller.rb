@@ -15,11 +15,12 @@ class ChatsController < ApplicationController
   end
   
   def create
-    @user = User.find(params[:user_id])
     # build new chat and message between user
     @chat = current_user.chats.new(params[:chat].permit(:members, :topic))
     @message = @chat.messages.new(params[:message].permit(:text))
     @message.sender = current_user.id
+    @chat.members << current_user.name
+    @chat.user = current_user
     # verify that both are saved
     if @chat.save and @message.save
       # show the new chat to current user

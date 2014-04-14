@@ -10,10 +10,10 @@ class ApplicationController < ActionController::Base
   # returns all chats created by user
   # and chats user is a member of
   def all_chats_for(the_user)
-    chats = the_user.chats
+    chats = Array.new
     User.all.each do |user|
-      if user != the_user and user.chat_with(the_user)
-        chats.append user.chat_with(the_user)
+      if user.chat_with(the_user) and !chats.include?(user.chat_with(the_user))
+        chats << user.chat_with(the_user)
       end
     end
     chats.sort_by(&:updated_at).reverse!
