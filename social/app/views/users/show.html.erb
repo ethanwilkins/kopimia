@@ -48,7 +48,7 @@
 </table>
 
 <table>
-	<% @user.posts.each do |post| %>
+	<% @user.posts.reverse.each do |post| %>
 	<tr>
 		<td><%= link_to gravatar_for(post.user, "25x25"), user_path(post.user) %></td>
 		<td><%= post.text %></td>

@@ -7,12 +7,13 @@
 				<%= link_to gravatar_for(User.find(post.user_id), "50x50"), user_path(post.user_id) %>
 			</div>
 			<div class="ui-block-b">
-				<%= link_to post.user.name + ":", user_path(post.user) %>
+				<%= link_to post.user.name.capitalize + ":", user_path(post.user) %>
 			</div>
 			<div class="ui-block-c">
 				<%= post.text %>
 			</div>
 		</div>
+		<%= image_tag post.image_url if post.image? %>
 	</div>
 	</br>
 <% end %>
