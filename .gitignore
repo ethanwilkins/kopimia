@@ -14,3 +14,5 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+social/public/uploads/post/image/11/fly.jpg

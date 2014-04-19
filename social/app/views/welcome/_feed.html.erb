@@ -13,7 +13,7 @@
 				<%= post.text %>
 			</div>
 		</div>
-		<%= image_tag post.image_url if post.image? %>
+		<%= image_tag(post.image_url, width: "90%") if post.image? %>
 	</div>
 	</br>
 <% end %>
