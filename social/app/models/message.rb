@@ -1,5 +1,5 @@
 class Message < ActiveRecord::Base
-  belongs_to :chat
   validates :text, presence: true
   validates :sender, presence: true
+  belongs_to :user
 end

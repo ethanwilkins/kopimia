@@ -1,19 +1,21 @@
-<%= render "posts/new" if current_user %>
+<div id="card"><%= render "posts/new" if current_user %></div></br>
 
 <% @feed.each do |post| %>
 	<div id="card">
-		<div class="ui-grid-b">
-			<div class="ui-block-a">
-				<%= link_to gravatar_for(User.find(post.user_id), "50x50"), user_path(post.user_id) %>
-			</div>
-			<div class="ui-block-b">
-				<%= link_to post.user.name.capitalize + ":", user_path(post.user) %>
-			</div>
-			<div class="ui-block-c">
-				<%= post.text %>
-			</div>
+		<table>
+			<tr>
+				<td>
+					<%= link_to gravatar_for(User.find(post.user_id), "50x50"), user_path(post.user_id) %>
+				</td>
+				<td>
+					<%= link_to post.user.name.capitalize + ":", user_path(post.user) %>
+				</td>
+			</tr>
+		</table>
+		<div align="center">
+			<p align="left"><%= post.text %></p>
+			<%= link_to(image_tag(post.image_url, width: "90%"), show_post_path(post.user, post)) if post.image? %>
 		</div>
-		<%= image_tag(post.image_url, width: "90%") if post.image? %>
 	</div>
 	</br>
 <% end %>

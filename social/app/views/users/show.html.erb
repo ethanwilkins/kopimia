@@ -1,5 +1,5 @@
 <!-- users -->
-
+<div id="card">
 <table>
 	<tr>
 		<td>
@@ -23,7 +23,7 @@
 			<%= @user.bio %>
 		</td>
 		<td>
-			<%= render "message_button" %>
+			<%= render "messages/message_button" %>
 		</td>
 	</tr>
 </table>
@@ -46,15 +46,38 @@
 		</td>
 	</tr>
 </table>
+</div>
+</br>
 
-<table>
-	<% @user.posts.reverse.each do |post| %>
-	<tr>
-		<td><%= link_to gravatar_for(post.user, "25x25"), user_path(post.user) %></td>
-		<td><%= post.text %></td>
-		<td><%= button_to post.likes.to_i, like_path(params[:id], post), :method => "get",
-			"data-icon" => "star" %></td>
-		<td><%= button_to "Show", show_post_path(post.user, post), :method => "get" %></td>
-	</tr>
-	<% end %>
-</table>
+<% @user.posts.reverse.each do |post| %>
+	<div id="card">
+		<table>
+			<tr>
+				<td>
+					<%= link_to gravatar_for(post.user, "25x25"), user_path(post.user) %>
+				</td>
+				<td>
+					<%= link_to post.user.name.capitalize + ":", user_path(post.user) %>
+				</td>
+			</tr>
+		</table>
+		
+		<div>
+			<p><%= post.text %></p>
+			<%= link_to(image_tag(post.image_url, width: "90%"), show_post_path(post.user, post)) if post.image? %>
+		</div>
+		
+		<table>
+			<tr>
+				<td>
+					<%= button_to post.likes.to_i, like_path(params[:id], post), :method => "get",
+						"data-icon" => "star" %>
+				</td>
+				<td>
+					<%= button_to "Show", show_post_path(post.user, post), :method => "get" %>
+				</td>
+			</tr>
+		</table>
+	</div>
+	</br>
+<% end %>

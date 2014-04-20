@@ -1,4 +1,3 @@
 class Chat < ActiveRecord::Base
-  belongs_to :user
-  has_many :messages, dependent: :destroy
+  has_and_belongs_to_many :user # a join table will have be made, one without primary id
 end

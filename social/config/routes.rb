@@ -26,11 +26,10 @@ Social::Application.routes.draw do
   
   resources :users do
     resources :notifications
+    resources :messages
+    resources :chats
     member do
       get :following, :followers
-    end
-    resources :chats do
-      resources :messages
     end
     resources :posts do
       resources :comments

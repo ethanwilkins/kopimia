@@ -1,0 +1,5 @@
+<!-- should check for a chat between users in both directions -->
+
+<% if current_user and @user != current_user %>
+		<%= button_to "Message", user_messages_path(@user), :method => "get" %>
+<% end %>

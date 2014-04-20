@@ -1,9 +1,0 @@
-<!-- should check for a chat between users in both directions -->
-
-<% if current_user and @user != current_user %>
-	<% if current_user.chat_with(@user) %>
-		<%= button_to("Message", user_chat_path(current_user, current_user.chat_with(@user)), :method => "get") %>
-	<% else %>
-		<%= button_to("Message", new_user_chat_path(@user), :method => "get") %>
-	<% end %>
-<% end %>
