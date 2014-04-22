@@ -20,11 +20,12 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user].permit(:name, :password, :email, :bio))
+    @user.name.downcase!
     
     if @user.save
       redirect_to @user
     else
-      render 'register'
+      render "new"
     end
   end
   

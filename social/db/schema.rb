@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140418011718) do
+ActiveRecord::Schema.define(version: 20140422062334) do
 
   create_table "chats", force: true do |t|
     t.integer  "user_id"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20140418011718) do
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "chat_id"
+    t.integer  "user_id"
   end
 
   create_table "notifications", force: true do |t|

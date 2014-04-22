@@ -26,7 +26,7 @@
 						<%= button_to current_user.name.capitalize, user_path(current_user), :method => "get" %>
 					</td>
 					<td>
-						<%= button_to "Mail", user_messages_path(current_user), :method => "get" %>
+						<%= button_to "Inbox", user_messages_path(current_user), :method => "get" %>
 					</td>
 					<td>
 						<%= button_to current_user.notifications.unchecked.size,

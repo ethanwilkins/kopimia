@@ -1,0 +1,11 @@
+<!-- messages -->
+
+<%= form_for @message do |f| %>
+	<p>
+		<%= f.label "Send " + User.find(params[:user_id]).name + " a message" %>
+		<%= f.text_area :text %>
+		<%= hidden_field_tag :sender, current_user.id %>
+		<%= hidden_field_tag :user_id, params[:user_id] %>
+		<%= f.submit "Send" %>
+	</p>
+<% end %>
