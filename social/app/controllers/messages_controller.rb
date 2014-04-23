@@ -15,7 +15,13 @@ class MessagesController < ApplicationController
   
   def create
     @user = User.find(params[:user_id])
-    @message = @user.messages.create(params[:message].permit(:text, :sender))
-    redirect_to @user
+    @message = @user.messages.new(params[:message].permit(:text))
+    @message.sender = params[:sender]
+    
+    if @message.save
+      redirect_to @user
+    else
+      render "messages/new"
+    end
   end
 end

@@ -1,5 +1,18 @@
-<% @messages.each do |message| %>
+<% @messages.reverse.each do |message| %>
 	<div id="card">
+		<table>
+			<tr>
+				<td>
+					<%= link_to gravatar_for(User.find(message.sender), "50x50"), user_path(message.sender)  %>
+				</td>
+				<td>
+					<%= link_to User.find(message.sender).name.capitalize + ":", user_path(message.sender) %>
+				</td>
+				<td>
+				</td>
+			</tr>
+		</table>
 		<p><%= message.text %></p>
+		<%= button_to "Reply", new_user_message_path(message.sender), :method => "get" %>
 	</div></br>
 <% end %>
