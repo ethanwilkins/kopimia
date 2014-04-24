@@ -23,7 +23,11 @@ class UsersController < ApplicationController
     @user.name.downcase!
     
     if @user.save
-      redirect_to @user
+      # authenticates user if save successful
+      user = User.authenticate(@user.name, @user.password)
+      # signs in user if authentications successful
+      session[:user_id] = user.id if user
+      redirect_to root_url
     else
       render "new"
     end
