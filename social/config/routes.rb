@@ -7,6 +7,7 @@ Social::Application.routes.draw do
   post "messages/create", :as => "messages"
   post "posts/create", :as => "posts"
   post "chats/create", :as => "chats"
+  get "users/search", :as => "search"
   get "sessions/destroy"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

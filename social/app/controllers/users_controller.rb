@@ -1,8 +1,12 @@
-# gotta use gravatar for profile pictures, validate presence of email in user creation
-
 class UsersController < ApplicationController
   
   # http_basic_authenticate_with name: "admin", password: "pass", only: :destroy
+  
+  def search
+    if params[:query]
+      @users = User.find_by_sql("SELECT * FROM Users WHERE name = '#{params[:query]}'")
+    end
+  end
 
   def followers
     @user = User.find(params[:id])
