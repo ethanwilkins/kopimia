@@ -31,6 +31,9 @@ gem 'jbuilder', '~> 1.2'
 gem "rmagick"
 gem "carrierwave"
 
+# encryption
+gem "bcrypt-ruby", require: "bcrypt"
+
 # pagination
 # gem "kaminari"
 

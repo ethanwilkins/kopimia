@@ -19,6 +19,7 @@ class MessagesController < ApplicationController
     @message.sender = params[:sender]
     
     if @message.save
+      @user.notify!(:message, current_user)
       redirect_to @user
     else
       render "messages/new"

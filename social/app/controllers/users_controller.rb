@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     
     if @user.save
       # authenticates user if save successful
-      user = User.authenticate(@user.name, @user.password)
+      user = User.authenticate(@user.email, @user.password)
       # signs in user if authentications successful
       session[:user_id] = user.id if user
       redirect_to root_url

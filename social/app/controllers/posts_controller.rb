@@ -9,8 +9,13 @@ class PostsController < ApplicationController
   
   def create
     @user = User.find(current_user.id)
-    @post = @user.posts.create(params[:post].permit(:text, :image))
-    redirect_to user_path(@user)
+    @post = @user.posts.new(params[:post].permit(:text, :image))
+    
+    if @post.save
+      redirect_to user_path(@user)
+    else
+      redirect_to root_url
+    end
   end
 
   def destroy

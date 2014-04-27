@@ -13,7 +13,10 @@ class User < ActiveRecord::Base
   validates :name, presence: true, length: { minimum: 3 }
   validates :password, presence: true, length: { minimum: 4 }
   validates :email, presence: true, length: { minimum: 6 }
-  validates :bio, presence: true, length: { minimum: 4 }
+  validates_confirmation_of :password
+  validates_uniqueness_of :email
+  
+  before_save :encrypt_password
 
   def feed
     posts = Post.from_users_followed_by(self).sort_by(&:created_at).reverse!
@@ -54,17 +57,26 @@ class User < ActiveRecord::Base
         message = "#{other_user.name} liked your comment."
       when :comment
         message = "#{other_user.name} commented on your post."
+      when :message
+        message = "#{other_user.name} sent you a message."
       end
       notifications.create!(message: message)
     end
   end
   
-  def self.authenticate(name, password)
-    user = find_by_name(name)
-    if user && user.password == password
+  def self.authenticate(email, password)
+    user = find_by_email(email)
+    if user && user.password == BCrypt::Engine.hash_secret(password, user.salt)
       user
     else
       nil
+    end
+  end
+  
+  def encrypt_password
+    if password.present?
+      self.salt = BCrypt::Engine.generate_salt
+      self.password = BCrypt::Engine.hash_secret(password, salt)
     end
   end
 end

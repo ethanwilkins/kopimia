@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422062334) do
+ActiveRecord::Schema.define(version: 20140426150836) do
 
   create_table "chats", force: true do |t|
     t.integer  "user_id"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20140422062334) do
     t.text     "bio"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "salt"
   end
 
   add_index "users", ["name", "password"], name: "index_users_on_name_and_password", unique: true
