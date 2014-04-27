@@ -4,7 +4,7 @@
 <table>
 	<tr>
 		<td>
-			<%= gravatar_for @user %>
+			<%= profile_picture @user %>
 		</td>
 		<td>
 			<h1>
@@ -20,11 +20,16 @@
 <table>
 	<tr>
 		<td>
+			<%= render "messages/message_button" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
 			<strong>About me:</strong>
 			<%= @user.bio %>
 		</td>
 		<td>
-			<%= render "messages/message_button" %>
+			<%= render "edit_button" %>
 		</td>
 	</tr>
 </table>
@@ -55,7 +60,7 @@
 		<table>
 			<tr>
 				<td>
-					<%= link_to gravatar_for(post.user, "25x25"), user_path(post.user) %>
+					<%= link_to profile_picture(post.user, "25x25"), user_path(post.user) %>
 				</td>
 				<td>
 					<%= link_to post.user.name.capitalize + ":", user_path(post.user) %>

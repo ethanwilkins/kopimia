@@ -1,0 +1,12 @@
+<%= form_for @user, url: user_path(@user), method: :patch,
+	:html => {:multipart => true, "data-ajax" => false} do |f| %>
+	<p>
+		<%= f.label "Choose a profile picture" %>
+		<%= f.file_field :profile_picture %>
+	</p>
+	<p>
+		<%= f.submit "Save" %>
+	</p>
+<% end %>
+
+<%= button_to "Log out", sessions_destroy_path, :method => "get" %>

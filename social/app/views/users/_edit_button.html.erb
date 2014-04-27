@@ -1,0 +1,4 @@
+<% if current_user and @user == current_user %>
+		<%= button_to "Edit", edit_user_path(@user), method: :get,
+			"data-icon" => "gear", "data-iconpos" => "notext" %>
+<% end %>

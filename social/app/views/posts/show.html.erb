@@ -2,7 +2,7 @@
 <div id="card">
 	<table>
 		<tr>
-			<td><%= link_to gravatar_for(@user), user_path(@user) %></td>
+			<td><%= link_to profile_picture(@user), user_path(@user) %></td>
 			<td><%= link_to @user.name.capitalize, user_path(@user) %></td>
 			<td><%= @post.likes %></td>
 			<td><%= button_to "Like", like_path(params[:user_id], @post),
@@ -27,7 +27,7 @@
 <div id="card">
 	<table>
 		<tr>
-			<td><%= link_to gravatar_for(comment.commenter, "25x25"), user_path(comment.commenter) %></td>
+			<td><%= link_to profile_picture(comment.commenter, "25x25"), user_path(comment.commenter) %></td>
 			<td><%= comment.text %></td>
 			<td><%= comment.likes %></td>
 			<td><%= button_to "Like", like_comment_path(params[:user_id], @post, comment),

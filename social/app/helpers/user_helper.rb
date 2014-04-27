@@ -5,4 +5,9 @@ module UserHelper
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
     image_tag(gravatar_url, alt: user.name, class: "gravatar", size: size)
   end
+  
+  # returns uploaded profile picture
+  def profile_picture(user, size="100x100")
+    image_tag(user.profile_picture, alt: user.name, size: size)
+  end
 end

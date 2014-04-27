@@ -37,6 +37,20 @@ class UsersController < ApplicationController
     end
   end
   
+  def edit
+    @user = current_user
+  end
+  
+  def update
+    @user = current_user
+    
+    if @user.update(params[:user].permit(:profile_picture))
+      redirect_to @user
+    else
+      render "edit"
+    end
+  end
+  
   def destroy
     @user = User.find(params[:id])
     @user.destroy

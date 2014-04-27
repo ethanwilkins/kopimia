@@ -3,8 +3,7 @@
 	<% if current_user.notifications.size > 0 %>
 		<%= button_to "Clear all", clear_path(current_user), :method => "delete" %>
 	<% else %>
-		<p>You have zero notifications.</p>
-		<%= image_tag "forever_alone.png", size: "150" %>
+		<p align="center">You have zero notifications.</p>
 	<% end %>
 
 	<ul>
