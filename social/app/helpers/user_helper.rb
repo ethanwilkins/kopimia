@@ -8,6 +8,7 @@ module UserHelper
   
   # returns uploaded profile picture
   def profile_picture(user, size="100x100")
-    image_tag(user.profile_picture, alt: user.name, size: size)
+    # picture shows if it exists and has a URL
+    image_tag(user.profile_picture, size: size) if user.profile_picture.url
   end
 end

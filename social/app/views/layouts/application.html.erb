@@ -26,11 +26,11 @@
 						<%= button_to current_user.name.capitalize, user_path(current_user), :method => "get" %>
 					</td>
 					<td>
-						<%= button_to "Mail", user_messages_path(current_user), :method => "get" %>
+						<%= button_to "Notes: " + current_user.notifications.unchecked.size.to_s,
+							user_notifications_path(current_user), :method => "get" %>
 					</td>
 					<td>
-						<%= button_to current_user.notifications.unchecked.size,
-							user_notifications_path(current_user), :method => "get" %>
+						<%= button_to "Mail", user_messages_path(current_user), :method => "get" %>
 					</td>
 					<td>
 						<%= button_to "", search_path, "data-icon" => "search", "data-iconpos" => "notext", :method => "get" %>

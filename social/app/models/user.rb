@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
   validates_uniqueness_of :email
   
-  before_save :encrypt_password
+  before_create :encrypt_password
   
   mount_uploader :profile_picture, ImageUploader
 
