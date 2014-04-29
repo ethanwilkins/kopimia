@@ -1,7 +1,7 @@
 <!-- users -->
 
 <div id="card">
-<table>
+<table align="center">
 	<tr>
 		<td>
 			<%= profile_picture @user %>
@@ -17,7 +17,7 @@
 	</tr>
 </table>
 
-<table>
+<table align="center">
 	<tr>
 		<td>
 			<%= render "messages/message_button" %>
@@ -34,7 +34,7 @@
 	</tr>
 </table>
 
-<table>
+<table align="center">
 	<tr>
 		<td>
 			<%= link_to "Followers: #{@user.followers.count}", followers_user_path(@user) %>
@@ -45,7 +45,7 @@
 	</tr>
 </table>
 
-<table>
+<table align="center">
 	<tr>
 		<td>
 			<%= render "posts/new" if current_user and current_user.id == @user.id %>
@@ -70,7 +70,8 @@
 		
 		<div>
 			<p><%= post.text %></p>
-			<%= link_to(image_tag(post.image_url, width: "90%"), show_post_path(post.user, post)) if post.image? %>
+			<%= link_to(image_tag(post.image_url, width: "90%"),
+				show_post_path(post.user, post)) if post.image? %>
 		</div>
 		
 		<table>
