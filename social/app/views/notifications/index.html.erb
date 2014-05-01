@@ -1,15 +1,33 @@
 <% if current_user %>
-
 	<% if current_user.notifications.size > 0 %>
 		<%= button_to "Clear all", clear_path(current_user), :method => "delete" %>
 	<% else %>
 		<p align="center">You have zero notifications.</p>
 	<% end %>
+	<br>
 
-	<ul>
-		<% @notes.each do |note| %>
-			<li><%= note.message %></li>
-		<% end %>
-	</ul>
-
+	<% @notes.each do |note| %>
+		<div id="card">
+			<table align="center">
+				<tr>
+					<td><%= link_to profile_picture(User.find(note.other_user), "25x25"),
+						user_path(note.other_user) %></td>
+					<td>
+						<% case note.action.to_sym %>
+							<% when :follow %>
+								<%= link_to note.message, user_path(note.other_user) %>
+							<% when :message %>
+								<%= link_to note.message, user_messages_path(note.other_user) %>
+							<% when :comment %>
+								<%= link_to note.message, show_post_path(note.user, note.item) %>
+							<% when :like_post %>
+								<%= link_to note.message, show_post_path(note.user, note.item) %>
+							<% when :like_comment %>
+								<%= link_to note.message, show_post_path(note.user, note.item) %>
+						<% end %>
+					</td>
+				</tr>
+			</table>
+		</div><br>
+	<% end %>
 <% end %>

@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
   
-  # http_basic_authenticate_with name: "admin", password: "pass", only: :destroy
-  
   def search
     if params[:query]
       @users = User.find_by_sql("SELECT * FROM Users WHERE name = '#{params[:query]}'")

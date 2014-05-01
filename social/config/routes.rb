@@ -6,7 +6,6 @@ Social::Application.routes.draw do
   post "comments/create", :as => "comments"
   post "messages/create", :as => "messages"
   post "posts/create", :as => "posts"
-  post "chats/create", :as => "chats"
   get "users/search", :as => "search"
   get "sessions/destroy"
   # The priority is based upon order of creation: first created -> highest priority.
@@ -28,7 +27,6 @@ Social::Application.routes.draw do
   resources :users do
     resources :notifications
     resources :messages
-    resources :chats
     member do
       get :following, :followers
     end

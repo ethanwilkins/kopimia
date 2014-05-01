@@ -2,7 +2,7 @@
 
 <% @feed.each do |post| %>
 	<div id="card">
-		<table>
+		<table align="center">
 			<tr>
 				<td>
 					<%= link_to profile_picture(User.find(post.user_id), "50x50"), user_path(post.user_id) %>
@@ -15,10 +15,23 @@
 				</td>
 			</tr>
 		</table>
+		
 		<div align="center">
-			<p align="left"><%= post.text %></p>
+			<p><%= post.text %></p>
 			<%= link_to(image_tag(post.image_url, width: "90%"), show_post_path(post.user, post)) if post.image? %>
 		</div>
+		
+		<table align="center">
+			<tr>
+				<td>
+					<%= button_to post.likes.to_i, like_path(post.user, post), :method => "get",
+						"data-icon" => "star" %>
+				</td>
+				<td>
+					<%= button_to "Comment", show_post_path(post.user, post), :method => "get" %>
+				</td>
+			</tr>
+		</table>
 	</div>
 	</br>
 <% end %>

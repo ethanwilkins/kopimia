@@ -11,17 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427014515) do
-
-  create_table "chats", force: true do |t|
-    t.integer  "user_id"
-    t.boolean  "public",     default: false
-    t.string   "members"
-    t.integer  "votes"
-    t.string   "topic"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20140501052448) do
 
   create_table "comments", force: true do |t|
     t.integer  "post_id"
@@ -60,6 +50,9 @@ ActiveRecord::Schema.define(version: 20140427014515) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "other_user"
+    t.string   "action"
+    t.integer  "item"
   end
 
   create_table "posts", force: true do |t|

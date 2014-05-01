@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(params[:comment].permit(:text))
 		@comment.commenter = current_user
 		if @comment.save
-      User.find(@post.user).notify!(:comment, current_user)
+      User.find(@post.user).notify!(:comment, current_user, @post.id)
   	  redirect_to show_post_path(@post.user, @post)
 		else
  	   render "posts/show"
@@ -18,13 +18,11 @@ class CommentsController < ApplicationController
   end
   
   def like
-    @user = User.find(params[:user_id])
-    @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
     @comment.like!
     # notify commenter their comment was liked
-    @commenter = User.find(@comment.commenter_id)
-    @commenter.notify!(:like_comment, current_user)
-    redirect_to show_post_path(@user, @post)
+    @commenter = User.find(@comment.commenter)
+    @commenter.notify!(:like_comment, current_user, @comment.post_id)
+    redirect_to show_post_path(@commenter, @comment.post)
   end
 end

@@ -1,44 +1,53 @@
 <!-- posts -->
 <div id="card">
-	<table>
+	<table align="center">
 		<tr>
-			<td><%= link_to profile_picture(@user), user_path(@user) %></td>
-			<td><%= link_to @user.name.capitalize, user_path(@user) %></td>
-			<td><%= @post.likes %></td>
-			<td><%= button_to "Like", like_path(params[:user_id], @post),
-				"data-icon" => "star", "data-iconpos" => "notext", :method => "get" %></td>
+			<td><%= link_to profile_picture(@user, "50x50"), user_path(@user) %></td>
+			<td><%= link_to @user.name.capitalize, user_path(@user) %>
+				<% if @post.image? %>
+					posted a picture:
+				<% end %></td>
+		</tr>
+	</table>
+	<div align="center">
+		<p><%= @post.text %></p>
+		<%= image_tag(@post.image_url, width: "90%") if @post.image? %>
+	</div>
+	<table align="center">
+		<tr>
+			<td><%= button_to @post.likes.to_i, like_path(params[:user_id], @post),
+				"data-icon" => "star", :method => "get" %></td>
 			
 			<% if current_user and current_user == @user %>
-			<td><%= button_to 'Destroy', user_post_path(params[:id], @post),
-				"data-icon" => "delete", "data-iconpos" => "notext",
+			<td><%= button_to 'Destroy', user_post_path(params[:id], @post), "data-icon" => "delete",
 				method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			<% end %>
 		</tr>
 	</table>
-	<p><%= @post.text %></p>
-	<div>
-		<%= image_tag(@post.image_url, width: "90%") if @post.image? %>
-	</div>
 </div></br>
 
 <div id="card"><%= render "comments/new" if current_user %></div></br>
 
 <% @post.comments.each do |comment| %>
 <div id="card">
-	<table>
+	<table align="center">
 		<tr>
 			<td><%= link_to profile_picture(comment.commenter, "25x25"), user_path(comment.commenter) %></td>
-			<td><%= comment.text %></td>
-			<td><%= comment.likes %></td>
-			<td><%= button_to "Like", like_comment_path(params[:user_id], @post, comment),
-				"data-icon" => "star", "data-iconpos" => "notext", :method => "get" %></td>
+			<td><%= link_to comment.commenter.name.capitalize,
+				user_path(comment.commenter) %> commented:</td>
+		</tr>
+	</table>
+	<p align="center"><%= comment.text %></p>
+	<table align="center">
+		<tr>
+			<td><%= button_to comment.likes.to_i, like_comment_path(params[:user_id], @post, comment),
+				"data-icon" => "star", :method => "get" %></td>
 				
 			<% if current_user and current_user.id == comment.commenter_id %>
 			<td><%= button_to 'Destroy', user_post_comment_path(params[:id], @post, comment),
-				"data-icon" => "delete", "data-iconpos" => "notext",
-				method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				"data-icon" => "delete", method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			<% end %>
 		</tr>
 	</table>
-</div>
+</div><br>
 <% end %>

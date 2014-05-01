@@ -48,21 +48,22 @@ class User < ActiveRecord::Base
     return nil
   end
   
-  def notify!(action, other_user)
+  def notify!(action, other_user, item=1)
     if self != other_user then
       case action
-      when :follow
-        message = "#{other_user.name} started following you."
-      when :like_post
-        message = "#{other_user.name} liked your post."
-      when :like_comment
-        message = "#{other_user.name} liked your comment."
-      when :comment
-        message = "#{other_user.name} commented on your post."
-      when :message
-        message = "#{other_user.name} sent you a message."
+        when :follow
+          message = "#{other_user.name} started following you."
+        when :message
+          message = "#{other_user.name} sent you a message."
+        when :comment
+          message = "#{other_user.name} commented on your post."
+        when :like_post
+          message = "#{other_user.name} liked your post."
+        when :like_comment
+          message = "#{other_user.name} liked your comment."
       end
-      notifications.create!(message: message)
+      notifications.create!(message: message, other_user: other_user.id,
+        action: action.to_s, item: item)
     end
   end
   
