@@ -12,9 +12,9 @@ class PostsController < ApplicationController
     @post = @user.posts.new(params[:post].permit(:text, :image))
     
     if @post.save
-      redirect_to user_path(@user)
+      redirect_to :back
     else
-      redirect_to root_url
+      redirect_to :back
     end
   end
 
@@ -31,6 +31,12 @@ class PostsController < ApplicationController
     @post.like!
     #creates notification
     @user.notify!(:like_post, current_user, @post.id)
-    redirect_to user_path(@user)
+    redirect_to :back
+  end
+  
+  def share
+    @user = User.find(current_user.id)
+    @post = @user.posts.create(original: params[:id])
+    redirect_to :back
   end
 end

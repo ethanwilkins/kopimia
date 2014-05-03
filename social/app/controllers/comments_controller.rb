@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
 		@comment.commenter = current_user
 		if @comment.save
       User.find(@post.user).notify!(:comment, current_user, @post.id)
-  	  redirect_to show_post_path(@post.user, @post)
+  	  redirect_to :back
 		else
  	   render "posts/show"
 		end
@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to show_post_path(User.find(params[:user_id]), Post.find(params[:post_id]))
+    redirect_to :back
   end
   
   def like
@@ -23,6 +23,6 @@ class CommentsController < ApplicationController
     # notify commenter their comment was liked
     @commenter = User.find(@comment.commenter)
     @commenter.notify!(:like_comment, current_user, @comment.post_id)
-    redirect_to show_post_path(@commenter, @comment.post)
+    redirect_to :back
   end
 end

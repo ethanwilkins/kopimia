@@ -1,6 +1,7 @@
 <div id="card"><%= render "posts/new" if current_user %></div></br>
 
 <% @feed.each do |post| %>
+	<% original_post = Post.find(post.original) if post.original %>
 	<div id="card">
 		<table align="center">
 			<tr>
@@ -9,26 +10,47 @@
 				</td>
 				<td>
 					<%= link_to post.user.name.capitalize, user_path(post.user) %>
-					<% if post.image? %>
-						posted a picture:
+					<% unless post.original %>
+						<% if post.image? %>
+							posted a picture:
+						<% end %>
+					<% else %>
+						shared <%= User.find(original_post.user).name + "s" %> post:
 					<% end %>
 				</td>
 			</tr>
 		</table>
 		
 		<div align="center">
-			<p><%= post.text %></p>
-			<%= link_to(image_tag(post.image_url, width: "90%"), show_post_path(post.user, post)) if post.image? %>
+			<% unless post.original %>
+				<p><%= post.text %></p>
+				<%= link_to(image_tag(post.image_url, width: "90%"),
+					show_post_path(post.user, post)) if post.image? %>
+			<% else %>
+				<p><%= original_post.text %></p>
+				<%= link_to(image_tag(original_post.image_url, width: "90%"),
+					show_post_path(original_post.user, post)) if original_post.image? %>
+			<% end%>		
 		</div>
 		
 		<table align="center">
 			<tr>
 				<td>
 					<%= button_to post.likes.to_i, like_path(post.user, post), :method => "get",
-						"data-icon" => "star" %>
+						"data-icon" => "star", "data-mini" => true %>
 				</td>
 				<td>
-					<%= button_to "Comment", show_post_path(post.user, post), :method => "get" %>
+					<% unless post.original %>
+						<%= button_to "Share", share_path(post.id),
+							:method => "get", "data-mini" => true %>
+					<% else %>
+						<%= button_to "Share", share_path(original_post.id),
+							:method => "get", "data-mini" => true %>
+					<% end %>
+				</td>
+				<td>
+					<%= button_to "Comment", show_post_path(post.user, post),
+						:method => "get", "data-mini" => true %>
 				</td>
 			</tr>
 		</table>
