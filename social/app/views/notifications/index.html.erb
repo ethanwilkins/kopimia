@@ -10,8 +10,8 @@
 		<div id="card">
 			<table align="center">
 				<tr>
-					<td><%= link_to profile_picture(User.find(note.other_user), "25x25"),
-						user_path(note.other_user) %></td>
+					<td><%= link_to(profile_picture(User.find(note.other_user), "25x25"),
+						user_path(note.other_user)) if User.find(note.other_user).profile_picture.url %></td>
 					<td>
 						<% case note.action.to_sym %>
 							<% when :follow %>

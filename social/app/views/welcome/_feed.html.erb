@@ -1,4 +1,4 @@
-<div id="card"><%= render "posts/new" if current_user %></div></br>
+<div id="card"><%= render "posts/new" %></div></br>
 
 <% @feed.each do |post| %>
 	<% original_post = Post.find(post.original) if post.original %>
@@ -15,7 +15,13 @@
 							posted a picture:
 						<% end %>
 					<% else %>
-						shared <%= User.find(original_post.user).name + "s" %> post:
+						shared
+						<% unless User.find(original_post.user) == current_user %>
+							<%= User.find(original_post.user).name.capitalize + "s" %>
+						<% else %>
+							your
+						<% end %>
+						post:
 					<% end %>
 				</td>
 			</tr>
@@ -23,13 +29,13 @@
 		
 		<div align="center">
 			<% unless post.original %>
-				<p><%= post.text %></p>
 				<%= link_to(image_tag(post.image_url, width: "90%"),
 					show_post_path(post.user, post)) if post.image? %>
+				<p><%= post.text %></p>
 			<% else %>
-				<p><%= original_post.text %></p>
 				<%= link_to(image_tag(original_post.image_url, width: "90%"),
-					show_post_path(original_post.user, post)) if original_post.image? %>
+					show_post_path(original_post.user, original_post)) if original_post.image? %>
+				<p><%= original_post.text %></p>
 			<% end%>		
 		</div>
 		
@@ -41,11 +47,11 @@
 				</td>
 				<td>
 					<% unless post.original %>
-						<%= button_to "Share", share_path(post.id),
-							:method => "get", "data-mini" => true %>
+						<%= button_to("Share", share_path(post.id),
+							"data-mini" => true) if post.user != current_user %>
 					<% else %>
-						<%= button_to "Share", share_path(original_post.id),
-							:method => "get", "data-mini" => true %>
+						<%= button_to("Share", share_path(original_post.id),
+							"data-mini" => true) if original_post.user != current_user %>
 					<% end %>
 				</td>
 				<td>

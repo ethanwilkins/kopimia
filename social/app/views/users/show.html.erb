@@ -56,6 +56,7 @@
 </br>
 
 <% @user.posts.reverse.each do |post| %>
+	<% original_post = Post.find(post.original) if post.original %>
 	<div id="card">
 		<table align="center">
 			<tr>
@@ -72,9 +73,9 @@
 		</table>
 		
 		<div align="center">
-			<p><%= post.text %></p>
 			<%= link_to(image_tag(post.image_url, width: "90%"),
 				show_post_path(post.user, post)) if post.image? %>
+			<p><%= post.text %></p>
 		</div>
 		
 		<table align="center">
