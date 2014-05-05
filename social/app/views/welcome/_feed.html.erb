@@ -10,7 +10,7 @@
 				</td>
 				<td>
 					<%= link_to post.user.name.capitalize, user_path(post.user) %>
-					<% unless post.original %>
+					<% unless original_post %>
 						<% if post.image? %>
 							posted a picture:
 						<% end %>
@@ -28,7 +28,7 @@
 		</table>
 		
 		<div align="center">
-			<% unless post.original %>
+			<% unless original_post %>
 				<%= link_to(image_tag(post.image_url, width: "90%"),
 					show_post_path(post.user, post)) if post.image? %>
 				<p><%= post.text %></p>
@@ -46,7 +46,7 @@
 						"data-icon" => "star", "data-mini" => true %>
 				</td>
 				<td>
-					<% unless post.original %>
+					<% unless original_post %>
 						<%= button_to("Share", share_path(post.id),
 							"data-mini" => true) if post.user != current_user %>
 					<% else %>

@@ -1,18 +1,39 @@
 <!-- posts -->
+
+<% original_post = Post.find(@post.original) if @post.original %>
+
 <div id="card">
 	<table align="center">
 		<tr>
 			<td><%= link_to profile_picture(@user, "50x50"), user_path(@user) %></td>
 			<td><%= link_to @user.name.capitalize, user_path(@user) %>
-				<% if @post.image? %>
-					posted a picture:
-				<% end %></td>
+				<% unless original_post %>
+					<% if @post.image? %>
+						posted a picture:
+					<% end %>
+				<% else %>
+					shared
+					<% unless User.find(original_post.user) == current_user %>
+						<%= User.find(original_post.user).name.capitalize + "s" %>
+					<% else %>
+						your
+					<% end %>
+					post:
+				<% end %>
+			</td>
 		</tr>
 	</table>
+	
 	<div align="center">
-		<p><%= @post.text %></p>
-		<%= image_tag(@post.image_url, width: "90%") if @post.image? %>
+		<% unless original_post %>
+			<%= image_tag(@post.image_url, width: "90%") if @post.image? %>
+			<p><%= @post.text %></p>
+		<% else %>
+			<%= image_tag(original_post.image_url, width: "90%") if original_post.image? %>
+			<p><%= original_post.text %></p>
+		<% end %>
 	</div>
+	
 	<table align="center">
 		<tr>
 			<td><%= button_to @post.likes.to_i, like_path(params[:user_id], @post),

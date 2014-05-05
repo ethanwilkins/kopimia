@@ -65,17 +65,33 @@
 				</td>
 				<td>
 					<%= link_to post.user.name.capitalize, user_path(post.user) %>
-					<% if post.image? %>
-						posted a picture:
+					<% unless original_post %>
+						<% if post.image? %>
+							posted a picture:
+						<% end %>
+					<% else %>
+						shared
+						<% unless User.find(original_post.user) == current_user %>
+							<%= User.find(original_post.user).name.capitalize + "s" %>
+						<% else %>
+							your
+						<% end %>
+						post:
 					<% end %>
 				</td>
 			</tr>
 		</table>
 		
 		<div align="center">
-			<%= link_to(image_tag(post.image_url, width: "90%"),
-				show_post_path(post.user, post)) if post.image? %>
-			<p><%= post.text %></p>
+			<% unless original_post %>
+				<%= link_to(image_tag(post.image_url, width: "90%"),
+					show_post_path(post.user, post)) if post.image? %>
+				<p><%= post.text %></p>
+			<% else %>
+				<%= link_to(image_tag(original_post.image_url, width: "90%"),
+					show_post_path(original_post.user, original_post)) if original_post.image? %>
+				<p><%= original_post.text %></p>
+			<% end %>
 		</div>
 		
 		<table align="center">
