@@ -1,0 +1,16 @@
+<% original_post = Post.find(post.original) if post.original %>
+
+<% unless original_post %>
+	<% if post.image? %>
+		posted a picture:
+	<% end %>
+<% else %>
+	shared
+	<% unless User.find(original_post.user) == current_user %>
+		<%= link_to User.find(original_post.user).name.capitalize + "s",
+			user_path(original_post.user) %>
+	<% else %>
+		your
+	<% end %>
+	post:
+<% end %>

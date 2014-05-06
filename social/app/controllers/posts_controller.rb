@@ -36,7 +36,11 @@ class PostsController < ApplicationController
   
   def share
     @user = User.find(current_user.id)
+    @other_user = User.find(Post.find(params[:id]).user_id)
+    
     @post = @user.posts.create(original: params[:id])
+    @other_user.notify!(:share_post, current_user, @post.id)
+    
     redirect_to :back
   end
 end

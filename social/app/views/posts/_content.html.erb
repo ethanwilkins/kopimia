@@ -1,0 +1,13 @@
+<% original_post = Post.find(post.original) if post.original %>
+		
+<div align="center">
+	<% unless original_post %>
+		<%= link_to(image_tag(post.image_url, width: "90%"),
+			show_post_path(post.user, post)) if post.image? %>
+		<p><%= post.text %></p>
+	<% else %>
+		<%= link_to(image_tag(original_post.image_url, width: "90%"),
+			show_post_path(original_post.user, original_post)) if original_post.image? %>
+		<p><%= original_post.text %></p>
+	<% end %>
+</div>

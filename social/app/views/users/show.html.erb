@@ -56,7 +56,6 @@
 </br>
 
 <% @user.posts.reverse.each do |post| %>
-	<% original_post = Post.find(post.original) if post.original %>
 	<div id="card">
 		<table align="center">
 			<tr>
@@ -65,34 +64,12 @@
 				</td>
 				<td>
 					<%= link_to post.user.name.capitalize, user_path(post.user) %>
-					<% unless original_post %>
-						<% if post.image? %>
-							posted a picture:
-						<% end %>
-					<% else %>
-						shared
-						<% unless User.find(original_post.user) == current_user %>
-							<%= User.find(original_post.user).name.capitalize + "s" %>
-						<% else %>
-							your
-						<% end %>
-						post:
-					<% end %>
+					<%= render "posts/user_action", post: post %>
 				</td>
 			</tr>
 		</table>
 		
-		<div align="center">
-			<% unless original_post %>
-				<%= link_to(image_tag(post.image_url, width: "90%"),
-					show_post_path(post.user, post)) if post.image? %>
-				<p><%= post.text %></p>
-			<% else %>
-				<%= link_to(image_tag(original_post.image_url, width: "90%"),
-					show_post_path(original_post.user, original_post)) if original_post.image? %>
-				<p><%= original_post.text %></p>
-			<% end %>
-		</div>
+		<%= render "posts/content", post: post %>
 		
 		<table align="center">
 			<tr>
