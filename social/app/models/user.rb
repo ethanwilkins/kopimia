@@ -36,18 +36,6 @@ class User < ActiveRecord::Base
     connections.find_by(followed_id: other_user.id).destroy
   end
   
-  # finds chat with self and other
-  def chat_with(other_user)
-    if chats.any?
-      chats.each do |chat|
-        if chat.members.include? other_user.name
-          return chat
-        end
-      end
-    end
-    return nil
-  end
-  
   def notify!(action, other_user, item=1)
     user_name = other_user.name.capitalize
     if self != other_user then
@@ -58,8 +46,6 @@ class User < ActiveRecord::Base
           message = "#{user_name} sent you a message."
         when :comment
           message = "#{user_name} commented on your post."
-        when :like_post
-          message = "#{user_name} liked your post."
         when :share_post
           message = "#{user_name} shared your post."
         when :like_comment

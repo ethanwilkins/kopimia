@@ -1,3 +1,7 @@
 <!-- welcome -->
 
-<%= render "feed" if current_user %>
+<% unless current_user %>
+	<%= render "welcome" %>
+<% else %>
+	<%= render "feed" %>
+<% end %>

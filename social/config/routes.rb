@@ -1,8 +1,8 @@
 Social::Application.routes.draw do
-  get "users/:user_id/posts/:post_id/comments/:id", to: "comments#like", as: "like_comment"
   get "users/:user_id/posts/:id/show", to: "posts#show", as: "show_post"
   delete "users/:user_id", to: "notifications#clear", as: "clear"
-  get "users/:user_id/posts/:id", to: "posts#like", as: "like"
+  get "posts/down_vote/:id", to: "posts#down_vote", as: "down_vote"
+  get "posts/up_vote/:id", to: "posts#up_vote", as: "up_vote"
   post "users/:id", to: "posts#share", as: "share"
   post "comments/create", as: "comments"
   post "messages/create", as: "messages"
@@ -32,7 +32,10 @@ Social::Application.routes.draw do
       get :following, :followers
     end
     resources :posts do
-      resources :comments
+      resources :votes
+      resources :comments do
+        resources :votes
+      end
     end
   end
 

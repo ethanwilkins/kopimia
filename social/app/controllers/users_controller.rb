@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(params[:user].permit(:name, :password, :email, :bio))
+    @user = User.new(params[:user].permit(:email, :password, :name))
     @user.name.downcase!
     
     if @user.save

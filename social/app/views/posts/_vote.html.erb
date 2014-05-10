@@ -1,0 +1,29 @@
+<% original_post = Post.find(post.original) if post.original %>
+
+<% unless original_post %>
+	<% if post.user != current_user %>
+		<td>
+			<%= button_to "", up_vote_path(post),
+				"data-icon" => "arrow-u", "data-iconpos" => "notext",
+				:method => "get", "data-mini" => true %>
+		</td>
+		<td>
+			<%= button_to "", down_vote_path(post),
+				"data-icon" => "arrow-d", "data-iconpos" => "notext",
+				:method => "get", "data-mini" => true %>
+		</td>
+	<% end %>
+<% else %>
+	<% if original_post.user != current_user %>
+		<td>
+			<%= button_to "", up_vote_path(original_post),
+				"data-icon" => "arrow-u", "data-iconpos" => "notext",
+				:method => "get", "data-mini" => true %>
+		</td>
+		<td>
+			<%= button_to "", down_vote_path(original_post),
+				"data-icon" => "arrow-d", "data-iconpos" => "notext",
+				:method => "get", "data-mini" => true %>
+		</td>
+	<% end %>
+<% end %>

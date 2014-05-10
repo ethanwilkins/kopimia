@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140503070511) do
+ActiveRecord::Schema.define(version: 20140510080556) do
 
   create_table "comments", force: true do |t|
     t.integer  "post_id"
     t.integer  "commenter_id"
-    t.integer  "likes"
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -57,7 +56,6 @@ ActiveRecord::Schema.define(version: 20140503070511) do
 
   create_table "posts", force: true do |t|
     t.integer  "user_id"
-    t.integer  "likes"
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -81,5 +79,15 @@ ActiveRecord::Schema.define(version: 20140503070511) do
   add_index "users", ["name", "password"], name: "index_users_on_name_and_password", unique: true
   add_index "users", ["name"], name: "index_users_on_name"
   add_index "users", ["password"], name: "index_users_on_password"
+
+  create_table "votes", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "up"
+    t.boolean  "down"
+    t.integer  "voter"
+    t.integer  "post_id"
+    t.integer  "comment_id"
+  end
 
 end

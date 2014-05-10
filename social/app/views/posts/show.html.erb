@@ -15,12 +15,11 @@
 	
 	<table align="center">
 		<tr>
-			<td><%= button_to @post.likes.to_i, like_path(params[:user_id], @post),
-				"data-icon" => "star", :method => "get" %></td>
-			
 			<% if current_user and current_user == @user %>
-			<td><%= button_to 'Destroy', user_post_path(params[:id], @post), "data-icon" => "delete",
-				method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			<td>
+				<%= button_to 'Destroy', user_post_path(params[:id], @post), "data-icon" => "delete",
+					method: :delete, data: { confirm: 'Are you sure?' } %>
+			</td>
 			<% end %>
 		</tr>
 	</table>
@@ -39,13 +38,12 @@
 	</table>
 	<p align="center"><%= comment.text %></p>
 	<table align="center">
-		<tr>
-			<td><%= button_to comment.likes.to_i, like_comment_path(params[:user_id], @post, comment),
-				"data-icon" => "star", :method => "get" %></td>
-				
+		<tr>	
 			<% if current_user and current_user.id == comment.commenter_id %>
-			<td><%= button_to 'Destroy', user_post_comment_path(params[:id], @post, comment),
-				"data-icon" => "delete", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			<td>
+				<%= button_to 'Destroy', user_post_comment_path(params[:id], @post, comment),
+				"data-icon" => "delete", method: :delete, data: { confirm: 'Are you sure?' } %>
+			</td>
 			<% end %>
 		</tr>
 	</table>

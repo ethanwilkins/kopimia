@@ -16,13 +16,4 @@ class CommentsController < ApplicationController
     @comment.destroy
     redirect_to :back
   end
-  
-  def like
-    @comment = Comment.find(params[:id])
-    @comment.like!
-    # notify commenter their comment was liked
-    @commenter = User.find(@comment.commenter)
-    @commenter.notify!(:like_comment, current_user, @comment.post_id)
-    redirect_to :back
-  end
 end

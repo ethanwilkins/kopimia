@@ -18,10 +18,7 @@
 		
 		<table align="center">
 			<tr>
-				<td>
-					<%= button_to post.likes.to_i, like_path(post.user, post), :method => "get",
-						"data-icon" => "star", "data-mini" => true %>
-				</td>
+				<%= render "posts/vote", post: post %>
 				<td>
 					<%= render "posts/share", post: post %>
 				</td>
