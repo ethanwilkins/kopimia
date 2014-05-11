@@ -1,8 +1,12 @@
 <%= form_for @user, url: user_path(@user), method: :patch,
 	:html => {:multipart => true, "data-ajax" => false} do |f| %>
 	<p>
-		<%= f.label "Choose a profile picture" %>
+		<%= f.label "Upload a profile picture" %>
 		<%= f.file_field :profile_picture %>
+	</p>
+	<p>
+		<%= f.label "Describe yourself" %>
+		<%= f.text_area :bio %>
 	</p>
 	<p>
 		<%= f.submit "Save" %>

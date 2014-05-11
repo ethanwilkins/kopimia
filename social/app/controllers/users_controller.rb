@@ -22,7 +22,6 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user].permit(:email, :password, :name))
-    @user.name.downcase!
     
     if @user.save
       user = User.last
@@ -41,7 +40,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     
-    if @user.update(params[:user].permit(:profile_picture))
+    if @user.update(params[:user].permit(:profile_picture, :bio))
       redirect_to @user
     else
       render "edit"
