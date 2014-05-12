@@ -5,7 +5,7 @@
 		<table align="center">
 			<tr>
 				<td>
-					<%= link_to profile_picture(User.find(post.user_id), "50x50"), user_path(post.user_id) %>
+					<%= link_to profile_picture(User.find(post.user_id), "25x25"), user_path(post.user_id) %>
 				</td>
 				<td>
 					<%= link_to post.user.name.capitalize, user_path(post.user) %>

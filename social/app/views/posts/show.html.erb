@@ -15,6 +15,10 @@
 	
 	<table align="center">
 		<tr>
+			<%= render "posts/vote", post: @post %>
+			<td>
+				<%= render "posts/share", post: @post %>
+			</td>
 			<% if current_user and current_user == @user %>
 			<td>
 				<%= button_to 'Destroy', user_post_path(params[:id], @post), "data-icon" => "delete",
@@ -25,7 +29,7 @@
 	</table>
 </div></br>
 
-<div id="card"><%= render "comments/new" if current_user %></div></br>
+<div id="card"><%= render "comments/new" %></div></br>
 
 <% @post.comments.each do |comment| %>
 <div id="card">
@@ -37,13 +41,26 @@
 		</tr>
 	</table>
 	<p align="center"><%= comment.text %></p>
+	<!-- controls for comment -->
 	<table align="center">
 		<tr>	
 			<% if current_user and current_user.id == comment.commenter_id %>
 			<td>
 				<%= button_to 'Destroy', user_post_comment_path(params[:id], @post, comment),
-				"data-icon" => "delete", method: :delete, data: { confirm: 'Are you sure?' } %>
+					method: :delete, data: { confirm: 'Are you sure?' },
+					"data-icon" => "delete", "data-mini" => true %>
 			</td>
+			<% elsif current_user %>
+				<td>
+					<%= button_to "", up_vote_comment_path(comment),
+						"data-icon" => "arrow-u", "data-iconpos" => "notext",
+						:method => "get", "data-mini" => true %>
+				</td>
+				<td>
+					<%= button_to "", down_vote_comment_path(comment),
+						"data-icon" => "arrow-d", "data-iconpos" => "notext",
+						:method => "get", "data-mini" => true %>
+				</td>
 			<% end %>
 		</tr>
 	</table>

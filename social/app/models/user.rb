@@ -48,8 +48,6 @@ class User < ActiveRecord::Base
           message = "#{user_name} commented on your post."
         when :share_post
           message = "#{user_name} shared your post."
-        when :like_comment
-          message = "#{user_name} liked your comment."
       end
       notifications.create!(message: message, other_user: other_user.id,
         action: action.to_s, item: item)

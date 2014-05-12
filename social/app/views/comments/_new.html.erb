@@ -1,10 +1,11 @@
 <!-- comments -->
-
-<%= form_for @comment do |f| %>
-  <p>
-	<%= f.label :leave_a_comment %>
-    <%= f.text_area :text %>
-	<%= hidden_field_tag :post_id, params[:id] %>
-    <%= f.submit "Comment" %>
-  </p>
+<% if current_user %>
+	<%= form_for @comment do |f| %>
+	  <p>
+		<%= f.label :leave_a_comment %>
+	    <%= f.text_area :text %>
+		<%= hidden_field_tag :post_id, params[:id] %>
+	    <%= f.submit "Comment" %>
+	  </p>
+	<% end %>
 <% end %>

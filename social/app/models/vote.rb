@@ -2,11 +2,11 @@ class Vote < ActiveRecord::Base
   belongs_to :posts
   belongs_to :comments
   
-  def up_votes
+  def self.up_votes
     where up: true
   end
   
-  def down_votes
+  def self.down_votes
     where down: true
   end
 end

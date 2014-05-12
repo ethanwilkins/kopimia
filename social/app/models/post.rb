@@ -24,7 +24,7 @@ class Post < ActiveRecord::Base
   end
   
   def score
-    votes.up_votes.size - votes.down_votes.size
+    votes.up_votes.size.to_i - votes.down_votes.size.to_i
   end
   
   def self.from_users_followed_by(user)

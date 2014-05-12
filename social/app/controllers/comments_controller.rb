@@ -1,4 +1,17 @@
 class CommentsController < ApplicationController
+  
+  def up_vote
+    @comment = Comment.find(params[:id])
+    @comment.up_vote!(current_user)
+    redirect_to :back
+  end
+  
+  def down_vote
+    @comment = Comment.find(params[:id])
+    @comment.down_vote!(current_user)
+    redirect_to :back
+  end
+  
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(params[:comment].permit(:text))

@@ -18,11 +18,7 @@
 								<%= link_to note.message, user_path(note.other_user) %>
 							<% when :message %>
 								<%= link_to note.message, user_messages_path(note.other_user) %>
-							<% when :comment %>
-								<%= link_to note.message, show_post_path(note.user, note.item) %>
-							<% when :like_post %>
-								<%= link_to note.message, show_post_path(note.user, note.item) %>
-							<% when :like_comment %>
+							<% when :comment, :share_post %>
 								<%= link_to note.message, show_post_path(note.user, note.item) %>
 						<% end %>
 					</td>

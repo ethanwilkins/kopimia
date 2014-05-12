@@ -1,19 +1,34 @@
 Social::Application.routes.draw do
+  root 'welcome#index'
+  
   get "users/:user_id/posts/:id/show", to: "posts#show", as: "show_post"
+  
+  get "comments/down_vote/:id", to: "comments#down_vote", as: "down_vote_comment"
+  
+  get "comments/up_vote/:id", to: "comments#up_vote", as: "up_vote_comment"
+  
+  get "posts/down_vote/:id", to: "posts#down_vote", as: "down_vote_post"
+  
+  get "posts/up_vote/:id", to: "posts#up_vote", as: "up_vote_post"
+  
   delete "users/:user_id", to: "notifications#clear", as: "clear"
-  get "posts/down_vote/:id", to: "posts#down_vote", as: "down_vote"
-  get "posts/up_vote/:id", to: "posts#up_vote", as: "up_vote"
+  
   post "users/:id", to: "posts#share", as: "share"
+  
   post "comments/create", as: "comments"
+  
   post "messages/create", as: "messages"
+  
   post "posts/create", as: "posts"
+  
   get "users/search", as: "search"
+  
   get "sessions/destroy"
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -22,6 +37,7 @@ Social::Application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
+  
   resources :sessions
   resources :connections
   
