@@ -1,16 +1,8 @@
-<% if session[:page] == nil or session[:page] * 5 < current_user.feed.size %>
-	<div>
-		<%= button_to "Older", older_path %>
+<div class="older_newer">
+	<div class="newer">
+		<%= button_to "Newer", newer_path, method: :get %>
 	</div>
-<% elsif session[:page] and session[:page] * 5 < current_user.feed.size %>
-	<div>
-		<%= button_to "Older", older_path %>
+	<div class="older">
+		<%= button_to "Older", older_path, method: :get %>
 	</div>
-	<div>
-		<%= button_to "Newer", newer_path %>
-	</div>
-<% else %>
-	<div>
-		<%= button_to "Newer", newer_path %>
-	</div>
-<% end %>
+</div>

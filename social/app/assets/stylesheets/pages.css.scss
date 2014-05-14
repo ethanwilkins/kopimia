@@ -1,3 +1,19 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.older_newer {
+	clear: both;
+	width: 50%;
+	margin: 0 auto;
+}
+
+.older {
+	float: right;
+	width: 45%;
+}
+
+.newer {
+	float: left;
+	width: 45%;
+}
