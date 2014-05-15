@@ -49,6 +49,11 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts.reverse.
+        # drops first several posts if :feed_page
+        drop((session[:user_page] ? session[:user_page] : 0) * page_size).
+        # only shows first several posts of resulting array
+        first(page_size)
     @post = Post.new
   end
   

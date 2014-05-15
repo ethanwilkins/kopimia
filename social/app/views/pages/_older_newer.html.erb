@@ -1,8 +1,8 @@
 <div class="older_newer">
 	<div class="newer">
-		<%= button_to "Newer", newer_path, method: :get %>
+		<%= button_to "Newer", newer_path(page: page), method: :get %>
 	</div>
 	<div class="older">
-		<%= button_to "Older", older_path, method: :get %>
+		<%= button_to "Older", older_path(page: page), method: :get %>
 	</div>
 </div>

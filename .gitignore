@@ -15,4 +15,5 @@
 /log/*.log
 /tmp
 
-social/public/uploads/post/image/11/fly.jpg
+# ignore all uploaded images
+/public/uploads

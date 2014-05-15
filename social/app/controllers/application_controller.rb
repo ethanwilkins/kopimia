@@ -7,12 +7,18 @@ class ApplicationController < ActionController::Base
 
   private
   
-  def page_size
-    @page_size = 10
+  # increments/decrements page flags
+  # sets to 1 if nil and change is 1
+  def page(page_flag, change=0)
+    if session[page_flag]
+      session[page_flag] += change
+    elsif change == 1
+      session[page_flag] = 1
+    end
   end
   
-  def clear_page_session
-    session[:page] = nil
+  def page_size
+    @page_size = 5
   end
 
   def current_user

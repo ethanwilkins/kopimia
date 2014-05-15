@@ -55,7 +55,7 @@
 </div>
 </br>
 
-<% @user.posts.reverse.each do |post| %>
+<% @posts.each do |post| %>
 	<div id="card">
 		<table align="center">
 			<tr>
@@ -85,3 +85,5 @@
 	</div>
 	</br>
 <% end %>
+
+<%= render "pages/older_newer", page: :user_page %>
