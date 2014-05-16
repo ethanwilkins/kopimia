@@ -44,6 +44,7 @@ Social::Application.routes.draw do
   
   resources :sessions
   resources :connections
+  resources :groups
   
   resources :users do
     resources :notifications

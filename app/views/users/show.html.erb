@@ -78,7 +78,8 @@
 					<%= render "posts/share", post: post %>
 				</td>
 				<td>
-					<%= button_to "Comment", show_post_path(post.user, post), :method => "get" %>
+					<%= button_to "Comment", show_post_path(post.user, post),
+						:method => "get", "data-mini" => true %>
 				</td>
 			</tr>
 		</table>

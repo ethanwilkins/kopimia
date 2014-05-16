@@ -19,21 +19,29 @@
 			<table align="center">
 				<tr>
 					<td>
-						<%= button_to "", root_path, "data-icon" => "home", "data-iconpos" => "notext", :method => "get" %>
+						<%= button_to "", root_path, "data-icon" => "home", "data-iconpos" => "notext", method: :get %>
 					</td>
 					<% if current_user %>
 					<td>
-						<%= button_to current_user.name.capitalize, user_path(current_user), :method => "get" %>
+						<%= button_to current_user.name.capitalize, user_path(current_user), method: :get %>
 					</td>
 					<td>
-						<%= button_to "Notes: " + current_user.notifications.unchecked.size.to_s,
-							user_notifications_path(current_user), :method => "get" %>
+						<%= button_to "Groups", groups_path, method: :get%>
 					</td>
 					<td>
-						<%= button_to "Mail", user_messages_path(current_user), :method => "get" %>
+						<%= button_to "Mail", user_messages_path(current_user), method: :get %>
 					</td>
 					<td>
-						<%= button_to "", search_path, "data-icon" => "search", "data-iconpos" => "notext", :method => "get" %>
+						<% if current_user.notifications.unchecked.size > 0 %>
+							<%= button_to "+ " + current_user.notifications.unchecked.size.to_s,
+								user_notifications_path(current_user), method: :get %>
+						<% else %>
+							<%= button_to current_user.notifications.unchecked.size.to_s,
+								user_notifications_path(current_user), method: :get %>
+						<% end %>
+					</td>
+					<td>
+						<%= button_to "", search_path, "data-icon" => "search", "data-iconpos" => "notext", method: :get %>
 					</td>
 					<% else %>
 					<td>
