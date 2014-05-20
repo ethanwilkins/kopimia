@@ -1,0 +1,9 @@
+<div id="card">
+	<div class="row">
+		<h1 class="left"><%= @group.name %></h1>
+		<div class="right"><%= render "join" %></div>
+	</div>
+	
+	<div align="center"><%= image_tag @group.icon, size: "300x300" %></div>
+	<p align="center"><%= @group.description %></p>
+</div>

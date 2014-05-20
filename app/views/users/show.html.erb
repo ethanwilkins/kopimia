@@ -20,11 +20,6 @@
 <table align="center">
 	<tr>
 		<td>
-			<%= render "messages/message_button" %>
-		</td>
-	</tr>
-	<tr>
-		<td>
 			<strong>About me:</strong>
 			<%= @user.bio %>
 		</td>
@@ -46,6 +41,11 @@
 </table>
 
 <table align="center">
+	<tr>
+		<td>
+			<%= render "messages/message_button" %>
+		</td>
+	</tr>
 	<tr>
 		<td>
 			<%= render "posts/new" if current_user and current_user.id == @user.id %>

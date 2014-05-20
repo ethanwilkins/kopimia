@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140515035117) do
+ActiveRecord::Schema.define(version: 20140520083133) do
 
   create_table "comments", force: true do |t|
     t.integer  "post_id"
@@ -37,6 +37,17 @@ ActiveRecord::Schema.define(version: 20140515035117) do
   create_table "groups", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.text     "description"
+    t.string   "icon"
+    t.boolean  "private"
+  end
+
+  create_table "members", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "group_id"
+    t.integer  "user_id"
   end
 
   create_table "messages", force: true do |t|
@@ -66,6 +77,7 @@ ActiveRecord::Schema.define(version: 20140515035117) do
     t.datetime "updated_at"
     t.string   "image"
     t.integer  "original"
+    t.integer  "group_id"
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"

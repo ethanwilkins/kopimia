@@ -15,6 +15,12 @@ Social::Application.routes.draw do
   
   post "users/:id", to: "posts#share", as: "share"
   
+  post "groups/join/:id", to: "groups#join", as: "join_group"
+  
+  post "groups/request_to_join", as: "request_to_join"
+  
+  delete "groups/leave", as: "leave_group"
+  
   post "comments/create", as: "comments"
   
   post "messages/create", as: "messages"
@@ -44,7 +50,10 @@ Social::Application.routes.draw do
   
   resources :sessions
   resources :connections
-  resources :groups
+  
+  resources :groups do
+    resources :members
+  end
   
   resources :users do
     resources :notifications
