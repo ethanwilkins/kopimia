@@ -13,13 +13,13 @@ Social::Application.routes.draw do
   
   delete "users/:user_id", to: "notifications#clear", as: "clear"
   
-  post "users/:id", to: "posts#share", as: "share"
+  delete "members/leave/:id", to: "members#destroy", as: "leave_group"
   
-  post "groups/join/:id", to: "groups#join", as: "join_group"
+  post "members/join/:id", to: "members#create", as: "join_group"
   
   post "groups/request_to_join", as: "request_to_join"
   
-  delete "groups/leave", as: "leave_group"
+  post "users/:id", to: "posts#share", as: "share"
   
   post "comments/create", as: "comments"
   
