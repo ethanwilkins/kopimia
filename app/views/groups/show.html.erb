@@ -3,7 +3,13 @@
 		<h1 class="left"><%= @group.name %></h1>
 		<div class="right"><%= render "join" %></div>
 	</div>
-	
-	<div align="center"><%= image_tag @group.icon, size: "300x300" %></div>
-	<p align="center"><%= @group.description %></p>
+	<div class="column">
+		<div align="center"><%= image_tag @group.icon, width: "90%" %></div>
+		<p align="center"><%= @group.description %></p>
+	</div>
 </div>
+<br>
+
+<%= render "posts/new", group: @group.id %>
+
+<%= render "feed" %>

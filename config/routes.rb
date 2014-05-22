@@ -13,6 +13,8 @@ Social::Application.routes.draw do
   
   delete "users/:user_id", to: "notifications#clear", as: "clear"
   
+  get "groups/groups_joined/:id", to: "groups#groups_joined", as: "groups_joined"
+  
   delete "members/leave/:id", to: "members#destroy", as: "leave_group"
   
   post "members/join/:id", to: "members#create", as: "join_group"

@@ -31,6 +31,7 @@ class PostsController < ApplicationController
   def create
     @user = User.find(current_user.id)
     @post = @user.posts.new(params[:post].permit(:text, :image))
+    @post.group_id = params[:group_id]
     
     if @post.save
       redirect_to :back

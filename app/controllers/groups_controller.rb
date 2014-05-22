@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   
-  def request_to_join
-    # adds to a list of requests to be voted on
+  def groups_joined
+    @groups = Group.my_groups(params[:id])
   end
   
   def index
@@ -24,5 +24,7 @@ class GroupsController < ApplicationController
   
   def show
     @group = Group.find(params[:id])
+    @feed = @group.posts.reverse
+    @post = Post.new
   end
 end

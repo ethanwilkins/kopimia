@@ -1,12 +1,18 @@
-<%= form_for @post, :html => {:multipart => true, "data-ajax" => false} do |f| %>
-	<p>
-		<%= f.label "What's new?" %>
-		<%= f.text_area :text %>
-	</p>
-	<p>
-		<%= f.file_field :image %>
-	</p>
-	<p>
-		<%= f.submit "Post" %>
-	</p>
+<% if current_user %>
+	<div id="card">
+		<%= form_for @post, :html => {:multipart => true, "data-ajax" => false} do |f| %>
+			<%= hidden_field_tag :group_id, group if defined? group %>
+			<p>
+				<%= f.label "What's new?" %>
+				<%= f.text_area :text %>
+			</p>
+			<p>
+				<%= f.file_field :image %>
+			</p>
+			<p>
+				<%= f.submit "Post" %>
+			</p>
+		<% end %>
+	</div>
+	<br>
 <% end %>

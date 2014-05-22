@@ -12,7 +12,7 @@
 			</h1>
 		</td>
 		<td>
-			<%= render "follow_form" if current_user %>
+			<%= render "follow_form" if current_user and current_user != @user %>
 		</td>
 	</tr>
 </table>
@@ -32,10 +32,13 @@
 <table align="center">
 	<tr>
 		<td>
-			<%= link_to "Followers: #{@user.followers.count}", followers_user_path(@user) %>
+			<%= link_to "Groups", groups_joined_path(@user) %>
 		</td>
 		<td>
-			<%= link_to "Following: #{@user.followed_users.count}", following_user_path(@user) %>
+			|
+		</td>
+		<td>
+			<%= link_to "Contacts", following_user_path(@user) %>
 		</td>
 	</tr>
 </table>
@@ -46,14 +49,11 @@
 			<%= render "messages/message_button" %>
 		</td>
 	</tr>
-	<tr>
-		<td>
-			<%= render "posts/new" if current_user and current_user.id == @user.id %>
-		</td>
-	</tr>
 </table>
 </div>
 </br>
+
+<%= render "posts/new" if current_user.id == @user.id %>
 
 <% @posts.each do |post| %>
 	<div id="card">

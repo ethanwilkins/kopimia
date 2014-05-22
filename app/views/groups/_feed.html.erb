@@ -1,16 +1,10 @@
-<%= render "posts/new" %>
-
 <% @feed.each do |post| %>
 	<div id="card">
 		<table align="center">
 			<tr>
-				<td>
-					<%= link_to profile_picture(User.find(post.user_id), "25x25"), user_path(post.user_id) %>
-				</td>
-				<td>
-					<%= link_to post.user.name.capitalize, user_path(post.user) %>
-					<%= render "posts/user_action", post: post %>
-				</td>
+				<td><%= link_to profile_picture(User.find(post.user_id), "25x25"), user_path(post.user_id) %></td>
+				<td><%= link_to post.user.name.capitalize, user_path(post.user) %></td>
+				<td><%= render "posts/user_action", post: post %></td>
 			</tr>
 		</table>
 		
@@ -29,7 +23,7 @@
 			</tr>
 		</table>
 	</div>
-	</br>
+	<br>
 <% end %>
 
-<%= render "pages/older_newer", page: :feed_page %>
+<%= render "pages/older_newer", page: :group_page %>
