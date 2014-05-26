@@ -12,6 +12,17 @@
  *= require_tree .
  */
 
+#header-nav {
+	position: fixed;
+	width: 100%;
+	z-index: 1;
+	top: 0;
+}
+
+#page-content {
+	margin-top: 70px;
+}
+
 table {
 	border-spacing: 5px 5px;
 }

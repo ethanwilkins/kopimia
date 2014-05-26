@@ -1,17 +1,10 @@
-<div align="center">
-	<h1>Groups</h1>
+<h1>Groups</h1>
 
-	<% @groups.each do |group| %>
-		<table>
-			<tr>
-				<td><%= link_to image_tag(group.icon, size: "50x50"), group_path(group) %></td>
-				<td><%= link_to group.name, group_path(group) %></td>
-			</tr>
-		</table>
-		<table>
-			<tr>
-				<td><%= group.description %></td>
-			</tr>
-		</table>
-	<% end %>
-</div>
+<% @groups.each do |group| %>
+	<table>
+		<tr>
+			<td><%= link_to image_tag(group.icon, size: "50x50"), group_path(group) %></td>
+			<td><%= link_to group.name, group_path(group) %></td>
+		</tr>
+	</table>
+<% end %>

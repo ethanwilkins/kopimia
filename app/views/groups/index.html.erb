@@ -1,12 +1,11 @@
-<div id="card">
-	<%= button_to "Start a group", new_group_path, method: :get %>
+<%= button_to "Start a group", new_group_path, method: :get %><br>
 	
-	<% if @groups.size > 0 %>
-		<div align="center">
-			<p>Your groups:</p>
-			<% @groups.each do |group| %>
-				<%= link_to group.name, group_path(group) %>
-			<% end %>
-		</div>
-	<% end %>
-</div>
+
+<% if @groups.size > 0 %>
+		<% @groups.each do |group| %>
+			<div id="card">
+				<div align="center"><%= link_to image_tag(group.icon, size: "100x100"), group_path(group) %></div>
+				<div align="center"><%= link_to group.name, group_path(group) %></div>
+			</div>
+		<% end %>
+<% end %>

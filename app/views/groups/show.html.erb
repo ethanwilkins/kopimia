@@ -6,10 +6,17 @@
 	<div class="column">
 		<div align="center"><%= image_tag @group.icon, width: "90%" %></div>
 		<p align="center"><%= @group.description %></p>
+		<div align="center">
+			<%= link_to "Members", group_members_path(@group) %>
+			|
+			<%= link_to "Proposals", group_proposals_path(@group) %>
+		</div>
 	</div>
 </div>
 <br>
 
-<%= render "posts/new", group: @group.id %>
+<%= render "posts/new", group: @group.id if @group.membership(current_user) %>
 
-<%= render "feed" %>
+<% if @group.membership(current_user) or !@group.private %>
+	<%= render "feed" %>
+<% end %>

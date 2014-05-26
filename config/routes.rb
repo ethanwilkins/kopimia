@@ -55,6 +55,7 @@ Social::Application.routes.draw do
   
   resources :groups do
     resources :members
+    resources :proposals
   end
   
   resources :users do
