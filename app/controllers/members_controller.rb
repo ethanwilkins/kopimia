@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
   
-  def request_to_join
-    # adds to a list of requests to be voted on
+  def index
+    @members = Group.find(params[:group_id]).members
   end
   
   def create

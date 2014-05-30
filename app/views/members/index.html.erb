@@ -1,0 +1,14 @@
+<!-- members list -->
+
+<h1 align="center">Members</h1>
+<br>
+
+<table align="center">
+	<% @members.each do |member| %>
+		<% member = User.find(member.user_id) %>
+		<tr>
+			<td><%= link_to profile_picture(member, "50x50"), user_path(member) %></td>
+			<td><%= link_to member.name, user_path(member) %></td>
+		</tr>
+	<% end %>
+</table>

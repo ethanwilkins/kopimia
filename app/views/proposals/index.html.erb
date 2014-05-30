@@ -1,0 +1,12 @@
+<!-- proposals -->
+<%= button_to "Create proposal", new_group_proposal_path(@group), method: :get %>
+
+<% @proposals.each do |proposal| %>
+	<div id="card">
+		<div align="center">
+			<%= image_tag(proposal.image, "100x100") if proposal.image %>
+			<%= proposal.text %>
+			<%= proposal.action %>
+		</div>
+	</div>
+<% end %>

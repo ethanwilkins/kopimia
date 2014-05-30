@@ -16,6 +16,7 @@ class GroupsController < ApplicationController
     @group = Group.new(params[:group].permit(:name, :description, :icon, :private))
     
     if @group.save
+      @group.members.create(user_id: current_user.id)
       redirect_to @group
     else
       render "new"
