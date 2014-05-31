@@ -1,0 +1,20 @@
+<%= form_for @proposal do |f| %>
+	<%= hidden_field_tag :group_id, params[:group_id] %>
+	<p>
+		<%= f.label "Choose a proposal type"%>
+		<%= f.select :action,
+			options_for_select([["Name change", "name_change"], ["Icon change", "icon_change"],
+			["Description change", "description_change"], ["Ban member", "ban_member"]]) %>
+	</p>
+	<p>
+		<%= f.label "Describe the proposal" %>
+		<%= f.text_field :text %>
+	</p>
+	<p>
+		<%= f.label "Choose an image" %>
+		<%= f.file_field :image %>
+	</p>
+	<p>
+		<%= f.submit "Create proposal" %>
+	</p>
+<% end %>

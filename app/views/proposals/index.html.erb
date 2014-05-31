@@ -1,5 +1,5 @@
 <!-- proposals -->
-<%= button_to "Create proposal", new_group_proposal_path(@group), method: :get %>
+<%= button_to "Create proposal", new_group_proposal_path(@group), method: :get %><br>
 
 <% @proposals.each do |proposal| %>
 	<div id="card">
@@ -9,4 +9,5 @@
 			<%= proposal.action %>
 		</div>
 	</div>
+	<br>
 <% end %>

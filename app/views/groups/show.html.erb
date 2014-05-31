@@ -1,0 +1,7 @@
+<%= render "profile" %>
+
+<%= render "posts/new", group: @group.id if @group.membership(current_user) %>
+
+<% if @group.membership(current_user) or !@group.private %>
+	<%= render "feed" %>
+<% end %>

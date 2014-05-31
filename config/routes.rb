@@ -23,6 +23,8 @@ Social::Application.routes.draw do
   
   post "users/:id", to: "posts#share", as: "share"
   
+  post "proposals/create", as: "proposals"
+  
   post "comments/create", as: "comments"
   
   post "messages/create", as: "messages"

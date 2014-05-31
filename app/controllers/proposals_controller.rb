@@ -12,7 +12,13 @@ class ProposalsController < ApplicationController
   end
   
   def create
-    
+    @group = Group.find(params[:group_id])
+    @proposal = @group.proposals.new(params[:proposal].permit(:action, :text, :image))
+    if @proposal.save
+      redirect_to group_path(@group)
+    else
+      redirect_to :back
+    end
   end
   
   def new

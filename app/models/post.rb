@@ -3,6 +3,8 @@ class Post < ActiveRecord::Base
   has_many :votes, dependent: :destroy
   belongs_to :group
   belongs_to :user
+  
+  validates :text, presence: true
 
   mount_uploader :image, ImageUploader
   
