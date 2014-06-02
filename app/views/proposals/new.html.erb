@@ -1,4 +1,4 @@
-<%= form_for @proposal do |f| %>
+<%= form_for @proposal, :html => {:multipart => true, "data-ajax" => false} do |f| %>
 	<%= hidden_field_tag :group_id, params[:group_id] %>
 	<p>
 		<%= f.label "Choose a proposal type"%>
@@ -7,12 +7,14 @@
 			["Description change", "description_change"], ["Ban member", "ban_member"]]) %>
 	</p>
 	<p>
-		<%= f.label "Describe the proposal" %>
-		<%= f.text_field :text %>
+		<%= f.text_field :title, placeholder: "Add a title" %>
 	</p>
 	<p>
-		<%= f.label "Choose an image" %>
-		<%= f.file_field :image %>
+		<%= f.text_area :description, placeholder: "Add a description" %>
+	</p>
+	<p>
+		<%= f.label "Add an image" %>
+		<%= f.file_field :icon %>
 	</p>
 	<p>
 		<%= f.submit "Create proposal" %>

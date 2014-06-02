@@ -11,6 +11,10 @@ Social::Application.routes.draw do
   
   get "posts/up_vote/:id", to: "posts#up_vote", as: "up_vote_post"
   
+  get "proposals/up_vote/:id", to: "proposals#up_vote", as: "up_vote_proposal"
+  
+  get "proposals/down_vote/:id", to: "proposals#down_vote", as: "down_vote_proposal"
+  
   delete "users/:user_id", to: "notifications#clear", as: "clear"
   
   get "groups/groups_joined/:id", to: "groups#groups_joined", as: "groups_joined"
@@ -66,12 +70,7 @@ Social::Application.routes.draw do
     member do
       get :following, :followers
     end
-    resources :posts do
-      resources :votes
-      resources :comments do
-        resources :votes
-      end
-    end
+    resources :posts
   end
 
   # Example resource route with options:

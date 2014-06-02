@@ -3,11 +3,36 @@
 
 <% @proposals.each do |proposal| %>
 	<div id="card">
-		<div align="center">
-			<%= image_tag(proposal.image, "100x100") if proposal.image %>
-			<%= proposal.text %>
-			<%= proposal.action %>
-		</div>
+		<table align="center">
+			<% if proposal.title %>
+				<tr>
+					<td>
+						<h2><%= proposal.title %></h2>
+					</td>
+				</tr>
+			<% end %>
+			<tr>
+				<td>
+					<p><%= proposal.description %></p>
+				</td>
+			</tr>
+		</table>
+		
+		<% if proposal.icon? %>
+			<div align="center">
+				<%= image_tag(proposal.icon, width: "90%") %>
+			</div>
+		<% end %>
+		
+		<table align="center">
+			<tr>
+				<%= render "vote", proposal: proposal %>
+				<td>
+					<%= button_to "Comment", group_proposal_path(@group, proposal),
+						method: :get, "data-mini" => true %>
+				</td>
+			</tr>
+		</table>
 	</div>
 	<br>
 <% end %>

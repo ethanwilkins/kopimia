@@ -4,13 +4,13 @@ class PostsController < ApplicationController
   
   def up_vote
     @post = Post.find(params[:id])
-    @post.up_vote!(current_user)
+    Vote.up_vote!(@post, current_user)
     redirect_to :back
   end
   
   def down_vote
     @post = Post.find(params[:id])
-    @post.down_vote!(current_user)
+    Vote.down_vote!(@post, current_user)
     redirect_to :back
   end
   

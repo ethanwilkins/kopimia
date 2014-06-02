@@ -1,0 +1,10 @@
+<td>
+	<%= button_to "", up_vote_proposal_path(proposal),
+		"data-icon" => "arrow-u", "data-iconpos" => "notext",
+		:method => "get", "data-mini" => true %>
+</td>
+<td>
+	<%= button_to "", down_vote_proposal_path(proposal),
+		"data-icon" => "arrow-d", "data-iconpos" => "notext",
+		:method => "get", "data-mini" => true %>
+</td>

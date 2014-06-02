@@ -2,13 +2,13 @@ class CommentsController < ApplicationController
   
   def up_vote
     @comment = Comment.find(params[:id])
-    @comment.up_vote!(current_user)
+    Vote.up_vote!(@comment, current_user)
     redirect_to :back
   end
   
   def down_vote
     @comment = Comment.find(params[:id])
-    @comment.down_vote!(current_user)
+    Vote.down_vote!(@comment, current_user)
     redirect_to :back
   end
   
