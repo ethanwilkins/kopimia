@@ -13,11 +13,15 @@ class CommentsController < ApplicationController
   end
   
   def create
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.new(params[:comment].permit(:text))
+    if params[:post_id]
+      @item = Post.find(params[:post_id])
+    elsif params[:proposal_id]
+      @item = Proposal.find(params[:proposal_id])
+    end
+    @comment = @item.comments.new(params[:comment].permit(:text))
 		@comment.commenter = current_user
 		if @comment.save
-      User.find(@post.user).notify!(:comment, current_user, @post.id)
+      User.find(@item.user_id).notify!(:comment, current_user, @item.id) if @item.user_id
   	  redirect_to :back
 		else
  	   render "posts/show"

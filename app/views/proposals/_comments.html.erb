@@ -1,38 +1,4 @@
-<!-- posts -->
-
-<div id="card">
-	<table align="center">
-		<tr>
-			<td><%= link_to profile_picture(@user, "25x25"), user_path(@user) %></td>
-			<td>
-				<%= link_to @user.name.capitalize, user_path(@user) %>
-				<%= render "user_action", post: @post %>
-			</td>
-		</tr>
-	</table>
-		
-	<%= render "posts/content", post: @post %>
-	
-	<table align="center">
-		<tr>
-			<%= render "posts/vote", post: @post %>
-			<td>
-				<%= render "posts/share", post: @post %>
-			</td>
-			<% if current_user and current_user == @user %>
-			<td>
-				<%= button_to 'Destroy', user_post_path(params[:id], @post), method: :delete,
-					"data-mini" => true, "data-icon" => "delete",
-					data: { confirm: 'Are you sure?' } %>
-			</td>
-			<% end %>
-		</tr>
-	</table>
-
-<%= render "comments/new", item: :post %>
-</div></br>
-
-<% @post.comments.each do |comment| %>
+<% @proposal.comments.each do |comment| %>
 <div id="card">
 	<table align="center">
 		<tr>
@@ -46,7 +12,7 @@
 		<tr>	
 			<% if current_user and current_user.id == comment.commenter_id %>
 			<td>
-				<%= button_to 'Destroy', user_post_comment_path(params[:id], @post, comment),
+				<%= button_to 'Destroy', group_proposal_comment_path(params[:id], @proposal, comment),
 					method: :delete, data: { confirm: 'Are you sure?' },
 					"data-icon" => "delete", "data-mini" => true %>
 			</td>

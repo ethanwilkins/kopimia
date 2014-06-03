@@ -61,7 +61,9 @@ Social::Application.routes.draw do
   
   resources :groups do
     resources :members
-    resources :proposals
+    resources :proposals do
+      resources :comments
+    end
   end
   
   resources :users do
@@ -70,7 +72,9 @@ Social::Application.routes.draw do
     member do
       get :following, :followers
     end
-    resources :posts
+    resources :posts do 
+      resources :comments
+    end
   end
 
   # Example resource route with options:

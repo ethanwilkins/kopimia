@@ -1,11 +1,14 @@
 <!-- comments -->
 <% if current_user %>
 	<%= form_for @comment do |f| %>
-	  <p>
-		<%= f.label :leave_a_comment %>
-	    <%= f.text_area :text %>
-		<%= hidden_field_tag :post_id, params[:id] %>
-	    <%= f.submit "Comment" %>
-	  </p>
+		<% if item == :post %>
+			<%= hidden_field_tag :post_id, params[:id] %>
+		<% elsif item == :proposal %>
+			<%= hidden_field_tag :proposal_id, params[:id] %>
+		<% end %>
+		<p>
+			<%= f.text_area :text, placeholder: "Leave a comment" %>
+			<%= f.submit "Comment" %>
+		</p>
 	<% end %>
 <% end %>

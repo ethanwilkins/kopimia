@@ -3,8 +3,7 @@
 		<%= form_for @post, :html => {:multipart => true, "data-ajax" => false} do |f| %>
 			<%= hidden_field_tag :group_id, group if defined? group %>
 			<p>
-				<%= f.label "What's new?" %>
-				<%= f.text_area :text %>
+				<%= f.text_area :text, placeholder: "What's new?" %>
 			</p>
 			<p>
 				<%= f.file_field :image %>
