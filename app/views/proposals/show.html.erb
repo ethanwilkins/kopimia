@@ -1,0 +1,19 @@
+<div id="card">
+	<%= render "content", proposal: @proposal %>
+	
+	<table align="center">
+		<tr>
+			<%= render "vote", proposal: @proposal %>
+			<td>
+				<%= button_to "Delete", group_proposal_path(@group, @proposal), method: :delete,
+					"data-mini" => true, "data-icon" => "delete",
+					data: { confirm: 'Are you sure?' } %>
+			</td>
+		</tr>
+	</table>
+	
+	<%= render "comments/new", item: :proposal %>
+</div>
+<br>
+
+<%= render "comments" %>

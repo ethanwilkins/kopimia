@@ -1,3 +1,4 @@
+<% unless proposal.inactive %>
 <td>
 	<%= button_to "", up_vote_proposal_path(proposal),
 		"data-icon" => "arrow-u", "data-iconpos" => "notext",
@@ -8,3 +9,4 @@
 		"data-icon" => "arrow-d", "data-iconpos" => "notext",
 		:method => "get", "data-mini" => true %>
 </td>
+<% end%>

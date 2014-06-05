@@ -6,4 +6,8 @@ class Proposal < ActiveRecord::Base
   validates :description, presence: true
   
   mount_uploader :icon, ImageUploader
+  
+  def icon_change
+    Group.find(group_id).update(icon: icon)
+  end
 end

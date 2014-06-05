@@ -2,7 +2,15 @@ class ProposalsController < ApplicationController
   
   def up_vote
     @proposal = Proposal.find(params[:id])
+    @members = Group.find(@proposal.group_id).members
     Vote.up_vote!(@proposal, current_user)
+    if @proposal.votes.up_votes.size > @members.size / 2 and @members.size > 2
+      @proposal.update inactive: true
+      case @proposal.action
+        when "icon_change"
+          @proposal.icon_change
+      end
+    end
     redirect_to :back
   end
   

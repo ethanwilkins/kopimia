@@ -4,7 +4,7 @@
 		<%= f.label "Choose a proposal type"%>
 		<%= f.select :action,
 			options_for_select([["Name change", "name_change"], ["Icon change", "icon_change"],
-			["Description change", "description_change"], ["Ban member", "ban_member"]]) %>
+			["Description change", "description_change"], ["Ban member", "ban_member"], ["Other", "other"]]) %>
 	</p>
 	<p>
 		<%= f.text_field :title, placeholder: "Add a title" %>
