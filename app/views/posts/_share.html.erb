@@ -1,11 +1,5 @@
-<% original_post = Post.find(post.original) if post.original %>
+<% post = Post.find(post.original) if post.original %>
 
-<% unless original_post %>
-	<% if post.user != current_user %>
-		<%= button_to("Share", share_path(post.id), "data-mini" => true) %>
-	<% end %>
-<% else %>
-	<% if original_post.user != current_user %>
-		<%= button_to("Share", share_path(original_post.id), "data-mini" => true) %>
-	<% end %>
+<% if post.user != current_user %>
+	<%= button_to("Share", share_path(post.id), "data-mini" => true) %>
 <% end %>

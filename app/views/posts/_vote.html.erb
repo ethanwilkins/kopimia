@@ -1,29 +1,16 @@
-<% original_post = Post.find(post.original) if post.original %>
+<% post = Post.find(post.original) if post.original %>
 
-<% unless original_post %>
-	<% if post.user != current_user %>
-		<td>
-			<%= button_to "", up_vote_post_path(post),
-				"data-icon" => "arrow-u", "data-iconpos" => "notext",
-				:method => "get", "data-mini" => true %>
-		</td>
-		<td>
-			<%= button_to "", down_vote_post_path(post),
-				"data-icon" => "arrow-d", "data-iconpos" => "notext",
-				:method => "get", "data-mini" => true %>
-		</td>
-	<% end %>
-<% else %>
-	<% if original_post.user != current_user %>
-		<td>
-			<%= button_to "", up_vote_post_path(original_post),
-				"data-icon" => "arrow-u", "data-iconpos" => "notext",
-				:method => "get", "data-mini" => true %>
-		</td>
-		<td>
-			<%= button_to "", down_vote_post_path(original_post),
-				"data-icon" => "arrow-d", "data-iconpos" => "notext",
-				:method => "get", "data-mini" => true %>
-		</td>
+<% if post.user != current_user %>
+	<% if post.group_id == nil or Group.find(post.group_id).membership(current_user) %>
+	<td>
+		<%= button_to "", up_vote_post_path(post),
+			"data-icon" => "arrow-u", "data-iconpos" => "notext",
+			:method => "get", "data-mini" => true %>
+	</td>
+	<td>
+		<%= button_to "", down_vote_post_path(post),
+			"data-icon" => "arrow-d", "data-iconpos" => "notext",
+			:method => "get", "data-mini" => true %>
+	</td>
 	<% end %>
 <% end %>
