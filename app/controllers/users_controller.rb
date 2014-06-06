@@ -1,10 +1,4 @@
 class UsersController < ApplicationController
-  
-  def search
-    if params[:query]
-      @users = User.find_by_sql("SELECT * FROM Users WHERE name = '#{params[:query]}'")
-    end
-  end
 
   def followers
     @user = User.find(params[:id])

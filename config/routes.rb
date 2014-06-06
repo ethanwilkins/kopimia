@@ -35,7 +35,7 @@ Social::Application.routes.draw do
   
   post "posts/create", as: "posts"
   
-  get "users/search", as: "search"
+  get "search/search", as: "search"
   
   get "pages/older", as: "older"
   
