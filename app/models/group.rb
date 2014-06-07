@@ -9,10 +9,10 @@ class Group < ActiveRecord::Base
     members.find_by_user_id(user)
   end
   
-  def self.my_groups(user)
+  def self.groups_of(user)
     groups = Array.new
     Member.where("user_id = ?", user).each do |member|
-      groups << find(member.group)
+      groups << find(member.group) if member.group
     end
     groups
   end

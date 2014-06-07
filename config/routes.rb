@@ -59,6 +59,10 @@ Social::Application.routes.draw do
   resources :sessions
   resources :connections
   
+  resources :folders do
+    resources :messages
+  end
+  
   resources :groups do
     resources :members
     resources :proposals do
@@ -68,7 +72,6 @@ Social::Application.routes.draw do
   
   resources :users do
     resources :notifications
-    resources :messages
     member do
       get :following, :followers
     end

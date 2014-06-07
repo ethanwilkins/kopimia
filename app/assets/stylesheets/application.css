@@ -12,6 +12,10 @@
  *= require_tree .
  */
 
+#page-content {
+	background: white;
+}
+
 #header-nav {
 	position: fixed;
 	width: 100%;
@@ -20,7 +24,7 @@
 }
 
 #page-content {
-	margin-top: 70px;
+	margin-top: 60px;
 }
 
 table {

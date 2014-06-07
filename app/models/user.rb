@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
-  has_many :chats, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :connections, foreign_key: "follower_id", dependent: :destroy

@@ -1,26 +1,35 @@
 class MessagesController < ApplicationController
   
   def index
-    @messages = current_user.messages
+    @folders = Folder.inbox_of(current_user)
   end
 
   def show
-    @message = Message.find(params[:id])
+    @messages = Folder.find(params[:id]).messages
   end
   
   def new
     @user = User.find(params[:user_id])
     @message = Message.new
+    @folder = Folder.new
   end
   
   def create
-    @user = User.find(params[:user_id])
-    @message = @user.messages.new(params[:message].permit(:text))
-    @message.sender = params[:sender]
-    
+    @receiver = User.find(params[:user_id])
+    # saves message to new folder or old if existing
+    if Folder.folder_between(current_user, @receiver)
+      @folder = Folder.find(Folder.folder_between(current_user, @receiver))
+    else
+      @folder = Folder.new
+      if @folder.save
+        @folder.members.create(user_id: current_user.id)
+        @folder.members.create(user_id: @receiver.id)
+      end
+    end
+    @message = @folder.messages.new(params[:message].permit(:text, :user_id))
     if @message.save
-      @user.notify!(:message, current_user)
-      redirect_to @user
+      @receiver.notify!(:message, current_user)
+      redirect_to @receiver
     else
       render "messages/new"
     end

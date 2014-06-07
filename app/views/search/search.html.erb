@@ -8,7 +8,7 @@
 <% if @users %>
 	<% @users.each do |user| %>
 		<div id="card">
-			<table>
+			<table align="center">
 				<tr>
 					<td>
 						<%= link_to profile_picture(user, "25x25"), user_path(user) %>
@@ -25,7 +25,7 @@
 <% if @groups %>
 	<% @groups.each do |group| %>
 		<div id="card">
-			<table>
+			<table align="center">
 				<tr>
 					<td>
 						<%= link_to image_tag(group.icon, size: "25x25"), group_path(group) %>

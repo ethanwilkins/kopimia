@@ -1,4 +1,5 @@
 class Message < ActiveRecord::Base
   validates :text, presence: true
+  belongs_to :folder
   belongs_to :user
 end
