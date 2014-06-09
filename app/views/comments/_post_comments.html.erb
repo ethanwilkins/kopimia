@@ -1,0 +1,34 @@
+<% @post.comments.each do |comment| %>
+<div id="card">
+	<table align="center">
+		<tr>
+			<td><%= link_to profile_picture(comment.commenter, "25x25"), user_path(comment.commenter) %></td>
+			<td><%= link_to comment.commenter.name.capitalize, user_path(comment.commenter) %>
+				<%= comment.text %></td>
+		</tr>
+	</table>
+	<!-- controls for comment -->
+	<table align="center">
+		<tr>	
+			<% if current_user and current_user.id == comment.commenter_id %>
+			<td>
+				<%= button_to 'Destroy', user_post_comment_path(params[:id], @post, comment),
+					method: :delete, data: { confirm: 'Are you sure?' },
+					"data-icon" => "delete", "data-mini" => true %>
+			</td>
+			<% elsif current_user %>
+				<td>
+					<%= button_to "", up_vote_comment_path(comment),
+						"data-icon" => "arrow-u", "data-iconpos" => "notext",
+						:method => "get", "data-mini" => true %>
+				</td>
+				<td>
+					<%= button_to "", down_vote_comment_path(comment),
+						"data-icon" => "arrow-d", "data-iconpos" => "notext",
+						:method => "get", "data-mini" => true %>
+				</td>
+			<% end %>
+		</tr>
+	</table>
+</div><br>
+<% end %>

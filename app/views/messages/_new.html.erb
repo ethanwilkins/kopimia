@@ -1,0 +1,10 @@
+<!-- messages -->
+
+<div id="card">
+	<%= form_for @message do |f| %>
+	<p>
+		<%= f.text_area :text, placeholder: "Send a message" %>
+		<%= f.submit "Send" %>
+	</p>
+	<% end %>
+</div>

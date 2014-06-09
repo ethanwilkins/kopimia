@@ -49,6 +49,10 @@ class UsersController < ApplicationController
         # only shows first several posts of resulting array
         first(page_size)
     @post = Post.new
+    # finds a message folder if one exists
+    if @user != current_user and Folder.folder_between(current_user, @user)
+      @folder = Folder.folder_between(current_user, @user)
+    end
   end
   
   def index

@@ -1,0 +1,20 @@
+<!-- folders -->
+<% if @messages.size > 0 %>
+	<% @messages.each do |message| %>
+		<div id="card">
+			<table align="center">
+				<tr>
+					<td>
+						<%= link_to profile_picture(User.find(message.user_id), "25x25"), user_path(message.user_id) %>
+					</td>
+					<td>
+						<%= message.text %>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<br>
+	<% end %>
+<% end %>
+
+<%= render "messages/new" %>

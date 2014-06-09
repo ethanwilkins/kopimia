@@ -1,0 +1,21 @@
+<% @folders.each do |folder| %>
+	<div id="card">
+		<table align="center">
+			<tr>
+				<% folder.members.each do |member| %>
+				<td>
+					<%= link_to profile_picture(User.find(member.user_id), "25x25"),
+						user_path(User.find(member.user_id)) %>
+				</td>
+				<% end %>
+				<td>
+					<%= link_to "Last: " + folder.messages.last.text, folder_path(folder) %>
+				</td>
+			</tr>
+		</table>
+	</div></br>
+<% end %>
+
+<% if @folders.count == 0 %>
+	<p align="center">You have zero messages.</p>
+<% end %>
