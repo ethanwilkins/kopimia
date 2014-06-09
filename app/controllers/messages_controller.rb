@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
     @message = @folder.messages.new(params[:message].permit(:text))
     @message.user_id = current_user.id
     if @message.save
-      @receiver.notify!(:message, current_user)
+      @receiver.notify!(:message, current_user, @folder.id)
       redirect_to @folder
     else
       render "messages/new"

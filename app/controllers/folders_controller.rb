@@ -4,11 +4,12 @@ class FoldersController < ApplicationController
   end
   
   def new
-    @message = Message.new
     session[:receiver] = params[:user_id]
+    @message = Message.new
   end
 
   def show
+    session[:receiver] = params[:user_id]
     @messages = Folder.find(params[:id]).messages
     @message = Message.new
   end

@@ -12,10 +12,6 @@
  *= require_tree .
  */
 
-#page-content {
-	background: white;
-}
-
 #header-nav {
 	position: fixed;
 	width: 100%;
