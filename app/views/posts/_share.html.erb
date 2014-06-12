@@ -1,5 +1,7 @@
 <% post = Post.find(post.original) if post.original %>
 
 <% if post.user != current_user %>
-	<%= button_to("Share", share_path(post.id), "data-mini" => true) %>
+	<%= link_to(share_path(post.id)) do %>
+		<div>Share</div>
+	<% end %>
 <% end %>

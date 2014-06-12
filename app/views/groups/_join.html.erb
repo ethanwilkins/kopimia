@@ -1,9 +1,17 @@
 <% unless @group.membership(current_user) or !current_user %>
 	<% unless @group.private %>
-		<%= button_to "Join", join_group_path(@group), "data-mini" => true %>
+		<%= link_to(join_group_path(@group)) do %>
+			<div align="center">Join</div>
+		<% end %>
 	<% else %>
-		<%= button_to "Request to join", request_to_join_path(@group), method: :get, "data-mini" => true %>
+		<%= link_to(request_to_join_path(@group)) do %>
+			<div align="center">Request</div>
+		<% end %>
 	<% end %>
 <% else %>
-	<%= button_to("Leave", leave_group_path(@group), method: :delete, "data-mini" => true) if current_user %>
+	<% if current_user %>
+		<%= link_to(leave_group_path(@group), method: :delete) do %>
+			<div align="center">Leave</div>
+		<% end %>
+	<% end %>
 <% end %>

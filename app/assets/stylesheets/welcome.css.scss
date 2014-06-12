@@ -4,12 +4,11 @@
 
 
 
-$back: rgb(240, 240, 240);
-$border: rgb(225, 225, 225);
+$back: rgb(50, 50, 50);
 
 #card {
 	background: $back;
-	border: 1px solid $border;
+	border-radius: 5px;
 	padding: 15px 20px;
 	margin: 0 auto;
 	max-width: 550px;

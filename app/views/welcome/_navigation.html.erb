@@ -1,0 +1,42 @@
+<table align="center">
+	<tr>
+		<td>
+			<%= link_to(root_path) do %>
+				<div>Home</div>
+			<% end %>
+		</td>
+		<% if current_user %>
+		<td>
+			<%= link_to(user_path(current_user)) do %>
+				<div><%= current_user.name.capitalize %></div>
+			<% end %>
+		</td>
+		<td>
+			<%= link_to(groups_path) do %>
+				<div>Groups</div>
+			<% end %>
+		</td>
+		<td>
+			<%= link_to(user_notifications_path(current_user)) do %>
+				<div>
+				<% if current_user.notifications.unchecked.size > 0 %>
+					<%= "+ " + current_user.notifications.unchecked.size.to_s %>
+				<% else %>
+					<%= current_user.notifications.unchecked.size.to_s %>
+				<% end %>
+				</div>
+			<% end %>
+		</td>
+		<td>
+			<%= link_to(search_path) do %>
+				<div>Search</div>
+			<% end %>
+		</td>
+		<% else %>
+		<td>
+			<%= link_to "Sign up", new_user_path %> or
+			<%= link_to "Log in", new_session_path %>
+		</td>
+		<% end %>
+	</tr>
+</table>

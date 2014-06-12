@@ -1,8 +1,12 @@
 <div class="older_newer">
 	<div class="newer">
-		<%= button_to "Newer", newer_path(page: page), method: :get %>
+		<%= link_to(newer_path(page: page)) do %>
+			<div>Newer</div>
+		<% end %>
 	</div>
 	<div class="older">
-		<%= button_to "Older", older_path(page: page), method: :get %>
+		<%= link_to(older_path(page: page)) do %>
+			<div>Older</div>
+		<% end %>
 	</div>
 </div>

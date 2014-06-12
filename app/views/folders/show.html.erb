@@ -1,17 +1,23 @@
 <!-- folders -->
 <% if @messages.size > 0 %>
 	<% @messages.each do |message| %>
+		<% time = message.created_at.strftime("%I:%M %p") %>
 		<div id="card">
 			<table align="center">
 				<tr>
 					<td>
-						<%= link_to profile_picture(User.find(message.user_id), "25x25"), user_path(message.user_id) %>
-					</td>
-					<td>
+						<%= link_to User.find(message.user_id).name.capitalize, user_path(message.user_id)%>
 						<%= message.text %>
 					</td>
 				</tr>
 			</table>
+			<p id="message_time" align="center">
+				<% if time[0].to_i == 0 %>
+					<%= time[1..-1] %>
+				<% else %>
+					<%= time %>
+				<% end %>
+			</p>	
 		</div>
 		<br>
 	<% end %>
