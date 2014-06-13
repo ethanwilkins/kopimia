@@ -7,14 +7,12 @@
 			["Description change", "description_change"], ["Ban member", "ban_member"], ["Other", "other"]]) %>
 	</p>
 	<p>
-		<%= f.text_field :title, placeholder: "Add a title" %>
-	</p>
+		<%= f.text_field :submission, placeholder: "Submission text" %>
 	<p>
-		<%= f.text_area :description, placeholder: "Add a description" %>
-	</p>
-	<p>
-		<%= f.label "Add an image" %>
 		<%= f.file_field :icon %>
+	</p>
+	<p>
+		<%= f.text_area :description, placeholder: "Explain your reasoning" %>
 	</p>
 	<p>
 		<%= f.submit "Create proposal" %>

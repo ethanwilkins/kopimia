@@ -1,24 +1,24 @@
 <table align="center">
 	<tr>
 		<td>
-			<%= link_to(root_path) do %>
-				<div>Home</div>
+			<%= link_to(root_path, class: :button_link) do %>
+				<div class="button_div">Home</div>
 			<% end %>
 		</td>
 		<% if current_user %>
 		<td>
-			<%= link_to(user_path(current_user)) do %>
-				<div><%= current_user.name.capitalize %></div>
+			<%= link_to(user_path(current_user), class: :button_link) do %>
+				<div class="button_div"><%= current_user.name.capitalize %></div>
 			<% end %>
 		</td>
 		<td>
-			<%= link_to(groups_path) do %>
-				<div>Groups</div>
+			<%= link_to(groups_path, class: :button_link) do %>
+				<div class="button_div">Groups</div>
 			<% end %>
 		</td>
 		<td>
-			<%= link_to(user_notifications_path(current_user)) do %>
-				<div>
+			<%= link_to(user_notifications_path(current_user), class: :button_link) do %>
+				<div class="button_div">
 				<% if current_user.notifications.unchecked.size > 0 %>
 					<%= "+ " + current_user.notifications.unchecked.size.to_s %>
 				<% else %>
@@ -28,8 +28,8 @@
 			<% end %>
 		</td>
 		<td>
-			<%= link_to(search_path) do %>
-				<div>Search</div>
+			<%= link_to(search_path, class: :button_link) do %>
+				<div class="button_div">Search</div>
 			<% end %>
 		</td>
 		<% else %>

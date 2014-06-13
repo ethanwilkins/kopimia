@@ -21,9 +21,10 @@
 			</td>
 			<% if current_user and current_user == @user %>
 			<td>
-				<%= button_to 'Destroy', user_post_path(params[:id], @post), method: :delete,
-					"data-mini" => true, "data-icon" => "delete",
-					data: { confirm: 'Are you sure?' } %>
+				<%= link_to(user_post_path(params[:id], @post), class: :button_link,
+					method: :delete, data: { confirm: 'Are you sure?' }) do %>
+					<div class="button_div">Delete</div>
+				<% end %>
 			</td>
 			<% end %>
 		</tr>

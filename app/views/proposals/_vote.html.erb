@@ -1,14 +1,14 @@
 <% if @group.membership(current_user) %>
 	<% unless proposal.inactive %>
 	<td>
-		<%= button_to "", up_vote_proposal_path(proposal),
-			"data-icon" => "arrow-u", "data-iconpos" => "notext",
-			:method => "get", "data-mini" => true %>
+		<%= link_to(up_vote_proposal_path(proposal), class: :button_link) do %>
+			<div class="button_div">Up</div>
+		<% end %>
 	</td>
 	<td>
-		<%= button_to "", down_vote_proposal_path(proposal),
-			"data-icon" => "arrow-d", "data-iconpos" => "notext",
-			:method => "get", "data-mini" => true %>
+		<%= link_to(down_vote_proposal_path(proposal), class: :button_link) do %>
+			<div class="button_div">Down</div>
+		<% end %>
 	</td>
 	<% end %>
 <% end %>

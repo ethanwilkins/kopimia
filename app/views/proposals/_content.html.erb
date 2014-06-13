@@ -1,20 +1,13 @@
+<% if proposal.icon? %>
+	<div align="center">
+		<%= image_tag(proposal.icon, width: "90%") %>
+	</div>
+<% end %>
+
 <table align="center">
-	<% if proposal.title %>
-		<tr>
-			<td>
-				<h2 align="center"><%= proposal.title %></h2>
-			</td>
-		</tr>
-	<% end %>
 	<tr>
 		<td>
 			<p align="center"><%= proposal.description %></p>
 		</td>
 	</tr>
 </table>
-
-<% if proposal.icon? %>
-	<div align="center">
-		<%= image_tag(proposal.icon, width: "90%") %>
-	</div>
-<% end %>

@@ -5,10 +5,12 @@
 
 
 $back: rgb(50, 50, 50);
+$button_color: rgb(70, 70, 70);
+$highlight_button: rgb(80, 80, 80);
 
 #card {
 	background: $back;
-	border-radius: 5px;
+	border-radius: 3px;
 	padding: 15px 20px;
 	margin: 0 auto;
 	max-width: 550px;
@@ -17,4 +19,20 @@ $back: rgb(50, 50, 50);
 
 #welcome {
 	text-align: center;
+}
+
+.button_div {
+	padding: 4px 6px;
+	border-radius: 3px;
+	background: $button_color;
+	font-weight: normal;
+	color: white;
+}
+
+.button_div:hover {
+	background: $highlight_button;
+}
+
+.button_link:hover {
+	text-decoration: none;
 }

@@ -5,9 +5,10 @@
 		<tr>
 			<%= render "vote", proposal: @proposal %>
 			<td>
-				<%= button_to "Delete", group_proposal_path(@group, @proposal), method: :delete,
-					"data-mini" => true, "data-icon" => "delete",
-					data: { confirm: 'Are you sure?' } %>
+				<%= link_to(group_proposal_path(@group, @proposal), class: :button_link,
+					method: :delete, data: { confirm: 'Are you sure?' }) do %>
+					<div class="button_div">Delete</div>
+				<% end %>
 			</td>
 		</tr>
 	</table>

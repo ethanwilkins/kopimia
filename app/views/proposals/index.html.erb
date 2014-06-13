@@ -10,8 +10,9 @@
 			<tr>
 				<%= render "vote", proposal: proposal %>
 				<td>
-					<%= button_to "Comment", group_proposal_path(@group, proposal),
-						method: :get, "data-mini" => true %>
+					<%= link_to(group_proposal_path(@group, proposal), class: :button_link) do %>
+						<div class="button_div">Comment</div>
+					<% end %>
 				</td>
 			</tr>
 		</table>

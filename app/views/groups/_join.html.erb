@@ -1,17 +1,17 @@
 <% unless @group.membership(current_user) or !current_user %>
 	<% unless @group.private %>
-		<%= link_to(join_group_path(@group)) do %>
-			<div align="center">Join</div>
+		<%= link_to(join_group_path(@group), class: :button_link) do %>
+			<div class="button_div" align="center">Join</div>
 		<% end %>
 	<% else %>
-		<%= link_to(request_to_join_path(@group)) do %>
-			<div align="center">Request</div>
+		<%= link_to(request_to_join_path(@group), class: :button_link) do %>
+			<div class="button_div" align="center">Request</div>
 		<% end %>
 	<% end %>
 <% else %>
 	<% if current_user %>
-		<%= link_to(leave_group_path(@group), method: :delete) do %>
-			<div align="center">Leave</div>
+		<%= link_to(leave_group_path(@group), method: :delete, class: :button_link) do %>
+			<div class="button_div" align="center">Leave</div>
 		<% end %>
 	<% end %>
 <% end %>

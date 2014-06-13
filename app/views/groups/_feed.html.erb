@@ -19,8 +19,8 @@
 					<%= render "posts/share", post: post %>
 				</td>
 				<td>
-					<%= link_to(show_post_path(post.user, post)) do %>
-						<div>Comment</div>
+					<%= link_to(show_post_path(post.user, post), class: :button_link) do %>
+						<div class="button_div">Comment</div>
 					<% end %>
 				</td>
 			</tr>
@@ -28,5 +28,3 @@
 	</div>
 	<br>
 <% end %>
-
-<%= render "pages/older_newer", page: :group_page %>
