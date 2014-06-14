@@ -2,8 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-
 $back: rgb(50, 50, 50);
 $button_color: rgb(70, 70, 70);
 $highlight_button: rgb(80, 80, 80);
@@ -35,4 +33,10 @@ $highlight_button: rgb(80, 80, 80);
 
 .button_link:hover {
 	text-decoration: none;
+}
+
+#large_button {
+	width: 90%;
+	max-width: 550px;
+	margin: 0 auto;
 }

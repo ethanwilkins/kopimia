@@ -1,11 +1,11 @@
 <% if current_user and @user != current_user %>
 	<% if Folder.folder_between(current_user, @user) %>
-		<%= link_to(folder_path(@folder, user_id: @user)) do %>
-			<div>Message</div>
+		<%= link_to(folder_path(@folder, user_id: @user), class: :button_link) do %>
+			<div class="button_div">Message</div>
 		<% end %>
 	<% else %>
-		<%= link_to(new_folder_path(user_id: @user)) do %>
-			<div>Message</div>
+		<%= link_to(new_folder_path(user_id: @user), class: :button_link) do %>
+			<div class="button_div">Message</div>
 		<% end %>
 	<% end %>
 <% end %>

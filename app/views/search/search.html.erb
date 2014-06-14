@@ -1,43 +1,14 @@
+<div id="card">
 <%= form_tag search_path, :method => "get" do %>
 	<p>
 		<%= text_field_tag :query, params[:query], placeholder: "Search for groups or users" %>
 		<%= submit_tag "Search" %>
 	</p>
 <% end %>
+</div>
+<br>
 
-<% if @users %>
-	<% @users.each do |user| %>
-		<div id="card">
-			<table align="center">
-				<tr>
-					<td>
-						<%= link_to profile_picture(user, "25x25"), user_path(user) %>
-					</td>
-					<td>
-						<%= link_to user.name.capitalize, user_path(user) %>
-					</td>
-				</tr>
-			</table>
-		</div>
-	<% end %>
-<% end %>
-
-<% if @groups %>
-	<% @groups.each do |group| %>
-		<div id="card">
-			<table align="center">
-				<tr>
-					<td>
-						<%= link_to image_tag(group.icon, size: "25x25"), group_path(group) %>
-					</td>
-					<td>
-						<%= link_to group.name.capitalize, group_path(group) %>
-					</td>
-				</tr>
-			</table>
-		</div>
-	<% end %>
-<% end %>
+<%= render "results" %>
 
 <% if @no_results %>
 	<p align="center"><%= @no_results %></p>
