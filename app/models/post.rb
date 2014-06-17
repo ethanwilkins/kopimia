@@ -8,6 +8,11 @@ class Post < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
   
+  # called in user feed method
+  def score
+    Vote.score(self)
+  end
+  
   def self.from_users_followed_by(user)
     where("user_id IN (?) OR user_id = ?", user.followed_user_ids, user)
   end

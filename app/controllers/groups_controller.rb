@@ -25,7 +25,7 @@ class GroupsController < ApplicationController
   
   def show
     @group = Group.find(params[:id])
-    @feed = @group.posts.reverse
+    @feed = @group.posts.sort_by(&:score).reverse
     @post = Post.new
   end
 end

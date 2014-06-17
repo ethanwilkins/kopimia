@@ -31,6 +31,10 @@ $highlight_button: rgb(80, 80, 80);
 	background: $highlight_button;
 }
 
+.button_div:active {
+	background: rgb(24, 120, 241);
+}
+
 .button_link:hover {
 	text-decoration: none;
 }

@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   mount_uploader :profile_picture, ImageUploader
 
   def feed
-    posts = Post.from_users_followed_by(self).sort_by(&:created_at).reverse!
+    posts = Post.from_users_followed_by(self).sort_by(&:score).reverse!
   end
   
   def following?(other_user)
@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     connections.find_by(followed_id: other_user.id).destroy
   end
   
-  def notify!(action, other_user, item=1)
+  def notify!(action, other_user, item)
     user_name = other_user.name.capitalize
     if self != other_user then
       case action

@@ -1,7 +1,7 @@
 <!-- welcome -->
 
 <% unless current_user %>
-	<%= render "welcome" %>
+	<%= render "sessions/new" %>
 <% else %>
 	<%= render "feed" %>
 <% end %>

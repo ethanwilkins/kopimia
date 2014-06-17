@@ -11,13 +11,13 @@
 		</tr>
 	</table>
 		
-	<%= render "posts/content", post: @post %>
+	<%= render "content", post: @post %>
 	
 	<table align="center">
 		<tr>
-			<%= render "posts/vote", post: @post %>
+			<%= render "vote", post: @post %>
 			<td>
-				<%= render "posts/share", post: @post %>
+				<%= render "share", post: @post %>
 			</td>
 			<% if current_user and current_user == @user %>
 			<td>
@@ -33,4 +33,4 @@
 <%= render "comments/new", item: :post %>
 </div></br>
 
-<%= render "comments/post_comments" %>
+<%= render "comments" %>

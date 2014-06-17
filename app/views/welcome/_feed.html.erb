@@ -35,4 +35,4 @@
 	</br>
 <% end %>
 
-<%= render "pages/older_newer", page: :feed_page %>
+<%= render("pages/older_newer", page: :feed_page) if @feed.size > 0 %>

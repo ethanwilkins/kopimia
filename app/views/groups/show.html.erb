@@ -6,4 +6,4 @@
 	<%= render "feed" %>
 <% end %>
 
-<%= render "pages/older_newer", page: :group_page %>
+<%= render("pages/older_newer", page: :group_page) if @feed.size > 0 %>
