@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140614022419) do
+ActiveRecord::Schema.define(version: 20140617221439) do
 
   create_table "comments", force: true do |t|
     t.integer  "post_id"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20140614022419) do
     t.integer  "user_id"
     t.boolean  "inactive"
     t.text     "submission"
+    t.boolean  "anonymous"
   end
 
   create_table "users", force: true do |t|

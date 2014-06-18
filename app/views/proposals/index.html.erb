@@ -1,8 +1,11 @@
 <!-- proposals -->
-<%= button_to "Create proposal", new_group_proposal_path(@group), method: :get %><br>
+<div id="large_button">
+	<%= button_to "Create proposal", new_group_proposal_path(@group), method: :get %><br>
+</div>
 
 <% @proposals.each do |proposal| %>
 	<div id="card">
+		<!-- user proposal action needs to go here  -->
 		
 		<%= render "content", proposal: proposal %>
 		

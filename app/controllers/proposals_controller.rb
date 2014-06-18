@@ -1,16 +1,9 @@
 class ProposalsController < ApplicationController
-  
   def up_vote
     @proposal = Proposal.find(params[:id])
-    @members = Group.find(@proposal.group_id).members
     Vote.up_vote!(@proposal, current_user)
-    if @proposal.votes.up_votes.size > @members.size / 2 and @members.size > 2
-      @proposal.update inactive: true
-      case @proposal.action
-        when "icon_change"
-          @proposal.icon_change
-      end
-    end
+    # ratifies proposal at enough votes
+    @proposal.ratify
     redirect_to :back
   end
   
@@ -34,12 +27,14 @@ class ProposalsController < ApplicationController
   
   def index
     @group = Group.find(params[:group_id])
-    @proposals = @group.proposals.reverse
+    @proposals = @group.proposals.sort_by(&:score).reverse!
   end
   
   def create
     @group = Group.find(params[:group_id])
-    @proposal = @group.proposals.new(params[:proposal].permit(:action, :title, :description, :icon))
+    @proposal = @group.proposals.new(params[:proposal].permit(:action, :title,
+      :description, :icon, :anonymous))
+      @proposal.user_id = params[:user_id] unless params[:anonymous] == 1
     if @proposal.save
       redirect_to group_path(@group)
     else

@@ -1,20 +1,33 @@
+<div id="card">
 <%= form_for @proposal, :html => {:multipart => true, "data-ajax" => false} do |f| %>
 	<%= hidden_field_tag :group_id, params[:group_id] %>
+	<%= hidden_field_tag :user_id, current_user.id %>
 	<p>
 		<%= f.label "Choose a proposal type"%>
 		<%= f.select :action,
 			options_for_select([["Name change", "name_change"], ["Icon change", "icon_change"],
 			["Description change", "description_change"], ["Ban member", "ban_member"], ["Other", "other"]]) %>
 	</p>
+	
 	<p>
 		<%= f.text_field :submission, placeholder: "Submission text" %>
+	</p>
+	
 	<p>
 		<%= f.file_field :icon %>
 	</p>
+	
 	<p>
 		<%= f.text_area :description, placeholder: "Explain your reasoning" %>
 	</p>
+
+	<p>
+		<%= f.label :anonymous %>
+		<%= f.check_box :anonymous %>
+	</p>
+	
 	<p>
 		<%= f.submit "Create proposal" %>
 	</p>
 <% end %>
+</div>
