@@ -5,7 +5,7 @@
 
 <% @proposals.each do |proposal| %>
 	<div id="card">
-		<!-- user proposal action needs to go here  -->
+		<%= render "user_action", proposal: proposal %>
 		
 		<%= render "content", proposal: proposal %>
 		

@@ -1,0 +1,18 @@
+<p align="center">
+	<% if proposal.user_id %>
+		<%= User.find(proposal.user_id).name.capitalize %>
+	<% else %>
+		Anonymous
+	<% end %>
+
+	<% case proposal.action %>
+		<% when "name_change" %>
+			proposed a name change
+		<% when "description_change" %>
+			proposed a new description
+		<% when "icon_change" %>
+			proposed an icon
+		<% when "request_to_join" %>
+			requested to join
+	<% end %>
+</p>

@@ -12,13 +12,15 @@ class Proposal < ActiveRecord::Base
       update inactive: true
       case action
         when "icon_change"
-          icon_change
+          Group.find(group_id).update(icon: icon)
+        when "name_change"
+          Group.find(group_id).update(name: submission)
+        when "description_change"
+          Group.find(group_id).update(description: submission)
+        when "request_to_join"
+          Group.find(group_id).members.create(user_id: user_id)
       end
     end
-  end
-  
-  def icon_change
-    Group.find(group_id).update(icon: icon)
   end
   
   def score
