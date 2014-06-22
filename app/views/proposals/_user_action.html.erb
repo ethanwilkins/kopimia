@@ -1,6 +1,6 @@
 <p align="center">
 	<% if proposal.user_id %>
-		<%= User.find(proposal.user_id).name.capitalize %>
+		<%= link_to User.find(proposal.user_id).name.capitalize, user_path(proposal.user_id) %>
 	<% else %>
 		Anonymous
 	<% end %>
@@ -9,7 +9,7 @@
 		<% when "name_change" %>
 			proposed a name change
 		<% when "description_change" %>
-			proposed a new description
+			proposed a description
 		<% when "icon_change" %>
 			proposed an icon
 		<% when "request_to_join" %>

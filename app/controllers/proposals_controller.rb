@@ -26,11 +26,11 @@ class ProposalsController < ApplicationController
   
   def create
     @group = Group.find(params[:group_id])
-    @proposal = @group.proposals.new(params[:proposal].permit(:action, :title,
+    @proposal = @group.proposals.new(params[:proposal].permit(:action, :submission,
       :description, :icon, :anonymous))
       @proposal.user_id = params[:user_id] unless params[:anonymous] == 1
     if @proposal.save
-      redirect_to group_path(@group)
+      redirect_to group_proposals_path(@group)
     else
       redirect_to :back
     end
