@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     connections.find_by(followed_id: other_user.id).destroy
   end
   
-  def notify!(action, other_user, item)
+  def notify!(action, other_user, item=1)
     user_name = other_user.name.capitalize
     if self != other_user then
       case action
