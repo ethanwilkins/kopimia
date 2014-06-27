@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   belongs_to :group
   belongs_to :user
   
-  validates :text, presence: true
+  validate :text_or_image?, on: :create
 
   mount_uploader :image, ImageUploader
   
@@ -15,5 +15,13 @@ class Post < ActiveRecord::Base
   
   def self.from_users_followed_by(user)
     where("user_id IN (?) OR user_id = ?", user.followed_user_ids, user)
+  end
+  
+  private
+  
+  def text_or_image?
+    if text.empty? and !image.url
+      errors.add(:post, "cannot be empty.")
+    end
   end
 end
