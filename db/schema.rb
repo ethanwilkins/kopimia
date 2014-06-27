@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20140617221439) do
     t.integer  "proposal_id"
   end
 
-  add_index "comments", ["post_id"], name: "index_comments_on_post_id"
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
 
   create_table "connections", force: true do |t|
     t.integer  "follower_id"
@@ -31,9 +31,9 @@ ActiveRecord::Schema.define(version: 20140617221439) do
     t.datetime "updated_at"
   end
 
-  add_index "connections", ["followed_id"], name: "index_connections_on_followed_id"
-  add_index "connections", ["follower_id", "followed_id"], name: "index_connections_on_follower_id_and_followed_id", unique: true
-  add_index "connections", ["follower_id"], name: "index_connections_on_follower_id"
+  add_index "connections", ["followed_id"], name: "index_connections_on_followed_id", using: :btree
+  add_index "connections", ["follower_id", "followed_id"], name: "index_connections_on_follower_id_and_followed_id", unique: true, using: :btree
+  add_index "connections", ["follower_id"], name: "index_connections_on_follower_id", using: :btree
 
   create_table "folders", force: true do |t|
     t.datetime "created_at"
@@ -59,13 +59,13 @@ ActiveRecord::Schema.define(version: 20140617221439) do
 
   create_table "messages", force: true do |t|
     t.integer  "receiver"
-    t.boolean  "seen",                   default: false
+    t.boolean  "seen",       default: false
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "folder_id"
-    t.binary   "salt",       limit: 255
+    t.binary   "salt"
   end
 
   create_table "notifications", force: true do |t|
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20140617221439) do
     t.integer  "group_id"
   end
 
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "proposals", force: true do |t|
     t.integer  "group_id"
@@ -115,9 +115,9 @@ ActiveRecord::Schema.define(version: 20140617221439) do
     t.string   "profile_picture"
   end
 
-  add_index "users", ["name", "password"], name: "index_users_on_name_and_password", unique: true
-  add_index "users", ["name"], name: "index_users_on_name"
-  add_index "users", ["password"], name: "index_users_on_password"
+  add_index "users", ["name", "password"], name: "index_users_on_name_and_password", unique: true, using: :btree
+  add_index "users", ["name"], name: "index_users_on_name", using: :btree
+  add_index "users", ["password"], name: "index_users_on_password", using: :btree
 
   create_table "votes", force: true do |t|
     t.datetime "created_at"
