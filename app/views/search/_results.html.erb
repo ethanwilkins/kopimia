@@ -4,7 +4,7 @@
 			<table align="center">
 				<tr>
 					<td>
-						<%= link_to profile_picture(user, "25x25"), user_path(user) %>
+						<%= profile_picture(user, "25x25") %>
 					</td>
 					<td>
 						<%= link_to user.name.capitalize, user_path(user) %>
@@ -21,7 +21,7 @@
 			<table align="center">
 				<tr>
 					<td>
-						<%= link_to image_tag(group.icon, size: "25x25"), group_path(group) %>
+						<%= link_to image_tag(group.icon, size: "25x25", id: :profile_picture), group_path(group) %>
 					</td>
 					<td>
 						<%= link_to group.name.capitalize, group_path(group) %>

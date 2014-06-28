@@ -6,8 +6,9 @@
 	<div id="card">
 		<table align="center">
 			<tr>
-				<td><%= link_to image_tag(group.icon, size: "50x50"), group_path(group) %></td>
-				<td><h2><%= link_to group.name, group_path(group) %></h2></td>
+				<td><%= link_to image_tag(group.icon, size: "50x50",
+					id: :profile_picture), group_path(group) %></td>
+				<td><h2><%= link_to group.name.capitalize, group_path(group) %></h2></td>
 			</tr>
 		</table>
 		<div align="center">Members: <%= group.members.size %></div>

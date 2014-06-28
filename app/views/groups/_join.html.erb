@@ -1,6 +1,6 @@
 <% unless @group.membership(current_user) or !current_user %>
 	<% unless @group.private %>
-		<%= link_to(join_group_path(@group), class: :button_link) do %>
+		<%= link_to(join_group_path(@group), class: :button_link, method: :post) do %>
 			<div class="button_div" align="center">Join</div>
 		<% end %>
 	<% else %>

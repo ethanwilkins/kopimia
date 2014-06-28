@@ -1,10 +1,13 @@
-<h1>Following</h1>
+<h1 align="center">Following</h1>
 
-<table>
-  <% @users.each do |user| %>
-    <tr>
-		<td><%= link_to profile_picture(user), user_path(user) %></td>
-		<td><%= link_to user.name.capitalize, user_path(user) %></td>
-    </tr>
-  <% end %>
-</table>
+<% @users.each do |user| %>
+<div id="card">
+	<table align="center">
+		<tr>
+			<td><%= profile_picture(user, "25x25") %></td>
+			<td><%= link_to user.name.capitalize, user_path(user) %></td>
+		</tr>
+	</table>
+</div>
+<br>
+<% end %>

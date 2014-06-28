@@ -8,7 +8,7 @@
 			<tr>
 				<td>
 					<% user = User.find(post.user_id) %>
-					<%= link_to profile_picture(user, "25x25"), user_path(user) if user.profile_picture %>
+					<%= profile_picture(user, "25x25") %>
 				</td>
 				<td>
 					<%= link_to post.user.name.capitalize, user_path(post.user) %>
@@ -36,4 +36,4 @@
 	</br>
 <% end %>
 
-<%= render("pages/older_newer", page: :feed_page) if @feed.size > 0 %>
+<%= render("pages/older_newer", page: :feed_page) %>
