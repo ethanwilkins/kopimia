@@ -25,18 +25,18 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  # process :fix_exif_rotation
+  process :fix_exif_rotation
   # process :scale => [200, 300]
   #
   # def scale(width, height)
   #   # do something
   # end
   
-  # def fix_exif_rotation
-  #   manipulate! do |image|
-  #     image = image.auto_orient!
-  #   end
-  # end
+  def fix_exif_rotation
+   manipulate! do |image|
+     image = image.auto_orient
+   end
+  end
 
   # Create different versions of your uploaded files:
   # version :thumb do
