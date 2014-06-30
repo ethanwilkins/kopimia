@@ -1,3 +1,4 @@
-<%= form_for(current_user.connections.find_by(followed_id: @user.id), html: { method: :delete }) do |f| %>
-  <%= f.submit "Unfollow", class: "btn btn-large", "data-icon" => "minus", "data-iconpos" => "notext" %>
+<%= link_to(unfollow_path(current_user.connections.find_by(followed_id: @user.id).id),
+	method: :delete, class: :button_link) do %>
+	<div class="button_div">Unfollow</div>
 <% end %>

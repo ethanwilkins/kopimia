@@ -1,4 +1,3 @@
-<%= form_for(current_user.connections.build(followed_id: @user.id)) do |f| %>
-  <div><%= f.hidden_field :followed_id %></div>
-  <%= f.submit "Follow", class: "btn btn-large btn-primary", "data-icon" => "plus", "data-iconpos" => "notext" %>
+<%= link_to(follow_path(followed_id: @user.id), method: :post, class: :button_link) do %>
+	<div class="button_div">Follow</div>
 <% end %>

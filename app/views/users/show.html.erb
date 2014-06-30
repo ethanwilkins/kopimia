@@ -11,45 +11,48 @@
 				<%= @user.name.capitalize %>
 			</h1>
 		</td>
+	</tr>
+</table>
+
+<table align="center">
+	<tr>
+		<% if @user.bio %>
 		<td>
-			<%= render "follow_form" if current_user and current_user != @user %>
+			<p align="center">
+				<strong>About me:</strong>
+				<%= @user.bio %>
+			</p>
 		</td>
+		<% end %>
 	</tr>
 </table>
 
 <table align="center">
 	<tr>
 		<td>
-			<strong>About me:</strong>
-			<%= @user.bio %>
+			<%= link_to(following_user_path(@user), class: :button_link) do %>
+				<div class="button_div">Contacts</div>
+			<% end %>
 		</td>
 		<td>
-			<%= render "edit_button" %>
+			<%= link_to(groups_joined_path(@user), class: :button_link) do %>
+				<div class="button_div">Groups</div>
+			<% end %>
 		</td>
-	</tr>
-</table>
-
-<table align="center">
-	<tr>
-		<td>
-			<%= link_to "Groups", groups_joined_path(@user) %>
-		</td>
-		<td>
-			|
-		</td>
-		<td>
-			<%= link_to "Contacts", following_user_path(@user) %>
-		</td>
-	</tr>
-</table>
-
-<table align="center">
-	<tr>
 		<td>
 			<%= render "messages/message_button" %>
 		</td>
 	</tr>
 </table>
+
+<div id="top_right">
+	<% if current_user and @user == current_user %>
+		<%= render "edit_button" %>
+	<% elsif current_user %>
+		<%= render "follow_form" %>
+	<% end %>
+</div>
+
 </div>
 </br>
 

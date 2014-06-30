@@ -27,6 +27,10 @@ Social::Application.routes.draw do
   
   post "posts/share/:id", to: "posts#share", as: "share"
   
+  delete "connections/destroy/:id", to: "connections#destroy", as: "unfollow"
+  
+  post "connections/create/:id", to: "connections#create", as: "follow"
+  
   post "proposals/create", as: "proposals"
   
   post "comments/create", as: "comments"
