@@ -20,7 +20,7 @@ class Post < ActiveRecord::Base
   private
   
   def text_or_image?
-    if text.empty? and !image.url
+    if !original and text.empty? and !image.url
       errors.add(:post, "cannot be empty.")
     end
   end

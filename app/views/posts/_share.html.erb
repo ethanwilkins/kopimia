@@ -1,7 +1,7 @@
 <% post = Post.find(post.original) if post.original %>
 
 <% if post.user != current_user %>
-	<%= link_to(share_path(post.id), class: :button_link) do %>
+	<%= link_to(share_path(post.id), method: :post, class: :button_link) do %>
 		<div class="button_div">Share</div>
 	<% end %>
 <% end %>
