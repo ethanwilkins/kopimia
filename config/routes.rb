@@ -25,7 +25,7 @@ Social::Application.routes.draw do
   
   get "members/request_to_join/:id", to: "members#request_to_join", as: "request_to_join"
   
-  post "posts/:id", to: "posts#share", as: "share"
+  post "posts/share/:id", to: "posts#share", as: "share"
   
   post "proposals/create", as: "proposals"
   
