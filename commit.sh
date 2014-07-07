@@ -4,7 +4,7 @@ cp -r /Users/ethanwilkins/Documents/ruby/rails/social/ /Users/ethanwilkins/Docum
 
 cd /Users/ethanwilkins/Documents/GitHub/social
 
-git add .
+git add -A
 
 git commit -m "$1"
 
