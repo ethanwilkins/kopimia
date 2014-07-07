@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :hashtags, dependent: :destroy
   belongs_to :group
   belongs_to :user
   

@@ -33,8 +33,21 @@ class PostsController < ApplicationController
     @user = User.find(current_user.id)
     @post = @user.posts.new(params[:post].permit(:text, :image))
     @post.group_id = params[:group_id]
-    
+    @text = @post.text
     if @post.save
+      if @text
+        # extracts hashtags from post.text
+        @text.split(' ').each do |tag|
+          if tag.include? "#"
+            # removes tag from text
+            @text.slice! tag
+            # @post would not update
+            Post.find(@post.id).update(text: @text)
+            # pushes each tag into post
+            @post.hashtags.create(tag: tag)
+          end
+        end
+      end
       redirect_to :back
     else
       redirect_to :back
