@@ -12,15 +12,12 @@
 	</table>
 		
 	<%= render "content", post: @post %>
-	
-	<%= render "hashtags" %>
+	<%= render "hashtags/tags", post: @post %>
 	
 	<table align="center">
 		<tr>
 			<%= render "vote", post: @post %>
-			<td>
-				<%= render "share", post: @post %>
-			</td>
+			<%= render "share", post: @post %>
 			<% if current_user and current_user == @user %>
 			<td>
 				<%= link_to(user_post_path(params[:id], @post), class: :button_link,

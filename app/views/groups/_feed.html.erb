@@ -1,30 +1,5 @@
 <!-- groups feed -->
 
 <% @feed.each do |post| %>
-	<div id="card">
-		<table align="center">
-			<tr>
-				<td><%= profile_picture(User.find(post.user_id), "25x25") %></td>
-				<td><%= link_to post.user.name.capitalize, user_path(post.user) %></td>
-				<td><%= render "posts/user_action", post: post %></td>
-			</tr>
-		</table>
-		
-		<%= render "posts/content", post: post %>
-		
-		<table align="center">
-			<tr>
-				<%= render "posts/vote", post: post %>
-				<td>
-					<%= render "posts/share", post: post %>
-				</td>
-				<td>
-					<%= link_to(show_post_path(post.user, post), class: :button_link) do %>
-						<div class="button_div">Comment</div>
-					<% end %>
-				</td>
-			</tr>
-		</table>
-	</div>
-	<br>
+	<%= render "posts/card", post: post %>
 <% end %>

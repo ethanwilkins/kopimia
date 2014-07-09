@@ -1,3 +1,5 @@
+<!-- groups -->
+
 <%= render "profile" %>
 
 <%= render "posts/new", group: @group.id if @group.membership(current_user) %>

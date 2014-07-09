@@ -13,13 +13,12 @@
 		</table>
 		
 		<%= render "posts/content", post: post %>
+		<%= render "hashtags/tags", post: post %>
 		
 		<table align="center">
 			<tr>
 				<%= render "posts/vote", post: post %>
-				<td>
-					<%= render "posts/share", post: post %>
-				</td>
+				<%= render "posts/share", post: post %>
 				<td>
 					<%= link_to(show_post_path(post.user, post), class: :button_link) do %>
 						<div class="button_div">Comment</div>

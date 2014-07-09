@@ -31,6 +31,8 @@ Social::Application.routes.draw do
   
   post "connections/create/:id", to: "connections#create", as: "follow"
   
+  get "search/search/:query", to: "search#search", as: "tagged"
+  
   post "proposals/create", as: "proposals"
   
   post "comments/create", as: "comments"
