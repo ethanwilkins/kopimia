@@ -1,3 +1,7 @@
+<% flash.each do |key, message| %>
+	<div id="card"><p align="center"><%= message %></p></div></br>
+<% end %>
+
 <div id="card">
 <%= form_for @proposal, :html => {:multipart => true, "data-ajax" => false} do |f| %>
 	<%= hidden_field_tag :group_id, params[:group_id] %>
@@ -5,8 +9,9 @@
 	<p>
 		<%= f.label "Choose a proposal type"%>
 		<%= f.select :action,
-			options_for_select([["Name change", "name_change"], ["Icon change", "icon_change"],
-			["Description change", "description_change"], ["Ban member", "ban_member"], ["Other", "other"]]) %>
+			options_for_select([["Proposal type", nil], ["Description change", "description_change"], 
+			["Make group private", "private_group"], ["Make group public", "public_group"],
+			["Name change", "name_change"], ["Icon change", "icon_change"], ["Other", "other"]]) %>
 	</p>
 	
 	<p>

@@ -32,6 +32,7 @@ class ProposalsController < ApplicationController
     if @proposal.save
       redirect_to group_proposals_path(@group)
     else
+      flash[:error] = "You didn't choose a proposal type." if params[:proposal][:action].empty?
       redirect_to :back
     end
   end

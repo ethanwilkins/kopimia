@@ -3,7 +3,7 @@ class Proposal < ActiveRecord::Base
   has_many :comments
   has_many :votes
   
-  validates :description, presence: true
+  validates :action, presence: true
   
   mount_uploader :icon, ImageUploader
   
@@ -20,6 +20,10 @@ class Proposal < ActiveRecord::Base
           group.update(description: submission)
         when "request_to_join"
           group.members.create(user_id: user_id)
+        when "private_group"
+          group.update(private: true)
+        when "public_group"
+          group.update(private: false)
       end
     end
   end

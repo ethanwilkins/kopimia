@@ -23,7 +23,8 @@ class UsersController < ApplicationController
       session[:user_id] = user.id if user
       redirect_to root_url
     else
-      render "new"
+      flash[:error] = "No fields can be empty."
+      redirect_to :back
     end
   end
   
@@ -34,7 +35,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     
-    if @user.update(params[:user].permit(:profile_picture, :bio))
+    if @user.update(params[:user].permit(:profile_picture, :bio, :name))
       redirect_to @user
     else
       render "edit"

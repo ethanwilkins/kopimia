@@ -50,6 +50,7 @@ class PostsController < ApplicationController
       end
       redirect_to :back
     else
+      flash[:error] = "You can't post an empty post."
       redirect_to :back
     end
   end

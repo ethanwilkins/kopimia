@@ -4,10 +4,10 @@
 	</div>
 <% end %>
 
-<table align="center">
-	<tr>
-		<td>
-			<p align="center"><%= proposal.submission %></p>
-		</td>
-	</tr>
-</table>
+<% unless proposal.submission.empty? %>
+	<p align="center"><%= proposal.submission %></p>
+<% end %>
+
+<% unless proposal.description.empty? %>
+	<p align="center"><%= proposal.description %></p>
+<% end %>

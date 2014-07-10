@@ -20,6 +20,10 @@
 		</div>
 
 		<div id="page-content" data-role="content">
+			<% flash.each do |name, message| %>
+				<div id="card"><p align="center"><%= message %></p></div></br>
+			<% end %>
+
 			<%= yield %>
 		</div>
 		
