@@ -5,6 +5,8 @@ class Message < ActiveRecord::Base
   
   before_create :encrypt_message
   
+  mount_uploader :image, ImageUploader
+  
   def encrypt_message
     if text.present?
       self.salt = SecureRandom.random_bytes(64)

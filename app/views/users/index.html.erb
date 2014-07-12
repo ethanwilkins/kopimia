@@ -1,15 +1,15 @@
-<h1>Listing Users</h1>
+<h1 align="center">Users</h1>
  
-<table>
-	<tr>
-		<th>Name</th>
-		<th>About</th>
-	</tr>
- 
-	<% @users.each do |user| %>
-	<tr>
-		<td><%= link_to user.name.capitalize, user_path(user) %></td>
-		<td><%= user.bio %></td>
-	</tr>
-	<% end %>
-</table>
+
+<% @users.each do |user| %>
+	<div id="card">
+		<table align="center">
+			<tr>
+				<td><%= profile_picture user, "25x25" %>
+				<td><%= link_to user.name.capitalize, user_path(user) %></td>
+				<td><%= user.bio %></td>
+			</tr>
+		</table>
+	</div>
+	</br>
+<% end %>
