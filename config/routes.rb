@@ -33,6 +33,8 @@ Social::Application.routes.draw do
   
   get "search/search/:query", to: "search#search", as: "tagged"
   
+  post "hashtags/follow/:id", to: "hashtags#follow", as: "follow_tag"
+  
   post "proposals/create", as: "proposals"
   
   post "comments/create", as: "comments"

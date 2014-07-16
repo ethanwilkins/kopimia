@@ -38,8 +38,14 @@
 <% end %>
 
 <% if @tags %>
+	<div id="large_button">
+		<%= button_to "Follow " + @tags.first.tag, follow_tag_path(@tags.first.id) %>
+	</div></br>
+	
 	<% @tags.each do |tag| %>
-		<% post = tag.item %>
-		<%= render "posts/card", post: post %>
+		<% if tag.post_id %>
+			<% post = tag.item %>
+			<%= render "posts/card", post: post %>
+		<% end %>
 	<% end %>
 <% end %>

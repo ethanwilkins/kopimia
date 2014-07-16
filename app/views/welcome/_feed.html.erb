@@ -6,4 +6,8 @@
 	<%= render "posts/card", post: post %>
 <% end %>
 
+<% if Post.from_users_followed_by(current_user).empty? %>
+	<%= render "search/search_bar" %>
+<% end %>
+
 <%= render("pages/older_newer", page: :feed_page) %>
