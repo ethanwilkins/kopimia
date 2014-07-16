@@ -1,5 +1,9 @@
 #!/bin/bash
 
+cd /Users/ethanwilkins/Documents/GitHub/
+
+rm -rf social/*
+
 cp -r /Users/ethanwilkins/Documents/ruby/rails/social/ /Users/ethanwilkins/Documents/GitHub/social/
 
 cd /Users/ethanwilkins/Documents/GitHub/social
