@@ -3,6 +3,7 @@ class Hashtag < ActiveRecord::Base
   belongs_to :user
   
   validates :tag, presence: true
+  validates_uniqueness_of :tag if user_id
   
   def item
     Post.find(post_id) if post_id
