@@ -1,11 +1,10 @@
 class GroupsController < ApplicationController
-  
   def groups_joined
     @groups = Group.groups_of(params[:id])
   end
   
   def index
-    @groups = Group.groups_of(current_user)
+    @groups = Group.groups_of(current_user).reverse
   end
   
   def new

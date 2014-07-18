@@ -22,7 +22,18 @@ class Vote < ActiveRecord::Base
   end
   
   def self.score(obj)
-    (obj.votes.up_votes.size.to_i - obj.votes.down_votes.size.to_i) - (Date.today - obj.created_at.to_date).to_i
+    _score = (obj.votes.up_votes.size.to_i - obj.votes.down_votes.size.to_i) - 
+      (Date.today - obj.created_at.to_date).to_i
+    if obj.hashtags and User.find(obj.user_id).hashtags
+      for tag in obj.hashtags
+        for _tag in User.find(obj.user_id).hashtags
+          if tag.tag == _tag.tag
+            _score += 1
+          end
+        end
+      end
+    end
+    return _score
   end
   
   def self.up_votes

@@ -1,0 +1,5 @@
+<% unless page == :feed_page and Post.from_users_followed_by(current_user).size < page_size %>
+	<div id="larg_button">
+		<%= button_to "More", older_path(page: page), method: :get %>
+	</div>
+<% end %>

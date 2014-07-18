@@ -1,4 +1,8 @@
 class SessionsController < ApplicationController
+  def anon
+    @anon = User.generate_anon
+  end
+  
   def create
     user = User.authenticate(params[:email], params[:password])
     if user

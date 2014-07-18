@@ -1,5 +1,4 @@
 class WelcomeController < ApplicationController
-  
   def index
     if current_user
       @feed = current_user.feed.
@@ -10,5 +9,4 @@ class WelcomeController < ApplicationController
       @post = Post.new
     end
   end
-  
 end

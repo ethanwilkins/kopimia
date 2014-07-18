@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716053609) do
+ActiveRecord::Schema.define(version: 20140717061546) do
 
   create_table "comments", force: true do |t|
     t.integer  "post_id"
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 20140716053609) do
     t.datetime "updated_at"
     t.string   "salt"
     t.string   "profile_picture"
+    t.boolean  "anon"
   end
 
   add_index "users", ["name", "password"], name: "index_users_on_name_and_password", unique: true

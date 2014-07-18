@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
   before_save :downcase_name
   
   mount_uploader :profile_picture, ImageUploader
+  
+  def generate_anon
+    create name: :anon, profile_picture: "anon.jpg" 
+  end
 
   def feed
     posts = Post.from_users_followed_by(self).sort_by(&:score).reverse!
