@@ -15,13 +15,15 @@ class CommentsController < ApplicationController
   def create
     if params[:post_id]
       @item = Post.find(params[:post_id])
+      comment_type = :comment
     elsif params[:proposal_id]
       @item = Proposal.find(params[:proposal_id])
+      comment_type = :comment_proposal
     end
     @comment = @item.comments.new(params[:comment].permit(:text))
 		@comment.commenter = current_user
 		if @comment.save
-      User.find(@item.user_id).notify!(:comment, current_user, @item.id) if @item.user_id
+      User.find(@item.user_id).notify!(comment_type, current_user, @item.id) if @item.user_id
   	  redirect_to :back
 		else
  	   render "posts/show"

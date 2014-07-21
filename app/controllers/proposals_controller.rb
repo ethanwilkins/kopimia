@@ -37,13 +37,6 @@ class ProposalsController < ApplicationController
     end
   end
   
-  def destroy
-    @group = Group.find(params[:group_id])
-    @proposal = @group.proposals.find(params[:id])
-    @proposal.destroy
-    redirect_to group_proposals_path(@group)
-  end
-  
   def new
     @proposal = Proposal.new
   end

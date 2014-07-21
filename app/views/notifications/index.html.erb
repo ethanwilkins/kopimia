@@ -21,6 +21,9 @@
 								<%= link_to note.message, folder_path(note.item, user_id: note.other_user) %>
 							<% when :comment, :share_post %>
 								<%= link_to note.message, show_post_path(note.user, note.item) %>
+							<% when :comment_proposal %>
+								<%= link_to note.message, group_proposal_path(Group.find( \
+								Proposal.find(note.item).group_id), note.item) %>
 						<% end %>
 					</td>
 				</tr>

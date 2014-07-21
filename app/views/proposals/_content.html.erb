@@ -4,10 +4,6 @@
 	</div>
 <% end %>
 
-<% unless proposal.submission.empty? %>
-	<p align="center"><%= proposal.submission %></p>
-<% end %>
-
 <% unless proposal.description.empty? %>
-	<p align="center"><%= proposal.description %></p>
+	<p align="center"><strong>Why:</strong> <%= proposal.description %></p>
 <% end %>
