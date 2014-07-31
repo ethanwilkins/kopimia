@@ -15,12 +15,13 @@
 				</tr>
 			</table>
 			<p id="message_time" align="center">
+				<!-- gets rid of 0 from front if present -->
 				<% if time[0].to_i == 0 %>
 					<%= time[1..-1] %>
 				<% else %>
 					<%= time %>
 				<% end %>
-			</p>	
+			</p>
 		</div>
 		<br>
 	<% end %>

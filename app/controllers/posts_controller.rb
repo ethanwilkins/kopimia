@@ -1,7 +1,6 @@
 # need if save for create and error messages if fail
 
 class PostsController < ApplicationController
-  
   def up_vote
     @post = Post.find(params[:id])
     Vote.up_vote!(@post, current_user)

@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
   
   def page_size
-    @page_size = 10
+    @page_size = 5
   end
 
   def current_user
