@@ -1,5 +1,5 @@
 <% if @users %>
-	<% @users.each do |user| %>
+	<% @users.reverse.each do |user| %>
 		<div id="card">
 			<table align="center">
 				<tr>
@@ -17,7 +17,7 @@
 <% end %>
 
 <% if @groups %>
-	<% @groups.each do |group| %>
+	<% @groups.reverse.each do |group| %>
 		<div id="card">
 			<table align="center">
 				<tr>
@@ -37,12 +37,12 @@
 	<% end %>
 <% end %>
 
-<% if @tags %>
+<% if @tags.present? %>
 	<div id="large_button">
 		<%= button_to "Follow " + @tags.first.tag, follow_tag_path(@tags.first.id) %>
 	</div></br>
 	
-	<% @tags.each do |tag| %>
+	<% @tags.reverse.each do |tag| %>
 		<% if tag.post_id %>
 			<% post = tag.item %>
 			<%= render "posts/card", post: post %>

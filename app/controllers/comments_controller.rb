@@ -23,7 +23,9 @@ class CommentsController < ApplicationController
     @comment = @item.comments.new(params[:comment].permit(:text))
 		@comment.commenter = current_user
 		if @comment.save
-      User.find(@item.user_id).notify!(comment_type, current_user, @item.id) if @item.user_id
+      Hashtag.extract(@comment)
+      User.find(@item.user_id).notify!(comment_type,
+        current_user, @item.id) if @item.user_id
   	  redirect_to :back
 		else
  	   render "posts/show"

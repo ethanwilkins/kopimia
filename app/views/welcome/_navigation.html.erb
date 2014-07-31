@@ -17,19 +17,20 @@
 			<% end %>
 		</td>
 		<td>
-			<%= link_to(user_notifications_path(current_user), class: :button_link) do %>
-				<div class="button_div">
-				<% if current_user.notifications.unchecked.size > 0 %>
-					<%= "+ " + current_user.notifications.unchecked.size.to_s %>
-				<% else %>
-					<%= current_user.notifications.unchecked.size.to_s %>
-				<% end %>
-				</div>
+			<%= link_to(search_path, class: :button_link) do %>
+				<div class="button_div">Search</div>
 			<% end %>
 		</td>
 		<td>
-			<%= link_to(search_path, class: :button_link) do %>
-				<div class="button_div">Search</div>
+			<%= link_to(user_notifications_path(current_user), class: :button_link) do %>
+				<% if current_user.notifications.unchecked.size > 0 %>
+					<div class="button_div" id="notified">
+						<%= "+ " + current_user.notifications.unchecked.size.to_s %>
+				<% else %>
+					<div class="button_div">
+						<%= current_user.notifications.unchecked.size.to_s %>
+				<% end %>
+					</div>
 			<% end %>
 		</td>
 		<% else %>

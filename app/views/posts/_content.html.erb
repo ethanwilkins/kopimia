@@ -3,7 +3,12 @@
 <div align="center">
 	<%= link_to(image_tag(post.image_url, width: "90%"),
 		show_post_path(post.user, post)) if post.image? %>
-	<% unless post.text.empty? %>
-		<p><%= post.text %></p>
+	<% if post.text.present? %>
+		<p>
+			<%= post.text %>
+			<% post.hashtags.each do |tag| %>
+				<%= link_to tag.tag, tagged_path(tag.tag) %>
+			<% end %>
+		</p>
 	<% end %>
 </div>

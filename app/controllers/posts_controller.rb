@@ -34,19 +34,7 @@ class PostsController < ApplicationController
     @post.group_id = params[:group_id]
     @text = @post.text
     if @post.save
-      if @text
-        # extracts hashtags from post.text
-        @text.split(' ').each do |tag|
-          if tag.include? "#"
-            # removes tag from text
-            @text.slice! tag
-            # @post would not update
-            Post.find(@post.id).update(text: @text)
-            # pushes each tag into post
-            @post.hashtags.create(tag: tag)
-          end
-        end
-      end
+      Hashtag.extract(@post) if @text
       redirect_to :back
     else
       flash[:error] = "You can't post an empty post."
