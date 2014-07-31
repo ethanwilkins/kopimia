@@ -38,14 +38,17 @@
 <% end %>
 
 <% if @tags.present? %>
-	<div id="large_button">
-		<%= button_to "Follow " + @tags.first.tag, follow_tag_path(@tags.first.id) %>
-	</div></br>
+	<% unless current_user.hashtags.find_by_tag @tags.first.tag %>
+		<div id="large_button">
+			<%= button_to "Follow " + @tags.first.tag, follow_tag_path(@tags.first.id) %>
+		</div></br>
+	<% end %>
 	
 	<% @tags.reverse.each do |tag| %>
 		<% if tag.post_id %>
-			<% post = tag.item %>
-			<%= render "posts/card", post: post %>
+			<%= render "posts/card", post: tag.item %>
+		<% elsif tag.comment_id %>
+			<%= render "comments/card", comment: tag.item %>
 		<% end %>
 	<% end %>
 <% end %>

@@ -5,14 +5,18 @@ class Hashtag < ActiveRecord::Base
   validates :tag, presence: true
   
   def item
-    Post.find(post_id) if post_id
+    if post_id
+      Post.find(post_id)
+    elsif comment_id
+      Comment.find(comment_id)
+    end
   end
   
   def self.tagged(_tag)
     if _tag.include? "#"
       where "tag = ?", _tag.downcase
     else
-      where "tag = ?", "#{_tag.downcase}"
+      where "tag = ?", "#" + _tag.downcase
     end
   end
   

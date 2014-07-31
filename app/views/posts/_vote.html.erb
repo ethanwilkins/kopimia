@@ -3,12 +3,12 @@
 <% if post.group_id == nil or Group.find(post.group_id).membership(current_user) %>
 <td>
 	<%= link_to(up_vote_post_path(post), class: :button_link) do %>
-		<div class="button_div">Up</div>
+		<div class="button_div">Yes</div>
 	<% end %>
 </td>
 <td>
 	<%= link_to(down_vote_post_path(post), class: :button_link) do %>
-		<div class="button_div">Down</div>
+		<div class="button_div">No</div>
 	<% end %>
 </td>
 <% end %>
