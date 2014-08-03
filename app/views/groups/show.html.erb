@@ -7,5 +7,3 @@
 <% if @group.membership(current_user) or !@group.private %>
 	<%= render "feed" %>
 <% end %>
-
-<%= render("pages/older_newer", page: :group_page) if @feed.size > 0 %>

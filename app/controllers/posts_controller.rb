@@ -1,6 +1,14 @@
 # need if save for create and error messages if fail
 
 class PostsController < ApplicationController
+  def new_comment
+    @comment = Comment.new
+    @post = Post.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   def up_vote
     @post = Post.find(params[:id])
     Vote.up_vote!(@post, current_user)
