@@ -35,8 +35,6 @@ Social::Application.routes.draw do
   
   post "hashtags/follow/:id", to: "hashtags#follow", as: "follow_tag"
   
-  get "posts/new_comment/:id", to: "posts#new_comment", as: "new_comment_ajax"
-  
   post "proposals/create", as: "proposals"
   
   post "comments/create", as: "comments"

@@ -1,4 +1,4 @@
-<div id="card" id=post_<%= post.id %>>
+<div id="card">
 	<table align="center">
 		<tr>
 			<td>
@@ -18,7 +18,7 @@
 			<%= render "posts/vote", post: post %>
 			<%= render "posts/share", post: post %>
 			<td>
-				<%= link_to(new_comment_ajax_path(post), class: :button_link, remote: true) do %>
+				<%= link_to(show_post_path(post.user, post), class: :button_link) do %>
 					<div class="button_div">Comment</div>
 				<% end %>
 			</td>

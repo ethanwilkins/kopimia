@@ -7,7 +7,6 @@ class WelcomeController < ApplicationController
         # only shows first several posts of resulting array
         first(page_size)
       @post = Post.new
-      @comment = Comment.new
     end
   end
 end
