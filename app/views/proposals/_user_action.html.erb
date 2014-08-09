@@ -20,5 +20,7 @@
 			proposes that <%= link_to name, group_path(@group) %> should be public
 		<% when "request_to_join" %>
 			requested to join <%= link_to name, group_path(@group) %>
+		<% when "add_module" %>
+			proposed to add a software module to the group
 	<% end %>
 </p>

@@ -1,29 +1,45 @@
-<% flash.each do |key, message| %>
-	<div id="card"><p align="center"><%= message %></p></div></br>
-<% end %>
-
 <div id="card">
 <%= form_for @proposal, :html => {:multipart => true, "data-ajax" => false} do |f| %>
 	<%= hidden_field_tag :group_id, params[:group_id] %>
 	<%= hidden_field_tag :user_id, current_user.id %>
-	<p>
-		<%= f.label "Choose a proposal type"%>
-		<%= f.select :action,
-			options_for_select([["Proposal type", nil], ["Description change", "description_change"], 
-			["Make group private", "private_group"], ["Make group public", "public_group"],
-			["Name change", "name_change"], ["Icon change", "icon_change"], ["Other", "other"]]) %>
-	</p>
+	
+	<% case session[:proposal_type] %>
+		<% when "description_change" %>
+			<p>
+				<%= f.text_area :submission, placeholder: "Enter new description here" %>
+			</p>
+			
+		<% when "add_module" %>
+			<p>
+				<%= f.text_field :module_name, placeholder: "Enter module name here" %>
+			</p>
+			<p>
+				<%= f.label "Choose an icon for the module" %>
+				<%= f.file_field :icon %>
+			<p>
+				<%= f.text_area :submission, placeholder: "Paste the link or HTML here" %>
+			</p>
+			
+		<% when "private_group" %>
+			<p align="center">Make the group private</p>
+			
+		<% when "public_group" %>
+			<p align="center">Make the group public</p>
+			
+		<% when "name_change" %>
+			<p>
+				<%= f.text_area :submission, placeholder: "Enter new name here" %>
+			</p>
+			
+		<% when "icon_change" %>
+			<p>
+				<%= f.label "Choose a new icon image" %>
+				<%= f.file_field :icon %>
+			</p>
+	<% end %>
 	
 	<p>
-		<%= f.text_field :submission, placeholder: "Submission text" %>
-	</p>
-	
-	<p>
-		<%= f.file_field :icon %>
-	</p>
-	
-	<p>
-		<%= f.text_area :description, placeholder: "Explain why" %>
+		<%= f.text_area :description, placeholder: "Explain why (optional)" %>
 	</p>
 
 	<p>

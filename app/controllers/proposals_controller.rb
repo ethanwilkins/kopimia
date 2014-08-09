@@ -1,9 +1,15 @@
 class ProposalsController < ApplicationController
+  def menu
+    @group = Group.find(params[:group_id])
+  end
+  
   def up_vote
     @proposal = Proposal.find(params[:id])
     Vote.up_vote!(@proposal, current_user)
     # ratifies proposal at enough votes
-    @proposal.ratify
+    if @proposal.ratify
+      flash[:notice] = "The proposal has been ratified."
+    end
     redirect_to :back
   end
   
@@ -26,18 +32,20 @@ class ProposalsController < ApplicationController
   
   def create
     @group = Group.find(params[:group_id])
-    @proposal = @group.proposals.new(params[:proposal].permit(:action, :submission,
-      :description, :icon, :anonymous))
-      @proposal.user_id = params[:user_id] unless params[:anonymous] == 1
+    @proposal = @group.proposals.new(params[:proposal].permit(:submission,
+      :description, :icon, :anonymous, :module_name))
+    @proposal.user_id = params[:user_id] unless params[:anonymous] == 1
+    @proposal.action = session[:proposal_type]
     if @proposal.save
       redirect_to group_proposals_path(@group)
     else
-      flash[:error] = "You didn't choose a proposal type." if params[:proposal][:action].empty?
+      flash[:error] = "Invalid input"
       redirect_to :back
     end
   end
   
   def new
+    session[:proposal_type] = params[:proposal_type] if params[:proposal_type].present?
     @proposal = Proposal.new
   end
 end

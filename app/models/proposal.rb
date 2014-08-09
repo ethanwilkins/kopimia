@@ -9,22 +9,25 @@ class Proposal < ActiveRecord::Base
   
   def ratify
     group = Group.find(group_id)
-    if votes.up_votes.size > group.members.size / 2 and group.members.size > 2
-      update inactive: true
+    if group.members.size > 2 and votes.up_votes.size > group.members.size / 2
       case action
         when "icon_change"
-          group.update(icon: icon)
+          group.update icon: icon
         when "name_change"
-          group.update(name: submission)
+          group.update name: submission
         when "description_change"
-          group.update(description: submission)
+          group.update description: submission
+        when "add_module"
+          group.code_modules.create code: submission, icon: icon, name: module_name
         when "request_to_join"
-          group.members.create(user_id: user_id)
+          group.members.create user_id: user_id
         when "private_group"
-          group.update(private: true)
+          group.update private: true
         when "public_group"
-          group.update(private: false)
+          group.update private: false
       end
+      # ends voting of proposal after ratification
+      update inactive: true
     end
   end
   

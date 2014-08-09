@@ -35,6 +35,10 @@ Social::Application.routes.draw do
   
   post "hashtags/follow/:id", to: "hashtags#follow", as: "follow_tag"
   
+  get "posts/new_comment/:id", to: "posts#new_comment", as: "new_comment_ajax"
+  
+  get "group/:group_id/proposals/menu", to: "proposals#menu", as: "proposal_menu"
+  
   post "proposals/create", as: "proposals"
   
   post "comments/create", as: "comments"
@@ -73,6 +77,7 @@ Social::Application.routes.draw do
   
   resources :groups do
     resources :members
+    resources :code_modules
     resources :proposals do
       resources :comments
     end

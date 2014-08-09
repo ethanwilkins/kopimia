@@ -1,3 +1,4 @@
+<div id="top_right">
 <% unless @group.membership(current_user) or !current_user %>
 	<% unless @group.private %>
 		<%= link_to(join_group_path(@group), class: :button_link, method: :post) do %>
@@ -15,3 +16,4 @@
 		<% end %>
 	<% end %>
 <% end %>
+</div>

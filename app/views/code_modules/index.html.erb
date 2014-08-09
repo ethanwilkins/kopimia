@@ -1,0 +1,10 @@
+<h1 align="center">Modules</h1>
+
+<% @modules.each do |_module| %>
+	<div id="card">
+		<div align="center">
+			<%= image_tag _module.icon %>
+			<%= link_to _module.name, group_code_module_path(@group, _module) %>
+		</div>
+	</div></br>
+<% end %>

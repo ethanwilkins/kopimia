@@ -1,6 +1,6 @@
 <!-- proposals -->
 <div id="large_button">
-	<%= button_to "Create proposal", new_group_proposal_path(@group), method: :get %><br>
+	<%= button_to "Create proposal", proposal_menu_path(@group), method: :get %><br>
 </div>
 
 <% @proposals.each do |proposal| %>

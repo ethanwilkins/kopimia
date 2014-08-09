@@ -1,0 +1,3 @@
+$(document.body).ready(function() {
+    $("#post_<%= escape_javascript(@post.id.to_s) %>").append("<%= escape_javascript(render "comments/new", item: :post) %>");
+});
