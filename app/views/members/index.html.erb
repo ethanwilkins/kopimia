@@ -8,7 +8,7 @@
 		</td>
 		<% end %>
 		<td>
-			<h1 align="center"><%= @group.name.capitalize + "'s" %> Members</h1>
+			<h1 align="center"><%= @group.name %> Members</h1>
 		</td>
 	</tr>
 </table>
@@ -28,6 +28,6 @@
 
 <% if @members.empty? %>
 	<div id="card">
-		<div align="center">This group doesn't have many members yet.</div>
+		<div align="center"><%= @group.name %> doesn't have many members yet.</div>
 	</div>
 <% end %>

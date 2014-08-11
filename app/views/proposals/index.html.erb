@@ -22,3 +22,9 @@
 	</div>
 	<br>
 <% end %>
+
+<% if @proposals.empty? %>
+	<div id="card">
+		<div align="center">This group doesn't have any proposals yet.</div>
+	</div>
+<% end %>

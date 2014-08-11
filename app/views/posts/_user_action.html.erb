@@ -2,7 +2,7 @@
 
 <% unless original_post %>
 	<% if post.group %>
-		posted to <%= link_to Group.find(post.group).name.capitalize, group_path(post.group) %>
+		posted to <%= link_to Group.find(post.group).name, group_path(post.group) %>
 	<% else %>
 		<% if post.image? %>
 			posted a picture

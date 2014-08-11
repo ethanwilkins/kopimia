@@ -1,6 +1,6 @@
 <div id="card">
 	<%= render "join" %>
-	<h1 align="center"><%= @group.name.capitalize %></h1>
+	<h1 align="center"><%= @group.name %></h1>
 	
 	<% if @group.icon.url %>
 		<div align="center"><%= image_tag @group.icon, width: "90%", id: :profile_picture %></div></br>
