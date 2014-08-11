@@ -39,6 +39,27 @@
 	<% end %>
 <% end %>
 
+<% if @modules %>
+	<% @modules.reverse.each do |_module| %>
+		<div id="card">
+			<table align="center">
+				<tr>
+					<% if _module.icon.url %>
+					<td>
+						<%= link_to image_tag(_module.icon, size: "25x25", id: :profile_picture),
+							group_code_module_path(_module.group_id, _module) %>
+					</td>
+					<% end %>
+					<td>
+						<%= link_to _module.name.capitalize, group_code_module_path(_module.group_id, _module) %>
+					</td>
+				</tr>
+			</table>
+		</div>
+		</br>
+	<% end %>
+<% end %>
+
 <% if @tags.present? %>
 	<% unless current_user.hashtags.find_by_tag @tags.first.tag %>
 		<div id="large_button">

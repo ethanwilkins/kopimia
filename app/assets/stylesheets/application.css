@@ -13,7 +13,7 @@
  */
 
 #header-nav {
-	background: rgb(50, 50, 50);
+	background: rgb(240, 240, 240);
 	position: fixed;
 	border-style: none;
 	opacity: 0.9;
@@ -27,11 +27,11 @@
 }
 
 #page {
-	background: black;
+	background: white;
 }
 
 td, p, h1, div {
-	color: rgb(240, 240, 240);
+	color: black;
 	text-shadow: none;
 }
 
