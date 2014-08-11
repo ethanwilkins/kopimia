@@ -3,7 +3,7 @@
 <%= form_for @message do |f| %>
 	<p>
 		<%= hidden_field_tag :user_id, params[:user_id] %>
-		<%= f.text_area :text, placeholder: "Send " + User.find(params[:user_id]).name.capitalize + " a message" %>
+		<%= f.text_area :text, placeholder: "Send " + User.find(params[:user_id]).name + " a message" %>
 		<%= f.submit "Send" %>
 	</p>
 <% end %>

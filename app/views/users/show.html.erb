@@ -16,13 +16,19 @@
 			<%= profile_picture @user %>
 		</td>
 		<% end %>
+		
+		<% if @user.name.size < 10 %>
 		<td>
-			<h1>
-				<%= @user.name %>
-			</h1>
+			<h1><%= @user.name %></h1>
 		</td>
+		<% end %>
 	</tr>
 </table>
+
+<% if @user.name.size >= 10 %>
+	<h1 align="center"><%= @user.name %></h1>
+<% end %>
+		
 
 <% if @user.bio.present? %>
 <table align="center">

@@ -1,0 +1,7 @@
+<!-- time variables gets set -->
+<% time_ago = time_ago_in_words(message.created_at) + " ago" %>
+<% if time_ago.include? "about" %>
+	<% time_ago.slice! "about " %>
+<% end %>
+
+<%= link_to time_ago, folder_path(message.folder_id), id: :top_right_time %></br>
