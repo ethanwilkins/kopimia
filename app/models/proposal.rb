@@ -11,7 +11,7 @@ class Proposal < ActiveRecord::Base
   
   def ratify
     group = Group.find(group_id)
-    if group.members.size > 2 and votes.up_votes.size > group.members.size / 2
+    if votes.up_votes.size > group.members.size / 2
       case action
         when "icon_change"
           group.update icon: icon
