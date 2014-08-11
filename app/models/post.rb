@@ -6,6 +6,8 @@ class Post < ActiveRecord::Base
   belongs_to :user
   
   validate :text_or_image?, on: :create
+  
+  after_create :creator_up_vote
 
   mount_uploader :image, ImageUploader
   
@@ -24,5 +26,9 @@ class Post < ActiveRecord::Base
     if !original and text.empty? and !image.url
       errors.add(:post, "cannot be empty.")
     end
+  end
+  
+  def creator_up_vote
+    votes.create up: true, voter: user_id
   end
 end

@@ -1,10 +1,10 @@
 <% name = @group.name.capitalize %>
 
 <p align="center">
-	<% if proposal.user_id %>
-		<%= link_to User.find(proposal.user_id).name.capitalize, user_path(proposal.user_id) %>
-	<% else %>
+	<% if proposal.anonymous %>
 		Anonymous
+	<% else %>
+		<%= link_to User.find(proposal.user_id).name.capitalize, user_path(proposal.user_id) %>
 	<% end %>
 
 	<% case proposal.action %>
@@ -12,6 +12,8 @@
 			proposes that <%= link_to name, group_path(@group) %> should change its name to "<%= proposal.submission.capitalize %>"
 		<% when "description_change" %>
 			proposes that <%= link_to name, group_path(@group) %> should change its description to "<%= proposal.submission %>"
+		<% when "add_module" %>
+			proposed to add a software module to <%= link_to name, group_path(@group) %>
 		<% when "icon_change" %>
 			proposes that <%= link_to name, group_path(@group) %> should change its icon
 		<% when "private_group" %>
@@ -20,7 +22,5 @@
 			proposes that <%= link_to name, group_path(@group) %> should be public
 		<% when "request_to_join" %>
 			requested to join <%= link_to name, group_path(@group) %>
-		<% when "add_module" %>
-			proposed to add a software module to the group
 	<% end %>
 </p>

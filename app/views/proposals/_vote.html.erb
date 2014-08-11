@@ -1,13 +1,13 @@
-<% if @group.membership(current_user) %>
+<% if @group.membership(current_user) and current_user.id != proposal.user_id %>
 	<% unless proposal.inactive %>
 	<td>
 		<%= link_to(up_vote_proposal_path(proposal), class: :button_link) do %>
-			<div class="button_div">Up</div>
+			<div class="button_div">Yes</div>
 		<% end %>
 	</td>
 	<td>
 		<%= link_to(down_vote_proposal_path(proposal), class: :button_link) do %>
-			<div class="button_div">Down</div>
+			<div class="button_div">No</div>
 		<% end %>
 	</td>
 	<% end %>

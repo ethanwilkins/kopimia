@@ -13,23 +13,16 @@
 	</table>
 	<!-- controls for comment -->
 	<table align="center">
-		<tr>	
-			<% if current_user and current_user.id == comment.commenter_id %>
-			<td>
-				<%= link_to(user_post_comment_path(comment.commenter_id, comment.post_id, comment),
-					class: :button_link, method: :delete, data: { confirm: 'Are you sure?' }) do %>
-					<div class="button_div">Delete</div>
-				<% end %>
-			</td>
-			<% elsif current_user %>
+		<tr>
+			<% if current_user and current_user.id != comment.commenter_id %>
 				<td>
 					<%= link_to(up_vote_comment_path(comment), class: :button_link) do %>
-						<div class="button_div">Up</div>
+						<div class="button_div">Yes</div>
 					<% end %>
 				</td>
 				<td>
 					<%= link_to(down_vote_comment_path(comment), class: :button_link) do %>
-						<div class="button_div">Down</div>
+						<div class="button_div">No</div>
 					<% end %>
 				</td>
 			<% end %>

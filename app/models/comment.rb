@@ -9,7 +9,13 @@ class Comment < ActiveRecord::Base
   
   validates :text, presence: true
   
+  after_create :creator_up_vote
+  
   def score
     Vote.score(self)
+  end
+  
+  def creator_up_vote
+    votes.create up: true, voter: commenter_id
   end
 end

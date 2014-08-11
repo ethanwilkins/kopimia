@@ -5,6 +5,8 @@ class Proposal < ActiveRecord::Base
   
   validates :action, presence: true
   
+  after_create :creator_up_vote
+  
   mount_uploader :icon, ImageUploader
   
   def ratify
@@ -33,5 +35,9 @@ class Proposal < ActiveRecord::Base
   
   def score
     Vote.score(self)
+  end
+  
+  def creator_up_vote
+    votes.create up: true, voter: user_id
   end
 end
