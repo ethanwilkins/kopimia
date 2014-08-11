@@ -3,8 +3,16 @@
 <% @modules.each do |_module| %>
 	<div id="card">
 		<div align="center">
-			<%= image_tag _module.icon %>
-			<%= link_to _module.name, group_code_module_path(@group, _module) %>
+			<table align="center">
+				<tr>
+					<td>
+						<%= image_tag _module.icon %>
+					</td>
+					<td>
+						<%= link_to _module.name, group_code_module_path(@group, _module) %>
+					</td>
+				</tr>
+			</table>
 		</div>
 	</div></br>
 <% end %>

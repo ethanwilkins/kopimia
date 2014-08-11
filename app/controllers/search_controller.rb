@@ -5,7 +5,7 @@ class SearchController < ApplicationController
       @groups = Group.where "name = ? OR name = ?", params[:query].capitalize, params[:query].downcase
       @tags = Hashtag.tagged(params[:query])
       if @users.empty? and @groups.empty? and @tags.empty?
-        @no_results = "No results were found."
+        @groups = Group.all
       end
     end
   end
