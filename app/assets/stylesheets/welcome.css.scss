@@ -3,8 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $back: rgb(240, 240, 240);
-$button_color: rgb(220, 220, 220);
-$highlight_button: rgb(230, 230, 230);
+$button_color: rgb(235, 235, 235);
+$highlight_button: rgb(220, 220, 220);
 $click_button: rgb(24, 120, 241);
 $card_shadow: rgb(200, 200, 200);
 
@@ -37,6 +37,7 @@ $card_shadow: rgb(200, 200, 200);
 	padding: 4px 6px;
 	border-radius: 3px;
 	background: $button_color;
+	box-shadow: 0px 1px 2px $card_shadow;
 	font-weight: normal;
 }
 
