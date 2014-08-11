@@ -3,7 +3,7 @@
 	<table align="center">
 		<tr>
 			<td><%= link_to profile_picture(comment.commenter, "25x25"), user_path(comment.commenter) %></td>
-			<td><%= link_to comment.commenter.name.capitalize, user_path(comment.commenter) %>
+			<td><%= link_to comment.commenter.name, user_path(comment.commenter) %>
 				<%= comment.text %></td>
 		</tr>
 	</table>

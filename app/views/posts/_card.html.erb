@@ -5,7 +5,7 @@
 				<%= profile_picture(post.user, "25x25") %>
 			</td>
 			<td>
-				<%= link_to post.user.name.capitalize, user_path(post.user) %>
+				<%= link_to post.user.name, user_path(post.user) %>
 				<%= render "posts/user_action", post: post %>
 			</td>
 		</tr>

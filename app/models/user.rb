@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   
   before_create :encrypt_password
-  before_save :downcase_name
+  # before_save :downcase_name
   
   mount_uploader :profile_picture, ImageUploader
   
@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   end
   
   def notify!(action, other_user, item=1)
-    user_name = other_user.name.capitalize
+    user_name = other_user.name
     if self != other_user then
       case action
         when :follow

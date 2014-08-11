@@ -15,7 +15,7 @@
 						<%= profile_picture(user, "25x25") %>
 					</td>
 					<td>
-						<%= link_to user.name.capitalize, user_path(user) %>
+						<%= link_to user.name, user_path(user) %>
 					</td>
 				</tr>
 			</table>
@@ -36,7 +36,7 @@
 					</td>
 					<% end %>
 					<td>
-						<%= link_to group.name.capitalize, group_path(group) %>
+						<%= link_to group.name, group_path(group) %>
 					</td>
 				</tr>
 			</table>

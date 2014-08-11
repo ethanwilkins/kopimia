@@ -6,7 +6,7 @@
 		</td>
 		<% end %>
 		<td>
-			<h1 align="center"><%= @user.name.capitalize + "'s" %> Contacts</h1>
+			<h1 align="center"><%= @user.name + "'s" %> Contacts</h1>
 		</td>
 	</tr>
 </table>
@@ -16,7 +16,7 @@
 	<table align="center">
 		<tr>
 			<td><%= profile_picture(user, "25x25") %></td>
-			<td><%= link_to user.name.capitalize, user_path(user) %></td>
+			<td><%= link_to user.name, user_path(user) %></td>
 		</tr>
 	</table>
 </div>
@@ -25,6 +25,6 @@
 
 <% if @users.empty? %>
 	<div id="card">
-		<div align="center"><%= link_to @user.name.capitalize, user_path(@user) %> isn't following anyone yet.</div>
+		<div align="center"><%= link_to @user.name, user_path(@user) %> isn't following anyone yet.</div>
 	</div>
 <% end %>

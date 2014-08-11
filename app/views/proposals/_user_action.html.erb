@@ -4,7 +4,7 @@
 	<% if proposal.anonymous %>
 		Anonymous
 	<% else %>
-		<%= link_to User.find(proposal.user_id).name.capitalize, user_path(proposal.user_id) %>
+		<%= link_to User.find(proposal.user_id).name, user_path(proposal.user_id) %>
 	<% end %>
 
 	<% case proposal.action %>
