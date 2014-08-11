@@ -5,9 +5,11 @@
 		<div align="center">
 			<table align="center">
 				<tr>
+					<% if _module.icon.url %>
 					<td>
-						<%= link_to image_tag _module.icon, group_code_module_path(@group, _module) %>
+						<%= link_to image_tag(_module.icon, size: "50x50"), group_code_module_path(@group, _module) %>
 					</td>
+					<% end %>
 					<td>
 						<%= link_to _module.name, group_code_module_path(@group, _module) %>
 					</td>

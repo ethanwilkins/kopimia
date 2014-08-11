@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140809001828) do
+ActiveRecord::Schema.define(version: 20140811030421) do
 
   create_table "code_modules", force: true do |t|
     t.integer  "group_id"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20140809001828) do
     t.datetime "updated_at"
     t.integer  "proposal_id"
     t.integer  "comment_id"
+    t.integer  "module_id"
   end
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"

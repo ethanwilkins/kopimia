@@ -5,6 +5,8 @@
 			<%= hidden_field_tag :post_id, params[:id] %>
 		<% elsif item == :proposal %>
 			<%= hidden_field_tag :proposal_id, params[:id] %>
+		<% elsif item == :module %>
+			<%= hidden_field_tag :module_id %>
 		<% end %>
 		<p>
 			<%= f.text_area :text, placeholder: "Leave a comment" %>
