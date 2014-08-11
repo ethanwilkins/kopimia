@@ -1,7 +1,17 @@
 <!-- members list -->
 
-<h1 align="center">Members</h1>
-<br>
+<table align="center">
+	<tr>
+		<% if @group.icon.url %>
+		<td>
+			<%= link_to image_tag(@group.icon, size: "50x50"), group_path(@group) %>
+		</td>
+		<% end %>
+		<td>
+			<h1 align="center"><%= @group.name.capitalize + "'s" %> Members</h1>
+		</td>
+	</tr>
+</table>
 
 <% @members.each do |member| %>
 	<% member = User.find(member.user_id) %>
@@ -14,4 +24,10 @@
 		</table>
 	</div>
 	<br>
+<% end %>
+
+<% if @members.empty? %>
+	<div id="card">
+		<div align="center">This group doesn't have many members yet.</div>
+	</div>
 <% end %>

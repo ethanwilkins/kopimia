@@ -53,6 +53,8 @@ class User < ActiveRecord::Base
           message = "#{user_name} commented on your post."
         when :comment_proposal
           message = "#{user_name} commented on your proposal."
+        when :comment_module
+          message = "#{user_name} commented on your module."
         when :share_post
           message = "#{user_name} shared your post."
       end

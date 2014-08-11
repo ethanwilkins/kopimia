@@ -18,3 +18,10 @@
 		</div>
 	</div></br>
 <% end %>
+
+<% if @modules.empty? %>
+	<div id="card">
+		<div align="center">This group doesn't have any modules yet. Create proposal to add a module.
+			To create a proposal, click <%= link_to "here", proposal_menu_path(@group) %>.</div>
+	</div>
+<% end %>

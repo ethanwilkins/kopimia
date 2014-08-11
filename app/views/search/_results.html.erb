@@ -1,5 +1,11 @@
 <!-- number of results and amount of each type should be shown -->
 
+<% if @no_results %>
+	<div id="card">
+		<p align="center"><%= @no_results %></p>
+	</div></br>
+<% end %>
+
 <% if @users %>
 	<% @users.reverse.each do |user| %>
 		<div id="card">

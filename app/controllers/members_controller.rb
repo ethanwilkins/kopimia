@@ -7,7 +7,8 @@ class MembersController < ApplicationController
   end
   
   def index
-    @members = Group.find(params[:group_id]).members
+    @group = Group.find(params[:group_id])
+    @members = @group.members
   end
   
   def create

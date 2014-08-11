@@ -1,4 +1,15 @@
-<h1 align="center">Following</h1>
+<table align="center">
+	<tr>
+		<% if @user.profile_picture.url %>
+		<td>
+			<%= profile_picture(@user, "50x50") %>
+		</td>
+		<% end %>
+		<td>
+			<h1 align="center"><%= @user.name.capitalize + "'s" %> Contacts</h1>
+		</td>
+	</tr>
+</table>
 
 <% @users.each do |user| %>
 <div id="card">
@@ -10,4 +21,10 @@
 	</table>
 </div>
 <br>
+<% end %>
+
+<% if @users.empty? %>
+	<div id="card">
+		<div align="center">This person isn't following anyone yet.</div>
+	</div>
 <% end %>

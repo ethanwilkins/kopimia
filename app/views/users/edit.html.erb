@@ -21,5 +21,6 @@
 <br>
 
 <div id="large_button">
-	<%= button_to "Log out", sessions_destroy_path, :method => "get" %>
+	<%= button_to "Log out", sessions_destroy_path, :method => "get",
+		data: { confirm: 'Are you sure you want to log out?' } %>
 </div>

@@ -19,6 +19,9 @@ class CommentsController < ApplicationController
     elsif params[:proposal_id]
       @item = Proposal.find(params[:proposal_id])
       comment_type = :comment_proposal
+    elsif params[:module_id]
+      @item = CodeModule.find(params[:module_id])
+      comment_type = :comment_module
     end
     @comment = @item.comments.new(params[:comment].permit(:text))
 		@comment.commenter = current_user

@@ -1,7 +1,10 @@
 <div id="card">
 	<%= render "join" %>
 	<h1 align="center"><%= @group.name.capitalize %></h1>
-	<div align="center"><%= image_tag @group.icon, width: "90%", id: :profile_picture %></div></br>
+	
+	<% if @group.icon.url %>
+		<div align="center"><%= image_tag @group.icon, width: "90%", id: :profile_picture %></div></br>
+	<% end %>
 	
 	<div align="center">
 		<%= link_to "Members", group_members_path(@group) %>
