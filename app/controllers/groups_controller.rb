@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   def groups_joined
-    @groups = Group.groups_of(params[:id])
+    @user = User.find(params[:id])
+    @groups = Group.groups_of(@user)
   end
   
   def index

@@ -7,6 +7,7 @@ $button_color: rgb(245, 245, 245);
 $highlight_button: rgb(235, 235, 235);
 $click_button: rgb(24, 120, 241);
 $card_shadow: rgb(200, 200, 200);
+$info_color: rgb(190, 190, 190);
 
 #welcome_header {
 	text-align: center;
@@ -68,6 +69,14 @@ $card_shadow: rgb(200, 200, 200);
 	position: absolute;
 	top: 6px;
 	right: 5px;
+}
+
+#top_right_time {
+	color: $info_color;
+	font-size: 10px;
+	position: absolute;
+	right: 10px;
+	top: 10px;
 }
 
 #icon_image {

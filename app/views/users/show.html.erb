@@ -1,11 +1,21 @@
 <!-- users -->
 
 <div id="card">
+<div id="top_right">
+	<% if current_user and @user == current_user %>
+		<%= render "edit_button" %>
+	<% elsif current_user %>
+		<%= render "follow_form" %>
+	<% end %>
+</div>
+
 <table align="center">
 	<tr>
+		<% if @user.profile_picture.url %>
 		<td>
 			<%= profile_picture @user %>
 		</td>
+		<% end %>
 		<td>
 			<h1>
 				<%= @user.name.capitalize %>
@@ -14,18 +24,18 @@
 	</tr>
 </table>
 
+<% if @user.bio.present? %>
 <table align="center">
 	<tr>
-		<% if @user.bio %>
 		<td>
 			<p align="center">
 				<strong>About me:</strong>
 				<%= @user.bio %>
 			</p>
 		</td>
-		<% end %>
 	</tr>
 </table>
+<% end %>
 
 <table align="center">
 	<tr>
@@ -44,15 +54,6 @@
 		</td>
 	</tr>
 </table>
-
-<div id="top_right">
-	<% if current_user and @user == current_user %>
-		<%= render "edit_button" %>
-	<% elsif current_user %>
-		<%= render "follow_form" %>
-	<% end %>
-</div>
-
 </div>
 </br>
 

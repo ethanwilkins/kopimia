@@ -10,7 +10,8 @@ class FoldersController < ApplicationController
 
   def show
     session[:receiver] = params[:user_id]
+    @folder = Folder.find(params[:id])
     @message = Message.new
-    @messages = Folder.find(params[:id]).messages
+    @messages = @folder.messages
   end
 end

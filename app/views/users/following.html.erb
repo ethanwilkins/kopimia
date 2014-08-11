@@ -25,6 +25,6 @@
 
 <% if @users.empty? %>
 	<div id="card">
-		<div align="center">This person isn't following anyone yet.</div>
+		<div align="center"><%= link_to @user.name.capitalize, user_path(@user) %> isn't following anyone yet.</div>
 	</div>
 <% end %>

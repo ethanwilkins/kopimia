@@ -12,7 +12,7 @@ class Group < ActiveRecord::Base
   
   def self.groups_of(user)
     groups = Array.new
-    Member.where("user_id = ?", user).each do |member|
+    Member.where("user_id = ?", user.id).each do |member|
       groups << find(member.group) if member.group
     end
     groups

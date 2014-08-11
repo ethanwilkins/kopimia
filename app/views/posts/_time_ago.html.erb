@@ -1,0 +1,7 @@
+<!-- time variables gets set -->
+<% time_ago = time_ago_in_words(post.created_at) + " ago" %>
+<% if time_ago.include? "about" %>
+	<% time_ago.slice! "about " %>
+<% end %>
+
+<%= link_to time_ago, user_post_path(post.user_id, post), id: :top_right_time %>

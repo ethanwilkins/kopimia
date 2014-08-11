@@ -1,4 +1,15 @@
-<h1 align="center">Groups</h1>
+<table align="center">
+	<tr>
+		<% if @user.profile_picture.url %>
+		<td>
+			<%= profile_picture(@user, "50x50") %>
+		</td>
+		<% end %>
+		<td>
+			<h1 align="center"><%= @user.name.capitalize + "'s" %> Groups</h1>
+		</td>
+	</tr>
+</table>
 
 <% @groups.each do |group| %>
 <div id="card">
@@ -10,4 +21,12 @@
 	</table>
 </div>
 <br>
+<% end %>
+
+<% if @groups.empty? %>
+	<div id="card">
+		<div align="center">
+			<%= link_to @user.name.capitalize, user_path(@user) %> hasn't joined any groups.
+		</div>
+	</div>
 <% end %>

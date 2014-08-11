@@ -4,6 +4,6 @@
 	</div>
 <% end %>
 
-<% unless proposal.description.empty? %>
+<% unless proposal.description.nil? or proposal.description.empty? %>
 	<p align="center"><strong>Why:</strong> <%= proposal.description %></p>
 <% end %>

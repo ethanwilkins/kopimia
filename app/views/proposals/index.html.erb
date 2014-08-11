@@ -1,6 +1,7 @@
 <!-- proposals -->
+
 <div id="large_button">
-	<%= button_to "Create proposal", proposal_menu_path(@group), method: :get %><br>
+	<%= button_to "Create a proposal", proposal_menu_path(@group), method: :get %><br>
 </div>
 
 <% @proposals.each do |proposal| %>
@@ -25,6 +26,9 @@
 
 <% if @proposals.empty? %>
 	<div id="card">
-		<div align="center">This group doesn't have any proposals yet.</div>
+		<div align="center">
+			<%= link_to @group.name, group_path(@group) %> doesn't have any proposals yet.
+			To create one, click <%= link_to "here", proposal_menu_path(@group) %>.
+		</div>
 	</div>
 <% end %>

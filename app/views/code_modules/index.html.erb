@@ -1,4 +1,17 @@
-<h1 align="center">Modules</h1>
+<!-- modules -->
+
+<table align="center">
+	<tr>
+		<% if @group.icon.url %>
+		<td>
+			<%= link_to image_tag(@group.icon, size: "50x50", id: :profile_picture), group_path(@group) %>
+		</td>
+		<% end %>
+		<td>
+			<h1 align="center"><%= @group.name %> Modules</h1>
+		</td>
+	</tr>
+</table>
 
 <% @modules.each do |_module| %>
 	<div id="card">
@@ -7,7 +20,7 @@
 				<tr>
 					<% if _module.icon.url %>
 					<td>
-						<%= link_to image_tag(_module.icon, size: "50x50"), group_code_module_path(@group, _module) %>
+						<%= link_to image_tag(_module.icon, size: "50x50", id: :profile_picture), group_code_module_path(@group, _module) %>
 					</td>
 					<% end %>
 					<td>
@@ -21,7 +34,7 @@
 
 <% if @modules.empty? %>
 	<div id="card">
-		<div align="center">This group doesn't have any modules yet. Create proposal to add a module.
+		<div align="center"><%= link_to @group.name, group_path(@group) %> doesn't have any modules yet. Create a proposal to add a module.
 			To create a proposal, click <%= link_to "here", proposal_menu_path(@group) %>.</div>
 	</div>
 <% end %>

@@ -28,6 +28,6 @@
 
 <% if @members.empty? %>
 	<div id="card">
-		<div align="center"><%= @group.name %> doesn't have many members yet.</div>
+		<div align="center"><%= link_to @group.name, group_path(@group) %> doesn't have many members yet.</div>
 	</div>
 <% end %>
