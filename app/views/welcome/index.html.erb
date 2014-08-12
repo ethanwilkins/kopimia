@@ -8,8 +8,9 @@
 			<a href="https://github.com/ethanwilkins/social">GitHub</a>.</div></br>
 	</div></br>
 	
+	<%= render "sessions/new" %> <!-- conveniently placed above search bar for active users -->
+	
 	<%= render "search/search_bar" %>
-	<%= render "sessions/new" %>
 <% else %>
 	<%= render "feed" %>
 <% end %>
