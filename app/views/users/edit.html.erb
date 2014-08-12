@@ -20,7 +20,11 @@
 </div>
 <br>
 
-<div id="large_button">
+<div id="card">
+	<p align="center">
+		This site will automatically log you out when you close the browser.
+		To log out now, press the button below.
+	</p>
 	<%= button_to "Log out", sessions_destroy_path, :method => "get",
 		data: { confirm: 'Are you sure you want to log out?' } %>
 </div>
