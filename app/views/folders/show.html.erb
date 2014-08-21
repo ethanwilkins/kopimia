@@ -2,7 +2,7 @@
 <% if @messages.size > 0 %>
 	<% @messages.each do |message| %>
 		<!-- sets up decryption variables -->
-		<% key = ActiveSupport::KeyGenerator.new(User.find(message.user_id).name).generate_key(message.salt) %>
+		<% key = ActiveSupport::KeyGenerator.new(message.text).generate_key(message.salt) %>
 		<% encryptor = ActiveSupport::MessageEncryptor.new(key) %>
 		
 		<div id="card">

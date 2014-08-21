@@ -10,7 +10,7 @@ class Message < ActiveRecord::Base
   def encrypt_message
     if text.present?
       self.salt = SecureRandom.random_bytes(64)
-      key = ActiveSupport::KeyGenerator.new(User.find(self.user_id).name).generate_key(salt)
+      key = ActiveSupport::KeyGenerator.new(self.text).generate_key(salt)
       encryptor = ActiveSupport::MessageEncryptor.new(key)
       self.text = encryptor.encrypt_and_sign(text)
     end
