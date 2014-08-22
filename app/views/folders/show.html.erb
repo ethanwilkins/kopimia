@@ -8,7 +8,7 @@
 		<div id="card">
 			<div align="center">
 				<%= render "messages/time_ago", message: message %>
-				<%= link_to User.find(message.user_id).name.capitalize, user_path(message.user_id)%>
+				<%= link_to User.find(message.user_id).name, user_path(message.user_id)%>
 				<%= encryptor.decrypt_and_verify(message.text) %>
 			</div></br>
 		</div>
