@@ -1,9 +1,9 @@
-<!-- messages -->
+<!-- folders -->
 
 <div id="card">
-	<%= form_for @message do |f| %>
+	<%= form_for @folder do |f| %>
 	<p>
-		<%= f.text_area :text, placeholder: "Send a message" %>
+		<%= text_area_tag :text, nil, placeholder: "Send a message..." %>
 		<%= f.submit "Send" %>
 	</p>
 	<% end %>

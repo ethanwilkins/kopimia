@@ -2,9 +2,10 @@
 
 <div id="card">
 	<%= form_for @message do |f| %>
-	<p>
+		<%= hidden_field_tag :folder_id, @folder.id %>
+		
 		<%= f.text_area :text, placeholder: "Send a message" %>
+		
 		<%= f.submit "Send" %>
-	</p>
 	<% end %>
 </div>

@@ -5,6 +5,14 @@ class Folder < ActiveRecord::Base
   has_many :messages, dependent: :destroy
   has_many :members, dependent: :destroy
   
+  def notify_members(sender)
+    for member in members
+      if member != sender
+        User.find(member.user_id).notify!(:message, sender, id)
+      end
+    end
+  end
+  
   def self.inbox_of(user)
     folders = Array.new
     Member.where("user_id = ?", user).each do |member|

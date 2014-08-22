@@ -19,7 +19,7 @@
 								<%= link_to note.message, user_path(note.other_user) %>
 							<% when :message %>
 								<%= link_to note.message, folder_path(note.item, user_id: note.other_user) %>
-							<% when :comment, :share_post %>
+							<% when :comment, :share_post, :up_vote %>
 								<%= link_to note.message, show_post_path(note.user, note.item) %>
 							<% when :comment_proposal %>
 								<%= link_to note.message, group_proposal_path(Group.find( \
