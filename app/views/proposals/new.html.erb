@@ -19,6 +19,9 @@
 			<p>
 				<%= f.text_area :submission, placeholder: "Paste the link or HTML here" %>
 			</p>
+		
+		<% when "federate" %>
+			<p align="center">Create a federation of groups</p>
 			
 		<% when "private_group" %>
 			<p align="center">Make the group private</p>

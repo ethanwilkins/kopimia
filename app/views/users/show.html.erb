@@ -63,7 +63,7 @@
 </div>
 </br>
 
-<%= render "posts/new" if current_user.id == @user.id %>
+<%= render "posts/new" if current_user and current_user.id == @user.id %>
 
 <%= render "wall" %>
 
