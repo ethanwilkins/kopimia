@@ -10,7 +10,7 @@ class FoldersController < ApplicationController
 
   def show
     @folder = Folder.find(params[:id])
-    @messages = @folder.messages
+    @messages = @folder.messages.last(5)
     @message = Message.new
   end
   
