@@ -27,8 +27,8 @@
 					<div class="button_div" id="notified">
 						<%= "+ " + current_user.notifications.unchecked.size.to_s %>
 				<% else %>
-					<div class="button_div">
-						<%= current_user.notifications.unchecked.size.to_s %>
+					<div class="button_div" id="zero_notes">
+						<div align="center"><%= current_user.notifications.unchecked.size.to_s %></div>
 				<% end %>
 					</div>
 			<% end %>

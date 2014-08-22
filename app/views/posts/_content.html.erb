@@ -1,8 +1,11 @@
+<% _post = post # to link to new copy of original post %>
+<!-- to pull content from the original post -->
 <% post = Post.find(post.original) if post.original %>
 		
 <div align="center">
 	<%= link_to(image_tag(post.image_url, width: "90%"),
-		show_post_path(post.user, post)) if post.image? %>
+		show_post_path(_post.user, _post)) if post.image? %>
+		
 	<% if post.text.present? or post.hashtags.present? %>
 		<p>
 			<% for word in post.text.split(' ') %>

@@ -41,9 +41,9 @@ class User < ActiveRecord::Base
     connections.find_by(followed_id: other_user.id).destroy
   end
   
-  def notify!(action, other_user, item=1)
-    user_name = other_user.name
-    if self != other_user then
+  def notify!(action, sender, item=1)
+    user_name = sender.name
+    if self != sender then
       case action
         when :follow
           message = "#{user_name} started following you."
@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
         when :share_post
           message = "#{user_name} shared your post."
       end
-      notifications.create!(message: message, other_user: other_user.id,
+      notifications.create!(message: message, other_user: sender.id,
         action: action.to_s, item: item)
     end
   end

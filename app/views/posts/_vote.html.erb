@@ -1,14 +1,17 @@
-<% post = Post.find(post.original) if post.original %>
+<% unless post.original and current_user and post.user == current_user %>
+	<% post = Post.find(post.original) if post.original %>
 
-<% if current_user and current_user.id != post.user_id and (post.group_id == nil or Group.find(post.group_id).membership(current_user)) %>
-<td>
-	<%= link_to(up_vote_post_path(post), class: :button_link) do %>
-		<div class="button_div">Yes</div>
+	<% if current_user and current_user.id != post.user_id and (post.group_id == nil \
+		or Group.find(post.group_id).membership(current_user)) %>
+	<td>
+		<%= link_to(up_vote_post_path(post), class: :button_link) do %>
+			<div class="button_div">Yes</div>
+		<% end %>
+	</td>
+	<td>
+		<%= link_to(down_vote_post_path(post), class: :button_link) do %>
+			<div class="button_div">No</div>
+		<% end %>
+	</td>
 	<% end %>
-</td>
-<td>
-	<%= link_to(down_vote_post_path(post), class: :button_link) do %>
-		<div class="button_div">No</div>
-	<% end %>
-</td>
 <% end %>

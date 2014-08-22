@@ -1,9 +1,11 @@
-<% post = Post.find(post.original) if post.original %>
+<% unless post.original and current_user and post.user == current_user %>
+	<% post = Post.find(post.original) if post.original %>
 
-<% if current_user and post.user != current_user %>
-<td>
-	<%= link_to(share_path(post.id), method: :post, class: :button_link) do %>
-		<div class="button_div">Share</div>
+	<% if current_user and post.user != current_user %>
+	<td>
+		<%= link_to(share_path(post.id), method: :post, class: :button_link) do %>
+			<div class="button_div">Share</div>
+		<% end %>
+	</td>
 	<% end %>
-</td>
 <% end %>
