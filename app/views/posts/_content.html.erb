@@ -5,7 +5,14 @@
 		show_post_path(post.user, post)) if post.image? %>
 	<% if post.text.present? or post.hashtags.present? %>
 		<p>
-			<%= post.text %>
+			<% for word in post.text.split(' ') %>
+				<% unless word =~ /\A#{URI::regexp}\z/ %>
+					<%= word + " " %>
+				<% else %>
+					<%= link_to word + " ", word %>
+				<% end %>
+			<% end %>
+			
 			<% post.hashtags.each do |tag| %>
 				<%= link_to tag.tag, tagged_path(tag.tag) %>
 			<% end %>
