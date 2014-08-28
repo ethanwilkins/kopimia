@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140811032517) do
+ActiveRecord::Schema.define(version: 20140828033436) do
+
+  create_table "achievements", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "code_modules", force: true do |t|
     t.integer  "group_id"

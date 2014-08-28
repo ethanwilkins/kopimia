@@ -70,6 +70,7 @@ Social::Application.routes.draw do
   
   resources :sessions
   resources :connections
+  resources :achievements
   
   resources :folders do
     resources :messages
