@@ -3,9 +3,14 @@
 <div id="card">
 	<%= form_for @message do |f| %>
 		<%= hidden_field_tag :folder_id, @folder.id %>
-		
-		<%= f.text_area :text, placeholder: "Send a message" %>
-		
-		<%= f.submit "Send" %>
+
+		<div class="input-group">
+			<%= f.text_area :text, placeholder: "Send a message", class: "form-control" %>
+			<span class="input-group-btn">
+				<button class="btn btn-default btn-lg" type="submit">
+					<i class="glyphicon glyphicon-send"></i>
+				</button>
+			</span>
+		</div>
 	<% end %>
-</div>
+</div></br>
