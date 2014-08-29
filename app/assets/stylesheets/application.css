@@ -23,10 +23,14 @@
 }
 
 #page-content {
-	margin-top: 45px;
+	margin-top: 70px;
 }
 
 #page {
+	background: rgb(245, 245, 245);
+}
+
+html {
 	background: rgb(245, 245, 245);
 }
 
