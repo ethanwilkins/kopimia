@@ -3,13 +3,13 @@
 		<%= form_for @post, :html => {:multipart => true, "data-ajax" => false} do |f| %>
 			<%= hidden_field_tag :group_id, group if defined? group %>
 			<p>
-				<%= f.text_area :text, placeholder: "What's new?" %>
+				<%= f.text_area :text, placeholder: "What's new?", class: "form-control" %>
 			</p>
 			<p>
-				<%= f.file_field :image %>
+				<%= f.file_field :image, class: "form-control" %>
 			</p>
 			<p>
-				<%= f.submit "Post" %>
+				<%= f.submit "Post", class: "btn btn-default btn-lg btn-block" %>
 			</p>
 		<% end %>
 	</div>

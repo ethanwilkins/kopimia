@@ -1,16 +1,16 @@
 <div id="card">
 	<%= form_tag new_group_proposal_path(@group), method: :get do %>
 		<%= hidden_field_tag :group_id, params[:group_id] %>
-		<div>Choose a proposal type</div>
+		<p>Choose a proposal type</p>
 		<p>
 			<%= select_tag :proposal_type,
 				options_for_select([["Proposal type", nil], ["Description change", "description_change"],
 				["Make group private", "private_group"], ["Make group public", "public_group"],
 				["Add a module", "add_module"], ["Name change", "name_change"],
-				["Icon change", "icon_change"], ["Federate", "federate"]]) %>
+				["Icon change", "icon_change"], ["Federate", "federate"]]), class: "form-control" %>
 		</p>
 		<p>
-			<%= submit_tag "Next" %>
+			<%= submit_tag "Next", class: "btn btn-default btn-lg btn-block" %>
 		</p>
 	<% end %>
 </div>

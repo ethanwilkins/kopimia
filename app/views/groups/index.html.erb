@@ -1,5 +1,6 @@
 <div id="large_button">
-	<%= button_to "Start a group", new_group_path, method: :get %><br>
+	<%= button_to "Start a group", new_group_path, method: :get,
+		class: "btn btn-default btn-lg btn-block" %><br>
 </div>
 
 <% @groups.each do |group| %>

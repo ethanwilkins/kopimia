@@ -67,10 +67,12 @@
 <% end %>
 
 <% if @tags.present? %>
-	<% unless current_user.hashtags.find_by_tag @tags.first.tag %>
-		<div id="large_button">
-			<%= button_to "Follow " + @tags.first.tag, follow_tag_path(@tags.first.id) %>
-		</div></br>
+	<% if current_user %>
+		<% unless current_user.hashtags.find_by_tag @tags.first.tag %>
+			<div id="large_button">
+				<%= button_to "Follow " + @tags.first.tag, follow_tag_path(@tags.first.id) %>
+			</div></br>
+		<% end %>
 	<% end %>
 	
 	<% @tags.reverse.each do |tag| %>

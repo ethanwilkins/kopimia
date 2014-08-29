@@ -1,7 +1,8 @@
 <!-- proposals -->
 
 <div id="large_button">
-	<%= button_to "Create a proposal", proposal_menu_path(@group), method: :get %><br>
+	<%= button_to "Create a proposal", proposal_menu_path(@group),
+		method: :get, class: "btn btn-default btn-lg btn-block" %><br>
 </div>
 
 <% @proposals.each do |proposal| %>

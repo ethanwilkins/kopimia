@@ -6,18 +6,19 @@
 	<% case session[:proposal_type] %>
 		<% when "description_change" %>
 			<p>
-				<%= f.text_area :submission, placeholder: "Enter new description here" %>
+				<%= f.text_area :submission, placeholder: "Enter new description here", class: "form-control" %>
 			</p>
 			
 		<% when "add_module" %>
 			<p>
-				<%= f.text_field :module_name, placeholder: "Enter module name here" %>
+				<%= f.label "Choose an icon for the module" %>
+				<%= f.file_field :icon, class: "form-control" %>
 			</p>
 			<p>
-				<%= f.label "Choose an icon for the module" %>
-				<%= f.file_field :icon %>
+				<%= f.text_field :module_name, placeholder: "Enter module name here", class: "form-control" %>
+			</p>
 			<p>
-				<%= f.text_area :submission, placeholder: "Paste the link or HTML here" %>
+				<%= f.text_area :submission, placeholder: "Paste the link or HTML here", class: "form-control" %>
 			</p>
 		
 		<% when "federate" %>
@@ -31,27 +32,27 @@
 			
 		<% when "name_change" %>
 			<p>
-				<%= f.text_area :submission, placeholder: "Enter new name here" %>
+				<%= f.text_area :submission, placeholder: "Enter new name here", class: "form-control" %>
 			</p>
 			
 		<% when "icon_change" %>
 			<p>
 				<%= f.label "Choose a new icon image" %>
-				<%= f.file_field :icon %>
+				<%= f.file_field :icon, class: "form-control" %>
 			</p>
 	<% end %>
 	
 	<p>
-		<%= f.text_area :description, placeholder: "Explain why (optional)" %>
+		<%= f.text_area :description, placeholder: "Explain why (optional)", class: "form-control" %>
 	</p>
 
-	<p>
+	<p class="form-control">
 		<%= f.label :anonymous %>
 		<%= f.check_box :anonymous %>
 	</p>
 	
 	<p>
-		<%= f.submit "Create proposal" %>
+		<%= f.submit "Create proposal", class: "btn btn-default btn-lg btn-block" %>
 	</p>
 <% end %>
 </div>
