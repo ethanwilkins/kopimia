@@ -4,13 +4,16 @@
 	<div id="card">
 		<div id="welcome_header">Welcome to Kopimia</div></br>
 
-		<div id="welcome_info" align="center">This is a free and open source social network. Please feel free to contribute on
-			<a href="https://github.com/ethanwilkins/social">GitHub</a>.</div></br>
+		<div id="welcome_info" align="center">
+			This is a free and open source social network. Please feel free to contribute on 
+				<a href="https://github.com/ethanwilkins/social">GitHub</a>.</div></br>
 	</div></br>
 	
 	<%= render "sessions/new" %> <!-- conveniently placed above search bar for active users -->
 	
-	<%= render "search/search_bar" %>
+	<div id="card">
+		<%= render "search/search_bar" %>
+	</div>
 <% else %>
 	<%= render "feed" %>
 <% end %>

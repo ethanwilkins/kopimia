@@ -2,7 +2,7 @@
 	<% if current_user.notifications.size > 0 %>
 	<div id="large_button">
 		<%= button_to "Clear all", clear_path(current_user), :method => "delete",
-			class: "btn btn-default btn-lg btn-block" %>
+			class: "btn btn-default btn-lg btn-block", data: { confirm: 'Are you sure?' } %>
 	</div>
 	<% else %>
 		<p align="center">You have zero notifications.</p>
