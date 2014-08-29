@@ -70,7 +70,8 @@
 	<% if current_user %>
 		<% unless current_user.hashtags.find_by_tag @tags.first.tag %>
 			<div id="large_button">
-				<%= button_to "Follow " + @tags.first.tag, follow_tag_path(@tags.first.id) %>
+				<%= button_to "Follow " + @tags.first.tag, follow_tag_path(@tags.first.id),
+					class: "btn btn-default btn-lg btn-block" %>
 			</div></br>
 		<% end %>
 	<% end %>
