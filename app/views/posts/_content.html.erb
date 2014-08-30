@@ -3,11 +3,15 @@
 <% post = Post.find(post.original) if post.original %>
 		
 <div align="center">
-	<%= link_to(image_tag(post.image_url, width: "90%"),
-		show_post_path(_post.user, _post)) if post.image? %>
-		
+	<% if _post.image_url or post.image_url %>
+		<div id="post_image">
+			<%= link_to(image_tag(post.image_url, width: "90%"),
+				show_post_path(_post.user, _post)) %>
+		</div>
+	<% end %>
+	
 	<% if post.text.present? or post.hashtags.present? %>
-		<p>
+		<p id="post_text">
 			<% for word in post.text.split(' ') %>
 				<% unless word =~ /\A#{URI::regexp}\z/ %>
 					<%= word + " " %>
