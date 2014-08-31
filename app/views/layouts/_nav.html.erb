@@ -38,9 +38,19 @@
 				</li>
 				<% end %>
 			</ul>
-			<div class="navbar-form navbar-right">
-				<%= render "search/search_bar" %>
-			</div>
+			<% if current_user %>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<div class="navbar-form navbar-right">
+						<%= render "search/search_bar" %>
+					</div>
+				</li>
+				<li>
+					<%= link_to "Log out", sessions_destroy_path,
+					data: { confirm: 'Are you sure you want to log out?' } %>
+				</li>
+			</ul>
+			<% end %>
 		</div><!--/.nav-collapse -->
 	</div>
 </nav>
