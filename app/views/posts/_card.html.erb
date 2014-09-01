@@ -15,16 +15,12 @@
 	
 	<%= render "posts/content", post: post %>
 	
-	<table align="center">
-		<tr>
+	<div align="center">
+		<div class="btn-group">
 			<%= render "posts/vote", post: post %>
 			<%= render "posts/share", post: post %>
-			<td>
-				<%= link_to(show_post_path(post.user, post), class: :button_link) do %>
-					<div class="button_div">Comment</div>
-				<% end %>
-			</td>
-		</tr>
-	</table>
+			<%= render "posts/comment_button", post: post %>
+		</div>
+	</div>
 </div>
 </br>

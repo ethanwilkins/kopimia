@@ -13,22 +13,20 @@
 		
 	<%= render "content", post: @post %>
 	
-	<table align="center">
-		<tr>
+	<div align="center">
+		<div class="btn-group">
 			<%= render "vote", post: @post %>
 			<%= render "share", post: @post %>
 			<% if current_user and current_user == @user %>
-			<td>
-				<%= link_to(user_post_path(params[:id], @post), class: :button_link,
-					method: :delete, data: { confirm: 'Are you sure?' }) do %>
-					<div class="button_div">Delete</div>
+				<%= link_to user_post_path(params[:id], @post), class: "btn btn-default",
+					method: :delete, data: { confirm: 'Are you sure?' } do %>
+					<span class="glyphicon glyphicon-trash"></span>
 				<% end %>
-			</td>
 			<% end %>
-		</tr>
-	</table></br>
+		</div>
+	</div></br>
 
-<%= render "comments/new", item: :post %>
+	<%= render "comments/new", item: :post %>
 </div></br>
 
 <%= render "comments" %>

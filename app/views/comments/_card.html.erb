@@ -12,20 +12,9 @@
 		</tr>
 	</table>
 	<!-- controls for comment -->
-	<table align="center">
-		<tr>
-			<% if current_user and current_user.id != comment.commenter_id %>
-				<td>
-					<%= link_to(up_vote_comment_path(comment), class: :button_link) do %>
-						<div class="button_div">Yes</div>
-					<% end %>
-				</td>
-				<td>
-					<%= link_to(down_vote_comment_path(comment), class: :button_link) do %>
-						<div class="button_div">No</div>
-					<% end %>
-				</td>
-			<% end %>
-		</tr>
-	</table>
+	<div align="center">
+		<div class="btn-group">
+			<%= render "comments/vote", comment: comment %>
+		</div>
+	</div>
 </div><br>

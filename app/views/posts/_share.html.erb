@@ -2,10 +2,8 @@
 	<% post = Post.find(post.original) if post.original %>
 
 	<% if current_user and post.user != current_user %>
-	<td>
-		<%= link_to(share_path(post.id), method: :post, class: :button_link) do %>
-			<div class="button_div">Share</div>
+		<%= link_to share_path(post.id), method: :post, class: "btn btn-default" do %>
+			<span class="glyphicon glyphicon-retweet"></span>
 		<% end %>
-	</td>
 	<% end %>
 <% end %>

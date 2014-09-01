@@ -1,18 +1,18 @@
 <div id="top_right">
 <% unless @group.membership(current_user) or !current_user %>
 	<% unless @group.private %>
-		<%= link_to(join_group_path(@group), class: :button_link, method: :post) do %>
-			<div class="button_div" align="center">Join</div>
+		<%= link_to(join_group_path(@group), class: "btn btn-default", method: :post) do %>
+			<span class="glyphicon glyphicon-plus-sign"></span>
 		<% end %>
 	<% else %>
-		<%= link_to(request_to_join_path(@group), class: :button_link) do %>
-			<div class="button_div" align="center">Request</div>
+		<%= link_to(request_to_join_path(@group), class: "btn btn-default") do %>
+			<span class="glyphicon glyphicon-plus-sign"></span>
 		<% end %>
 	<% end %>
 <% else %>
 	<% if current_user %>
-		<%= link_to(leave_group_path(@group), method: :delete, class: :button_link) do %>
-			<div class="button_div" align="center">Leave</div>
+		<%= link_to(leave_group_path(@group), method: :delete, class: "btn btn-default") do %>
+			<span class="glyphicon glyphicon-minus-sign"></span>
 		<% end %>
 	<% end %>
 <% end %>
