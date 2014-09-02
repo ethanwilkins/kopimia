@@ -11,7 +11,7 @@
 			<h1 align="center"><%= @group.name %> Members</h1>
 		</td>
 	</tr>
-</table>
+</table></br>
 
 <% @members.each do |member| %>
 	<% member = User.find(member.user_id) %>
