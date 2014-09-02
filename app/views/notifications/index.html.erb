@@ -19,7 +19,7 @@
 							<% when :follow %>
 								<%= link_to note.message, user_path(note.other_user) %>
 							<% when :message %>
-								<%= link_to note.message, folder_path(note.item, user_id: note.other_user) %>
+								<%= link_to note.message, folders_path %>
 							<% when :comment, :up_vote %>
 								<%= link_to note.message, show_post_path(note.user, note.item) %>
 							<% when :share_post %>

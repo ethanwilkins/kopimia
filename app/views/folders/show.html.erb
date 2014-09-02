@@ -2,16 +2,12 @@
 
 <% if @messages.size > 0 %>
 	<% @messages.each do |message| %>
-		<!-- sets up decryption variables -->
-		<% key = ActiveSupport::KeyGenerator.new(message.created_at.to_s).generate_key(message.salt) %>
-		<% encryptor = ActiveSupport::MessageEncryptor.new(key) %>
-		
 		<div id="card">
 			<div align="center">
 				<%= render "messages/time_ago", message: message %>
 				<%= link_to User.find(message.user_id).name, user_path(message.user_id)%>
 				<!-- decrypts and scans message for links to display them correctly -->
-				<% for word in encryptor.decrypt_and_verify(message.text).split(' ') %>
+				<% for word in decrypt_message(message).split(' ') %>
 					<% unless word =~ /\A#{URI::regexp}\z/ %>
 						<%= word + " " %>
 					<% else %>

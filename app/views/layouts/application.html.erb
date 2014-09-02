@@ -25,7 +25,7 @@
 
 		<div id="page-content">
 			<% flash.each do |name, message| %>
-				<div id="card"><p align="center"><%= message %></p></div></br>
+				<div id="card"><div align="center"><%= message %></div></div></br>
 			<% end %>
 
 			<%= yield %>

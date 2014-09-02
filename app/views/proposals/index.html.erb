@@ -13,16 +13,12 @@
 		
 		<%= render "content", proposal: proposal %>
 		
-		<table align="center">
-			<tr>
-				<%= render "vote", proposal: proposal %>
-				<td>
-					<%= link_to(group_proposal_path(@group, proposal), class: :button_link) do %>
-						<div class="button_div">Comment</div>
-					<% end %>
-				</td>
-			</tr>
-		</table>
+		<div align="center">
+			<div class="btn-group">
+				<%= render "proposals/vote", proposal: proposal %>
+				<%= render "proposals/comment", proposal: proposal %>
+			</div>
+		</div>
 	</div>
 	<br>
 <% end %>

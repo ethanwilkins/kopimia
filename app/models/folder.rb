@@ -18,7 +18,7 @@ class Folder < ActiveRecord::Base
     Member.where("user_id = ?", user).each do |member|
       folders << find(member.folder) if member.folder
     end
-    folders
+    folders.sort_by &:updated_at
   end
   
   def self.folder_between(sender, receiver)

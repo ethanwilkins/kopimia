@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   
   before_create :encrypt_password
-  # before_save :downcase_name
   
   mount_uploader :profile_picture, ImageUploader
   
@@ -79,9 +78,5 @@ class User < ActiveRecord::Base
       self.salt = BCrypt::Engine.generate_salt
       self.password = BCrypt::Engine.hash_secret(password, salt)
     end
-  end
-  
-  def downcase_name
-    name.downcase!
   end
 end

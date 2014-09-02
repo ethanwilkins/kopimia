@@ -37,7 +37,9 @@ Social::Application.routes.draw do
   
   get "posts/new_comment/:id", to: "posts#new_comment", as: "new_comment_ajax"
   
-  get "group/:group_id/proposals/menu", to: "proposals#menu", as: "proposal_menu"
+  get "groups/:group_id/proposals/menu", to: "proposals#menu", as: "proposal_menu"
+  
+  post "folders/create", as: "create_folder"
   
   post "proposals/create", as: "proposals"
   

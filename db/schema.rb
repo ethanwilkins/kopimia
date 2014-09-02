@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140828033436) do
+ActiveRecord::Schema.define(version: 20140902050533) do
 
   create_table "achievements", force: true do |t|
     t.datetime "created_at"
@@ -135,6 +135,16 @@ ActiveRecord::Schema.define(version: 20140828033436) do
     t.text     "submission"
     t.boolean  "anonymous"
     t.string   "module_name"
+  end
+
+  create_table "shares", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "good"
+    t.boolean  "service"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

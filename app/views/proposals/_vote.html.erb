@@ -1,14 +1,12 @@
+<!-- proposals vote -->
+
 <% if @group.membership(current_user) and current_user.id != proposal.user_id %>
 	<% unless proposal.inactive %>
-	<td>
-		<%= link_to(up_vote_proposal_path(proposal), class: :button_link) do %>
-			<div class="button_div">Yes</div>
+		<%= link_to(up_vote_proposal_path(proposal), class: "btn btn-default") do %>
+			<span class="glyphicon glyphicon-chevron-up"></span>
 		<% end %>
-	</td>
-	<td>
-		<%= link_to(down_vote_proposal_path(proposal), class: :button_link) do %>
-			<div class="button_div">No</div>
+		<%= link_to(down_vote_proposal_path(proposal), class: "btn btn-default") do %>
+			<span class="glyphicon glyphicon-chevron-down"></span>
 		<% end %>
-	</td>
 	<% end %>
 <% end %>

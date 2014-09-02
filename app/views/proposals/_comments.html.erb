@@ -8,28 +8,10 @@
 		</tr>
 	</table>
 	<!-- controls for comment -->
-	<table align="center">
-		<tr>	
-			<% if current_user and current_user.id == comment.commenter_id %>
-			<td>
-				<%= link_to(group_proposal_comment_path(params[:id], @proposal, comment),
-					method: :delete, data: { confirm: 'Are you sure?' }, class: :button_link) do %>
-					<div class="button_div">Delete</div>
-				<% end %>
-			</td>
-			<% elsif current_user %>
-				<td>
-					<%= link_to(up_vote_comment_path(comment), class: :button_link) do %>
-						<div class="button_div">Up</div>
-					<% end %>
-				</td>
-				<td>
-					<%= link_to(down_vote_comment_path(comment), class: :button_link) do %>
-						<div class="button_div">Down</div>
-					<% end %>
-				</td>
-			<% end %>
-		</tr>
-	</table>
+	<div align="center">
+		<div class="btn-group">
+			<%= render "comments/vote", comment: comment %>
+		</div>
+	</div>
 </div><br>
 <% end %>

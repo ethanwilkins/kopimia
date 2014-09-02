@@ -1,5 +1,6 @@
 <% @folders.each do |folder| %>
 	<div id="card">
+		<%= render "messages/time_ago", message: folder.messages.last %>
 		<table align="center">
 			<tr>
 				<% folder.members.each do |member| %>
@@ -9,10 +10,15 @@
 				</td>
 				<% end %>
 				<td>
-					<%= link_to "Last: " + folder.messages.last.text, folder_path(folder) %>
+					<% last_message = decrypt_message(folder.messages.last) %>
+					<% if last_message.size < 25 %>
+						<%= link_to "Last: " + last_message, folder_path(folder) %>
+					<% else %>
+						<%= link_to "Last: " + last_message[0..20] + "...", folder_path(folder) %>
+					<% end %>
 				</td>
 			</tr>
-		</table>
+		</table></br>
 	</div></br>
 <% end %>
 

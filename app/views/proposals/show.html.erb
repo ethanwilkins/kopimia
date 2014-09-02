@@ -1,13 +1,15 @@
+<!-- proposals -->
+
 <div id="card">
 	<%= render "user_action", proposal: @proposal %>
 	
 	<%= render "content", proposal: @proposal %>
 	
-	<table align="center">
-		<tr>
+	<div align="center">
+		<div class="btn-group">
 			<%= render "vote", proposal: @proposal %>
-		</tr>
-	</table>
+		</div>
+	</div></br>
 	
 	<%= render "comments/new", item: :proposal %>
 </div>

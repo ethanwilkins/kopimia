@@ -1,6 +1,6 @@
 class FoldersController < ApplicationController
   def index
-    @folders = Folder.inbox_of(current_user)
+    @folders = Folder.inbox_of(current_user).reverse
   end
   
   def new
