@@ -5,7 +5,7 @@
 		posted to <%= link_to Group.find(post.group).name, group_path(post.group) %>
 	<% else %>
 		<% if post.image? %>
-			posted a picture
+			shared a picture
 		<% end %>
 	<% end %>
 <% else %>
