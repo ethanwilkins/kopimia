@@ -1,12 +1,16 @@
 <!-- proposals vote -->
 
-<% if @group.membership(current_user) and current_user.id != proposal.user_id %>
-	<% unless proposal.inactive %>
-		<%= link_to(up_vote_proposal_path(proposal), class: "btn btn-default") do %>
-			<span class="glyphicon glyphicon-chevron-up"></span>
-		<% end %>
-		<%= link_to(down_vote_proposal_path(proposal), class: "btn btn-default") do %>
-			<span class="glyphicon glyphicon-chevron-down"></span>
+<div align="center">
+	<div class="btn-group">
+	<% if @group.membership(current_user) and current_user.id != proposal.user_id %>
+		<% unless proposal.inactive %>
+			<%= link_to(up_vote_proposal_path(proposal), class: "btn btn-default") do %>
+				<span class="glyphicon glyphicon-chevron-up"></span>
+			<% end %>
+			<%= link_to(down_vote_proposal_path(proposal), class: "btn btn-default") do %>
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			<% end %>
 		<% end %>
 	<% end %>
-<% end %>
+	</div>
+</div>
