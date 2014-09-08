@@ -2,11 +2,11 @@
 
 cd /Users/ethanwilkins/Documents/GitHub/
 
-rm -rf social/*
+rm -rf kopimia/*
 
-cp -r /Users/ethanwilkins/Documents/ruby/rails/social/ /Users/ethanwilkins/Documents/GitHub/social/
+cp -r /Users/ethanwilkins/Documents/ruby/rails/kopimia/ /Users/ethanwilkins/Documents/GitHub/kopimia/
 
-cd /Users/ethanwilkins/Documents/GitHub/social
+cd /Users/ethanwilkins/Documents/GitHub/kopimia
 
 echo -e "\nCOMMITTING NOW\n"
 
