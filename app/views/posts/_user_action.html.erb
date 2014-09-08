@@ -16,5 +16,9 @@
 	<% else %>
 		your
 	<% end %>
-	post
+		<% unless original_post.image? %>
+			post
+		<% else %>
+			picture
+		<% end %>
 <% end %>

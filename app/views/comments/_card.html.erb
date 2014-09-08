@@ -14,9 +14,11 @@
 		</tr>
 	</table>
 	<!-- controls for comment -->
-	<div align="center">
-		<div class="btn-group">
-			<%= render "comments/vote", comment: comment %>
+	<% if current_user and current_user.id != comment.commenter_id %>
+		<div align="center">
+			<div class="btn-group">
+				<%= render "comments/vote", comment: comment %>
+			</div>
 		</div>
-	</div>
+	<% end %>
 </div><br>
