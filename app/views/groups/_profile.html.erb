@@ -6,14 +6,14 @@
 		<div align="center"><%= image_tag @group.icon, width: "90%", id: :profile_picture %></div></br>
 	<% end %>
 	
-	<div align="center">
-		<%= link_to "Members", group_members_path(@group) %>
-		|
-		<%= link_to "Proposals", group_proposals_path(@group) %>
-		|
-		<%= link_to "Modules", group_code_modules_path(@group) %>
-	</div>
+	<div align="center"><%= @group.description %></div></br>
 	
-	<p align="center"><%= @group.description %></p>
+	<div align="center">
+		<div class="btn-group">
+			<%= link_to "Members", group_members_path(@group), class: "btn btn-default" %>
+			<%= link_to "Proposals", group_proposals_path(@group), class: "btn btn-default" %>
+			<%= link_to "Modules", group_code_modules_path(@group), class: "btn btn-default" %>
+		</div>
+	</div>
 </div>
 <br>
