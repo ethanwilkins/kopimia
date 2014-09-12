@@ -1,4 +1,5 @@
 class Group < ActiveRecord::Base
+  belongs_to :federation
   has_many :posts, dependent: :destroy
   has_many :members, dependent: :destroy
   has_many :proposals, dependent: :destroy

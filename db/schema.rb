@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902050533) do
+ActiveRecord::Schema.define(version: 20140912045536) do
 
   create_table "achievements", force: true do |t|
     t.datetime "created_at"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20140902050533) do
     t.text     "description"
     t.string   "icon"
     t.boolean  "private"
+    t.integer  "federation_id"
   end
 
   create_table "hashtags", force: true do |t|
