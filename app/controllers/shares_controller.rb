@@ -12,6 +12,10 @@ class SharesController < ApplicationController
     redirect_to :back
   end
   
+  def new
+    @share = Share.new
+  end
+  
   def create
     @group = Group.find(params[:group_id])
     @share = @group.shares.new(params[:share].permit(:name, :description, :good, :service, :image))
@@ -31,7 +35,6 @@ class SharesController < ApplicationController
   end
   
   def index
-    @share = Share.new
     @group = Group.find(params[:group_id])
     @shares = @group.shares.all.reverse
   end
