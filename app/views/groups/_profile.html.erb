@@ -3,16 +3,27 @@
 	<h1 align="center"><%= @group.name %></h1>
 	
 	<% if @group.icon.url %>
-		<div align="center"><%= image_tag @group.icon, width: "90%", id: :profile_picture %></div></br>
+		<div align="center"><%= image_tag @group.icon, width: "60%", id: :profile_picture %></div></br>
 	<% end %>
 	
 	<div align="center"><%= @group.description %></div></br>
 	
 	<div align="center">
 		<div class="btn-group">
-			<%= link_to "Members", group_members_path(@group), class: "btn btn-default" %>
-			<%= link_to "Proposals", group_proposals_path(@group), class: "btn btn-default" %>
-			<%= link_to "Modules", group_code_modules_path(@group), class: "btn btn-default" %>
+			<%= link_to group_members_path(@group), class: "btn btn-default" do %>
+				<span class="glyphicon glyphicon-user"></span> Members
+			<% end %>
+			<%= link_to group_code_modules_path(@group), class: "btn btn-default" do %>
+				<span class="glyphicon glyphicon-cog"></span> Modules
+			<% end %>
+		</div>
+		<div class="btn-group">
+			<%= link_to group_proposals_path(@group), class: "btn btn-default" do %>
+				<span class="glyphicon glyphicon-hand-up"></span> Proposals
+			<% end %>
+			<%= link_to group_proposals_path(@group), class: "btn btn-default" do %>
+				<span class="glyphicon glyphicon-tint"></span> Shares
+			<% end %>
 		</div>
 	</div>
 </div>

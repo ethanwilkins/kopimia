@@ -1,7 +1,7 @@
 <% if @is_a_link %>
-<div align="center" id="module_div">
-	<iframe src="<%= @module.code %>" id="module_frame" frameborder="0"></iframe>
-</div>
+	<div align="center" id="module_div">
+		<iframe src="<%= @module.code %>" id="module_frame" frameborder="0"></iframe>
+	</div>
 <% else %>
 	<object><%= @module.code.html_safe %></object>
 <% end %>
