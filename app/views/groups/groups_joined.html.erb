@@ -6,7 +6,11 @@
 		</td>
 		<% end %>
 		<td>
-			<h1 align="center"><%= @user.name + "'s" %> Groups</h1>
+			<% if @user.name.size < 8 %>
+				<h1 align="center"><%= @user.name + "'s" %> Groups</h1>
+			<% else %>
+				<h3 align="center"><%= @user.name + "'s" %> Groups</h3>
+			<% end %>
 		</td>
 	</tr>
 </table></br>
