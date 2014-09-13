@@ -1,5 +1,22 @@
 <!-- proposals -->
 
+<table align="center">
+	<tr>
+		<% if @group.icon.url %>
+		<td>
+			<%= link_to image_tag(@group.icon, size: "50x50", id: :profile_picture), group_path(@group) %>
+		</td>
+		<% end %>
+		<td>
+			<% if @group.name.size < 15 %>
+				<h1 align="center"><%= @group.name %> Proposals</h1>
+			<% else %>
+				<h3 align="center"><%= @group.name %> Proposals</h3>
+			<% end %>
+		</td>
+	</tr>
+</table></br>
+
 <% if current_user %>
 <div id="large_button">
 	<%= button_to "Create a proposal", proposal_menu_path(@group),

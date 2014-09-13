@@ -8,7 +8,11 @@
 		</td>
 		<% end %>
 		<td>
-			<h1 align="center"><%= @group.name %> Modules</h1>
+			<% if @group.name.size < 15 %>
+				<h1 align="center"><%= @group.name %> Modules</h1>
+			<% else %>
+				<h3 align="center"><%= @group.name %> Modules</h3>
+			<% end %>
 		</td>
 	</tr>
 </table></br>

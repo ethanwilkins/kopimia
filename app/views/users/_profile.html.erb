@@ -25,7 +25,12 @@
 	</table>
 
 	<% if @user.name.size >= 8 %>
-		<h1 align="center"><%= @user.name %></h1>
+		<% if @user.name.size < 15 %>
+			<h1 align="center"><%= @user.name %></h1>
+		<% else %>
+			<h3 align="center"><%= @user.name %></h3>
+		<% end %>
+		
 		<% unless @user.bio.present? %>
 			</br>
 		<% end %>

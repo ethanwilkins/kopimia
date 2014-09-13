@@ -1,6 +1,13 @@
 <div id="card">
 	<%= render "join" %>
-	<h1 align="center"><%= @group.name %></h1>
+	
+	</br>
+	<% if @group.name.size < 15 %>
+		<h1 align="center"><%= @group.name %></h1>
+	<% else %>
+		<h3 align="center"><%= @group.name %></h3>
+	<% end %>
+	</br>
 	
 	<% if @group.icon.url %>
 		<div align="center"><%= image_tag @group.icon, width: "60%", id: :profile_picture %></div></br>
@@ -21,10 +28,10 @@
 			<%= link_to group_proposals_path(@group), class: "btn btn-default" do %>
 				<span class="glyphicon glyphicon-hand-up"></span> Proposals
 			<% end %>
-			<%= link_to group_proposals_path(@group), class: "btn btn-default" do %>
+			<%= link_to group_shares_path(@group), class: "btn btn-default" do %>
 				<span class="glyphicon glyphicon-tint"></span> Shares
 			<% end %>
 		</div>
-	</div>
+	</div></br>
 </div>
 <br>

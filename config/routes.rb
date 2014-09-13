@@ -49,6 +49,8 @@ Social::Application.routes.draw do
   
   post "posts/create", as: "posts"
   
+  post "shares/create", as: "shares"
+  
   get "search/search", as: "search"
   
   get "pages/older", as: "older"
@@ -79,6 +81,7 @@ Social::Application.routes.draw do
   end
   
   resources :groups do
+    resources :shares
     resources :members
     resources :code_modules
     resources :proposals do
