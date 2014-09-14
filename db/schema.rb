@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140913034624) do
+ActiveRecord::Schema.define(version: 20140913195348) do
 
   create_table "achievements", force: true do |t|
     t.datetime "created_at"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20140913034624) do
     t.integer  "proposal_id"
     t.integer  "comment_id"
     t.integer  "module_id"
+    t.integer  "share_id"
   end
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
@@ -136,6 +137,7 @@ ActiveRecord::Schema.define(version: 20140913034624) do
     t.text     "submission"
     t.boolean  "anonymous"
     t.string   "module_name"
+    t.integer  "federation_id"
   end
 
   create_table "shares", force: true do |t|
@@ -148,6 +150,8 @@ ActiveRecord::Schema.define(version: 20140913034624) do
     t.datetime "updated_at"
     t.integer  "group_id"
     t.string   "image"
+    t.integer  "federation_id"
+    t.boolean  "open"
   end
 
   create_table "users", force: true do |t|
@@ -175,6 +179,7 @@ ActiveRecord::Schema.define(version: 20140913034624) do
     t.integer  "post_id"
     t.integer  "comment_id"
     t.integer  "proposal_id"
+    t.integer  "share_id"
   end
 
 end

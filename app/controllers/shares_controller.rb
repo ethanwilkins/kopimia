@@ -18,7 +18,8 @@ class SharesController < ApplicationController
   
   def create
     @group = Group.find(params[:group_id])
-    @share = @group.shares.new(params[:share].permit(:name, :description, :good, :service, :image))
+    @share = @group.shares.new(params[:share].permit(:name,
+      :description, :good, :service, :image, :open))
     @share.user_id = current_user.id
     
     if @share.save

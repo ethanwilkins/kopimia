@@ -1,5 +1,6 @@
 class Proposal < ActiveRecord::Base
   belongs_to :groups
+  belongs_to :federation
   has_many :comments
   has_many :votes
   
