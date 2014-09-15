@@ -15,6 +15,10 @@ Social::Application.routes.draw do
   
   get "proposals/down_vote/:id", to: "proposals#down_vote", as: "down_vote_proposal"
   
+  get "shares/up_vote/:id", to: "shares#up_vote", as: "up_vote_share"
+  
+  get "shares/down_vote/:id", to: "shares#down_vote", as: "down_vote_share"
+  
   delete "users/:user_id", to: "notifications#clear", as: "clear"
   
   get "groups/groups_joined/:id", to: "groups#groups_joined", as: "groups_joined"

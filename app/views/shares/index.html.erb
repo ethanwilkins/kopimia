@@ -25,10 +25,5 @@
 <% end %>
 
 <% for share in @shares %>
-	<div id="card">
-		<div align="center">
-			<h4><%= share.name %></h4>
-			<div><%= share.description %></div>
-		</div>
-	</div></br>
+	<%= render "shares/card", share: share %>
 <% end %>

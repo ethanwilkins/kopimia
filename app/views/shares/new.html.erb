@@ -14,9 +14,9 @@
 				<%= f.file_field :image, class: "form-control" %>
 			</p>
 			<p>
-				<%= select_tag :open,
+				<%= f.select :open,
 					options_for_select([["Open or Closed", nil], ["Open (anyone can partake)", true],
-					["Closed (active contributors only)", false]]), class: "form-control" %>
+					["Closed (active contributors only)", false]]), {}, { class: "form-control" } %>
 			</p>
 			<p>
 				<%= f.submit "Share", class: "btn btn-default btn-lg btn-block" %>

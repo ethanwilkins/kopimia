@@ -25,7 +25,7 @@
 	</table>
 
 	<% if @user.name.size >= 8 %>
-		<% if @user.name.size < 15 %>
+		<% if @user.name.size < 12 %>
 			<h1 align="center"><%= @user.name %></h1>
 		<% else %>
 			<h3 align="center"><%= @user.name %></h3>
