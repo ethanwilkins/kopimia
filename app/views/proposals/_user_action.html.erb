@@ -1,26 +1,36 @@
 <% name = @group.name %>
+<% other_group = Group.find(proposal.federated_group_id) if proposal.federated_group_id %>
 
 <p align="center">
 	<% if proposal.anonymous %>
 		Anonymous
+	<% elsif proposal.action == "federate" %>
+		<%= link_to other_group.name, group_path(other_group) %>
 	<% else %>
 		<%= link_to User.find(proposal.user_id).name, user_path(proposal.user_id) %>
 	<% end %>
 
 	<% case proposal.action %>
 		<% when "name_change" %>
-			proposes that <%= link_to name, group_path(@group) %> should change its name to "<%= proposal.submission.capitalize %>"
+			proposes that <%= link_to name, group_path(@group) %>
+			should change its name to "<%= proposal.submission.capitalize %>"
 		<% when "description_change" %>
-			proposes that <%= link_to name, group_path(@group) %> should change its description to "<%= proposal.submission %>"
+			proposed that <%= link_to name, group_path(@group) %>
+			should change its description to "<%= proposal.submission %>"
 		<% when "add_module" %>
 			proposed to add a software module to <%= link_to name, group_path(@group) %>
 		<% when "icon_change" %>
-			proposes that <%= link_to name, group_path(@group) %> should change its icon
+			proposed that <%= link_to name, group_path(@group) %> should change its icon
 		<% when "private_group" %>
-			proposes that <%= link_to name, group_path(@group) %> should be private
+			proposed that <%= link_to name, group_path(@group) %> should be private
 		<% when "public_group" %>
-			proposes that <%= link_to name, group_path(@group) %> should be public
+			proposed that <%= link_to name, group_path(@group) %> should be public
 		<% when "request_to_join" %>
 			requested to join <%= link_to name, group_path(@group) %>
+		<% when "federate_request" %>
+			proposed a federation between <%= link_to other_group.name, group_path(other_group) %>
+			and <%= link_to name, group_path(@group) %>
+		<% when "federate" %>
+			proposed a federation with <%= link_to name, group_path(@group) %>
 	<% end %>
 </p>

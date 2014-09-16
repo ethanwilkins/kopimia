@@ -8,7 +8,7 @@ class ProposalsController < ApplicationController
     Vote.up_vote!(@proposal, current_user)
     # ratifies proposal at enough votes
     if @proposal.ratify
-      flash[:notice] = "The proposal has been ratified."
+      flash[:notice] = "The proposal has been ratified!"
     end
     redirect_to :back
   end
@@ -33,7 +33,7 @@ class ProposalsController < ApplicationController
   def create
     @group = Group.find(params[:group_id])
     @proposal = @group.proposals.new(params[:proposal].permit(:submission,
-      :description, :icon, :anonymous, :module_name))
+      :description, :icon, :anonymous, :item_name, :federated_group_id))
     @proposal.user_id = params[:user_id] unless params[:anonymous] == 1
     @proposal.action = session[:proposal_type]
     if @proposal.save
@@ -47,5 +47,6 @@ class ProposalsController < ApplicationController
   def new
     session[:proposal_type] = params[:proposal_type] if params[:proposal_type].present?
     @proposal = Proposal.new
+    @groups = Group.all
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140914225753) do
+ActiveRecord::Schema.define(version: 20140916043048) do
 
   create_table "achievements", force: true do |t|
     t.datetime "created_at"
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 20140914225753) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "icon"
+    t.string   "description"
   end
 
   create_table "folders", force: true do |t|
@@ -83,14 +85,8 @@ ActiveRecord::Schema.define(version: 20140914225753) do
     t.integer  "comment_id"
   end
 
-  create_table "members", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "group_id"
-    t.integer  "user_id"
-    t.integer  "folder_id"
-    t.boolean  "active_contributor"
-  end
+# Could not dump table "members" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "messages", force: true do |t|
     t.integer  "receiver"
@@ -130,15 +126,16 @@ ActiveRecord::Schema.define(version: 20140914225753) do
     t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "description"
+    t.text     "why"
     t.string   "icon"
     t.string   "action"
     t.integer  "user_id"
     t.boolean  "inactive"
     t.text     "submission"
     t.boolean  "anonymous"
-    t.string   "module_name"
+    t.string   "item_name"
     t.integer  "federation_id"
+    t.integer  "federated_group_id"
   end
 
   create_table "shares", force: true do |t|

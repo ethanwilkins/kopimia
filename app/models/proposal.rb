@@ -1,8 +1,8 @@
 class Proposal < ActiveRecord::Base
   belongs_to :groups
   belongs_to :federation
-  has_many :comments
-  has_many :votes
+  has_many :comments, dependent: :destroy
+  has_many :votes, dependent: :destroy
   
   validates :action, presence: true
   
@@ -21,13 +21,20 @@ class Proposal < ActiveRecord::Base
         when "description_change"
           group.update description: submission
         when "add_module"
-          group.code_modules.create code: submission, icon: icon, name: module_name
+          group.code_modules.create code: submission, icon: icon, name: item_name
         when "request_to_join"
           group.members.create user_id: user_id
         when "private_group"
           group.update private: true
         when "public_group"
           group.update private: false
+        when "federate_request" # requests other group to federate
+          Group.find(federated_group_id).proposals.create action: "federate",
+            icon: icon, item_name: item_name, federated_group_id: group_id
+        when "federate"
+          federation = Federation.create name: item_name, icon: icon, description: submission
+          federation.members.create federated_group_id: federated_group_id
+          federation.members.create federated_group_id: group_id
       end
       # ends voting of proposal after ratification
       update inactive: true

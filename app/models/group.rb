@@ -19,4 +19,13 @@ class Group < ActiveRecord::Base
     end
     groups
   end
+  
+  def biggest
+    groups = Groups.all
+    for group in Groups.all
+      if group.members.size < Group.find(group.id+1).members.size
+        # not sure what the hell i needed this for
+      end
+    end
+  end
 end

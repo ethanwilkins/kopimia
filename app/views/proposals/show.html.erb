@@ -5,11 +5,15 @@
 	
 	<%= render "content", proposal: @proposal %>
 	
-	<div align="center">
-		<div class="btn-group">
-			<%= render "vote", proposal: @proposal %>
+	
+	
+	<% if @group.membership(current_user) and current_user.id != @proposal.user_id %>
+		<div align="center">
+			<div class="btn-group">
+				<%= render "vote", proposal: @proposal %>
+			</div>
 		</div>
-	</div></br>
+	<% end %>
 </div>
 <br>
 

@@ -1,3 +1,5 @@
+<!-- proposals -->
+
 <div id="card">
 <%= form_for @proposal, :html => {:multipart => true, "data-ajax" => false} do |f| %>
 	<%= hidden_field_tag :group_id, params[:group_id] %>
@@ -21,8 +23,23 @@
 				<%= f.text_area :submission, placeholder: "Paste the link or HTML here", class: "form-control" %>
 			</p>
 		
-		<% when "federate" %>
+		<% when "federate_request" %>
 			<p align="center">Create a federation of groups</p>
+			<p>
+				<%= f.text_field :item_name, placeholder: "Name", class: "form-control" %>
+			</p>
+			<p>
+				The group you want to federate with
+				<%= f.select :federated_group_id, options_from_collection_for_select(@groups,
+					:id, :name), {}, class: "form-control" %>
+			</p>
+			<p>
+				Upload an icon for the federation
+				<%= f.file_field :icon, class: "form-control" %>
+			</p>
+			<p>
+				<%= f.text_field :submission, placeholder: "Description", class: "form-control" %>
+			</p>
 			
 		<% when "private_group" %>
 			<p align="center">Make the group private</p>
@@ -43,7 +60,7 @@
 	<% end %>
 	
 	<p>
-		<%= f.text_area :description, placeholder: "Explain why (optional)", class: "form-control" %>
+		<%= f.text_area :why, placeholder: "Why (optional)", class: "form-control" %>
 	</p>
 
 	<p class="form-control">
