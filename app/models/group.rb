@@ -8,6 +8,18 @@ class Group < ActiveRecord::Base
   
   mount_uploader :icon, ImageUploader
   
+  def federations
+    _federations = []
+    for federation in Federation.all
+      for member in federation.members
+        if member.federated_group_id == id
+          _federations << federation
+        end
+      end
+    end
+    return _federations
+  end
+  
   def membership(user)
     members.find_by_user_id(user)
   end

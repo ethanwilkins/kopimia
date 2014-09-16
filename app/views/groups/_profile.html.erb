@@ -1,5 +1,10 @@
 <div id="card">
-	<%= render "join" %>
+	<div class="btn-group" id="top_right">
+		<%= link_to federations_path(@group), class: "btn btn-default" do %>
+			<span class="glyphicon glyphicon-globe"></span>
+		<% end %>
+		<%= render "join" %>
+	</div>
 	
 	</br>
 	<% if @group.name.size < 15 %>

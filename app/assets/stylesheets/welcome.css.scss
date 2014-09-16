@@ -67,6 +67,12 @@ $info_color: rgb(190, 190, 190);
 	right: 5px;
 }
 
+#top_left {
+	position: absolute;
+	top: 6px;
+	right: 50px;
+}
+
 #top_right_time {
 	font-size: 10px;
 	color: $info_color;

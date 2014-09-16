@@ -43,6 +43,8 @@ Social::Application.routes.draw do
   
   get "groups/:group_id/proposals/menu", to: "proposals#menu", as: "proposal_menu"
   
+  get "federations/index/:id", to: "federations#index", as: "federations"
+  
   post "folders/create", as: "create_folder"
   
   post "proposals/create", as: "proposals"
@@ -76,14 +78,7 @@ Social::Application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   
-  resources :sessions
-  resources :connections
-  resources :achievements
-  
-  resources :folders do
-    resources :messages
-  end
-  
+  resources :federations
   resources :groups do
     resources :shares
     resources :members
@@ -101,6 +96,13 @@ Social::Application.routes.draw do
     resources :posts do 
       resources :comments
     end
+  end
+  
+  resources :sessions
+  resources :connections
+  
+  resources :folders do
+    resources :messages
   end
 
   # Example resource route with options:

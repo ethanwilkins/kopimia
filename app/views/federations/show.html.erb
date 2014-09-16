@@ -1,0 +1,28 @@
+<!-- federations -->
+
+<table align="center">
+	<tr>
+		<% if @federation.icon.url %>
+		<td>
+			<%= link_to image_tag(@federation.icon, size: "50x50", id: :profile_picture), federation_path(@federation) %>
+		</td>
+		<% end %>
+		<td>
+			<h1 align="center"><%= @federation.name %></h1>
+		</td>
+	</tr>
+</table></br>
+
+<% for group in @groups %>
+	<% group = Group.find(group.federated_group_id) %>
+	<div id="card">
+		<table align="center">
+			<tr>
+				<% if group.icon.url %>
+					<td><%= link_to image_tag(group.icon, size: "25x25"), group_path(group) %></td>
+				<% end %>
+				<td><%= link_to group.name, group_path(group) %></td>
+			</tr>
+		</table>
+	</div></br>
+<% end %>
