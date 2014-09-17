@@ -4,10 +4,17 @@
 		<table align="center">
 			<tr>
 				<% folder.members.each do |member| %>
-				<td>
-					<%= link_to profile_picture(User.find(member.user_id), "25x25"),
-						user_path(User.find(member.user_id)) %>
-				</td>
+					<td>
+						<% if User.find(member.user_id).profile_picture.url %>
+							<%= link_to profile_picture(User.find(member.user_id), "25x25"),
+								user_path(User.find(member.user_id)) %>
+						<% else %>
+							<div id="folder_member_name_link">
+								<%= link_to User.find(member.user_id).name,
+								user_path(User.find(member.user_id)) %>
+							</div>
+						<% end %>
+					</td>
 				<% end %>
 				<td>
 					<% last_message = decrypt_message(folder.messages.last) %>
