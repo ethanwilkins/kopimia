@@ -8,10 +8,15 @@
 				<%= link_to User.find(message.user_id).name, user_path(message.user_id)%>
 				<!-- decrypts and scans message for links to display them correctly -->
 				<% for word in decrypt_message(message).split(' ') %>
-					<% unless word =~ /\A#{URI::regexp}\z/ %>
-						<%= word + " " %>
-					<% else %>
+					<% if word =~ /\A#{URI::regexp}\z/ and word.include? "youtube" %>
+						<% word = word.slice 0...word.index("&") if word.include? "&" %>
+						<% word.sub! "watch?v=", "embed/" if word.include? "watch?v=" %>
+						</br><iframe width="90%" height="315" src="<%= word %>" frameborder="0" allowfullscreen>
+						</iframe></br>
+					<% elsif word =~ /\A#{URI::regexp}\z/ %>
 						<%= link_to word + " ", word %>
+					<% else %>
+						<%= word + " " %>
 					<% end %>
 				<% end %>
 			</div></br>
