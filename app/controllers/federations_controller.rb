@@ -8,12 +8,4 @@ class FederationsController < ApplicationController
     @group = Group.find(params[:id])
     @federations = @group.federations
   end
-  
-  def create
-    
-  end
-  
-  def destroy
-    
-  end
 end
