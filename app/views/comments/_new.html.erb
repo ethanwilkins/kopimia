@@ -1,19 +1,22 @@
 <!-- comments -->
+
 <% if current_user %>
-	<%= form_for @comment do |f| %>
-		<% if item == :post %>
-			<%= hidden_field_tag :post_id, params[:id] %>
-		<% elsif item == :proposal %>
-			<%= hidden_field_tag :proposal_id, params[:id] %>
-		<% elsif item == :module %>
-			<%= hidden_field_tag :module_id %>
-		<% end %>
+	<div id="card">
+		<%= form_for @comment do |f| %>
+			<% if item == :post %>
+				<%= hidden_field_tag :post_id, params[:id] %>
+			<% elsif item == :proposal %>
+				<%= hidden_field_tag :proposal_id, params[:id] %>
+			<% elsif item == :module %>
+				<%= hidden_field_tag :module_id %>
+			<% end %>
 		
-		<p>
-			<%= f.text_area :text, placeholder: "Leave a comment", class: "form-control" %>
-		</p>
-		<p>
-			<%= f.submit "Comment", class: "btn btn-default btn-lg btn-block" %>
-		</p>
-	<% end %>
+			<p>
+				<%= f.text_area :text, placeholder: "Leave a comment", class: "form-control" %>
+			</p>
+			<p>
+				<%= f.submit "Comment", class: "btn btn-default btn-lg btn-block" %>
+			</p>
+		<% end %>
+	</div></br>
 <% end %>
