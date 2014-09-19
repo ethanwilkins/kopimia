@@ -1,0 +1,34 @@
+<!-- modules -->
+
+<%= render "federations/name_heading" %>
+
+<% @modules.each do |_module| %>
+	<div id="card">
+		<div align="center">
+			<table align="center">
+				<tr>
+					<% if _module.icon.url %>
+					<td>
+						<%= link_to image_tag(_module.icon, size: "50x50", id: :profile_picture),
+							federation_code_module_path(@federation, _module) %>
+					</td>
+					<% end %>
+					<td>
+						<%= link_to _module.name, federation_code_module_path(@federation, _module) %>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div></br>
+<% end %>
+
+<% if @modules.empty? %>
+	<div id="card">
+		<div align="center">
+			<%= link_to @federation.name, federation_path(@federation) %>
+			doesn't have any modules yet. Create a proposal to add a module.
+			To create a proposal, click <%= link_to "here",
+			federation_proposal_menu_path(@federation) %>.
+		</div>
+	</div>
+<% end %>

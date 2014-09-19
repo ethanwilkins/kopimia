@@ -1,0 +1,38 @@
+<table align="center">
+	<tr>
+		<% if @federation.icon.url %>
+		<td>
+			<%= link_to image_tag(@federation.icon, size: "50x50", id: :profile_picture), federation_path(@federation) %>
+		</td>
+		<% end %>
+		<td>
+			<% if @federation.name.size < 15 %>
+				<h1 align="center"><%= @federation.name %> Groups</h1>
+			<% else %>
+				<h3 align="center"><%= @federation.name %> Groups</h3>
+			<% end %>
+		</td>
+	</tr>
+</table></br>
+
+<% @groups.each do |group| %>
+	<% group = Group.find(group.federated_group_id) %>
+	<div id="card">
+		<table align="center">
+			<tr>
+				<% if group.icon.url %>
+					<td><%= link_to image_tag(group.icon, size: "50x50",
+						id: :profile_picture), group_path(group) %></td>
+				<% end %>
+				<td><%= link_to group.name, group_path(group) %></td>
+			</tr>
+		</table>
+	</div>
+	<br>
+<% end %>
+
+<% if @groups.empty? %>
+	<div id="card">
+		<div align="center"><%= link_to @federation.name, federation_path(@federation) %> doesn't have many members yet.</div>
+	</div>
+<% end %>

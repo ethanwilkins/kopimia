@@ -4,6 +4,11 @@ class GroupsController < ApplicationController
     @groups = Group.groups_of(@user)
   end
   
+  def federations
+    @group = Group.find(params[:group_id])
+    @federations = @group.federations
+  end
+  
   def index
     @groups = Group.groups_of(current_user).reverse
   end

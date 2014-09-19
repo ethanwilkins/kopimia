@@ -36,7 +36,13 @@ class SharesController < ApplicationController
   end
   
   def index
-    @group = Group.find(params[:group_id])
-    @shares = @group.shares.all.reverse
+    if params[:group_id]
+      @group = Group.find(params[:group_id])
+      @shares = @group.shares.all.reverse
+      
+    elsif params[:federation_id]
+      @federation = Federation.find(params[:federation_id])
+      @shares = @federation.shares.all.reverse
+    end
   end
 end

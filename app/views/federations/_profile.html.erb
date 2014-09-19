@@ -1,0 +1,36 @@
+<div id="card">
+	
+	</br>
+	<% if @federation.name.size < 15 %>
+		<h1 align="center"><%= @federation.name %></h1>
+	<% else %>
+		<h3 align="center"><%= @federation.name %></h3>
+	<% end %>
+	</br>
+	
+	<% if @federation.icon.url %>
+		<div align="center"><%= image_tag @federation.icon, width: "60%", id: :profile_picture %></div></br>
+	<% end %>
+	
+	<div align="center"><%= @federation.description %></div></br>
+	
+	<div align="center">
+		<div class="btn-group">
+			<%= link_to federation_members_path(@federation), class: "btn btn-default" do %>
+				<span class="glyphicon glyphicon-user"></span> Groups
+			<% end %>
+			<%= link_to federation_code_modules_path(@federation), class: "btn btn-default" do %>
+				<span class="glyphicon glyphicon-cog"></span> Modules
+			<% end %>
+		</div>
+		<div class="btn-group">
+			<%= link_to federation_proposals_path(@federation), class: "btn btn-default" do %>
+				<span class="glyphicon glyphicon-hand-up"></span> Proposals
+			<% end %>
+			<%= link_to federation_shares_path(@federation), class: "btn btn-default" do %>
+				<span class="glyphicon glyphicon-tint"></span> Shares
+			<% end %>
+		</div>
+	</div></br>
+</div>
+<br>

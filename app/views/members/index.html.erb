@@ -1,37 +1,5 @@
 <!-- members list -->
 
-<table align="center">
-	<tr>
-		<% if @group.icon.url %>
-		<td>
-			<%= link_to image_tag(@group.icon, size: "50x50", id: :profile_picture), group_path(@group) %>
-		</td>
-		<% end %>
-		<td>
-			<% if @group.name.size < 15 %>
-				<h1 align="center"><%= @group.name %> Members</h1>
-			<% else %>
-				<h3 align="center"><%= @group.name %> Members</h3>
-			<% end %>
-		</td>
-	</tr>
-</table></br>
+<%= render "members/group_members" if @members %>
 
-<% @members.each do |member| %>
-	<% member = User.find(member.user_id) %>
-	<div id="card">
-		<table align="center">
-			<tr>
-				<td><%= profile_picture(member, "25x25") %></td>
-				<td><%= link_to member.name, user_path(member) %></td>
-			</tr>
-		</table>
-	</div>
-	<br>
-<% end %>
-
-<% if @members.empty? %>
-	<div id="card">
-		<div align="center"><%= link_to @group.name, group_path(@group) %> doesn't have many members yet.</div>
-	</div>
-<% end %>
+<%= render "members/federation_members" if @groups %>

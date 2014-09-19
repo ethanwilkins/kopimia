@@ -1,6 +1,10 @@
 class ProposalsController < ApplicationController
   def menu
-    @group = Group.find(params[:group_id])
+    if params[:group_id]
+      @group = Group.find(params[:group_id])
+    elsif params[:federation_id]
+      @federation = Federation.find(params[:federation_id])
+    end
   end
   
   def up_vote
@@ -26,8 +30,14 @@ class ProposalsController < ApplicationController
   end
   
   def index
-    @group = Group.find(params[:group_id])
-    @proposals = @group.proposals.sort_by(&:score).reverse!
+    if params[:group_id]
+      @group = Group.find(params[:group_id])
+      @proposals = @group.proposals.sort_by(&:score).reverse!
+      
+    elsif params[:federation_id]
+      @federation = Federation.find(params[:federation_id])
+      @proposals = @federation.proposals.sort_by(&:score).reverse!
+    end
   end
   
   def create

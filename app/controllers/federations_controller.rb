@@ -5,7 +5,6 @@ class FederationsController < ApplicationController
   end
   
   def index
-    @group = Group.find(params[:id])
-    @federations = @group.federations
+    @federations = Federation.all
   end
 end

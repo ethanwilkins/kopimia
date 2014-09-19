@@ -1,50 +1,5 @@
-<!-- proposals -->
+<!-- proposals  -->
 
-<table align="center">
-	<tr>
-		<% if @group.icon.url %>
-		<td>
-			<%= link_to image_tag(@group.icon, size: "50x50", id: :profile_picture), group_path(@group) %>
-		</td>
-		<% end %>
-		<td>
-			<% if @group.name.size < 15 %>
-				<h1 align="center"><%= @group.name %> Proposals</h1>
-			<% else %>
-				<h3 align="center"><%= @group.name %> Proposals</h3>
-			<% end %>
-		</td>
-	</tr>
-</table></br>
+<%= render "proposals/group_proposals" if @group %>
 
-<% if current_user %>
-<div id="large_button">
-	<%= button_to "Create a proposal", proposal_menu_path(@group),
-		method: :get, class: "btn btn-default btn-lg btn-block" %><br>
-</div>
-<% end %>
-
-<% @proposals.each do |proposal| %>
-	<div id="card">
-		<%= render "user_action", proposal: proposal %>
-		
-		<%= render "content", proposal: proposal %>
-		
-		<div align="center">
-			<div class="btn-group">
-				<%= render "proposals/vote", proposal: proposal %>
-				<%= render "proposals/comment", proposal: proposal %>
-			</div>
-		</div>
-	</div>
-	<br>
-<% end %>
-
-<% if @proposals.empty? %>
-	<div id="card">
-		<div align="center">
-			<%= link_to @group.name, group_path(@group) %> doesn't have any proposals yet.
-			To create one, click <%= link_to "here", proposal_menu_path(@group) %>.
-		</div>
-	</div>
-<% end %>
+<%= render "proposals/federation_proposals" if @federation %>

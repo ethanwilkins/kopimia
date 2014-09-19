@@ -7,7 +7,12 @@ class CodeModulesController < ApplicationController
   end
   
   def index
-    @group = Group.find(params[:group_id])
-    @modules = @group.code_modules.all.reverse
+    if params[:group_id]
+      @group = Group.find(params[:group_id])
+      @modules = @group.code_modules.all.reverse
+    elsif params[:federation_id]
+      @federation = Federation.find(params[:federation_id])
+      @modules = @federation.code_modules.all.reverse
+    end
   end
 end
