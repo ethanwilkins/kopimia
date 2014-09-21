@@ -12,7 +12,7 @@
 		<tr>
 			<% if @user.profile_picture.url %>
 			<td>
-				<%= profile_picture @user %>
+				<%= profile_picture @user, "100x100", :edit %>
 			</td>
 			<% end %>
 		

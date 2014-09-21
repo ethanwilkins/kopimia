@@ -48,6 +48,8 @@ class Proposal < ActiveRecord::Base
   end
   
   def creator_up_vote
-    votes.create up: true, voter: user_id
+    if user_id or anonymous
+      votes.create up: true, voter: user_id
+    end
   end
 end

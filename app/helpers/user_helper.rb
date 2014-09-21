@@ -7,9 +7,14 @@ module UserHelper
   end
   
   # returns uploaded profile picture
-  def profile_picture(user, size="100x100")
+  def profile_picture(user, size="100x100", argv=nil)
     # picture shows if it exists and has a URL
-    link_to(image_tag(user.profile_picture, size: size, id: :profile_picture),
-      user_path(user)) if user.profile_picture.url
+    if argv == :edit and user == current_user
+      link_to(image_tag(user.profile_picture, size: size, id: :profile_picture),
+        edit_user_path(user)) if user.profile_picture.url
+    else
+      link_to(image_tag(user.profile_picture, size: size, id: :profile_picture),
+        user_path(user)) if user.profile_picture.url
+    end
   end
 end

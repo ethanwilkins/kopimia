@@ -28,8 +28,8 @@
 		<% when "request_to_join" %>
 			requested to join <%= link_to name, group_path(@group) %>
 		<% when "federate_request" %>
-			proposed a federation between <%= link_to other_group.name, group_path(other_group) %>
-			and <%= link_to name, group_path(@group) %>
+			proposed a federation between <%= link_to name, group_path(@group) %>
+			and <%= link_to other_group.name, group_path(other_group) %>
 		<% when "federate" %>
 			proposed a federation with <%= link_to name, group_path(@group) %>
 		<% when "disband" %>
