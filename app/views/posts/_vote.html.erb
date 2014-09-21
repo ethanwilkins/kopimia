@@ -2,7 +2,7 @@
 	<% post = Post.find(post.original) if post.original %>
 
 	<% if current_user and current_user.id != post.user_id and (post.group_id == nil \
-		or Group.find(post.group_id).membership(current_user)) %>
+		or Group.where(id: post.group_id).empty? or Group.find(post.group_id).membership(current_user)) %>
 		<%= link_to up_vote_post_path(post), class: "btn btn-default" do %>
 			<span class="glyphicon glyphicon-chevron-up"></span>
 		<% end %>

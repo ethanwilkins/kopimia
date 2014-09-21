@@ -32,6 +32,9 @@
 			<% end %>
 		<% end %>
 	<% else %>
-		<div align="center">Log in or sign up to create a proposal.</div>
+		<div align="center">
+			<%= link_to "Log in", root_url %> or
+			<%= link_to "sign up", new_user_path %> to create a proposal.
+		</div>
 	<% end %>
 </div>

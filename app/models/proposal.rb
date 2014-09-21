@@ -35,6 +35,8 @@ class Proposal < ActiveRecord::Base
           federation = Federation.create name: item_name, icon: icon, description: submission
           federation.members.create federated_group_id: federated_group_id
           federation.members.create federated_group_id: group_id
+        when "disband"
+          group.destroy
       end
       # ends voting of proposal after ratification
       update inactive: true

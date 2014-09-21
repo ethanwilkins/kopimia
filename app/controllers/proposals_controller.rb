@@ -13,8 +13,14 @@ class ProposalsController < ApplicationController
     # ratifies proposal at enough votes
     if @proposal.ratify
       flash[:notice] = "The proposal has been ratified!"
+      if Proposal.where(id: @proposal.id).present?
+        redirect_to :back
+      else
+        redirect_to groups_path
+      end
+    else
+      redirect_to :back
     end
-    redirect_to :back
   end
   
   def down_vote
