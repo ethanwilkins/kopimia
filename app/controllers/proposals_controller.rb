@@ -30,7 +30,11 @@ class ProposalsController < ApplicationController
   end
   
   def show
-    @group = Group.find(params[:group_id])
+    if params[:group_id]
+      @group = Group.find(params[:group_id])
+    elsif params[:federation_id]
+      @federation = Federation.find(params[:federation_id])
+    end
     @proposal = Proposal.find(params[:id])
     @comment = Comment.new
   end
@@ -47,13 +51,23 @@ class ProposalsController < ApplicationController
   end
   
   def create
-    @group = Group.find(params[:group_id])
-    @proposal = @group.proposals.new(params[:proposal].permit(:submission,
+    if params[:group_id]
+      @group = Group.find(params[:group_id])
+      _obj = @group
+    elsif params[:federation_id]
+      @federation = Federation.find(params[:federation_id])
+      _obj = @federation
+    end
+    @proposal = _obj.proposals.new(params[:proposal].permit(:submission,
       :description, :icon, :anonymous, :item_name, :federated_group_id))
     @proposal.user_id = params[:user_id] unless params[:anonymous] == 1
     @proposal.action = session[:proposal_type]
     if @proposal.save
-      redirect_to group_proposals_path(@group)
+      if @group
+        redirect_to group_proposals_path(@group)
+      elsif @federation
+        redirect_to federation_proposals_path(@federation)
+      end
     else
       flash[:error] = "Invalid input"
       redirect_to :back

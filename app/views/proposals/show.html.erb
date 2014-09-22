@@ -1,13 +1,18 @@
 <!-- proposals -->
 
 <div id="card">
-	<%= render "user_action", proposal: @proposal %>
+	<% if @group %>
+		<%= render "user_action", proposal: @proposal %>
+	<% elsif @federation %>
+		<%= render "federated_user_action", proposal: @proposal %>
+	<% end %>
 	
 	<%= render "content", proposal: @proposal %>
 	
 	
 	
-	<% if @group.membership(current_user) and current_user.id != @proposal.user_id %>
+	<% if (@federation or @group.membership(current_user)) \
+		and current_user.id != @proposal.user_id %>
 		<div align="center">
 			<div class="btn-group">
 				<%= render "vote", proposal: @proposal %>

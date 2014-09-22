@@ -11,7 +11,8 @@ class Proposal < ActiveRecord::Base
   mount_uploader :icon, ImageUploader
   
   def ratify
-    group = Group.find(group_id)
+    group = Group.find(group_id) if group_id
+    federation = Federation.find(federation_id) if federation_id
     if votes.up_votes.size > group.members.size / 2
       case action
         when "icon_change"
