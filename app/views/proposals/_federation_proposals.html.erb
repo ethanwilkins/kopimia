@@ -4,7 +4,7 @@
 
 <% if current_user and @proposals.present? %>
 <div id="large_button">
-	<%= button_to "Create a proposal", proposal_menu_path(@federation),
+	<%= button_to "Create a proposal", federation_proposal_menu_path(@federation),
 		method: :get, class: "btn btn-default btn-lg btn-block" %><br>
 </div>
 <% end %>
