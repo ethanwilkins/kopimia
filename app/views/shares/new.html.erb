@@ -3,7 +3,9 @@
 <% if current_user %>
 	<div id="card">
 		<%= form_for @share, :html => {:multipart => true, "data-ajax" => false} do |f| %>
-			<%= hidden_field_tag :group_id, params[:group_id] %>
+			<%= hidden_field_tag :federation_id, params[:federation_id] if params[:federation_id] %>
+			<%= hidden_field_tag :group_id, params[:group_id] if params[:group_id] %>
+			
 			<p>
 				<%= f.text_field :name, placeholder: "Name", class: "form-control" %>
 			</p>

@@ -1,19 +1,4 @@
-<table align="center">
-	<tr>
-		<% if @federation.icon.url %>
-		<td>
-			<%= link_to image_tag(@federation.icon, size: "50x50", id: :profile_picture), federation_path(@federation) %>
-		</td>
-		<% end %>
-		<td>
-			<% if @federation.name.size < 15 %>
-				<h1 align="center"><%= @federation.name %> Groups</h1>
-			<% else %>
-				<h3 align="center"><%= @federation.name %> Groups</h3>
-			<% end %>
-		</td>
-	</tr>
-</table></br>
+<%= render "federations/name_heading", item: "Groups" %>
 
 <% @groups.each do |group| %>
 	<% group = Group.find(group.federated_group_id) %>

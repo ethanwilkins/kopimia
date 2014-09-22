@@ -8,10 +8,10 @@
 		</td>
 		<% end %>
 		<td>
-			<% if @group.name.size < 15 %>
-				<h1 align="center"><%= @group.name %> Shares</h1>
+			<% if @group.name.size < 10 %>
+				<h1 align="center"><%= @group.name + " " + item %></h1>
 			<% else %>
-				<h3 align="center"><%= @group.name %> Shares</h3>
+				<h3 align="center"><%= @group.name + " " + item %></h3>
 			<% end %>
 		</td>
 	</tr>

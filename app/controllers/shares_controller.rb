@@ -17,14 +17,24 @@ class SharesController < ApplicationController
   end
   
   def create
-    @group = Group.find(params[:group_id])
-    @share = @group.shares.new(params[:share].permit(:name,
+    if params[:group_id]
+      @group = Group.find(params[:group_id])
+      _obj = @group
+    elsif params[:federation_id]
+      @federation = Federation.find(params[:federation_id])
+      _obj = @federation
+    end
+    @share = _obj.shares.new(params[:share].permit(:name,
       :description, :good, :service, :image, :open))
     @share.user_id = current_user.id
     
     if @share.save
       flash[:notice] = "The share was successfully posted."
-      redirect_to group_shares_path(@group)
+      if @group
+        redirect_to group_shares_path(@group)
+      elsif @federation
+        redirect_to federation_shares_path(@federation)
+      end
     else
       flash[:error] = "Invalid input."
       redirect_to :back

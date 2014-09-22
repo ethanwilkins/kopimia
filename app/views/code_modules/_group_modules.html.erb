@@ -1,21 +1,6 @@
 <!-- modules -->
 
-<table align="center">
-	<tr>
-		<% if @group.icon.url %>
-		<td>
-			<%= link_to image_tag(@group.icon, size: "50x50", id: :profile_picture), group_path(@group) %>
-		</td>
-		<% end %>
-		<td>
-			<% if @group.name.size < 15 %>
-				<h1 align="center"><%= @group.name %> Modules</h1>
-			<% else %>
-				<h3 align="center"><%= @group.name %> Modules</h3>
-			<% end %>
-		</td>
-	</tr>
-</table></br>
+<%= render "groups/name_heading", item: "Modules" %>
 
 <% @modules.each do |_module| %>
 	<div id="card">
