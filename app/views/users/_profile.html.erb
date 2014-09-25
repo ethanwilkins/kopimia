@@ -1,64 +1,67 @@
 <div id="card">
-	<div id="top_right">
-		<% if current_user and @user == current_user %>
-			<%= render "edit_button" %>
-		<% elsif current_user %>
-			<%= render "follow_form" %>
-		<% end %>
-	</div>
-
-	</br>
-	<table align="center">
-		<tr>
-			<% if @user.profile_picture.url %>
-			<td>
-				<%= profile_picture @user, "100x100", :edit %>
-			</td>
-			<% end %>
-		
-			<% if @user.name.size < 8 %>
-			<td>
-				<h1><%= @user.name %></h1>
-			</td>
-			<% end %>
-		</tr>
-	</table>
-
-	<% if @user.name.size >= 8 %>
-		<% if @user.name.size < 12 %>
-			<h1 align="center"><%= @user.name %></h1>
-		<% else %>
-			<h3 align="center"><%= @user.name %></h3>
-		<% end %>
-		
-		<% unless @user.bio.present? %>
-			</br>
-		<% end %>
-	<% end %>
-		
-
-	<% if @user.bio.present? %>
-	<table align="center">
-		<tr>
-			<td>
-				<p align="center">
-					<strong>About me:</strong>
-					<%= @user.bio %>
-				</p>
-			</td>
-		</tr>
-	</table></br>
-	<% end %>
-
 	<div align="center">
-		<div class="btn-group">
-			<%= link_to following_user_path(@user), class: "btn btn-default" do %>
-				<span class="glyphicon glyphicon-user"></span> Contacts
+		<div id="top_right">
+			<% if current_user and @user == current_user %>
+				<%= render "edit_button" %>
+			<% elsif current_user %>
+				<%= render "follow_form" %>
 			<% end %>
-			<%= link_to groups_joined_path(@user), class: "btn btn-default" do %>
-				<span class="glyphicon glyphicon-globe"></span> Groups
+		</div>
+
+		</br>
+		<table>
+			<tr>
+				<% if @user.profile_picture.url %>
+				<td>
+					<%= profile_picture @user, "100x100", :edit %>
+				</td>
+				<% end %>
+		
+				<% if @user.name.size < 8 %>
+				<td>
+					<h1><%= @user.name %></h1>
+				</td>
+				<% end %>
+			</tr>
+		</table>
+
+		<% if @user.name.size >= 8 %>
+			<% if @user.name.size < 12 %>
+				<h1 align="center" id="user_profile_name"><%= @user.name %></h1>
+			<% else %>
+				<h3 align="center"><%= @user.name %></h3>
 			<% end %>
-			<%= render "messages/message_button" %>
+		
+			<% unless @user.bio.present? %>
+				</br>
+			<% end %>
+		<% end %>
+		
+
+		<% if @user.bio.present? %>
+		<table>
+			<tr>
+				<td>
+					<p align="center">
+						<%= @user.bio %>
+					</p>
+				</td>
+			</tr>
+		</table>
+		<% end %>
+	
+		<p>Joined <%= @user.created_at.strftime("%m/%d/%Y") %></p>
+
+		<div>
+			<div class="btn-group">
+				<%= link_to following_user_path(@user), class: "btn btn-default" do %>
+					<span class="glyphicon glyphicon-user"></span> Contacts
+				<% end %>
+				<%= link_to groups_joined_path(@user), class: "btn btn-default" do %>
+					<span class="glyphicon glyphicon-globe"></span> Groups
+				<% end %>
+				<%= render "messages/message_button" %>
+			</div>
 		</div>
 	</div>
 </div>
