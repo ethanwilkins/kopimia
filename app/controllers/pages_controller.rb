@@ -1,19 +1,14 @@
 class PagesController < ApplicationController
   # :page is the page number for each feed
-  
-  def older
-    if page(params[:page])
-      page(params[:page], 1) if page(params[:page]) * page_size <= current_user.feed.size - page_size
-    else
-      page(params[:page], 1)
+  def more
+    if session[:feed_page].nil? or session[:feed_page] * page_size <= current_user.feed.size - page_size
+      if session[:feed_page]
+        session[:feed_page] += 1
+      else
+        session[:feed_page] = 1
+      end
+      session[:more] = :more
     end
-    redirect_to :back
-  end
-  
-  def newer
-    if page(params[:page]) and page(params[:page]) > 0
-      page(params[:page], -1)
-    end
-    redirect_to :back
+    redirect_to root_url
   end
 end

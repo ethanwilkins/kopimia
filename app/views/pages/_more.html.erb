@@ -1,5 +1,9 @@
 <% unless page == :feed_page and Post.from_users_followed_by(current_user).size < page_size %>
-	<div id="larg_button">
-		<%= button_to "More", older_path(page: page), method: :get %>
+	<div align="center" id="more_button">
+		<div id="large_button">
+			<%= link_to(more_path(page: page), class: "btn btn-default btn-lg btn-block") do %>
+				More
+			<% end %>
+		</div>
 	</div>
 <% end %>

@@ -67,6 +67,8 @@ Social::Application.routes.draw do
   
   get "pages/newer", as: "newer"
   
+  get "pages/more", as: "more"
+  
   get "sessions/destroy"
   
   # The priority is based upon order of creation: first created -> highest priority.
