@@ -12,10 +12,20 @@ class CommentsController < ApplicationController
     redirect_to :back
   end
   
+  def show
+    @comment = Comment.new
+    @_comment = Comment.find(params[:id])
+    @replies = Comment.where(comment_id: params[:id])
+  end
+  
   def create
+    # @item is item being commented on
     if params[:post_id]
       @item = Post.find(params[:post_id])
       comment_type = :comment
+    elsif params[:comment_id]
+      @item = Comment.find(params[:comment_id])
+      comment_type = :reply
     elsif params[:proposal_id]
       @item = Proposal.find(params[:proposal_id])
       comment_type = :comment_proposal
@@ -27,8 +37,11 @@ class CommentsController < ApplicationController
 		@comment.commenter = current_user
 		if @comment.save
       Hashtag.extract(@comment)
-      User.find(@item.user_id).notify!(comment_type,
-        current_user, @item.id) if @item.user_id
+      if @item.user_id
+        User.find(@item.user_id).notify!(comment_type, current_user, @item.id)
+      elsif @item.commenter
+        User.find(@item.commenter).notify!(comment_type, current_user, @item.id)
+      end
   	  redirect_to :back
 		else
  	   render "posts/show"

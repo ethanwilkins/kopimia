@@ -3,12 +3,15 @@
 <% if current_user %>
 	<div id="card">
 		<%= form_for @comment do |f| %>
-			<% if item == :post %>
-				<%= hidden_field_tag :post_id, params[:id] %>
-			<% elsif item == :proposal %>
-				<%= hidden_field_tag :proposal_id, params[:id] %>
-			<% elsif item == :module %>
-				<%= hidden_field_tag :module_id %>
+			<% case item %>
+				<% when :post %>
+					<%= hidden_field_tag :post_id, params[:id] %>
+				<% when :comment %>
+					<%= hidden_field_tag :comment_id, params[:id] %>
+				<% when :proposal %>
+					<%= hidden_field_tag :proposal_id, params[:id] %>
+				<% when :module %>
+					<%= hidden_field_tag :module_id %>
 			<% end %>
 		
 			<p>

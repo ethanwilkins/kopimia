@@ -3,6 +3,8 @@ Social::Application.routes.draw do
   
   get "users/:user_id/posts/:id/show", to: "posts#show", as: "show_post"
   
+  get "comments/show/:id", to: "comments#show", as: "show_comment"
+  
   get "comments/down_vote/:id", to: "comments#down_vote", as: "down_vote_comment"
   
   get "comments/up_vote/:id", to: "comments#up_vote", as: "up_vote_comment"

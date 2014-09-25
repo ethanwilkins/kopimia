@@ -50,6 +50,8 @@ class User < ActiveRecord::Base
           message = "#{user_name} sent you a message."
         when :comment
           message = "#{user_name} commented on your post."
+        when :reply
+          message = "#{user_name} replied to your comment."
         when :comment_proposal
           message = "#{user_name} commented on your proposal."
         when :comment_module

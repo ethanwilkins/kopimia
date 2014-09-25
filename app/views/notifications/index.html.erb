@@ -1,3 +1,5 @@
+<!-- notifications -->
+
 <% if current_user %>
 	<% if current_user.notifications.size > 0 %>
 	<div id="large_button">
@@ -24,6 +26,8 @@
 								<%= link_to note.message, folders_path %>
 							<% when :comment, :up_vote %>
 								<%= link_to note.message, show_post_path(note.user, note.item) %>
+							<% when :reply %>
+								<%= link_to note.message, show_comment_path(note.item) %>
 							<% when :share_post %>
 								<!-- has to link to sharers post, not the original users -->
 								<%= link_to note.message, show_post_path(note.other_user, note.item)%>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140919185638) do
+ActiveRecord::Schema.define(version: 20140925050219) do
 
   create_table "achievements", force: true do |t|
     t.datetime "created_at"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140919185638) do
     t.integer  "comment_id"
     t.integer  "module_id"
     t.integer  "share_id"
+    t.integer  "user_id"
   end
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"

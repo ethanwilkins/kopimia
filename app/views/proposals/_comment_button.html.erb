@@ -1,0 +1,11 @@
+<% if @group %>
+	<%= link_to(group_proposal_comment_path(@group, @proposal, comment),
+		class: "btn btn-default") do %>
+		<span class="glyphicon glyphicon-comment"></span>
+	<% end %>
+<% elsif @federation %>
+	<%= link_to(federation_proposal_comment_path(@federation, @proposal, comment),
+		class: "btn btn-default") do %>
+		<span class="glyphicon glyphicon-comment"></span>
+	<% end %>
+<% end %>
