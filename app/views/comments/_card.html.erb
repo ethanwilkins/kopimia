@@ -4,8 +4,8 @@
 	<div align="center">
 		<table>
 			<tr>
-				<td><%= link_to profile_picture(comment.commenter, "25x25"), user_path(comment.commenter) %></td>
 				<td>
+					<%= link_to profile_picture(comment.commenter, "25x25"), user_path(comment.commenter) %>
 					<%= link_to comment.commenter.name, user_path(comment.commenter) %>
 					<%= comment.text %>
 					<% comment.hashtags.each do |tag| %>
@@ -16,11 +16,9 @@
 		</table>
 		<!-- controls for comment -->
 		<% if current_user and current_user.id != comment.commenter_id %>
-			<div>
-				<div class="btn-group">
-					<%= render "comments/vote", comment: comment %>
-					<%= render "comments/reply_button", comment: comment %>
-				</div>
+			</br><div class="btn-group">
+				<%= render "comments/vote", comment: comment %>
+				<%= render "comments/reply_button", comment: comment %>
 			</div>
 		<% end %>
 	</div>
