@@ -16,4 +16,4 @@ git commit -m "$1"
 
 git push
 
-echo -e "\nDONE COMMITTING\n"
+echo -e "\n"
