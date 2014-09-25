@@ -8,6 +8,10 @@ class Group < ActiveRecord::Base
   
   mount_uploader :icon, ImageUploader
   
+  def posts_plus_members
+    posts.size + members.size
+  end
+  
   def federations
     _federations = []
     for federation in Federation.all
@@ -30,14 +34,5 @@ class Group < ActiveRecord::Base
       groups << find(member.group) if member.group
     end
     groups
-  end
-  
-  def biggest
-    groups = Groups.all
-    for group in Groups.all
-      if group.members.size < Group.find(group.id+1).members.size
-        # not sure what the hell i needed this for
-      end
-    end
   end
 end

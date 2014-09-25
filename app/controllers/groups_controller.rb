@@ -10,7 +10,7 @@ class GroupsController < ApplicationController
   end
   
   def index
-    @groups = Group.groups_of(current_user).reverse
+    @groups = Group.groups_of(current_user).sort_by(&:posts_plus_members).reverse
   end
   
   def new
