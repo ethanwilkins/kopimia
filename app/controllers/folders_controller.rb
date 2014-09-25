@@ -10,8 +10,11 @@ class FoldersController < ApplicationController
 
   def show
     @folder = Folder.find(params[:id])
-    @messages = @folder.messages.last(5)
     @message = Message.new
+    @messages = @folder.messages
+    # update all messages in folder as seen
+    @messages.update_all seen: true
+    @messages = @messages.last(5)
   end
   
   def create
