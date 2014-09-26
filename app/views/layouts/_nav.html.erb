@@ -27,7 +27,15 @@
 					<% end %>
 				</li>
 				<li>
-					<%= link_to "Inbox", folders_path %>
+					<%= link_to folders_path do %>
+						<% if Folder.unread_messages(current_user) > 0 %>
+							<div>Inbox <span class="badge">
+								<%= Folder.unread_messages(current_user) %>
+							</span></div>
+						<% else %>
+							<div>Inbox</div>
+						<% end %>
+					<% end %>
 				</li>
 				<% else %>
 				<li>

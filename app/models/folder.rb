@@ -13,6 +13,18 @@ class Folder < ActiveRecord::Base
     end
   end
   
+  def self.unread_messages(user)
+    unread = 0
+    folders = Array.new
+    Member.where("user_id = ?", user).each do |member|
+      folders << find(member.folder) if member.folder
+    end
+    for folder in folders
+      unread += folder.messages.where("seen = ? AND user_id != ?", nil, user.id).size
+    end
+    return unread
+  end
+  
   def self.inbox_of(user)
     folders = Array.new
     Member.where("user_id = ?", user).each do |member|
