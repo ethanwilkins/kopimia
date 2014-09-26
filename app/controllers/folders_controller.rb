@@ -27,7 +27,7 @@ class FoldersController < ApplicationController
       # creates the first message sent by sender
       @message = @folder.messages.create(text: params[:text], user_id: current_user.id)
       # notifies the receiver about the message
-      @receiver.notify!(:message, current_user, @folder.id)
+      # @receiver.notify!(:message, current_user, @folder.id)
       # redirects to the new folder
       redirect_to @folder
     else
