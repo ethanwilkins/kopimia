@@ -7,7 +7,11 @@
 	<% if word.include? ".jpg" or word.include? ".png" or word.include? ".gif" %>
 		<div align="center"><%= image_tag word, width: "90%" %></div>
 	<% else %>
-		<%= link_to word + " ", word %>
+		<% unless word.size > 25 %>
+			<%= link_to word + " ", word %>
+		<% else %>
+			<%= link_to word[0..30] + "... ", word %>
+		<% end %>
 	<% end %>
 <% else %>
 	<%= word + " " %>

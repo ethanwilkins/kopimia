@@ -12,8 +12,10 @@ class FoldersController < ApplicationController
     @folder = Folder.find(params[:id])
     @message = Message.new
     @messages = @folder.messages
-    # update all messages in folder as seen
-    @messages.update_all seen: true
+    # update others messages in folder as seen
+    for message in @messages
+      message.update seen: true if message.user_id != current_user.id
+    end
     @messages = @messages.last(5)
   end
   
