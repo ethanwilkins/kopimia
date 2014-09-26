@@ -12,6 +12,9 @@ module UserHelper
     if argv == :edit and user == current_user
       link_to(image_tag(user.profile_picture, size: size, id: :profile_picture),
         edit_user_path(user)) if user.profile_picture.url
+    elsif argv == :commenter
+      link_to(image_tag(user.profile_picture, size: size, id: :commenter_icon),
+        user_path(user)) if user.profile_picture.url
     else
       link_to(image_tag(user.profile_picture, size: size, id: :profile_picture),
         user_path(user)) if user.profile_picture.url

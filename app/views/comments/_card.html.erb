@@ -5,7 +5,7 @@
 		<table>
 			<tr>
 				<td>
-					<%= link_to profile_picture(comment.commenter, "25x25"), user_path(comment.commenter) %>
+					<%= link_to profile_picture(comment.commenter, "25x25", :commenter), user_path(comment.commenter) %>
 					<%= link_to comment.commenter.name, user_path(comment.commenter) %>
 					
 					<% for word in comment.text.split(' ') %>
