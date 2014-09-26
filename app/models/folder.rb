@@ -20,7 +20,7 @@ class Folder < ActiveRecord::Base
       folders << find(member.folder) if member.folder
     end
     for folder in folders
-      unread += folder.messages.where("seen = ? AND user_id != ?", nil, user.id).size
+      unread += folder.messages.where("seen = ? AND user_id != ?", false, user.id).size
     end
     return unread
   end
