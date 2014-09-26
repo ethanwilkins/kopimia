@@ -7,7 +7,11 @@
 				<td>
 					<%= link_to profile_picture(comment.commenter, "25x25"), user_path(comment.commenter) %>
 					<%= link_to comment.commenter.name, user_path(comment.commenter) %>
-					<%= comment.text %>
+					
+					<% for word in comment.text.split(' ') %>
+						<%= render "posts/embed", word: word %>
+					<% end %>
+					
 					<% comment.hashtags.each do |tag| %>
 						<%= link_to tag.tag, tagged_path(tag.tag) %>
 					<% end %>
@@ -16,7 +20,7 @@
 		</table>
 		<!-- controls for comment -->
 		<% if current_user and current_user.id != comment.commenter_id %>
-			</br><div class="btn-group">
+			<div class="btn-group">
 				<%= render "comments/vote", comment: comment %>
 				<%= render "comments/reply_button", comment: comment %>
 			</div>
