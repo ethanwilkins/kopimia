@@ -10,7 +10,7 @@
 		<% unless word.size > 25 %>
 			<%= link_to word + " ", word %>
 		<% else %>
-			<%= link_to word[0..30] + "... ", word %>
+			<%= link_to word[0..25] + "... ", word %>
 		<% end %>
 	<% end %>
 <% else %>
