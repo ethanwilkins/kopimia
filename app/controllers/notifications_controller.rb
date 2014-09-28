@@ -4,11 +4,8 @@
 class NotificationsController < ApplicationController
   def index
     if current_user then
-      @notes = current_user.notifications.reverse
-      @notes.each do |note|
-        note.checked = true
-        note.save
-      end
+      @notes = current_user.notifications.last(10).reverse
+      current_user.notifications.update_all checked: true
     end
   end
   
