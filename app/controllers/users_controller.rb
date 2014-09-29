@@ -28,6 +28,18 @@ class UsersController < ApplicationController
     end
   end
   
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy
+      session[:user_id] = nil
+      flash[:notice] = "Your account was successfully deleted."
+      redirect_to root_url
+    else
+      flash[:error] = "There was a problem deleting your account."
+      redirect_to :back
+    end
+  end
+  
   def edit
     @user = current_user
   end

@@ -49,6 +49,8 @@ Social::Application.routes.draw do
   
   get "groups/:group_id/federations", to: "groups#federations", as: "federations"
   
+  delete "users/destroy/:id", to: "users#destroy", as: "user_destroy"
+  
   post "folders/create", as: "create_folder"
   
   post "proposals/create", as: "proposals"

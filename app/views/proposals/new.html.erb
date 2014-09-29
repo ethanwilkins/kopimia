@@ -9,7 +9,7 @@
 	<% case session[:proposal_type] %>
 		<% when "description_change" %>
 			<p>
-				<%= f.text_area :submission, placeholder: "Enter new description here", class: "form-control" %>
+				<%= f.text_area :submission, placeholder: "New description", class: "form-control" %>
 			</p>
 			
 		<% when "add_module" %>
@@ -18,10 +18,10 @@
 				<%= f.file_field :icon, class: "form-control" %>
 			</p>
 			<p>
-				<%= f.text_field :item_name, placeholder: "Enter module name here", class: "form-control" %>
+				<%= f.text_field :item_name, placeholder: "Module name", class: "form-control" %>
 			</p>
 			<p>
-				<%= f.text_area :submission, placeholder: "Paste the link or HTML here", class: "form-control" %>
+				<%= f.text_area :submission, placeholder: "Provide a link or HTML", class: "form-control" %>
 			</p>
 		
 		<% when "federate_request" %>
@@ -50,7 +50,7 @@
 			
 		<% when "name_change" %>
 			<p>
-				<%= f.text_area :submission, placeholder: "Enter new name here", class: "form-control" %>
+				<%= f.text_area :submission, placeholder: "Enter a new name", class: "form-control" %>
 			</p>
 			
 		<% when "icon_change" %>
