@@ -6,4 +6,6 @@
 
 <%= render "wall" %>
 
-<%= render "pages/more" %>
+<% if @user.posts.size > page_size and @posts.size >= page_size %>
+	<%= render "pages/more" %>
+<% end %>
