@@ -29,8 +29,18 @@ class GroupsController < ApplicationController
   end
   
   def show
+    # resets back to front page at refresh
+    unless session[:more]
+      session[:page] = nil
+    end
+    session[:more] = nil
+    # gets group and feed based on page
     @group = Group.find(params[:id])
-    @feed = @group.posts.sort_by(&:score).reverse!
+    @feed = @group.posts.sort_by(&:score).reverse.
+      # drops first several posts if :feed_page
+      drop((session[:page] ? session[:page] : 0) * page_size).
+      # only shows first several posts of resulting array
+      first(page_size)
     @post = Post.new
   end
 end

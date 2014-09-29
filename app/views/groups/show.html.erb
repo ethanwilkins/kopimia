@@ -7,3 +7,5 @@
 <% if @group.membership(current_user) or !@group.private %>
 	<%= render "feed" %>
 <% end %>
+
+<%= render "pages/more" %>
