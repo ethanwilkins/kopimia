@@ -55,10 +55,16 @@ class UsersController < ApplicationController
   end
   
   def show
+    # resets to front at refresh
+    unless session[:more]
+      session[:page] = nil
+    end
+    session[:more] = nil
+    # gets user and feed based on page
     @user = User.find(params[:id])
     @posts = @user.posts.reverse.
         # drops first several posts if :feed_page
-        drop((session[:user_page] ? session[:user_page] : 0) * page_size).
+        drop((session[:page] ? session[:page] : 0) * page_size).
         # only shows first several posts of resulting array
         first(page_size)
     @post = Post.new
