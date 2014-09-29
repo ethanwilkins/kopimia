@@ -9,9 +9,9 @@
 		<div align="center"><%= image_tag word, width: "90%" %></div>
 	<% else %>
 		<% unless word.size > 25 %>
-			<%= link_to word + " ", word %>
+			<%= link_to word + " ", word, target: :_blank %>
 		<% else %>
-			<%= link_to word[0..25] + "... ", word %>
+			<%= link_to word[0..25] + "... ", word, target: :_blank %>
 		<% end %>
 	<% end %>
 <% else %>
