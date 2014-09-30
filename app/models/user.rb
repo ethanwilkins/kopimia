@@ -27,7 +27,15 @@ class User < ActiveRecord::Base
   end
 
   def feed
-    posts = Post.from_users_followed_by(self).sort_by(&:score).reverse!
+    if Post.from_users_followed_by(self).present?
+      posts = Post.from_users_followed_by(self)
+    else
+      posts = []
+      for post in Post.all
+        posts << post if post.publicly_shared
+      end
+    end
+    return posts.sort_by(&:score).reverse
   end
   
   def following?(other_user)

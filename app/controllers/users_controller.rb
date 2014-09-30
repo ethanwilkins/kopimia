@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     
-    if @user.update(params[:user].permit(:profile_picture, :bio, :name))
+    if @user.update(params[:user].permit(:profile_picture, :bio, :name, :private))
       redirect_to @user
     else
       render "edit"

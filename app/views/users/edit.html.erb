@@ -13,6 +13,10 @@
 		<%= f.label "Describe yourself" %>
 		<%= f.text_area :bio, class: "form-control" %>
 	</p>
+	<p class="form-control">
+		<%= f.label :private %>
+		<%= f.check_box :private %>
+	</p>
 	<p>
 		<%= f.submit "Update Profile", class: "btn btn-default btn-lg btn-block" %>
 	</p>
