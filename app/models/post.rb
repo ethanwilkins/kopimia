@@ -14,8 +14,9 @@ class Post < ActiveRecord::Base
   def publicly_shared
     if (group_id and Group.find_by_id(group_id) and Group.find(group_id).private) \
       or (user_id and User.find_by_id(user_id) and User.find(user_id).private) \
-      or (original and Post.find_by_id(original) and (User.find(Post.find(original).user_id).private \
-      or Group.find(Post.find(original).group_id).private))
+      or (original and Post.find_by_id(original) and ((User.find_by_id(Post.find(original).user_id) \
+      and User.find(Post.find(original).user_id).private) or (Group.find_by_id(Post.find(original).group_id) \
+      and Group.find(Post.find(original).group_id).private)))
       false
     else
       true
