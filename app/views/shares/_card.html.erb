@@ -1,14 +1,17 @@
-<!-- shares card -->
+<!-- shares -->
 
-<div id="card">
-	<div align="center">
-		<h4><%= share.name %></h4>
-		<div><%= share.description %></div>
-		<% if current_user.id != share.user_id %>
-			</br>
+<% if share.open_to? current_user %>
+	<div id="card">
+		<div align="center">
+			<h4><%= share.name %></h4>
+			<p><%= share.description %></p>
+	
 			<div class="btn-group">
-				<%= render "shares/vote_buttons", share: share %>
+				<% if current_user.id != share.user_id %>
+					<%= render "shares/vote_buttons", share: share %>
+				<% end %>
+				<%= render "shares/comment_button", share: share %>
 			</div>
-		<% end %>
-	</div>
-</div></br>
+		</div>
+	</div></br>
+<% end %>

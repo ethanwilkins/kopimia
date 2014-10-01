@@ -32,9 +32,11 @@ class PostsController < ApplicationController
   
   def show
     @user = User.find(params[:user_id])
-    @post = Post.find(params[:id])
-    @comments = @post.comments.sort_by(&:score).reverse!
-    @comment = Comment.new
+    if Post.find_by_id(params[:id])
+      @post = Post.find(params[:id])
+      @comments = @post.comments.sort_by(&:score).reverse!
+      @comment = Comment.new
+    end
   end
   
   def create

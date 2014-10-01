@@ -1,9 +1,13 @@
 class SharesController < ApplicationController
   def up_vote
     @share = Share.find(params[:id])
-    Vote.up_vote!(@share, current_user)
-    User.find(@share.user_id).notify!(:up_vote, current_user, @share.id)
-    redirect_to :back
+    if Vote.up_vote!(@share, current_user)
+      User.find(@share.user_id).notify!(:up_vote_share, current_user, @share.id)
+      @share.add_to_reputation
+      redirect_to :back
+    else
+      redirect_to :back
+    end
   end
   
   def down_vote
@@ -42,7 +46,14 @@ class SharesController < ApplicationController
   end
   
   def show
+    if params[:group_id]
+      @group = Group.find(params[:group_id])
+    elsif params[:federation_id]
+      @federation = Federation.find(params[:federation_id])
+    end
     @share = Share.find(params[:id])
+    @comments = @share.comments
+    @comment = Comment.new
   end
   
   def index

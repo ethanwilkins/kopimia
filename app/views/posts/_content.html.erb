@@ -11,7 +11,7 @@
 	<% end %>
 	
 	<% if post.text.present? or post.hashtags.present? %>
-		<p id="post_text">
+		<p>
 			<% for word in post.text.split(' ') %>
 				<%= render "posts/embed", word: word %>
 			<% end %>

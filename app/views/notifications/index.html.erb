@@ -19,9 +19,24 @@
 							<% when :share_post %>
 								<!-- has to link to sharers post, not the original users -->
 								<%= link_to note.message, show_post_path(note.other_user, note.item)%>
-							<% when :comment_proposal %>
-								<%= link_to note.message, group_proposal_path(Group.find( \
-								Proposal.find(note.item).group_id), note.item) %>
+								
+							<% when :comment_proposal, :up_vote_proposal %>
+								<% if Proposal.find(note.item).group_id %>
+									<%= link_to note.message, group_proposal_path(Group.find( \
+									Proposal.find(note.item).group_id), note.item) %>
+								<% elsif Proposal.find(note.item).federation_id %>
+									<%= link_to note.message, federation_proposal_path(Federation.find( \
+									Proposal.find(note.item).federation_id), note.item) %>
+								<% end %>
+								
+							<% when :comment_share, :up_vote_share %>
+								<% if Share.find(note.item).group_id %>
+									<%= link_to note.message, group_share_path(Group.find( \
+									Share.find(note.item).group_id), note.item) %>
+								<% elsif Share.find(note.item).federation_id %>
+									<%= link_to note.message, federation_share_path(Federation.find( \
+									Share.find(note.item).federation_id), note.item) %>
+								<% end %>
 						<% end %>
 					</td>
 				</tr>

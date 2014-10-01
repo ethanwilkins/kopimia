@@ -58,6 +58,8 @@ class User < ActiveRecord::Base
           message = "#{user_name} started following you."
         when :message
           message = "#{user_name} sent you a message."
+        when :share_post
+          message = "#{user_name} shared your post."
         when :comment
           message = "#{user_name} commented on your post."
         when :reply
@@ -66,10 +68,12 @@ class User < ActiveRecord::Base
           message = "#{user_name} commented on your proposal."
         when :comment_module
           message = "#{user_name} commented on your module."
+        when :comment_share
+          message = "#{user_name} commented on your share."
         when :up_vote
           message = "#{user_name} up voted your post."
-        when :share_post
-          message = "#{user_name} shared your post."
+        when :up_vote_share
+          message = "#{user_name} up voted your share."
       end
       notifications.create!(message: message, other_user: sender.id,
         action: action.to_s, item: item)

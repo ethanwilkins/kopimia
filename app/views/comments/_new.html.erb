@@ -11,7 +11,9 @@
 				<% when :proposal %>
 					<%= hidden_field_tag :proposal_id, params[:id] %>
 				<% when :module %>
-					<%= hidden_field_tag :module_id %>
+					<%= hidden_field_tag :module_id, params[:id] %>
+				<% when :share %>
+					<%= hidden_field_tag :share_id, params[:id] %>
 			<% end %>
 		
 			<p>

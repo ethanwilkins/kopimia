@@ -32,6 +32,9 @@ class CommentsController < ApplicationController
     elsif params[:module_id]
       @item = CodeModule.find(params[:module_id])
       comment_type = :comment_module
+    elsif params[:share_id]
+      @item = Share.find(params[:share_id])
+      comment_type = :comment_share
     end
     @comment = @item.comments.new(params[:comment].permit(:text))
 		@comment.commenter = current_user

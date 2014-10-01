@@ -1,0 +1,11 @@
+<!-- shares -->
+
+<% if @group %>
+	<%= link_to group_share_path(@group, share), class: "btn btn-default" do %>
+		<span class="glyphicon glyphicon-comment"></span>
+	<% end %>
+<% elsif @federation %>
+	<%= link_to federation_share_path(@federation, share), class: "btn btn-default" do %>
+		<span class="glyphicon glyphicon-comment"></span>
+	<% end %>
+<% end %>

@@ -1,6 +1,6 @@
 <!-- shares -->
 
-<% if @group.membership(current_user) %>
+<% if @group.membership(current_user) or @federation %>
 	<%= link_to(up_vote_share_path(share), class: "btn btn-default") do %>
 		<span class="glyphicon glyphicon-chevron-up"></span>
 	<% end %>
