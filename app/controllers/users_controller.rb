@@ -75,6 +75,6 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.all.reverse
+    @users = User.all.offset(User.all.size-10).reverse
   end
 end
