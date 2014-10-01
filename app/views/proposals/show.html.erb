@@ -9,10 +9,8 @@
 	
 	<%= render "content", proposal: @proposal %>
 	
-	
-	
-	<% if (@federation or @group.membership(current_user)) \
-		and current_user.id != @proposal.user_id %>
+	<% if (@federation or @group.membership(current_user)) and \
+		current_user.id != @proposal.user_id and !@proposal.inactive %>
 		<div align="center">
 			<div class="btn-group">
 				<%= render "vote", proposal: @proposal %>
