@@ -22,6 +22,21 @@ class User < ActiveRecord::Base
   
   mount_uploader :profile_picture, ImageUploader
   
+  self.extract_mention(item)
+    text = item.text
+    # extracts mentions from post.text
+    text.split(' ').each do |word|
+      if word.include? "@" and word.include? ".com" == false
+        # removes tag from text
+        text.slice! word
+        # @post would not update
+        Post.find(item.id).update(text: text) if item.kind_of? Post
+        Comment.find(item.id).update(text: text) if item.kind_of? Comment
+        # place @links in correct parts of text some how
+      end
+    end
+  end
+  
   def generate_anon
     create name: :anon, profile_picture: "anon.jpg" 
   end
