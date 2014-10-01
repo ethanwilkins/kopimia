@@ -1,5 +1,4 @@
-class CommentsController < ApplicationController
-  
+class CommentsController < ApplicationController  
   def up_vote
     @comment = Comment.find(params[:id])
     Vote.up_vote!(@comment, current_user)
@@ -47,7 +46,8 @@ class CommentsController < ApplicationController
       end
   	  redirect_to :back
 		else
- 	   render "posts/show"
+      flash[:error] = "Invalid input."
+   	  redirect_to :back
 		end
   end
   

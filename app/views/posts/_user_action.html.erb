@@ -16,9 +16,10 @@
 	<% else %>
 		your
 	<% end %>
-		<% unless original_post.image? %>
-			post
-		<% else %>
-			picture
-		<% end %>
+	
+	<% unless original_post.image? %>
+		post
+	<% else %>
+		picture
+	<% end %>
 <% end %>

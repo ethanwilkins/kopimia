@@ -22,23 +22,13 @@ class User < ActiveRecord::Base
   
   mount_uploader :profile_picture, ImageUploader
   
-  def self.extract_mention(item)
+  def notify_mentioned(item)
     text = item.text
-    # extracts mentions from post.text
-    text.split(' ').each do |word|
-      if word.include? "@" and word.include? ".com" == false
-        # removes tag from text
-        text.slice! word
-        # @post would not update
-        Post.find(item.id).update(text: text) if item.kind_of? Post
-        Comment.find(item.id).update(text: text) if item.kind_of? Comment
-        # place @links in correct parts of text some how
+    for word in text.split(' ')
+      if word.include? "@" and User.find_by_name(word.slice(word.index("@")+1..word.size))
+        User.find_by_name(word.slice(word.index("@")+1..word.size)).notify! :mention, self, item.id
       end
     end
-  end
-  
-  def generate_anon
-    create name: :anon, profile_picture: "anon.jpg" 
   end
 
   def feed
@@ -89,6 +79,8 @@ class User < ActiveRecord::Base
           message = "#{user_name} up voted your post."
         when :up_vote_share
           message = "#{user_name} up voted your share."
+        when :mention
+          message = "#{user_name} mentioned you in a post."
       end
       notifications.create!(message: message, other_user: sender.id,
         action: action.to_s, item: item)

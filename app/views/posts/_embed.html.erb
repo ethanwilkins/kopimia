@@ -14,6 +14,8 @@
 			<%= link_to word[0..25] + "... ", word, target: :_blank %>
 		<% end %>
 	<% end %>
+<% elsif word.include? "@" and User.find_by_name(word.slice(word.index("@")+1..word.size)) %>
+	<%= link_to word, user_path(User.find_by_name(word.slice(word.index("@")+1..word.size))) %>
 <% else %>
 	<% if word.size < 30 %>
 		<%= word + " " %>

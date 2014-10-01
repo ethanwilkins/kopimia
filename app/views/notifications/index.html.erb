@@ -19,6 +19,8 @@
 							<% when :share_post %>
 								<!-- has to link to sharers post, not the original users -->
 								<%= link_to note.message, show_post_path(note.other_user, note.item)%>
+							<% when :mention %>
+								<%= link_to note.message, show_post_path(note.other_user, note.item) %>
 								
 							<% when :comment_proposal, :up_vote_proposal %>
 								<% if Proposal.find(note.item).group_id %>
