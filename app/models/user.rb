@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   
   mount_uploader :profile_picture, ImageUploader
   
-  self.extract_mention(item)
+  def self.extract_mention(item)
     text = item.text
     # extracts mentions from post.text
     text.split(' ').each do |word|
