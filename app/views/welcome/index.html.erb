@@ -9,11 +9,7 @@
 				<a href="https://github.com/ethanwilkins/kopimia">GitHub</a>.</div>
 	</div></br>
 	
-	<%= render "sessions/new" %> <!-- conveniently placed above search bar for active users -->
-	
-	<div id="card">
-		<%= render "search/search_bar" %>
-	</div>
-<% else %>
-	<%= render "feed" %>
+	<%= render "sessions/new" %>
 <% end %>
+
+<%= render "feed" %>

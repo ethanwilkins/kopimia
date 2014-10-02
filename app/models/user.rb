@@ -31,9 +31,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  def feed
-    if Post.from_users_followed_by(self).present?
-      posts = Post.from_users_followed_by(self)
+  def self.feed(user)
+    if user and Post.from_users_followed_by(user).present?
+      posts = Post.from_users_followed_by(user)
     else
       posts = []
       for post in Post.all
