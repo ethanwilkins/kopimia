@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141001015140) do
+ActiveRecord::Schema.define(version: 20141003202711) do
 
   create_table "achievements", force: true do |t|
     t.datetime "created_at"
@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20141001015140) do
     t.string   "profile_picture"
     t.boolean  "anon"
     t.boolean  "private"
+    t.string   "ip"
   end
 
   add_index "users", ["name", "password"], name: "index_users_on_name_and_password", unique: true
