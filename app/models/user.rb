@@ -37,7 +37,10 @@ class User < ActiveRecord::Base
     else
       posts = []
       for post in Post.all
-        posts << post if post.publicly_shared
+        # only publicly shared posts with up votes for new users
+        if post.publicly_shared and post.votes.up_votes.size > 0
+          posts << post
+        end
       end
     end
     return posts.sort_by(&:score).reverse
