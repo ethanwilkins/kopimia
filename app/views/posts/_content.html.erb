@@ -11,7 +11,11 @@
 	<% end %>
 	
 	<% if post.text.present? or post.hashtags.present? %>
+		<% if post.text.size < 250 %>
 		<p>
+		<% else %>
+		<p id="article_of_text">
+		<% end %>
 			<% for word in post.text.split(' ') %>
 				<%= render "posts/embed", word: word %>
 			<% end %>
