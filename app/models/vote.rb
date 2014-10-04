@@ -23,7 +23,7 @@ class Vote < ActiveRecord::Base
   
   def self.score(obj)
     _score = (obj.votes.up_votes.size.to_i - (obj.votes.down_votes.size.to_i * 2)) - 
-      (Date.today - obj.created_at.to_date).to_i
+      (Date.today - obj.created_at.to_date).to_i + (obj.comments.size / 2)
     return _score
   end
   
