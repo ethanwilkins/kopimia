@@ -10,7 +10,19 @@ class GroupsController < ApplicationController
   end
   
   def index
-    @groups = Group.groups_of(current_user).sort_by(&:posts_plus_members).reverse if current_user
+    if current_user
+      # resets to front at refresh
+      unless session[:more]
+        session[:page] = nil
+      end
+      session[:more] = nil
+      # gets groups based on page_size
+      @groups = Group.groups_of(current_user).sort_by(&:posts_plus_members).reverse.
+        # drops first several posts if :page
+        drop((session[:page] ? session[:page] : 0) * page_size).
+        # only shows first several posts of resulting array
+        first(page_size)
+    end
   end
   
   def new

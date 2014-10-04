@@ -9,7 +9,8 @@
 				<tr>
 					<% if _module.icon.url %>
 					<td>
-						<%= link_to image_tag(_module.icon, size: "50x50", id: :profile_picture), group_code_module_path(@group, _module) %>
+						<%= link_to image_tag(_module.icon, size: "50x50", id: :profile_picture),
+							group_code_module_path(@group, _module) %>
 					</td>
 					<% end %>
 					<td>

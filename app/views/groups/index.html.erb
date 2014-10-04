@@ -17,6 +17,10 @@
 			</div>
 			<br>
 		<% end %>
+
+		<% if @groups.size >= page_size %>
+			<%= render "pages/more" %>
+		<% end %>
 	<% end %>
 <% else %>
 	<div id="card">
