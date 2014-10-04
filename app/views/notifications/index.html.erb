@@ -3,7 +3,8 @@
 <% if current_user %>
 	<% @notes.each do |note| %>
 		<div id="card">
-			<table align="center">
+			<%= render "notifications/time_ago", note: note %>
+			<table align="center" id="note_message">
 				<tr>
 					<td><%= profile_picture(User.find(note.other_user), "25x25") %></td>
 					<td>

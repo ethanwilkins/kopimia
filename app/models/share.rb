@@ -15,7 +15,8 @@ class Share < ActiveRecord::Base
     elsif federation_id
       members = Federation.find(federation_id).members
     end
-    if open or (!open and members.find_by_user_id(user.id).reputation > 0)
+    if open or (!open and members.find_by_user_id(user.id).reputation and \
+      members.find_by_user_id(user.id).reputation > 0)
       true
     end
   end
