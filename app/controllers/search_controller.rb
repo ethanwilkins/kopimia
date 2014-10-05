@@ -18,5 +18,7 @@ class SearchController < ApplicationController
         @no_results = "No results were found."
       end
     end
+    # logs the visit with the contextual data
+    Activity.log_action(current_user, request.remote_ip.to_s, "search")
   end
 end

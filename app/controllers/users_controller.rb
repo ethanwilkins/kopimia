@@ -72,6 +72,8 @@ class UsersController < ApplicationController
     if @user != current_user and Folder.folder_between(current_user, @user)
       @folder = Folder.folder_between(current_user, @user)
     end
+    # logs data about visit
+    Activity.log_action(current_user, request.remote_ip.to_s, "user_profile_visit")
   end
   
   def index
