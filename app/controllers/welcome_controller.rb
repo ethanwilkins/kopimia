@@ -12,4 +12,7 @@ class WelcomeController < ApplicationController
       first(page_size)
     @post = Post.new
   end
+  
+  def about
+  end
 end

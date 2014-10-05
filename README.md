@@ -6,4 +6,4 @@ Groups are currently the main focus with a proposal system that lets members col
 
 The goal of this project is to provide a decentralized social structure for a more free and open society.
 
-This code base can also be used to easily deploy custom social networks, soon with a control panel allowing for mamagement of optional features like advertisements and other capabilities that may or may not appear on the main site. Kopimia.com will adhere to the principles of the Kopimist philosophy while custom domains can implement whatever rules or features the administrator so desires.
+This code base can also be used to easily deploy custom social networks, soon with a control panel allowing for mamagement of optional features like advertisements and other capabilities that may or may not appear on the main site. Kopimia.com will adhere to the principles of the Kopimist philosophy while custom domains can implement whatever rules or features the administrator so desires. Starting out as a simple blogging platform, you can add more and more features, at your own pace, such as user accounts, allowing for users to comment and even create groups around your central topic.
