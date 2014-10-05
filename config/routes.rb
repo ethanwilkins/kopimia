@@ -65,6 +65,8 @@ Social::Application.routes.draw do
   
   get "search/search", as: "search"
   
+  get "welcome/about", as: "about"
+  
   get "pages/older", as: "older"
   
   get "pages/newer", as: "newer"
