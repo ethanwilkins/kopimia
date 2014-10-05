@@ -6,7 +6,11 @@ class Activity < ActiveRecord::Base
   
   validates_presence_of :action
   
-  def self.log_visit(ip)
-    Activity.create action: "visit", ip: ip
+  def self.log_visit(ip, user)
+    if user
+      user.activities.create action: "visit", ip: ip
+    else
+      Activity.create action: "visit", ip: ip
+    end
   end
 end

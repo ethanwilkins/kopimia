@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   def index
     # logs the visit with the associated IP
-    Activity.log_visit(request.remote_ip.to_s)
+    Activity.log_visit(request.remote_ip.to_s, current_user)
     unless session[:more]
       session[:page] = nil
     end

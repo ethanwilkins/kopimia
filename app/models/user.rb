@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :reverse_connections, foreign_key: "followed_id", class_name: "Connection", dependent: :destroy
   has_many :followers, through: :reverse_connections
   has_many :comments, :foreign_key => :commenter_id
+  has_many :activities, dependent: :destroy
   has_many :members, dependent: :destroy
   
   validates :name, presence: true, length: { minimum: 3 }
