@@ -13,4 +13,16 @@ class Activity < ActiveRecord::Base
       Activity.create action: action, ip: ip
     end
   end
+  
+  def self.unique_visit_count
+    visit_count = 0
+    visits_counted = []
+    for visit in Activity.all
+      unless visits_counted.include? visit.ip
+        visits_counted << visit.ip
+        visit_count += 1
+      end
+    end
+    return visit_count
+  end
 end
