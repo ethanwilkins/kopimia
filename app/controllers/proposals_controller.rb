@@ -39,8 +39,8 @@ class ProposalsController < ApplicationController
     end
     @proposal = Proposal.find(params[:id])
     @comment = Comment.new
-    Activity.log_action(current_user,
-      request.remote_ip.to_s, "proposal_page_visit")
+    Activity.log_action(current_user, request.remote_ip.to_s,
+      "proposal_page_visit", @proposal.id)
   end
   
   def index

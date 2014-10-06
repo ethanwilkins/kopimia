@@ -24,7 +24,8 @@ class GroupsController < ApplicationController
         first(page_size)
     end
     # logs the visit with the contextual data
-    Activity.log_action(current_user, request.remote_ip.to_s, "groups_page_visit")
+    Activity.log_action(current_user,
+      request.remote_ip.to_s, "groups_page_visit")
   end
   
   def new
@@ -57,6 +58,7 @@ class GroupsController < ApplicationController
       first(page_size)
     @post = Post.new
     # logs the visit with the contextual data
-    Activity.log_action(current_user, request.remote_ip.to_s, "group_page_visit")
+    Activity.log_action(current_user, request.remote_ip.to_s,
+      "group_page_visit", @group.id)
   end
 end

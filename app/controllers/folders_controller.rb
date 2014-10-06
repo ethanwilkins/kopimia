@@ -2,7 +2,8 @@ class FoldersController < ApplicationController
   def index
     @folders = Folder.inbox_of(current_user).reverse
     # logs the visit with the contextual data
-    Activity.log_action(current_user, request.remote_ip.to_s, "inbox_check")
+    Activity.log_action(current_user,
+      request.remote_ip.to_s, "inbox_check")
   end
   
   def new
@@ -17,7 +18,8 @@ class FoldersController < ApplicationController
     Message.where("user_id != ?", current_user.id).update_all seen: true
     @messages = @messages.last(5)
     # logs the visit with the contextual data
-    Activity.log_action(current_user, request.remote_ip.to_s, "conversation_check")
+    Activity.log_action(current_user, request.remote_ip.to_s,
+      "conversation_check", @folder.id)
   end
   
   def create

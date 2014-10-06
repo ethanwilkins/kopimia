@@ -54,6 +54,8 @@ class SharesController < ApplicationController
     @share = Share.find(params[:id])
     @comments = @share.comments
     @comment = Comment.new
+    Activity.log_action(current_user, request.remote_ip.to_s,
+      "share_page_vist", @share.id)
   end
   
   def index
@@ -64,6 +66,8 @@ class SharesController < ApplicationController
     elsif params[:federation_id]
       @federation = Federation.find(params[:federation_id])
       @shares = @federation.shares.all.reverse
+    Activity.log_action(current_user,
+      request.remote_ip.to_s, "shares_page_vist")
     end
   end
 end

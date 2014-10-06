@@ -15,7 +15,8 @@ class CommentsController < ApplicationController
     @comment = Comment.new
     @_comment = Comment.find(params[:id])
     @replies = Comment.where(comment_id: params[:id])
-    Activity.log_action(current_user, request.remote_ip.to_s, "comment_page_visit")
+    Activity.log_action(current_user, request.remote_ip.to_s,
+      "comment_page_visit", @_comment.id)
   end
   
   def create

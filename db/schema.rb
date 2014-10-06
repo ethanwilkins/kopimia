@@ -11,12 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141005092907) do
-
-  create_table "achievements", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20141006204957) do
 
   create_table "activities", force: true do |t|
     t.integer  "federation_id"
@@ -24,10 +19,12 @@ ActiveRecord::Schema.define(version: 20141005092907) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "message"
+    t.text     "info_text",     limit: 255
     t.string   "ip"
     t.integer  "group_id"
+    t.integer  "other_user_id"
     t.integer  "item_id"
+    t.string   "data_string"
   end
 
   create_table "code_modules", force: true do |t|

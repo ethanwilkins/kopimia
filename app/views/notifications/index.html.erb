@@ -46,6 +46,8 @@
 			</table>
 		</div><br>
 	<% end %>
+
+	<%= render("pages/more") if @notes.size >= page_size %>
 	
 	<% if current_user.notifications.empty? %>
 		<div id="card">

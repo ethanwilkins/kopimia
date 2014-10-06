@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
-    Activity.log_action(current_user, request.remote_ip.to_s, "sign_up_page_visit")
+    Activity.log_action(current_user,
+      request.remote_ip.to_s, "sign_up_page_visit")
   end
   
   def create
@@ -43,7 +44,8 @@ class UsersController < ApplicationController
   
   def edit
     @user = current_user
-    Activity.log_action(current_user, request.remote_ip.to_s, "edit_page_visit")
+    Activity.log_action(current_user,
+      request.remote_ip.to_s, "edit_page_visit")
   end
   
   def update
@@ -75,7 +77,8 @@ class UsersController < ApplicationController
       @folder = Folder.folder_between(current_user, @user)
     end
     # logs data about visit
-    Activity.log_action(current_user, request.remote_ip.to_s, "user_profile_visit")
+    Activity.log_action(current_user, request.remote_ip.to_s,
+      "user_profile_visit", @user.id)
   end
   
   def index
@@ -90,6 +93,7 @@ class UsersController < ApplicationController
       # only shows first several posts of resulting array
       first(page_size)
       
-    Activity.log_action(current_user, request.remote_ip.to_s, "users_page_visit")
+    Activity.log_action(current_user,
+      request.remote_ip.to_s, "users_page_visit")
   end
 end

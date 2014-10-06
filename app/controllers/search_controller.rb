@@ -1,12 +1,13 @@
 class SearchController < ApplicationController
   def search
     if params[:query]
-      @results = []
+      @query = params[:query]
       @users = User.where "name = ? OR name = ?", params[:query].capitalize, params[:query].downcase
       @groups = Group.where "name = ? OR name = ?", params[:query].capitalize, params[:query].downcase
       @modules = CodeModule.where "name = ? OR name = ?", params[:query].capitalize, params[:query].downcase
       @tags = Hashtag.tagged(params[:query])
-      
+
+      @results = []
       @results << @users
       @results << @groups
       @results << @modules
@@ -19,6 +20,6 @@ class SearchController < ApplicationController
       end
     end
     # logs the visit with the contextual data
-    Activity.log_action(current_user, request.remote_ip.to_s, "search")
+    Activity.log_action(current_user, request.remote_ip.to_s, "search", nil, @query)
   end
 end

@@ -38,7 +38,8 @@ class PostsController < ApplicationController
       @comment = Comment.new
     end
     # logs data about visit
-    Activity.log_action(current_user, request.remote_ip.to_s, "post_page_visit")
+    Activity.log_action(current_user, request.remote_ip.to_s,
+      "post_page_visit", @post.id)
   end
   
   def create
