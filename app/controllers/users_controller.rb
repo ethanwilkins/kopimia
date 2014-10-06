@@ -79,6 +79,17 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.all.offset(User.all.size-10).reverse
+    unless session[:more]
+      session[:page] = nil
+    end
+    session[:more] = nil
+    
+    @users = User.all.
+      # drops first several posts if :feed_page
+      drop((session[:page] ? session[:page] : 0) * page_size).
+      # only shows first several posts of resulting array
+      first(page_size)
+      
+    Activity.log_action(current_user, request.remote_ip.to_s, "users_page_visit")
   end
 end

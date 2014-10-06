@@ -1,11 +1,21 @@
+<!-- users -->
+
+<div id="card">
+	<div align="center">
+		<p>Total users: <%= User.all.size %></p>
+		<p>Unique visits: <%= Activity.unique_visit_count %></p>
+		<p>Visits: <%= Activity.all.size %></p>
+	</div>
+</div></br>
+
 <% @users.each do |user| %>
 	<div id="card">
-		<table align="center">
-			<tr>
-				<td><%= profile_picture user, "25x25" %>
-				<td><%= link_to user.name, user_path(user) %></td>
-			</tr>
-		</table>
+		<div align="center">
+			<div><%= profile_picture user, "50x50" %></div>
+			<%= link_to user.name, user_path(user) %>
+		</div>
 	</div>
 	</br>
 <% end %>
+
+<%= render("pages/more") %>
