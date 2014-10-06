@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
+    Activity.log_action(current_user, request.remote_ip.to_s, "sign_up_page_visit")
   end
   
   def create
@@ -42,6 +43,7 @@ class UsersController < ApplicationController
   
   def edit
     @user = current_user
+    Activity.log_action(current_user, request.remote_ip.to_s, "edit_page_visit")
   end
   
   def update

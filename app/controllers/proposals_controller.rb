@@ -5,6 +5,8 @@ class ProposalsController < ApplicationController
     elsif params[:federation_id]
       @federation = Federation.find(params[:federation_id])
     end
+    Activity.log_action(current_user,
+      request.remote_ip.to_s, "proposal_menu_page_visit")
   end
   
   def up_vote
@@ -37,6 +39,8 @@ class ProposalsController < ApplicationController
     end
     @proposal = Proposal.find(params[:id])
     @comment = Comment.new
+    Activity.log_action(current_user,
+      request.remote_ip.to_s, "proposal_page_visit")
   end
   
   def index
@@ -48,6 +52,8 @@ class ProposalsController < ApplicationController
       @federation = Federation.find(params[:federation_id])
       @proposals = @federation.proposals.sort_by(&:score).reverse!
     end
+    Activity.log_action(current_user,
+      request.remote_ip.to_s, "proposals_page_visit")
   end
   
   def create
@@ -78,5 +84,7 @@ class ProposalsController < ApplicationController
     session[:proposal_type] = params[:proposal_type] if params[:proposal_type].present?
     @proposal = Proposal.new
     @groups = Group.all
+    Activity.log_action(current_user,
+      request.remote_ip.to_s, "new_proposal_page_visit")
   end
 end

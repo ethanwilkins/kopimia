@@ -37,6 +37,8 @@ class PostsController < ApplicationController
       @comments = @post.comments.sort_by(&:score).reverse!
       @comment = Comment.new
     end
+    # logs data about visit
+    Activity.log_action(current_user, request.remote_ip.to_s, "post_page_visit")
   end
   
   def create
