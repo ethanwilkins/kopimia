@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006204957) do
+ActiveRecord::Schema.define(version: 20141006215726) do
 
   create_table "activities", force: true do |t|
     t.integer  "federation_id"
@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(version: 20141006204957) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "comment_id"
+    t.integer  "group_id"
+    t.integer  "federation_id"
   end
 
 # Could not dump table "members" because of following NoMethodError

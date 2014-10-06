@@ -7,15 +7,18 @@ class Comment < ActiveRecord::Base
   has_many :hashtags, dependent: :destroy
   has_many :comments, dependent: :destroy
   
-  validates :text, presence: true
-  
-  after_create :creator_up_vote
+  # instead of validation so hashtags are extracted properly
+  before_create :check_for_text
   
   def score
     Vote.score(self)
   end
   
-  def creator_up_vote
-    votes.create up: true, voter: commenter_id
+  private
+  
+  def check_for_text
+    if text.empty?
+      errors.add(:comment, "cannot be empty.")
+    end
   end
 end
