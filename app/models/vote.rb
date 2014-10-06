@@ -22,15 +22,12 @@ class Vote < ActiveRecord::Base
   end
   
   def self.score(obj)
-    up_size_with_recentness = 0
-    for vote in obj.votes.up_votes
-      # up_size_with_recentness 
-    end
-    _score = (obj.votes.up_votes.size.to_i - (obj.votes.down_votes.size.to_i * 2)) - 
+    up_votes_weight = 0
+    for vote in obj.votes.up_votes # recent votes on older posts have more weight
+      up_votes_weight += (vote.created_at.to_date - obj.created_at.to_date).to_i + 1
+    end # plus one for votes on recent posts to still get valued
+    _score = (up_votes_weight - (obj.votes.down_votes.size.to_i * 2)) - 
       (Date.today - obj.created_at.to_date).to_i + (obj.comments.size / 2)
-      # to take into account the recentness of votes so as to
-      # gain score for even the older posts if
-      # they have recently been up voted
     return _score
   end
   
