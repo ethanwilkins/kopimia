@@ -29,6 +29,8 @@ class Vote < ActiveRecord::Base
     _score = (up_votes_weight + (obj.comments.size / 2)) -
       ((obj.votes.down_votes.size.to_i * 2) + (Date.today - obj.created_at.to_date).to_i)
     return _score
+    # also needs to check for clusters of recent votes, giving more
+    # weight to recent posts that are closer together in time
   end
   
   def self.up_votes
