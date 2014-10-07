@@ -1,0 +1,11 @@
+<!-- pages -->
+
+<!-- shows more until the end of the list -->
+
+<% if all_items.size > page_size %>
+	<% if items.size >= page_size %>
+		<%= render "pages/more" %>
+	<% else %>
+		<%= render "pages/back" %>
+	<% end %>
+<% end %>

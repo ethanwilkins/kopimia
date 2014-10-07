@@ -11,4 +11,8 @@ class PagesController < ApplicationController
     end
     redirect_to :back
   end
+  
+  def back
+    redirect_to :back
+  end
 end

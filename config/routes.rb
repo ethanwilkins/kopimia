@@ -67,11 +67,9 @@ Social::Application.routes.draw do
   
   get "welcome/about", as: "about"
   
-  get "pages/older", as: "older"
-  
-  get "pages/newer", as: "newer"
-  
   get "pages/more", as: "more"
+  
+  get "pages/back", as: "back"
   
   get "sessions/destroy"
   

@@ -6,4 +6,4 @@
 	<%= render "posts/card", post: post %>
 <% end %>
 
-<%= render("pages/more") %>
+<%= render "pages/more_back", all_items: User.feed(current_user), items: @feed %>
