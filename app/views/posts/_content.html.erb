@@ -16,7 +16,7 @@
 			<% text = post.text %>
 			<p>
 		<% else %>
-			<% text = post.text.slice(0..preview_length) + "..." unless defined? show_post_page %>
+			<% text = post.text.slice(0..preview_length) + "... " unless defined? show_post_page %>
 			<% text = post.text if defined? show_post_page %>
 			<p id="article_of_text">
 		<% end %>
@@ -25,7 +25,7 @@
 			<% end %>
 			
 			<% if post.text.size > preview_length and !defined? show_post_page %>
-				<%= link_to "Read More", show_post_path(_post.user, _post) %>
+				<%= link_to "Read More ", show_post_path(_post.user, _post) %>
 			<% end %>
 			
 			<% post.hashtags.each do |tag| %>
@@ -34,7 +34,3 @@
 		</p>
 	<% end %>
 </div>
-
-<!-- a mechanism for cutting off long text block with ... and providing
-a read more link, passing symbol if shown on user page to show
-the rest of the text -->
