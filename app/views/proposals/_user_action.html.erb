@@ -4,7 +4,7 @@
 <p align="center">
 	<% if proposal.anonymous %>
 		Anonymous
-	<% elsif proposal.action == "federate" %>
+	<% elsif proposal.action == "federate" or proposal.action %>
 		<%= link_to other_group.name, group_path(other_group) %>
 	<% else %>
 		<%= link_to User.find(proposal.user_id).name, user_path(proposal.user_id) %>
@@ -30,6 +30,9 @@
 		<% when "federate_request" %>
 			proposed a federation between <%= link_to name, group_path(@group) %>
 			and <%= link_to other_group.name, group_path(other_group) %>
+		<% when "req_to_join_federation", "join_federation" %>
+			proposed that <%= link_to name, group_path(@group) %> should join 
+			<%= link_to @federation, federation_path(@federation) %>
 		<% when "federate" %>
 			proposed a federation with <%= link_to name, group_path(@group) %>
 		<% when "disband" %>

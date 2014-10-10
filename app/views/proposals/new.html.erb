@@ -42,6 +42,13 @@
 				<%= f.text_field :submission, placeholder: "Description", class: "form-control" %>
 			</p>
 			
+		<% when "req_to_join_federation" %>
+			<p>
+				The federation you want to join
+				<%= f.select :federation_id, options_from_collection_for_select(@federations,
+					:id, :name), {}, class: "form-control" %>
+			</p>
+			
 		<% when "private_group" %>
 			<p align="center">Make the group private</p>
 			

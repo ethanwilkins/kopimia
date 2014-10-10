@@ -26,13 +26,17 @@ class Proposal < ActiveRecord::Base
         when "request_to_join"
           group.members.create user_id: user_id
         when "private_group"
-          group.update private: true
+          # group.update private: true
         when "public_group"
           group.update private: false
+        when "req_to_join_federation" # requests to join federation
+          federation.proposals.create action: "join_federation", group_id: group.id, why: why
+        when "join_federation" # adds the group to the federation
+          federation.members.create group_id: group.id
         when "federate_request" # requests other group to federate
           Group.find(federated_group_id).proposals.create action: "federate",
             icon: icon, item_name: item_name, federated_group_id: group_id
-        when "federate"
+        when "federate" # other group ratifies and creates the federation
           federation = Federation.create name: item_name, icon: icon, description: submission
           federation.members.create federated_group_id: federated_group_id
           federation.members.create federated_group_id: group_id

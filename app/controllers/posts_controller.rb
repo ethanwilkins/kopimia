@@ -1,24 +1,20 @@
 # need if save for create and error messages if fail
 
 class PostsController < ApplicationController
-  def new_comment
-    @comment = Comment.new
-    @post = Post.find(params[:id])
-    respond_to do |format|
-      format.js
-    end
-  end
-  
   def up_vote
     @post = Post.find(params[:id])
     Vote.up_vote!(@post, current_user)
     User.find(@post.user_id).notify!(:up_vote, current_user, @post.id)
+    Activity.log_action(current_user, request.remote_ip.to_s,
+      "post_up_vote", @post.id)
     redirect_to :back
   end
   
   def down_vote
     @post = Post.find(params[:id])
     Vote.down_vote!(@post, current_user)
+    Activity.log_action(current_user, request.remote_ip.to_s,
+      "post_down_vote", @post.id)
     redirect_to :back
   end
   
@@ -27,6 +23,8 @@ class PostsController < ApplicationController
     @other_user = User.find(Post.find(params[:id]).user_id)
     @post = @user.posts.create(original: params[:id])
     @other_user.notify!(:share_post, current_user, @post.id)
+    Activity.log_action(current_user, request.remote_ip.to_s,
+      "post_share", @post.id)
     redirect_to :back
   end
   
@@ -60,6 +58,8 @@ class PostsController < ApplicationController
     @user = User.find(current_user.id)
     @post = @user.posts.find(params[:id])
     @post.destroy
+    Activity.log_action(current_user, request.remote_ip.to_s,
+      "post_destroy", @post.id)
     redirect_to user_path(@user)
   end
 end

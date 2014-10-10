@@ -6,10 +6,9 @@
 				<p>Choose a proposal type</p>
 				<p>
 					<%= select_tag :proposal_type,
-						options_for_select([["Proposal type", nil], ["Description change", "description_change"],
-						["Add a module", "add_module"], ["Name change", "name_change"],
-						["Icon change", "icon_change"], ["Federate", "federate_request"],
-						["Disband", "disband"]]), class: "form-control" %>
+						options_for_select([["Proposal type", nil], ["Federate", "federate_request"], ["Join federation", "req_to_join_federation"],
+						["Description change", "description_change"], ["Add a module", "add_module"], ["Name change", "name_change"],
+						["Icon change", "icon_change"], ["Disband", "disband"]]), class: "form-control" %>
 				</p>
 				<p>
 					<%= submit_tag "Next", class: "btn btn-default btn-lg btn-block" %>
@@ -23,7 +22,7 @@
 					<%= select_tag :proposal_type,
 						options_for_select([["Proposal type", nil], ["Description change", "description_change"],
 						["Add a module", "add_module"], ["Name change", "name_change"], ["Icon change", "icon_change"],
-						["Disband", "disband"]]), class: "form-control" %>
+						["Request group to join"], ["Disband", "disband"]]), class: "form-control" %>
 				</p>
 				<p>
 					<%= submit_tag "Next", class: "btn btn-default btn-lg btn-block" %>

@@ -14,6 +14,8 @@ class ProposalsController < ApplicationController
     Vote.up_vote!(@proposal, current_user)
     # ratifies proposal at enough votes
     if @proposal.ratify
+      Activity.log_action(current_user, request.remote_ip.to_s,
+        "proposal_up_vote", @proposal.id)
       flash[:notice] = "The proposal has been ratified!"
       if Proposal.where(id: @proposal.id).present?
         redirect_to :back
@@ -28,6 +30,8 @@ class ProposalsController < ApplicationController
   def down_vote
     @proposal = Proposal.find(params[:id])
     Vote.down_vote!(@proposal, current_user)
+    Activity.log_action(current_user, request.remote_ip.to_s,
+      "proposal_down_vote", @proposal.id)
     redirect_to :back
   end
   
@@ -69,6 +73,8 @@ class ProposalsController < ApplicationController
     @proposal.user_id = params[:user_id] unless params[:anonymous] == 1
     @proposal.action = session[:proposal_type]
     if @proposal.save
+      Activity.log_action(current_user, request.remote_ip.to_s,
+        "create_proposal", @proposal.id)
       if @group
         redirect_to group_proposals_path(@group)
       elsif @federation
@@ -82,6 +88,7 @@ class ProposalsController < ApplicationController
   
   def new
     session[:proposal_type] = params[:proposal_type] if params[:proposal_type].present?
+    @federations = Federation.all
     @proposal = Proposal.new
     @groups = Group.all
     Activity.log_action(current_user,
