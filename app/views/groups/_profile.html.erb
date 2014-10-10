@@ -1,3 +1,5 @@
+<!-- groups -->
+
 <div id="card">
 	<div class="btn-group" id="top_right">
 		<%= link_to federations_path(@group), class: "btn btn-default" do %>
@@ -8,9 +10,11 @@
 	
 	</br>
 	<% if @group.name.size < 15 %>
-		<h1 align="center"><%= @group.name %></h1>
+		<h2 align="center"><%= @group.name %></h2>
 	<% else %>
-		<h3 align="center"><%= @group.name %></h3>
+		<h4 align="center" id="group_name_heading">
+			<%= @group.name %>
+		</h4>
 	<% end %>
 	</br>
 	

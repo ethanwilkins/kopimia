@@ -19,7 +19,7 @@
 		
 				<% if @user.name.size < 8 %>
 				<td>
-					<h1><%= @user.name %></h1>
+					<h2><%= @user.name %></h2>
 				</td>
 				<% end %>
 			</tr>
@@ -27,13 +27,9 @@
 
 		<% if @user.name.size >= 8 %>
 			<% if @user.name.size < 12 %>
-				<h1 align="center" id="user_profile_name"><%= @user.name %></h1>
+				<h2 align="center" id="user_profile_name"><%= @user.name %></h2>
 			<% else %>
 				<h3 align="center"><%= @user.name %></h3>
-			<% end %>
-		
-			<% unless @user.bio.present? %>
-				</br>
 			<% end %>
 		<% end %>
 		
@@ -50,7 +46,7 @@
 		</table>
 		<% end %>
 	
-		<p>Joined <%= @user.created_at.strftime("%m/%d/%Y") %></p>
+		<p id="joined_on">Joined <%= @user.created_at.strftime("%m/%d/%Y") %></p>
 
 		<div>
 			<div class="btn-group">
