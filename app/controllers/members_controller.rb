@@ -24,7 +24,7 @@ class MembersController < ApplicationController
     @group = Group.find(params[:id])
     @group.members.create(user_id: current_user.id)
     Activity.log_action(current_user, request.remote_ip.to_s,
-      "create_group_member", @group.member.last.id)
+      "create_group_member", Member.last.id)
     redirect_to :back
   end
   

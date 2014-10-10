@@ -1,8 +1,14 @@
 <% original_post = Post.find(post.original) if post.original %>
+<% name_shown_size = 15 %>
 
 <% unless original_post %>
 	<% if post.group %>
-		posted to <%= link_to Group.find(post.group).name, group_path(post.group) %>
+		 posted to 
+		<% if post.group.name.size < name_shown_size %>
+			<%= link_to Group.find(post.group).name, group_path(post.group) %>
+		<% else %>
+			<%= link_to Group.find(post.group).name.slice(0..name_shown_size) + "...", group_path(post.group) %>
+		<% end %>
 	<% else %>
 		<% if post.image? %>
 			shared a picture
