@@ -17,15 +17,13 @@
 
 <% @groups.reverse.each do |group| %>
 <div id="card">
-	<table align="center">
-		<tr>
+	<div align="center">
 			<% if group.icon.url %>
-				<td><%= link_to image_tag(group.icon, size: "25x25",
-					id: :profile_picture), group_path(group) %></td>
+				<div><%= link_to image_tag(group.icon, size: "50x50",
+					id: :profile_picture), group_path(group) %></div>
 			<% end %>
-			<td><%= link_to group.name, group_path(group) %></td>
-		</tr>
-	</table>
+			<div><%= link_to group.name, group_path(group) %></div>
+	</div>
 </div>
 <br>
 <% end %>

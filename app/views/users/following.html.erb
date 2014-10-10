@@ -17,12 +17,10 @@
 
 <% @users.each do |user| %>
 <div id="card">
-	<table align="center">
-		<tr>
-			<td><%= profile_picture(user, "25x25") %></td>
-			<td><%= link_to user.name, user_path(user) %></td>
-		</tr>
-	</table>
+	<div align="center">
+		<div><%= profile_picture(user, "50x50") %></div>
+		<div><%= link_to user.name, user_path(user) %></div>
+	</div>
 </div>
 <br>
 <% end %>
