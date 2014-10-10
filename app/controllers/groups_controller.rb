@@ -2,11 +2,15 @@ class GroupsController < ApplicationController
   def groups_joined
     @user = User.find(params[:id])
     @groups = Group.groups_of(@user)
+    Activity.log_action(current_user, request.remote_ip.to_s,
+      "user_groups_joined_page_visit")
   end
   
   def federations
     @group = Group.find(params[:group_id])
     @federations = @group.federations
+    Activity.log_action(current_user, request.remote_ip.to_s,
+      "groups_federations_page_visit", @group.id)
   end
   
   def index
@@ -30,6 +34,8 @@ class GroupsController < ApplicationController
   
   def new
     @group = Group.new
+    Activity.log_action(current_user, request.remote_ip.to_s,
+      "new_group_page_visit", @group.id)
   end
   
   def create
@@ -37,9 +43,13 @@ class GroupsController < ApplicationController
     
     if @group.save
       @group.members.create(user_id: current_user.id)
+      flash[:notice] = "The group was created successfully."
+      Activity.log_action(current_user, request.remote_ip.to_s,
+        "group_create", @group.id)
       redirect_to @group
     else
-      render "new"
+      flash[:error] = "The group could not be created."
+      redirect_to :back
     end
   end
   

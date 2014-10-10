@@ -1,5 +1,7 @@
 <% name = @federation.name %>
 <% other_group = Group.find(proposal.federated_group_id) if proposal.federated_group_id %>
+<% group = Group.find(proposal.group_id) if proposal.group_id %>
+<% user = User.find_by_id(proposal.user_id) %>
 
 <p align="center">
 	<% if proposal.anonymous %>
@@ -7,7 +9,7 @@
 	<% elsif proposal.action == "federate" %>
 		<%= link_to other_group.name, group_path(other_group) %>
 	<% else %>
-		<%= link_to User.find(proposal.user_id).name, user_path(proposal.user_id) %>
+		<%= link_to User.find(proposal.user_id).name, user_path(proposal.user_id) if proposal.user_id %>
 	<% end %>
 
 	<% case proposal.action %>
@@ -21,6 +23,9 @@
 			proposed to add a software module to <%= link_to name, federation_path(@federation) %>
 		<% when "icon_change" %>
 			proposed that <%= link_to name, federation_path(@federation) %> should change its icon
+		<% when "join_federation" %>
+			proposed that <%= link_to group.name, group_path(group) %> should join
+			<%= link_to @federation.name, federation_path(@federation) %>
 		<% when "request_to_join" %>
 			requested to join <%= link_to name, federation_path(@federation) %>
 		<% when "disband" %>

@@ -4,6 +4,8 @@ class SharesController < ApplicationController
     if Vote.up_vote!(@share, current_user)
       User.find(@share.user_id).notify!(:up_vote_share, current_user, @share.id)
       @share.add_to_reputation
+      Activity.log_action(current_user, request.remote_ip.to_s,
+        "share_up_vote", @share.id)
       redirect_to :back
     else
       redirect_to :back
@@ -13,11 +15,14 @@ class SharesController < ApplicationController
   def down_vote
     @share = Share.find(params[:id])
     Vote.down_vote!(@share, current_user)
+    Activity.log_action(current_user, request.remote_ip.to_s,
+      "share_down_vote", @share.id)
     redirect_to :back
   end
   
   def new
     @share = Share.new
+    Activity.log_action(current_user, request.remote_ip.to_s, "new_share_page_visit")
   end
   
   def create

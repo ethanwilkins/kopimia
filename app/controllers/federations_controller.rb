@@ -8,5 +8,7 @@ class FederationsController < ApplicationController
   
   def index
     @federations = Federation.all
+    Activity.log_action(current_user, request.remote_ip.to_s,
+      "federations_page_visit", @federation.id)
   end
 end

@@ -68,7 +68,7 @@ class ProposalsController < ApplicationController
       @federation = Federation.find(params[:federation_id])
       _obj = @federation
     end
-    @proposal = _obj.proposals.new(params[:proposal].permit(:submission,
+    @proposal = _obj.proposals.new(params[:proposal].permit(:submission, :federation_id,
       :description, :icon, :anonymous, :item_name, :federated_group_id, :why))
     @proposal.user_id = params[:user_id] unless params[:anonymous] == 1
     @proposal.action = session[:proposal_type]
