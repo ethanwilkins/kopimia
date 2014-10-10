@@ -1,7 +1,7 @@
 <%= render "federations/name_heading", item: "Groups" %>
 
 <% @groups.each do |group| %>
-	<% group = Group.find(group.federated_group_id) %>
+	<% group = Group.find_by_id(group.federated_group_id) %>
 	<div id="card">
 		<table align="center">
 			<tr>

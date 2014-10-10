@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006215726) do
+ActiveRecord::Schema.define(version: 20141010134212) do
 
   create_table "activities", force: true do |t|
     t.integer  "federation_id"
@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 20141006215726) do
     t.string   "item_name"
     t.integer  "federation_id"
     t.integer  "federated_group_id"
+    t.integer  "federated_federation_id"
   end
 
   create_table "shares", force: true do |t|

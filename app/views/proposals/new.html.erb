@@ -45,7 +45,7 @@
 		<% when "req_to_join_federation" %>
 			<p>
 				The federation you want to join
-				<%= f.select :federation_id, options_from_collection_for_select(@federations,
+				<%= f.select :federated_federation_id, options_from_collection_for_select(@federations,
 					:id, :name), {}, class: "form-control" %>
 			</p>
 			

@@ -32,8 +32,8 @@
 			and <%= link_to other_group.name, group_path(other_group) %>
 		<% when "req_to_join_federation", "join_federation" %>
 			proposed that <%= link_to name, group_path(@group) %> should join 
-			<%= link_to Federation.find(proposal.federation_id).name,
-				federation_path(proposal.federation_id) %>
+			<%= link_to Federation.find(proposal.federated_federation_id).name,
+				federation_path(proposal.federated_federation_id) %>
 		<% when "federate" %>
 			proposed a federation with <%= link_to name, group_path(@group) %>
 		<% when "disband" %>

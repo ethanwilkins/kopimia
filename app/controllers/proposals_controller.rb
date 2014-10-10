@@ -68,11 +68,12 @@ class ProposalsController < ApplicationController
       @federation = Federation.find(params[:federation_id])
       _obj = @federation
     end
-    @proposal = _obj.proposals.new(params[:proposal].permit(:submission, :federation_id,
+    @proposal = _obj.proposals.new(params[:proposal].permit(:submission, :federated_federation_id,
       :description, :icon, :anonymous, :item_name, :federated_group_id, :why))
     @proposal.user_id = params[:user_id] unless params[:anonymous] == 1
     @proposal.action = session[:proposal_type]
     if @proposal.save
+      @proposal.ratify if @group and @group.members.size < 2
       Activity.log_action(current_user, request.remote_ip.to_s,
         "create_proposal", @proposal.id)
       if @group

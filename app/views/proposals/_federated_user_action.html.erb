@@ -1,13 +1,12 @@
 <% name = @federation.name %>
-<% other_group = Group.find(proposal.federated_group_id) if proposal.federated_group_id %>
-<% group = Group.find(proposal.group_id) if proposal.group_id %>
+<% group = Group.find(proposal.federated_group_id) if proposal.federated_group_id %>
 <% user = User.find_by_id(proposal.user_id) %>
 
 <p align="center">
 	<% if proposal.anonymous %>
 		Anonymous
 	<% elsif proposal.action == "federate" %>
-		<%= link_to other_group.name, group_path(other_group) %>
+		<%= link_to group.name, group_path(group) %>
 	<% else %>
 		<%= link_to User.find(proposal.user_id).name, user_path(proposal.user_id) if proposal.user_id %>
 	<% end %>

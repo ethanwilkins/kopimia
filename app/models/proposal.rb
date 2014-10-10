@@ -11,9 +11,11 @@ class Proposal < ActiveRecord::Base
   mount_uploader :icon, ImageUploader
   
   def ratify
-    group = Group.find(group_id) if group_id
-    federation = Federation.find(federation_id) if federation_id
-    if votes.up_votes.size > group.members.size / 2
+    group = Group.find_by_id(group_id)
+    federation = Federation.find_by_id(federation_id)
+    federated_federation = Federation.find_by_id(federated_federation_id)
+    if (group and (votes.up_votes.size > group.members.size / 2 or group.members.size < 2)) or \
+      (federation and (votes.up_votes.size > federation.members.size / 2 or federation.members.size < 2))
       case action
         when "icon_change"
           group.update icon: icon
@@ -30,10 +32,10 @@ class Proposal < ActiveRecord::Base
         when "public_group"
           group.update private: false
         when "req_to_join_federation" # requests to join federation
-          federation.proposals.create action: "join_federation",
-            group_id: group.id, why: why, user_id: user_id
+          federated_federation.proposals.create action: "join_federation", why: why,
+            user_id: user_id, federated_group_id: group_id
         when "join_federation" # adds the group to the federation
-          federation.members.create group_id: group.id
+          federation.members.create federated_group_id: federated_group_id
         when "federate_request" # requests other group to federate
           Group.find(federated_group_id).proposals.create action: "federate",
             icon: icon, item_name: item_name, federated_group_id: group_id
