@@ -5,7 +5,7 @@
 		<table align="center">
 			<tr>
 				<td><%= profile_picture(@user, "25x25") %></td>
-				<td>
+				<td id="user_action_text">
 					<%= link_to @user.name, user_path(@user) %>
 					<%= render "user_action", post: @post %>
 				</td>
@@ -20,8 +20,12 @@
 				<%= render "share", post: @post %>
 				<% if current_user and current_user == @user %>
 					<%= link_to user_post_path(params[:id], @post), class: "btn btn-default",
-						method: :delete, data: { confirm: 'Are you sure?' } do %>
+						method: :delete, data: { confirm: 'Are you sure you want to permanently delete your post?' } do %>
 						<span class="glyphicon glyphicon-trash"></span>
+					<% end %>
+					<%= link_to user_post_path(params[:id], @post), class: "btn btn-default",
+						method: :delete, data: { confirm: 'Are you sure?' } do %>
+						<span class="glyphicon glyphicon-edit"></span>
 					<% end %>
 				<% end %>
 			</div>

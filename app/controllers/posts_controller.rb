@@ -40,6 +40,14 @@ class PostsController < ApplicationController
       "post_page_visit", @post.id)
   end
   
+  def edit
+    
+  end
+  
+  def update
+    
+  end
+  
   def create
     @post = current_user.posts.new(params[:post].permit(:text, :image))
     @post.group_id = params[:group_id]

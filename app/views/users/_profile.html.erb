@@ -1,11 +1,14 @@
 <div id="card">
 	<div align="center">
 		<div id="top_right">
-			<% if current_user and @user == current_user %>
-				<%= render "edit_button" %>
-			<% elsif current_user %>
-				<%= render "follow_form" %>
-			<% end %>
+			<div class="btn-group">
+				<% if current_user and @user == current_user %>
+					<%= render "settings_button"%>
+					<%= render "edit_button" %>
+				<% elsif current_user %>
+					<%= render "follow_form" %>
+				<% end %>
+			</div>
 		</div>
 
 		</br>
