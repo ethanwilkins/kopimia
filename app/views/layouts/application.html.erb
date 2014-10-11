@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html id=<%= color_theme("page") %>>
 <head>
 	<title>Kopimia</title>
 	<%= favicon_link_tag "favicon.ico" %>
@@ -17,9 +17,10 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-	<div id="page">
-		<div id="header-nav">
+	<div id=<%= color_theme("page") %>>
+		<div id=<%= color_theme("header-nav") %>>
 			<%= render "layouts/nav" %>
 		</div>
 

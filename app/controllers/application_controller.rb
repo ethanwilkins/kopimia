@@ -3,9 +3,20 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-  helper_method :current_user, :page_size, :decrypt_message
+  helper_method :current_user, :page_size, :decrypt_message, :color_theme
 
   private
+  
+  def color_theme(default)
+    if current_user and current_user.color_theme
+      case current_user.color_theme
+        when "dark"
+          return "#{default}_dark"
+      end
+    else
+      return default
+    end
+  end
   
   def decrypt_message(message)
 		key = ActiveSupport::KeyGenerator.new(message.created_at.to_s).generate_key(message.salt)

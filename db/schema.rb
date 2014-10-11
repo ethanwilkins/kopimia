@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011022331) do
+ActiveRecord::Schema.define(version: 20141011034525) do
 
   create_table "activities", force: true do |t|
     t.integer  "federation_id"
@@ -178,7 +178,7 @@ ActiveRecord::Schema.define(version: 20141011022331) do
     t.boolean  "anon"
     t.boolean  "private"
     t.string   "ip"
-    t.string   "color_scheme"
+    t.string   "color_theme"
   end
 
   add_index "users", ["name", "password"], name: "index_users_on_name_and_password", unique: true

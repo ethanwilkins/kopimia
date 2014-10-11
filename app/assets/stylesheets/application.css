@@ -30,8 +30,8 @@
 	background: rgb(245, 245, 245);
 }
 
-html {
-	background: rgb(245, 245, 245);
+#page_dark {
+	background: black;
 }
 
 td, p, h1, div {

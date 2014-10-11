@@ -6,7 +6,7 @@ one of the RGB values, allowing for one vote a day -->
 <%= form_for @user, url: user_path(@user), method: :patch,
 	:html => {:multipart => true, "data-ajax" => false} do |f| %>
 	<p>
-		<%= f.select :color_scheme, options_for_select([["Choose a color theme", nil],
+		<%= f.select :color_theme, options_for_select([["Choose a color theme", nil],
 			["Light", "light"], ["Dark", "dark"]]), {}, class: "form-control" %>
 	</p>
 	<p class="form-control">
