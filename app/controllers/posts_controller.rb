@@ -41,11 +41,18 @@ class PostsController < ApplicationController
   end
   
   def edit
-    
+    @post = Post.find(params[:id])
   end
   
   def update
+    @post = Post.find(params[:post_id])
     
+    if @post.update(params[:post].permit(:text, :image))
+      redirect_to user_post_path(@post.user_id, @post)
+    else
+      flash[:error] = "Invalid input."
+      redirect_to :back
+    end
   end
   
   def create

@@ -55,6 +55,8 @@ Social::Application.routes.draw do
   
   post "proposals/create", as: "proposals"
   
+  patch "posts/update", as: "update_post"
+  
   post "comments/create", as: "comments"
   
   post "messages/create", as: "messages"
