@@ -61,6 +61,8 @@ Social::Application.routes.draw do
   
   post "messages/create", as: "messages"
   
+  get "users/settings", as: "settings"
+  
   post "posts/create", as: "posts"
   
   post "shares/create", as: "shares"

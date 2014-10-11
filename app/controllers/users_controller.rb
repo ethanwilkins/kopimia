@@ -42,6 +42,12 @@ class UsersController < ApplicationController
     end
   end
   
+  def settings
+    @user = current_user
+    Activity.log_action(current_user,
+      request.remote_ip.to_s, "settings_page_visit")
+  end
+  
   def edit
     @user = current_user
     Activity.log_action(current_user,
@@ -51,10 +57,10 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     
-    if @user.update(params[:user].permit(:profile_picture, :bio, :name, :private))
+    if @user.update(params[:user].permit(:profile_picture, :bio, :name, :private, :color_scheme))
       redirect_to @user
     else
-      render "edit"
+      redirect_to :back
     end
   end
   
