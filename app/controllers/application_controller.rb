@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
   def color_theme(default)
     if current_user and current_user.color_theme
       case current_user.color_theme
+        when "light"
+          return default
         when "dark"
           return "#{default}_dark"
       end
