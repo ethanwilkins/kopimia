@@ -4,7 +4,7 @@
 			:html => {:multipart => true, "data-ajax" => false} do |f| %>
 			<%= hidden_field_tag :post_id, params[:id] %>
 			<p>
-				<%= f.text_field :text, placeholder: "What's new?", class: "form-control" %>
+				<%= f.text_area :text, placeholder: "What's new?", class: "form-control" %>
 			</p>
 			<p>
 				<%= f.file_field :image, class: "form-control" %>
