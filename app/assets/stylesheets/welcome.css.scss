@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $back: white;
+$back_dark: rgb(100, 100, 100);
 $button_color: rgb(240, 240, 240);
 $highlight_button: rgb(235, 235, 235);
 $click_button: rgb(40, 130, 205);
@@ -36,7 +37,7 @@ $info_color: rgb(190, 190, 190);
 }
 
 #card_dark {
-	background: rgb(100, 100, 100);
+	background: $back_dark;
 	position: relative;
 	border-radius: 6px;
 	box-shadow: 0px 1px 2px $card_shadow;

@@ -2,7 +2,7 @@
 voting on the default color scheme by clicking up or down on
 one of the RGB values, allowing for one vote a day -->
 
-<div id="card">
+<div id=<%= color_theme "card" %>>
 <%= form_for @user, url: user_path(@user), method: :patch,
 	:html => {:multipart => true, "data-ajax" => false} do |f| %>
 	<p>
@@ -30,7 +30,7 @@ one of the RGB values, allowing for one vote a day -->
 </div></br>
 
 
-<div id="delete_account_card">
+<div id=<%= color_theme "delete_account_card" %>>
 	<div align="center">
 		<p>
 			Deleting your account will permanently destroy all of your data.
