@@ -6,4 +6,4 @@ Groups are currently the main focus, with a proposal system that lets members co
 
 Ultimately, this code base will be capable of rapidly deploying custom social networks, soon with a control panel allowing for mamagement of feature sets optimized specifically for your needs, including encryption and other capabilities. Starting out as a simple blogging platform, you can add more and more features, such as user accounts, allowing for users to post, comment, and even create groups; all the while building up your own custom social network.
 
-The goal of this project is to provide a decentralized social structure for a more free and open society, as well as a catalyst for organized resistance efforts against the monopolization of culture and resources in general.
+The goal of this project is to provide a decentralized social structure for a more free and open society, as well as a catalyst for organized resistance efforts against the monopolization of culture.
