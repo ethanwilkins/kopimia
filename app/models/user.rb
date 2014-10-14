@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
       posts = []
       for post in Post.all
         # only publicly shared posts with up votes for new users
-        if post.publicly_shared and post.votes.up_votes.size > 0
+        if post.publicly_shared and post.votes.up_votes.size > 1
           posts << post
         end
       end
