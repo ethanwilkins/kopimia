@@ -2,7 +2,7 @@
 
 <% if @messages.size > 0 %>
 	<% @messages.each do |message| %>
-		<div id="card">
+		<div id=<%= color_theme("card")%>>
 			<div align="center">
 				<%= render "messages/time_ago", message: message %>
 				<%= link_to User.find(message.user_id).name, user_path(message.user_id)%>

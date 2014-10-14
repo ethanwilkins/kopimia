@@ -1,14 +1,14 @@
 <!-- number of results and amount of each type should be shown -->
 
 <% if @no_results %>
-	<div id="card">
+	<div id=<%= color_theme("card")%>>
 		<p align="center"><%= @no_results %></p>
 	</div></br>
 <% end %>
 
 <% if @users %>
 	<% @users.reverse.each do |user| %>
-		<div id="card">
+		<div id=<%= color_theme("card")%>>
 			<table align="center">
 				<tr>
 					<td>
@@ -26,7 +26,7 @@
 
 <% if @groups %>
 	<% @groups.reverse.each do |group| %>
-		<div id="card">
+		<div id=<%= color_theme("card")%>>
 			<div align="center">
 				<% if group.icon.url %>
 				<div>
@@ -45,7 +45,7 @@
 
 <% if @modules %>
 	<% @modules.reverse.each do |_module| %>
-		<div id="card">
+		<div id=<%= color_theme("card")%>>
 			<table align="center">
 				<tr>
 					<% if _module.icon.url %>

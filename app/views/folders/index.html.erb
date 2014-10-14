@@ -1,5 +1,5 @@
 <% @folders.each do |folder| %>
-	<div id="card">
+	<div id=<%= color_theme("card")%>>
 		<%= render "messages/time_ago", message: folder.messages.last %>
 		<table align="center">
 			<tr>

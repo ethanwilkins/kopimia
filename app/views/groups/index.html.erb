@@ -6,7 +6,7 @@
 
 	<% if @groups %>
 		<% for group in @groups %>
-			<div id="card">
+			<div id=<%= color_theme("card")%>>
 				<div align="center">
 					<% if group.icon.url %>
 						<%= link_to image_tag(group.icon, size: "50x50",
@@ -18,12 +18,10 @@
 			<br>
 		<% end %>
 
-		<% if @groups.size >= page_size %>
-			<%= render "pages/more" %>
-		<% end %>
+		<%= render "pages/more_back", all_items: Group.groups_of(current_user), items: @groups %>
 	<% end %>
 <% else %>
-	<div id="card">
+	<div id=<%= color_theme("card")%>>
 		<div align="center">
 			<%= link_to "Log in", root_url %> or
 			<%= link_to "sign up", new_user_path %> to create a group.

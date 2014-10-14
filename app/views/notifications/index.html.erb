@@ -2,7 +2,7 @@
 
 <% if current_user %>
 	<% @notes.each do |note| %>
-		<div id="card">
+		<div id=<%= color_theme("card")%>>
 			<%= render "notifications/time_ago", note: note %>
 			<table align="center" id="note_message">
 				<tr>
@@ -47,7 +47,7 @@
 		</div><br>
 	<% end %>
 
-	<%= render("pages/more") if @notes.size >= page_size %>
+	<%= render "pages/more_back", all_items: current_user.notifications, items: @notes %>
 	
 	<% if current_user.notifications.empty? %>
 		<div id="card">
