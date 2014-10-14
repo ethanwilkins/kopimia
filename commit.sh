@@ -8,7 +8,7 @@ cp -r /Users/ethanwilkins/Documents/ruby/rails/kopimia/ /Users/ethanwilkins/Docu
 
 cd /Users/ethanwilkins/Documents/GitHub/kopimia
 
-echo -e "\nCOMMITTING NOW\n"
+echo -e "\n"
 
 git add -A
 
