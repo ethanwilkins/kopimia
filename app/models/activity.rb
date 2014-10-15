@@ -18,8 +18,8 @@ class Activity < ActiveRecord::Base
     visit_count = 0
     visits_counted = []
     for visit in Activity.all
-      unless visits_counted.any? {|_visit| _visit.ip == visit.ip} or \
-        visits_counted.any? {|_visit| _visit.user_id == visit.user_id}
+      unless visits_counted.any? { |_visit| _visit.ip == visit.ip } or \
+        visits_counted.any? { |_visit| _visit.user_id == visit.user_id }
         visits_counted << visit
         visit_count += 1
       end

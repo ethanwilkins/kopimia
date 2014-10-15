@@ -27,21 +27,28 @@ class UsersController < ApplicationController
       user = User.last
       # maybe potentially be unsecure
       session[:user_id] = user.id if user
+      Activity.log_action(current_user,
+        request.remote_ip.to_s, "create_user")
       redirect_to root_url
     else
       flash[:error] = "No fields can be empty."
+      Activity.log_action(nil, request.remote_ip.to_s, "create_user_fail")
       redirect_to :back
     end
   end
   
   def destroy
     @user = User.find(params[:id])
+    user_id = @user.id
     if @user.destroy
       session[:user_id] = nil
       flash[:notice] = "Your account was successfully deleted."
+      Activity.log_action(nil, request.remote_ip.to_s, "destroy_user", user_id)
       redirect_to root_url
     else
       flash[:error] = "There was a problem deleting your account."
+      Activity.log_action(current_user,
+        request.remote_ip.to_s, "destroy_user_fail")
       redirect_to :back
     end
   end
@@ -63,8 +70,12 @@ class UsersController < ApplicationController
     
     if @user.update(params[:user].permit(:profile_picture,
       :bio, :name, :private, :color_theme))
+      Activity.log_action(current_user,
+        request.remote_ip.to_s, "update_user")
       redirect_to @user
     else
+      Activity.log_action(current_user,
+        request.remote_ip.to_s, "update_user_fail")
       redirect_to :back
     end
   end

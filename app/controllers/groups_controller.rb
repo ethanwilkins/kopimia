@@ -58,6 +58,8 @@ class GroupsController < ApplicationController
       redirect_to @group
     else
       flash[:error] = "The group could not be created."
+      Activity.log_action(current_user, request.remote_ip.to_s,
+        "group_create_fail")
       redirect_to :back
     end
   end

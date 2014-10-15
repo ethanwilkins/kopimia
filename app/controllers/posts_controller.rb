@@ -25,7 +25,7 @@ class PostsController < ApplicationController
     @other_user.notify!(:share_post, current_user, @post.id)
     Activity.log_action(current_user, request.remote_ip.to_s,
       "post_share", @post.id)
-    redirect_to :back
+    redirect_to user_post_path(@post.user_id, @post)
   end
   
   def show

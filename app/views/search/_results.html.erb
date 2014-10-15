@@ -3,65 +3,7 @@
 <% if @no_results %>
 	<div id=<%= color_theme("card")%>>
 		<p align="center"><%= @no_results %></p>
-	</div></br>
-<% end %>
-
-<% if @users %>
-	<% @users.reverse.each do |user| %>
-		<div id=<%= color_theme("card")%>>
-			<table align="center">
-				<tr>
-					<td>
-						<%= profile_picture(user, "25x25") %>
-					</td>
-					<td>
-						<%= link_to user.name, user_path(user) %>
-					</td>
-				</tr>
-			</table>
-		</div>
-		</br>
-	<% end %>
-<% end %>
-
-<% if @groups %>
-	<% @groups.reverse.each do |group| %>
-		<div id=<%= color_theme("card")%>>
-			<div align="center">
-				<% if group.icon.url %>
-				<div>
-					<%= link_to image_tag(group.icon, size: "50x50", id: :profile_picture),
-						group_path(group) %>
-				</div>
-				<% end %>
-				<div>
-					<%= link_to group.name, group_path(group) %>
-				</div>
-			</div>
-		</div>
-		</br>
-	<% end %>
-<% end %>
-
-<% if @modules %>
-	<% @modules.reverse.each do |_module| %>
-		<div id=<%= color_theme("card")%>>
-			<table align="center">
-				<tr>
-					<% if _module.icon.url %>
-					<td>
-						<%= link_to image_tag(_module.icon, size: "25x25", id: :profile_picture),
-							group_code_module_path(_module.group_id, _module) %>
-					</td>
-					<% end %>
-					<td>
-						<%= link_to _module.name, group_code_module_path(_module.group_id, _module) %>
-					</td>
-				</tr>
-			</table>
-		</div>
-		</br>
-	<% end %>
+	</div>
 <% end %>
 
 <% if @tags.present? %>
@@ -73,12 +15,63 @@
 			</div></br>
 		<% end %>
 	<% end %>
-	
-	<% @tags.reverse.each do |tag| %>
-		<% if tag.post_id %>
-			<%= render "posts/card", post: tag.item %>
-		<% elsif tag.comment_id %>
-			<%= render "comments/card", comment: tag.item %>
-		<% end %>
+<% end %>
+
+<% for result in @results %>
+	<% case result.class.to_s %>
+		<% when "User" %>
+			<div id=<%= color_theme("card")%>>
+				<table align="center">
+					<tr>
+						<td>
+							<%= profile_picture(result, "25x25") %>
+						</td>
+						<td>
+							<%= link_to result.name, user_path(result) %>
+						</td>
+					</tr>
+				</table>
+			</div>
+			</br>
+		<% when "Group" %>
+			<div id=<%= color_theme("card")%>>
+				<div align="center">
+					<% if result.icon.url %>
+					<div>
+						<%= link_to image_tag(result.icon, size: "50x50", id: :profile_picture),
+							group_path(result) %>
+					</div>
+					<% end %>
+					<div>
+						<%= link_to result.name, group_path(result) %>
+					</div>
+				</div>
+			</div>
+			</br>
+		<% when "CodeModule" %>
+			<div id=<%= color_theme("card")%>>
+				<table align="center">
+					<tr>
+						<% if result.icon.url %>
+						<td>
+							<%= link_to image_tag(result.icon, size: "25x25", id: :profile_picture),
+								group_code_module_path(result.group_id, result) %>
+						</td>
+						<% end %>
+						<td>
+							<%= link_to result.name, group_code_module_path(result.group_id, result) %>
+						</td>
+					</tr>
+				</table>
+			</div>
+			</br>
+		<% when "Hashtag" %>
+			<% if result.post_id %>
+				<%= render "posts/card", post: result.item %>
+			<% elsif result.comment_id %>
+				<%= render "comments/card", comment: result.item %>
+			<% end %>
 	<% end %>
 <% end %>
+
+<%= render "pages/more_back", all_items: @all_results, items: @results %>
