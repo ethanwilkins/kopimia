@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+  def search
     session[:query] = params[:query]
     if session[:query]
       @query = session[:query]
