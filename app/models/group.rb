@@ -11,7 +11,7 @@ class Group < ActiveRecord::Base
   mount_uploader :icon, ImageUploader
   
   def posts_plus_members
-    (posts.size / 2) + members.size
+    (posts.size / 3) + members.size
   end
   
   def federations
