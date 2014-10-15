@@ -1,6 +1,10 @@
 class FoldersController < ApplicationController
   def index
-    @folders = Folder.inbox_of(current_user).reverse
+    @folders = Folder.inbox_of(current_user).reverse.
+        # drops first several posts if :feed_page
+        drop((session[:page] ? session[:page] : 0) * page_size).
+        # only shows first several posts of resulting array
+        first(page_size)
     # logs the visit with the contextual data
     Activity.log_action(current_user,
       request.remote_ip.to_s, "inbox_check")

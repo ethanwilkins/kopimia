@@ -1,7 +1,16 @@
 class GroupsController < ApplicationController
   def groups_joined
+    unless session[:more]
+      session[:page] = nil
+    end
+    session[:more] = nil
+    
     @user = User.find(params[:id])
-    @groups = Group.groups_of(@user)
+    @groups = Group.groups_of(@user).
+        # drops first several posts if :feed_page
+        drop((session[:page] ? session[:page] : 0) * page_size).
+        # only shows first several posts of resulting array
+        first(page_size)
     Activity.log_action(current_user, request.remote_ip.to_s,
       "user_groups_joined_page_visit")
   end

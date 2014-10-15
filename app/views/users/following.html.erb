@@ -1,3 +1,11 @@
+<!-- users -->
+
+<% if @users.empty? %>
+	<div id="card">
+		<div align="center"><%= link_to @user.name, user_path(@user) %> isn't following anyone yet.</div>
+	</div>
+<% end %>
+
 <table align="center">
 	<tr>
 		<% if @user.profile_picture.url %>
@@ -25,8 +33,4 @@
 <br>
 <% end %>
 
-<% if @users.empty? %>
-	<div id="card">
-		<div align="center"><%= link_to @user.name, user_path(@user) %> isn't following anyone yet.</div>
-	</div>
-<% end %>
+<%= render "pages/more_back", all_items: @user.followed_users, items: @users %>

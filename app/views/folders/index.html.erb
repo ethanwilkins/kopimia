@@ -1,34 +1,40 @@
-<% @folders.each do |folder| %>
-	<div id=<%= color_theme("card")%>>
-		<%= render "messages/time_ago", message: folder.messages.last %>
-		<table align="center">
-			<tr>
-				<% folder.members.each do |member| %>
+<!-- folders -->
+
+<% if current_user %>
+	<% if @folders.count == 0 %>
+		<p align="center">You have zero messages.</p>
+	<% end %>
+
+	<% @folders.each do |folder| %>
+		<div id=<%= color_theme("card")%>>
+			<%= render "messages/time_ago", message: folder.messages.last %>
+			<table align="center">
+				<tr>
+					<% folder.members.each do |member| %>
+						<td>
+							<% if User.find(member.user_id).profile_picture.url %>
+								<%= link_to profile_picture(User.find(member.user_id), "25x25"),
+									user_path(User.find(member.user_id)) %>
+							<% else %>
+								<div id="folder_member_name_link">
+									<%= link_to User.find(member.user_id).name,
+									user_path(User.find(member.user_id)) %>
+								</div>
+							<% end %>
+						</td>
+					<% end %>
 					<td>
-						<% if User.find(member.user_id).profile_picture.url %>
-							<%= link_to profile_picture(User.find(member.user_id), "25x25"),
-								user_path(User.find(member.user_id)) %>
+						<% last_message = decrypt_message(folder.messages.last) %>
+						<% if last_message.size < 25 %>
+							<%= link_to "Last: " + last_message, folder_path(folder) %>
 						<% else %>
-							<div id="folder_member_name_link">
-								<%= link_to User.find(member.user_id).name,
-								user_path(User.find(member.user_id)) %>
-							</div>
+							<%= link_to "Last: " + last_message[0..20] + "...", folder_path(folder) %>
 						<% end %>
 					</td>
-				<% end %>
-				<td>
-					<% last_message = decrypt_message(folder.messages.last) %>
-					<% if last_message.size < 25 %>
-						<%= link_to "Last: " + last_message, folder_path(folder) %>
-					<% else %>
-						<%= link_to "Last: " + last_message[0..20] + "...", folder_path(folder) %>
-					<% end %>
-				</td>
-			</tr>
-		</table></br>
-	</div></br>
-<% end %>
+				</tr>
+			</table></br>
+		</div></br>
+	<% end %>
 
-<% if @folders.count == 0 %>
-	<p align="center">You have zero messages.</p>
+	<%= render "pages/more_back", all_items: Folder.inbox_of(current_user), items: @folders %>
 <% end %>

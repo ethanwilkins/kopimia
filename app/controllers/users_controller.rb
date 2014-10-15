@@ -1,12 +1,16 @@
 class UsersController < ApplicationController
-  def followers
-    @user = User.find(params[:id])
-    @users = @user.followers
-  end
-  
   def following
+    unless session[:more]
+      session[:page] = nil
+    end
+    session[:more] = nil
+    
     @user = User.find(params[:id])
-    @users = @user.followed_users
+    @users = @user.followed_users.reverse.
+      # drops first several posts if :feed_page
+      drop((session[:page] ? session[:page] : 0) * page_size).
+      # only shows first several posts of resulting array
+      first(page_size)
   end
   
   def new

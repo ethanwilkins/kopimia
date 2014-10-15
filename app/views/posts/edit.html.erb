@@ -1,16 +1,25 @@
 <% if current_user %>
 	<div id="card">
+		<% if @post.image_url %>
+			<div align="center">
+				</br><div id="post_image">
+					<%= link_to(image_tag(@post.image_url, width: "90%"),
+						show_post_path(@post.user, @post)) %>
+				</div></br>
+			</div>
+		<% end %>
 		<%= form_for @post, url: update_post_path, method: :patch,
 			:html => {:multipart => true, "data-ajax" => false} do |f| %>
 			<%= hidden_field_tag :post_id, params[:id] %>
 			<p>
-				<%= f.text_area :text, placeholder: "What's new?", class: "form-control" %>
-			</p>
-			<p>
+				<%= f.label "Upload a new or different picture" %>
 				<%= f.file_field :image, class: "form-control" %>
 			</p>
 			<p>
-				<%= f.submit "Update", class: "btn btn-default btn-lg btn-block" %>
+				<%= f.text_area :text, placeholder: "What's new?", class: "form-control" %>
+			</p>
+			<p>
+				<%= f.submit "Edit", class: "btn btn-default btn-lg btn-block" %>
 			</p>
 		<% end %>
 	</div>
