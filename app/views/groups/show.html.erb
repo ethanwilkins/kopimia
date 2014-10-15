@@ -8,6 +8,4 @@
 	<%= render "feed" %>
 <% end %>
 
-<% if @group.posts.size > page_size and @feed.size >= page_size %>
-	<%= render "pages/more" %>
-<% end %>
+<%= render "pages/more_back", all_items: @group.posts, items: @feed %>
