@@ -16,7 +16,7 @@ class SearchController < ApplicationController
 
       # show a listing of groups for empty searches
       if session[:query] == ""
-        @groups = Group.all.sort_by(&:posts_plus_members).reverse
+        @groups = Group.all.sort_by(&:rank).reverse
       elsif @users.empty? and @groups.empty? and @modules.empty? and @tags.empty?
         @no_results = "No results were found."
       end
