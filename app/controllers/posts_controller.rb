@@ -7,7 +7,6 @@ class PostsController < ApplicationController
     User.find(@post.user_id).notify!(:up_vote, current_user, @post.id)
     Activity.log_action(current_user, request.remote_ip.to_s,
       "post_up_vote", @post.id)
-    redirect_to :back
   end
   
   def down_vote
@@ -15,7 +14,6 @@ class PostsController < ApplicationController
     Vote.down_vote!(@post, current_user)
     Activity.log_action(current_user, request.remote_ip.to_s,
       "post_down_vote", @post.id)
-    redirect_to :back
   end
   
   def share
@@ -25,7 +23,6 @@ class PostsController < ApplicationController
     @other_user.notify!(:share_post, current_user, @post.id)
     Activity.log_action(current_user, request.remote_ip.to_s,
       "post_share", @post.id)
-    redirect_to user_post_path(@post.user_id, @post)
   end
   
   def show
