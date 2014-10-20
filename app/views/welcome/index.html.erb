@@ -1,20 +1,5 @@
 <!-- welcome -->
 
-<% unless current_user %>
-	<div id="card">
-		<div align="center">
-			<div id="welcome_header">Welcome to Kopimia</div>
-
-			<div id="welcome_info">
-				A free and open source social network based on the philosophy of Kopimism.
-			</div>
-			
-			<a href="https://github.com/ethanwilkins/kopimia", target="_blank">
-				Source</a> · <%= link_to "About", about_path %>
-		</div>
-	</div></br>
-	
-	<%= render "sessions/new" %>
-<% end %>
+<%= render "sessions/new" %>
 
 <%= render "feed" %>

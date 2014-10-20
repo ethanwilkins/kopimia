@@ -1,3 +1,4 @@
+<% unless current_user %>
 <div id="card">
 	<%= form_tag sessions_path do %>
 		<p align="center">
@@ -16,3 +17,4 @@
 		</div>
 	<% end %>
 </div></br>
+<% end %>
