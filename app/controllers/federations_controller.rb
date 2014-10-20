@@ -1,7 +1,7 @@
 class FederationsController < ApplicationController
   def show
     @federation = Federation.find(params[:id])
-    @groups = @federation.members
+    @activities = @federation.relevant_activity
     Activity.log_action(current_user, request.remote_ip.to_s,
       "federation_page_visit", @federation.id)
   end

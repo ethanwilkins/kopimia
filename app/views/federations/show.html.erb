@@ -1,3 +1,7 @@
 <!-- federations -->
 
 <%= render "federations/profile" %>
+
+<% for act in @activities %>
+	<%= act.action %>
+<% end %>

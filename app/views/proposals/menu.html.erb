@@ -1,34 +1,49 @@
 <div id="card">
 	<% if current_user %>
-		<% if @group %>
+		<% if @group and @group.membership(current_user) %>
 			<%= form_tag new_group_proposal_path(@group), method: :get do %>
 				<%= hidden_field_tag :group_id, params[:group_id] %>
 				<p>Choose a proposal type</p>
 				<p>
 					<%= select_tag :proposal_type,
-						options_for_select([["Proposal type", nil], ["Federate", "federate_request"], ["Join federation", "req_to_join_federation"],
-						["Description change", "description_change"], ["Add a module", "add_module"], ["Name change", "name_change"],
-						["Icon change", "icon_change"], ["Disband", "disband"]]), class: "form-control" %>
+						options_for_select([["Proposal type", nil], ["Federate", "federate_request"],
+						["Join federation", "req_to_join_federation"], ["Description change", "description_change"],
+						["Add a module", "add_module"], ["Name change", "name_change"], ["Icon change", "icon_change"],
+						["Disband", "disband"]]), class: "form-control" %>
+				</p>
+				<p>
+					<%= submit_tag "Next", class: "btn btn-default btn-lg btn-block" %>
+				</p>
+			<% end %>
+		<% elsif @group %>
+			<div align="center">
+				Join this <%= link_to "group", group_path(@group) %> if you'd like to create a proposal.
+			</div>
+		<% end %>
+		
+		<% if @federation and @federation.membership(current_user) %>
+			<%= form_tag new_federation_proposal_path(@federation), method: :get do %>
+				<%= hidden_field_tag :federation_id, params[:federation_id] %>
+				<p>Choose a proposal type</p>
+				<p>
+					<%= select_tag :proposal_type,
+						options_for_select([["Proposal type", nil], ["Request group to join", "request_group_to_join"],
+						["Description change", "description_change"], ["Add a module", "add_module"],
+						["Name change", "name_change"], ["Icon change", "icon_change"],
+						["Disband", "disband"]]), class: "form-control" %>
 				</p>
 				<p>
 					<%= submit_tag "Next", class: "btn btn-default btn-lg btn-block" %>
 				</p>
 			<% end %>
 		<% elsif @federation %>
-			<%= form_tag new_federation_proposal_path(@federation), method: :get do %>
-				<%= hidden_field_tag :federation_id, params[:federation_id] %>
-				<p>Choose a proposal type</p>
-				<p>
-					<%= select_tag :proposal_type,
-						options_for_select([["Proposal type", nil], ["Description change", "description_change"],
-						["Add a module", "add_module"], ["Name change", "name_change"], ["Icon change", "icon_change"],
-						["Request group to join"], ["Disband", "disband"]]), class: "form-control" %>
-				</p>
-				<p>
-					<%= submit_tag "Next", class: "btn btn-default btn-lg btn-block" %>
-				</p>
-			<% end %>
+			<div align="center">
+				Join a <%= link_to "group", federation_members_path(@federation) %>
+				of the <%= link_to "federation", federation_path(@federation) %>
+				if you'd like to create a proposal.
+			</div>
 		<% end %>
+		
 	<% else %>
 		<div align="center">
 			<%= link_to "Log in", root_url %> or

@@ -11,4 +11,19 @@ class Federation < ActiveRecord::Base
   validates_presence_of :name
   
   mount_uploader :icon, ImageUploader
+  
+  def relevant_activity
+    activities.where federation_id: id
+  end
+  
+  def membership(user)
+    is_a_member = false
+    for member_group in members
+      group = Group.find_by_id(member_group.federated_group_id)
+      if group and group.membership(user)
+        is_a_member = true
+      end
+    end
+    return is_a_member
+  end
 end
