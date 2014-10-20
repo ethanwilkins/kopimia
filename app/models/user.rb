@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 4 }
   validates :email, presence: true, length: { minimum: 6 }
   validates_confirmation_of :password
-  validates_uniqueness_of :email
+  validates_uniqueness_of :email, :name
   
   before_create :encrypt_password
   

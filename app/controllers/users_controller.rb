@@ -74,6 +74,7 @@ class UsersController < ApplicationController
         request.remote_ip.to_s, "update_user")
       redirect_to @user
     else
+      flash[:error] = "Invalid input. Username may already be in use."
       Activity.log_action(current_user,
         request.remote_ip.to_s, "update_user_fail")
       redirect_to :back
