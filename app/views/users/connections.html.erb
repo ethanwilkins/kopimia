@@ -1,15 +1,32 @@
 <!-- connections page to show users connections, groups, and federations -->
 
+<table align="center">
+	<tr>
+		<% if @user.profile_picture.url %>
+		<td>
+			<%= profile_picture(@user, "50x50") %>
+		</td>
+		<% end %>
+		<td>
+			<% if @user.name.size < 8 %>
+				<h2 align="center"><%= @user.name + "'s" %> Connections</h2>
+			<% else %>
+				<h3 align="center"><%= @user.name + "'s" %> Connections</h3>
+			<% end %>
+		</td>
+	</tr>
+</table></br>
+
 <div id="card">
-	<%= link_to groups_joined_path(@user), class: "btn btn-default btn-lg btn-block" do %>
-		<span class="glyphicon glyphicon-globe"></span> Groups
-	<% end %>
-	
-	<%= link_to following_user_path(@user), class: "btn btn-default btn-lg btn-block" do %>
-		<span class="glyphicon glyphicon-globe"></span> People
-	<% end %>
-	
 	<%= link_to following_user_path(@user), class: "btn btn-default btn-lg btn-block" do %>
 		<span class="glyphicon glyphicon-globe"></span> Federations
+	<% end %></br>
+	
+	<%= link_to groups_joined_path(@user), class: "btn btn-default btn-lg btn-block" do %>
+		<span class="glyphicon glyphicon-globe"></span> Groups
+	<% end %></br>
+	
+	<%= link_to following_user_path(@user), class: "btn btn-default btn-lg btn-block" do %>
+		<span class="glyphicon glyphicon-user"></span> People
 	<% end %>
 </div>

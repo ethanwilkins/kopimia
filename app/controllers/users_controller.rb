@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def connections
     # page for people, groups, and federations of user
+    @user = User.find(params[:user_id])
   end
   
   def following
