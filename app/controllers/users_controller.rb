@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def connections
+    # page for people, groups, and federations of user
+  end
+  
   def following
     unless session[:more]
       session[:page] = nil

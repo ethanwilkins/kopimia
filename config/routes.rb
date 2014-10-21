@@ -51,6 +51,8 @@ Social::Application.routes.draw do
   
   delete "users/destroy/:id", to: "users#destroy", as: "user_destroy"
   
+  get "users/:user_id/connections", to: "users#connections", as: "user_connections" 
+  
   post "folders/create", as: "create_folder"
   
   post "proposals/create", as: "proposals"
