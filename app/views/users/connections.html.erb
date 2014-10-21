@@ -1,0 +1,15 @@
+<!-- connections page to show users connections, groups, and federations -->
+
+<div id="card">
+	<%= link_to groups_joined_path(@user), class: "btn btn-default btn-lg btn-block" do %>
+		<span class="glyphicon glyphicon-globe"></span> Groups
+	<% end %>
+	
+	<%= link_to following_user_path(@user), class: "btn btn-default btn-lg btn-block" do %>
+		<span class="glyphicon glyphicon-globe"></span> People
+	<% end %>
+	
+	<%= link_to following_user_path(@user), class: "btn btn-default btn-lg btn-block" do %>
+		<span class="glyphicon glyphicon-globe"></span> Federations
+	<% end %>
+</div>

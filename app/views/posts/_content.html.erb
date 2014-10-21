@@ -5,7 +5,7 @@
 <div align="center">
 	<% if _post.image_url or post.image_url %>
 		<div id="post_image">
-			<%= link_to(image_tag(post.image_url, width: "90%"),
+			<%= link_to(image_tag(post.image_url, width: "100%"),
 				show_post_path(_post.user, _post)) %>
 		</div>
 	<% end %>
