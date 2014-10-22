@@ -51,8 +51,11 @@
 
 		<div>
 			<div class="btn-group">
-				<%= link_to user_connections_path(@user), class: "btn btn-default" do %>
-					<span class="glyphicon glyphicon-globe"></span> Connections
+				<%= link_to groups_joined_path(@user), class: "btn btn-default" do %>
+					<span class="glyphicon glyphicon-globe"></span> Groups
+				<% end %>
+				<%= link_to following_user_path(@user), class: "btn btn-default" do %>
+					<span class="glyphicon glyphicon-user"></span> Net
 				<% end %>
 				<%= render "messages/message_button" %>
 			</div>
