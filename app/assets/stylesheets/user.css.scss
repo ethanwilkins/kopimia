@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $back_dark: rgb(100, 100, 100);
+$card_width: 94.5%;
 
 #profile_picture {
 	border-radius: 3.5px;
@@ -26,7 +27,7 @@ $back_dark: rgb(100, 100, 100);
 	padding: 15px 20px;
 	max-width: 550px;
 	margin: 0 auto;
-	width: 80%;
+	width: $card_width;
 	margin-bottom: 50px;
 }
 
@@ -38,7 +39,7 @@ $back_dark: rgb(100, 100, 100);
 	padding: 15px 20px;
 	max-width: 550px;
 	margin: 0 auto;
-	width: 80%;
+	width: $card_width;
 	margin-bottom: 50px;
 }
 
