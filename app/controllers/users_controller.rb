@@ -20,8 +20,7 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
-    Activity.log_action(current_user,
-      request.remote_ip.to_s, "sign_up_page_visit")
+    Activity.log_action(current_user, request.remote_ip.to_s, "users_new")
   end
   
   def create
@@ -32,12 +31,11 @@ class UsersController < ApplicationController
       user = User.last
       # maybe potentially be unsecure
       session[:user_id] = user.id if user
-      Activity.log_action(current_user,
-        request.remote_ip.to_s, "create_user")
+      Activity.log_action(current_user, request.remote_ip.to_s, "users_create")
       redirect_to root_url
     else
       flash[:error] = "No fields can be empty."
-      Activity.log_action(nil, request.remote_ip.to_s, "create_user_fail")
+      Activity.log_action(nil, request.remote_ip.to_s, "users_create_fail")
       redirect_to :back
     end
   end
