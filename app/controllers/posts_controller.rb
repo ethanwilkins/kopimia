@@ -5,15 +5,11 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     Vote.up_vote!(@post, current_user)
     User.find(@post.user_id).notify!(:up_vote, current_user, @post.id)
-    Activity.log_action(current_user, request.remote_ip.to_s,
-      "post_up_vote", @post.id)
   end
   
   def down_vote
     @post = Post.find(params[:id])
     Vote.down_vote!(@post, current_user)
-    Activity.log_action(current_user, request.remote_ip.to_s,
-      "post_down_vote", @post.id)
   end
   
   def share
@@ -21,8 +17,6 @@ class PostsController < ApplicationController
     @other_user = User.find(Post.find(params[:id]).user_id)
     @post = @user.posts.create(original: params[:id])
     @other_user.notify!(:share_post, current_user, @post.id)
-    Activity.log_action(current_user, request.remote_ip.to_s,
-      "post_share", @post.id)
   end
   
   def show
@@ -32,9 +26,6 @@ class PostsController < ApplicationController
       @comments = @post.comments.sort_by(&:score).reverse!
       @comment = Comment.new
     end
-    # logs data about visit
-    Activity.log_action(current_user, request.remote_ip.to_s,
-      "post_page_visit", @post.id)
   end
   
   def edit
@@ -70,8 +61,6 @@ class PostsController < ApplicationController
     @user = User.find(current_user.id)
     @post = @user.posts.find(params[:id])
     @post.destroy
-    Activity.log_action(current_user, request.remote_ip.to_s,
-      "post_destroy", @post.id)
     redirect_to user_path(@user)
   end
 end

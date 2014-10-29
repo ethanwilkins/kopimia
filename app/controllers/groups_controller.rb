@@ -11,15 +11,11 @@ class GroupsController < ApplicationController
         drop((session[:page] ? session[:page] : 0) * page_size).
         # only shows first several posts of resulting array
         first(page_size)
-    Activity.log_action(current_user, request.remote_ip.to_s,
-      "user_groups_joined_page_visit")
   end
   
   def federations
     @group = Group.find(params[:group_id])
     @federations = @group.federations
-    Activity.log_action(current_user, request.remote_ip.to_s,
-      "groups_federations_page_visit", @group.id)
   end
   
   def index
@@ -36,15 +32,10 @@ class GroupsController < ApplicationController
         # only shows first several posts of resulting array
         first(page_size)
     end
-    # logs the visit with the contextual data
-    Activity.log_action(current_user,
-      request.remote_ip.to_s, "groups_page_visit")
   end
   
   def new
     @group = Group.new
-    Activity.log_action(current_user, request.remote_ip.to_s,
-      "new_group_page_visit", @group.id)
   end
   
   def create
@@ -53,13 +44,9 @@ class GroupsController < ApplicationController
     if @group.save
       @group.members.create(user_id: current_user.id)
       flash[:notice] = "The group was created successfully."
-      Activity.log_action(current_user, request.remote_ip.to_s,
-        "group_create", @group.id)
       redirect_to @group
     else
       flash[:error] = "The group could not be created."
-      Activity.log_action(current_user, request.remote_ip.to_s,
-        "group_create_fail")
       redirect_to :back
     end
   end
@@ -78,8 +65,5 @@ class GroupsController < ApplicationController
       # only shows first several posts of resulting array
       first(page_size)
     @post = Post.new
-    # logs the visit with the contextual data
-    Activity.log_action(current_user, request.remote_ip.to_s,
-      "group_page_visit", @group.id)
   end
 end

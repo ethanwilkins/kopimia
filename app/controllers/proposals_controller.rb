@@ -5,8 +5,6 @@ class ProposalsController < ApplicationController
     elsif params[:federation_id]
       @federation = Federation.find(params[:federation_id])
     end
-    Activity.log_action(current_user,
-      request.remote_ip.to_s, "proposal_menu_page_visit")
   end
   
   def up_vote
@@ -14,8 +12,6 @@ class ProposalsController < ApplicationController
     Vote.up_vote!(@proposal, current_user)
     # ratifies proposal at enough votes
     if @proposal.ratify
-      Activity.log_action(current_user, request.remote_ip.to_s,
-        "proposal_up_vote", @proposal.id)
       flash[:notice] = "The proposal has been ratified!"
       if Proposal.where(id: @proposal.id).present?
         redirect_to :back
@@ -30,8 +26,6 @@ class ProposalsController < ApplicationController
   def down_vote
     @proposal = Proposal.find(params[:id])
     Vote.down_vote!(@proposal, current_user)
-    Activity.log_action(current_user, request.remote_ip.to_s,
-      "proposal_down_vote", @proposal.id)
     redirect_to :back
   end
   
@@ -43,8 +37,6 @@ class ProposalsController < ApplicationController
     end
     @proposal = Proposal.find(params[:id])
     @comment = Comment.new
-    Activity.log_action(current_user, request.remote_ip.to_s,
-      "proposal_page_visit", @proposal.id)
   end
   
   def index
@@ -56,8 +48,6 @@ class ProposalsController < ApplicationController
       @federation = Federation.find(params[:federation_id])
       @proposals = @federation.proposals.sort_by(&:score).reverse!
     end
-    Activity.log_action(current_user,
-      request.remote_ip.to_s, "proposals_page_visit")
   end
   
   def create
@@ -74,8 +64,6 @@ class ProposalsController < ApplicationController
     @proposal.action = session[:proposal_type]
     if @proposal.save
       @proposal.ratify if @group and @group.members.size < 2
-      Activity.log_action(current_user, request.remote_ip.to_s,
-        "create_proposal", @proposal.id)
       if @group
         redirect_to group_proposals_path(@group)
       elsif @federation
@@ -92,7 +80,5 @@ class ProposalsController < ApplicationController
     @federations = Federation.all
     @proposal = Proposal.new
     @groups = Group.all
-    Activity.log_action(current_user,
-      request.remote_ip.to_s, "new_proposal_page_visit")
   end
 end

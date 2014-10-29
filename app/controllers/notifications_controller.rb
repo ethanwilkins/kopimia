@@ -17,8 +17,5 @@ class NotificationsController < ApplicationController
       
       current_user.notifications.update_all checked: true
     end
-    # logs the visit with the contextual data
-    Activity.log_action(current_user,
-      request.remote_ip.to_s, "notifications_check")
   end
 end

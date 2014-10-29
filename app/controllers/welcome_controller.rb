@@ -11,8 +11,6 @@ class WelcomeController < ApplicationController
       # only shows first several posts of resulting array
       first(page_size)
     @post = Post.new
-    # logs the visit with the contextual data
-    Activity.log_action(current_user, request.remote_ip.to_s, "main_page_visit")
   end
   
   def about

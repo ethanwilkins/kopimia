@@ -10,9 +10,6 @@ class FoldersController < ApplicationController
         drop((session[:page] ? session[:page] : 0) * page_size).
         # only shows first several posts of resulting array
         first(page_size)
-    # logs the visit with the contextual data
-    Activity.log_action(current_user,
-      request.remote_ip.to_s, "inbox_check")
   end
   
   def new
@@ -26,9 +23,6 @@ class FoldersController < ApplicationController
     @messages = @folder.messages
     Message.where("user_id != ?", current_user.id).update_all seen: true
     @messages = @messages.last(5)
-    # logs the visit with the contextual data
-    Activity.log_action(current_user, request.remote_ip.to_s,
-      "conversation_check", @folder.id)
   end
   
   def create

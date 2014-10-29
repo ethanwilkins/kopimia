@@ -48,26 +48,19 @@ class UsersController < ApplicationController
     if @user.destroy
       session[:user_id] = nil
       flash[:notice] = "Your account was successfully deleted."
-      Activity.log_action(nil, request.remote_ip.to_s, "destroy_user", user_id)
       redirect_to root_url
     else
       flash[:error] = "There was a problem deleting your account."
-      Activity.log_action(current_user,
-        request.remote_ip.to_s, "destroy_user_fail")
       redirect_to :back
     end
   end
   
   def settings
     @user = current_user
-    Activity.log_action(current_user,
-      request.remote_ip.to_s, "settings_page_visit")
   end
   
   def edit
     @user = current_user
-    Activity.log_action(current_user,
-      request.remote_ip.to_s, "edit_page_visit")
   end
   
   def update
@@ -75,13 +68,9 @@ class UsersController < ApplicationController
     
     if @user.update(params[:user].permit(:profile_picture,
       :bio, :name, :private, :color_theme))
-      Activity.log_action(current_user,
-        request.remote_ip.to_s, "update_user")
       redirect_to @user
     else
       flash[:error] = "Invalid input. Username may already be in use."
-      Activity.log_action(current_user,
-        request.remote_ip.to_s, "update_user_fail")
       redirect_to :back
     end
   end
@@ -104,9 +93,6 @@ class UsersController < ApplicationController
     if @user != current_user and Folder.folder_between(current_user, @user)
       @folder = Folder.folder_between(current_user, @user)
     end
-    # logs data about visit
-    Activity.log_action(current_user, request.remote_ip.to_s,
-      "user_profile_visit", @user.id)
   end
   
   def index
@@ -120,8 +106,5 @@ class UsersController < ApplicationController
       drop((session[:page] ? session[:page] : 0) * page_size).
       # only shows first several posts of resulting array
       first(page_size)
-      
-    Activity.log_action(current_user,
-      request.remote_ip.to_s, "users_page_visit")
   end
 end
