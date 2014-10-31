@@ -1,12 +1,5 @@
 <!-- users -->
 
-<div id="card">
-	<div align="center">
-		<p>Total users: <%= User.all.size %></p>
-		<div>Unique visits: <%= Activity.unique_visit_count %></div>
-	</div>
-</div></br>
-
 <% @users.each do |user| %>
 	<div id="card">
 		<div align="center">
