@@ -1,11 +1,5 @@
 <!-- users -->
 
-<% if @users.empty? %>
-	<div id="card">
-		<div align="center"><%= link_to @user.name, user_path(@user) %> isn't following anyone yet.</div>
-	</div>
-<% end %>
-
 <table align="center">
 	<tr>
 		<% if @user.profile_picture.url %>
@@ -22,6 +16,12 @@
 		</td>
 	</tr>
 </table></br>
+
+<% if @users.empty? %>
+	<div id="card">
+		<div align="center"><%= link_to @user.name, user_path(@user) %> isn't following anyone yet.</div>
+	</div>
+<% end %>
 
 <% @users.each do |user| %>
 <div id="card">
