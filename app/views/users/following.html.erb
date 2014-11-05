@@ -30,7 +30,6 @@
 		<div><%= link_to user.name, user_path(user) %></div>
 	</div>
 </div>
-<br>
 <% end %>
 
 <%= render "pages/more_back", all_items: @user.followed_users, items: @users %>
