@@ -1,5 +1,6 @@
 <% unless current_user %>
 <div id="card">
+	<div id="form_padding">
 	<%= form_tag sessions_path do %>
 		<p align="center">
 			Log in or sign up <%= link_to "here", new_user_path %>
@@ -16,5 +17,6 @@
 			</span>
 		</div>
 	<% end %>
-</div></br>
+	</div>
+</div>
 <% end %>
