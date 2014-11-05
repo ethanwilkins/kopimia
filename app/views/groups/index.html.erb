@@ -15,7 +15,6 @@
 					<div><%= link_to group.name, group_path(group) %></div>
 				</div>
 			</div>
-			<br>
 		<% end %>
 
 		<%= render "pages/more_back", all_items: Group.groups_of(current_user), items: @groups %>

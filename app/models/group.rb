@@ -4,7 +4,7 @@ class Group < ActiveRecord::Base
   has_many :members, dependent: :destroy
   has_many :proposals, dependent: :destroy
   has_many :code_modules, dependent: :destroy
-  has_many :activites, dependent: :destroy
+  has_many :activities, dependent: :destroy
   has_many :hashtags, dependent: :destroy
   has_many :shares, dependent: :destroy
   

@@ -65,9 +65,17 @@ class ProposalsController < ApplicationController
     if @proposal.save
       @proposal.ratify if @group and @group.members.size < 2
       if @group
-        redirect_to group_proposals_path(@group)
+        if Group.find_by_id(@group.id)
+          redirect_to group_proposals_path(@group)
+        else
+          redirect_to groups_path
+        end
       elsif @federation
-        redirect_to federation_proposals_path(@federation)
+        if Federation.find_by_id(@federation.id)
+          redirect_to federation_proposals_path(@federation)
+        else
+          redirect_to root_url
+        end
       end
     else
       flash[:error] = "Invalid input"

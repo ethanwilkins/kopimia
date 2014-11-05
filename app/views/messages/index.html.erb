@@ -14,7 +14,7 @@
 		</table>
 		<p align="center"><%= message.text %></p>
 		<%= button_to "Reply", new_user_message_path(message.sender), :method => "get" %>
-	</div></br>
+	</div>
 <% end %>
 
 <% if @messages.count == 0 %>

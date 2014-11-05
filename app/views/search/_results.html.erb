@@ -32,7 +32,6 @@
 					</tr>
 				</table>
 			</div>
-			</br>
 		<% when "Group" %>
 			<div id=<%= color_theme("card")%>>
 				<div align="center">
@@ -47,7 +46,6 @@
 					</div>
 				</div>
 			</div>
-			</br>
 		<% when "CodeModule" %>
 			<div id=<%= color_theme("card")%>>
 				<table align="center">
@@ -64,7 +62,6 @@
 					</tr>
 				</table>
 			</div>
-			</br>
 		<% when "Hashtag" %>
 			<% if result.post_id %>
 				<%= render "posts/card", post: result.item %>
