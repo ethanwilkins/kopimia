@@ -1,4 +1,5 @@
 <div id="card">
+	<div id="form_padding">
 	<% if current_user %>
 		<% if @group and @group.membership(current_user) %>
 			<%= form_tag new_group_proposal_path(@group), method: :get do %>
@@ -50,4 +51,5 @@
 			<%= link_to "sign up", new_user_path %> to create a proposal.
 		</div>
 	<% end %>
+	</div>
 </div>

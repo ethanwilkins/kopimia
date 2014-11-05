@@ -14,11 +14,11 @@
 		<% preview_length = 500 %>
 		<% if post.text.size < preview_length %>
 			<% text = post.text %>
-			<p>
+			<div id="short_text_post">
 		<% else %>
 			<% text = post.text.slice(0..preview_length) + "... " unless defined? show_post_page %>
 			<% text = post.text if defined? show_post_page %>
-			<p id="article_of_text">
+			<div id="article_of_text">
 		<% end %>
 			<% for word in text.split(' ') %>
 				<%= render "posts/embed", word: word %>
@@ -31,6 +31,6 @@
 			<% post.hashtags.each do |tag| %>
 				<%= link_to tag.tag, tagged_path(tag.tag) %>
 			<% end %>
-		</p>
+		</div>
 	<% end %>
 </div>

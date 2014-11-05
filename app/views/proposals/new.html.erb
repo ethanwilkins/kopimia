@@ -1,6 +1,7 @@
 <!-- proposals -->
 
 <div id="card">
+<div id="form_padding">
 <%= form_for @proposal, :html => {:multipart => true, "data-ajax" => false} do |f| %>
 	<%= hidden_field_tag(:federation_id, params[:federation_id]) if params[:federation_id] %>
 	<%= hidden_field_tag(:group_id, params[:group_id]) if params[:group_id] %>
@@ -80,4 +81,5 @@
 		<%= f.submit "Create proposal", class: "btn btn-default btn-lg btn-block" %>
 	</p>
 <% end %>
+</div>
 </div>
