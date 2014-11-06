@@ -2,11 +2,11 @@
 	<% word = word.slice 0...word.index("&") if word.include? "&" %>
 	<% word.sub! "watch?v=", "embed/" if word.include? "watch?v=" %>
 	<% word.sub! "youtu.be", "www.youtube.com/embed" if word.include? "youtu.be" %>
-	<iframe width="90%" height="315" src="<%= word %>" frameborder="0" allowfullscreen>
+	<iframe width="100%" height="315" src="<%= word %>" frameborder="0" allowfullscreen>
 	</iframe></br>
 <% elsif word =~ /\A#{URI::regexp}\z/ or word.include? "http://" or word.include? ".se" and word != "in:" %>
 	<% if word.include? ".jpg" or word.include? ".png" or word.include? ".gif" %>
-		<div align="center"><%= image_tag word, width: "90%" %></div>
+		<div align="center"><%= image_tag word, width: "100%" %></div>
 	<% else %>
 		<% unless word.size > 25 %>
 			<%= link_to word + " ", word, target: :_blank %>

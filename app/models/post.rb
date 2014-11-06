@@ -9,6 +9,20 @@ class Post < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
   
+  def embedded?
+    _embedded = false
+    for word in text.split(' ')
+      if word =~ /\A#{URI::regexp}\z/
+        if word.include? "youtube" and not word.include? "user" and not word.include? "channel"
+          _embedded = true
+        elsif word.include? ".jpg" or word.include? ".png" or word.include? ".gif"
+          _embedded = true
+        end
+      end
+    end
+    return _embedded
+  end
+  
   def publicly_shared
     if (group_id and Group.find_by_id(group_id) and Group.find(group_id).private) \
       or (user_id and User.find_by_id(user_id) and User.find(user_id).private) \

@@ -12,7 +12,10 @@
 	
 	<% if post.text.present? or post.hashtags.present? %>
 		<% preview_length = 500 %>
-		<% if post.text.size < preview_length %>
+		<% if post.embedded? %>
+			<% text = post.text %>
+			<div id="embedded_post">
+		<% elsif post.text.size < preview_length %>
 			<% text = post.text %>
 			<div id="short_text_post">
 		<% else %>
