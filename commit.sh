@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo -e "\nCopying...\n"
+
 cd /Users/ethanwilkins/Documents/GitHub/
 
 rm -rf kopimia/*
@@ -8,7 +10,7 @@ cp -r /Users/ethanwilkins/Documents/ruby/rails/kopimia/ /Users/ethanwilkins/Docu
 
 cd /Users/ethanwilkins/Documents/GitHub/kopimia
 
-echo -e "\n"
+echo -e "Committing...\n"
 
 git add -A
 
