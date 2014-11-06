@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$text_side_padding: 12.5px;
+
 #post_image {
 	margin-bottom: 10px;
 }
@@ -9,12 +11,12 @@
 #article_of_text {
 	text-align: left;
 	font-size: 13px;
-	padding: 0px 10px;
+	padding: 0px $text_side_padding;
 	padding-bottom: 7.5px;
 }
 
 #short_text_post {
-	padding: 0px 10px;
+	padding: 0px $text_side_padding;
 	padding-bottom: 7.5px;
 }
 
