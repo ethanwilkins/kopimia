@@ -35,13 +35,15 @@ one of the RGB values, allowing for one vote a day -->
 
 
 <div id=<%= color_theme "delete_account_card" %>>
-	<div align="center">
-		<p>
-			Deleting your account will permanently destroy all of your data.
-		</p>
-		<%= button_to "Delete my account", user_destroy_path(current_user), method: :delete,
-			data: { confirm: 'Are you sure you want to permanently delete your account?' },
-			class: "btn btn-default btn-lg btn-block" %>
+	<div id="form_padding">
+		<div align="center">
+			<p>
+				Deleting your account will permanently destroy all of your data.
+			</p>
+			<%= link_to "Delete my account", user_destroy_path(current_user), method: :delete,
+				data: { confirm: 'Are you sure you want to permanently delete your account?' },
+				class: "btn btn-default btn-lg btn-block" %>
+		</div>
 	</div>
 </div>
 </br>
