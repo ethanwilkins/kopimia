@@ -1,8 +1,12 @@
 class SessionsController < ApplicationController
   def create
     user = User.authenticate(params[:email], params[:password])
-    if user
-      session[:user_id] = user.id
+    if user.update ip: request.remote_ip.to_s
+      if params[:remember_me]
+        cookies.permanent[:auth_token] = user.auth_token
+      else
+        cookies[:auth_token] = user.auth_token
+      end
       Activity.log_action(current_user, request.remote_ip.to_s, "sessions_create")
       redirect_to root_url
     else
@@ -13,9 +17,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    user_id = session[:user_id]
-    session[:user_id] = nil
-    Activity.log_action(nil, request.remote_ip.to_s, "sessions_destroy", user_id)
+    cookies.delete(:auth_token)
+    flash[:notice] = "Log out successful."
     redirect_to root_url
   end
 end

@@ -2,6 +2,7 @@
 	<div align="center">
 	<% unless current_user %>
 		<p align="center">Sign up</p>
+		<div id="form_padding">
 		<%= form_for @user do |f| %>
 			<p>
 				<%= f.text_field :name, placeholder: "Username", class: "form-control" %>
@@ -21,6 +22,7 @@
 				</span>
 			</div>
 		<% end %>
+		</div>
 	<% else %>
 		You've already signed up.
 	<% end %>

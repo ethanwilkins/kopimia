@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   
   before_create :encrypt_password
   
+  before_save :generate_token
+  
   mount_uploader :profile_picture, ImageUploader
   
   def notify_mentioned(item)
@@ -100,10 +102,18 @@ class User < ActiveRecord::Base
     end
   end
   
+  private
+  
   def encrypt_password
     if password.present?
       self.salt = BCrypt::Engine.generate_salt
       self.password = BCrypt::Engine.hash_secret(password, salt)
     end
+  end
+  
+  def generate_token
+    begin
+      self.auth_token = SecureRandom.urlsafe_base64
+    end while User.exists? auth_token: self.auth_token
   end
 end
