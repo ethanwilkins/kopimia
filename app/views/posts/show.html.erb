@@ -2,7 +2,7 @@
 
 <% if @post %>
 	<div id="card">
-		<table align="center">
+		<table id="user_action_heading">
 			<tr>
 				<td><%= profile_picture(@user, "25x25") %></td>
 				<td id="user_action_text">
@@ -14,7 +14,7 @@
 		
 		<%= render "content", post: @post, show_post_page: true %>
 	
-		<div align="center">
+		<div id="post_buttons">
 			<div class="btn-group">
 				<%= render "vote", post: @post %>
 				<%= render "share", post: @post %>
