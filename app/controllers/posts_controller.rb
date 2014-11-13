@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     if Post.find_by_id(params[:id])
       @post = Post.find(params[:id])
-      @comments = @post.comments.sort_by(&:score).reverse!
+      @comments = @post.comments.sort_by(&:score)
       @comment = Comment.new
     end
   end
