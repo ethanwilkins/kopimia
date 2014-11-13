@@ -2,7 +2,7 @@
 <!-- to pull content from the original post -->
 <% post = Post.find(post.original) if post.original %>
 		
-<div align="center">
+<div align="center" id="post_content">
 	<% if _post.image_url or post.image_url %>
 		<div id="post_image">
 			<%= link_to(image_tag(post.image_url, width: "100%"),

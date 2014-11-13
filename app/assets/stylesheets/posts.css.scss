@@ -5,6 +5,10 @@
 $text_side_padding: 12.5px;
 $bottom_padding: 7.5px;
 
+#post_content {
+	margin-bottom: 42.5px;
+}
+
 #post_image {
 	margin-bottom: 10px;
 }
@@ -29,4 +33,15 @@ $bottom_padding: 7.5px;
 #user_action_text {
 	font-size: 13px;
 	color: rgb(170, 180, 190);
+}
+
+#user_action_heading {
+	margin-left: 13.5px;
+	margin-bottom: 2.5px;
+}
+
+#post_buttons {
+	position: absolute;
+	right: 12px;
+	bottom: 12px;
 }
