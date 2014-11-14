@@ -29,8 +29,7 @@ class UsersController < ApplicationController
     
     if @user.save
       user = User.last
-      # maybe potentially be unsecure
-      session[:user_id] = user.id if user
+      cookies[:auth_token] = user.auth_token
       Activity.log_action(current_user, request.remote_ip.to_s, "users_create")
       redirect_to root_url
     else
