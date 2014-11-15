@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
   def create
     user = User.authenticate(params[:email], params[:password])
-    if user.update ip: request.remote_ip.to_s
+    if user
+      user.update_token
       if params[:remember_me]
         cookies.permanent[:auth_token] = user.auth_token
       else
