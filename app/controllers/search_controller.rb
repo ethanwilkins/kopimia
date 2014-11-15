@@ -9,16 +9,16 @@ class SearchController < ApplicationController
     session[:query] = params[:query]
     if session[:query]
       @query = session[:query]
-      @users = User.where "name = ? OR name = ?", session[:query].capitalize, session[:query].downcase
-      @groups = Group.where "name = ? OR name = ?", session[:query].capitalize, session[:query].downcase
-      @modules = CodeModule.where "name = ? OR name = ?", session[:query].capitalize, session[:query].downcase
+      @users = User.where "name = ? OR name = ?", @query.capitalize, @query.downcase
+      @groups = Group.where "name = ? OR name = ?", @query.capitalize, @query.downcase
+      @modules = CodeModule.where "name = ? OR name = ?", @query.capitalize, @query.downcase
       @tags = Hashtag.tagged(session[:query])
 
       # show a listing of groups for empty searches
       if session[:query] == ""
         @groups = Group.all.sort_by(&:rank).reverse
       elsif @users.empty? and @groups.empty? and @modules.empty? and @tags.empty?
-        @no_results = "No results were found."
+        @no_results = "No results were found for #{@query}."
       end
 
       @all_results = [] # collects results into one array

@@ -1,6 +1,8 @@
 class Proposal < ActiveRecord::Base
-  belongs_to :groups
+  belongs_to :group
+  belongs_to :proposal
   belongs_to :federation
+  has_many :proposals, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
   
@@ -14,8 +16,8 @@ class Proposal < ActiveRecord::Base
     group = Group.find_by_id(group_id)
     federation = Federation.find_by_id(federation_id)
     federated_federation = Federation.find_by_id(federated_federation_id)
-    if (group and (votes.up_votes.size > group.members.size / 2 or group.members.size < 2)) or \
-      (federation and (votes.up_votes.size > federation.members.size / 2 or federation.members.size < 2))
+    if (group and ((votes.up_votes.size > group.members.size / 2 and votes.down_votes.empty?) or group.members.size < 2)) or \
+      (federation and ((votes.up_votes.size > federation.members.size / 2 and votes.down_votes.empty?) or federation.members.size < 2))
       case action
         when "icon_change"
           group.update icon: icon
