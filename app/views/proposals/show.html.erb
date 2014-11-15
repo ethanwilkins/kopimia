@@ -1,5 +1,12 @@
 <!-- proposals -->
 
+<% if current_user and not @proposal.inactive %>
+<div id="large_button">
+	<%= button_to "Change the proposal", root_url,
+		method: :get, class: "btn btn-default btn-lg btn-block" %><br>
+</div>
+<% end %>
+
 <div id="card">
 	<% if @group %>
 		<%= render "user_action", proposal: @proposal %>

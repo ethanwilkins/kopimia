@@ -4,7 +4,7 @@
 
 <% if current_user and @proposals.present? and @group.membership(current_user) %>
 <div id="large_button">
-	<%= button_to "Create a proposal", proposal_menu_path(@group),
+	<%= button_to "Change the group", proposal_menu_path(@group),
 		method: :get, class: "btn btn-default btn-lg btn-block" %><br>
 </div>
 <% end %>
