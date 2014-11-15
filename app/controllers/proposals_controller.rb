@@ -4,7 +4,16 @@ class ProposalsController < ApplicationController
       @group = Group.find(params[:group_id])
     elsif params[:federation_id]
       @federation = Federation.find(params[:federation_id])
+    elsif params[:proposal_id]
+      @proposal = Proposal.find(params[:proposal_id])
     end
+  end
+  
+  def new
+    session[:proposal_type] = params[:proposal_type] if params[:proposal_type].present?
+    @federations = Federation.all
+    @proposal = Proposal.new
+    @groups = Group.all
   end
   
   def up_vote
@@ -57,13 +66,16 @@ class ProposalsController < ApplicationController
     elsif params[:federation_id]
       @federation = Federation.find(params[:federation_id])
       _obj = @federation
+    elsif params[:proposal_id]
+      @proposal = Proposal.find(params[:proposal_id])
+      _obj = @proposal
     end
-    @proposal = _obj.proposals.new(params[:proposal].permit(:submission, :federated_federation_id,
+    @new_proposal = _obj.proposals.new(params[:proposal].permit(:submission, :federated_federation_id,
       :description, :icon, :anonymous, :item_name, :federated_group_id, :why))
-    @proposal.user_id = params[:user_id] unless params[:anonymous] == 1
-    @proposal.action = session[:proposal_type]
-    if @proposal.save
-      @proposal.ratify if @group and @group.members.size < 2
+    @new_proposal.user_id = params[:user_id] unless params[:anonymous] == 1
+    @new_proposal.action = session[:proposal_type]
+    if @new_proposal.save
+      @new_proposal.ratify if @group and @group.members.size < 2
       if @group
         if Group.find_by_id(@group.id)
           redirect_to group_proposals_path(@group)
@@ -76,17 +88,16 @@ class ProposalsController < ApplicationController
         else
           redirect_to root_url
         end
+      elsif @proposal
+        if @proposal.group_id
+          redirect_to group_proposal_path(Group.find(@proposal.group_id), @proposal)
+        elsif @proposal.federation_id
+          redirect_to federation_proposal_path(Federation.find(@proposal.federation_id), @proposal)
+        end
       end
     else
       flash[:error] = "Invalid input"
       redirect_to :back
     end
-  end
-  
-  def new
-    session[:proposal_type] = params[:proposal_type] if params[:proposal_type].present?
-    @federations = Federation.all
-    @proposal = Proposal.new
-    @groups = Group.all
   end
 end

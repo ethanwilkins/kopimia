@@ -1,85 +1,90 @@
 <!-- proposals -->
 
 <div id="card">
-<div id="form_padding">
-<%= form_for @proposal, :html => {:multipart => true, "data-ajax" => false} do |f| %>
-	<%= hidden_field_tag(:federation_id, params[:federation_id]) if params[:federation_id] %>
-	<%= hidden_field_tag(:group_id, params[:group_id]) if params[:group_id] %>
-	<%= hidden_field_tag :user_id, current_user.id %>
+	<% if current_user and session[:proposal_type] %>
+	<div id="form_padding">
+	<%= form_for @proposal, :html => {:multipart => true, "data-ajax" => false} do |f| %>
+		<%= hidden_field_tag(:federation_id, params[:federation_id]) if params[:federation_id] %>
+		<%= hidden_field_tag(:proposal_id, params[:proposal_id]) if params[:proposal_id] %>
+		<%= hidden_field_tag(:group_id, params[:group_id]) if params[:group_id] %>
+		<%= hidden_field_tag :user_id, current_user.id %>
 	
-	<% case session[:proposal_type] %>
-		<% when "description_change" %>
-			<p>
-				<%= f.text_area :submission, placeholder: "New description", class: "form-control" %>
-			</p>
+		<% case session[:proposal_type] %>
+			<% when "description_change" %>
+				<p>
+					<%= f.text_area :submission, placeholder: "New description", class: "form-control" %>
+				</p>
 			
-		<% when "add_module" %>
-			<p>
-				<%= f.label "Choose an icon for the module" %>
-				<%= f.file_field :icon, class: "form-control" %>
-			</p>
-			<p>
-				<%= f.text_field :item_name, placeholder: "Module name", class: "form-control" %>
-			</p>
-			<p>
-				<%= f.text_area :submission, placeholder: "Provide a link or HTML", class: "form-control" %>
-			</p>
+			<% when "add_module" %>
+				<p>
+					<%= f.label "Choose an icon for the module" %>
+					<%= f.file_field :icon, class: "form-control" %>
+				</p>
+				<p>
+					<%= f.text_field :item_name, placeholder: "Module name", class: "form-control" %>
+				</p>
+				<p>
+					<%= f.text_area :submission, placeholder: "Provide a link or HTML", class: "form-control" %>
+				</p>
 		
-		<% when "federate_request" %>
-			<p align="center">Create a federation of groups</p>
-			<p>
-				<%= f.text_field :item_name, placeholder: "Name", class: "form-control" %>
-			</p>
-			<p>
-				The group you want to federate with
-				<%= f.select :federated_group_id, options_from_collection_for_select(@groups,
-					:id, :name), {}, class: "form-control" %>
-			</p>
-			<p>
-				Upload an icon for the federation
-				<%= f.file_field :icon, class: "form-control" %>
-			</p>
-			<p>
-				<%= f.text_field :submission, placeholder: "Description", class: "form-control" %>
-			</p>
+			<% when "federate_request" %>
+				<p align="center">Create a federation of groups</p>
+				<p>
+					<%= f.text_field :item_name, placeholder: "Name", class: "form-control" %>
+				</p>
+				<p>
+					The group you want to federate with
+					<%= f.select :federated_group_id, options_from_collection_for_select(@groups,
+						:id, :name), {}, class: "form-control" %>
+				</p>
+				<p>
+					Upload an icon for the federation
+					<%= f.file_field :icon, class: "form-control" %>
+				</p>
+				<p>
+					<%= f.text_field :submission, placeholder: "Description", class: "form-control" %>
+				</p>
 			
-		<% when "req_to_join_federation" %>
-			<p>
-				The federation you want to join
-				<%= f.select :federated_federation_id, options_from_collection_for_select(@federations,
-					:id, :name), {}, class: "form-control" %>
-			</p>
+			<% when "req_to_join_federation" %>
+				<p>
+					The federation you want to join
+					<%= f.select :federated_federation_id, options_from_collection_for_select(@federations,
+						:id, :name), {}, class: "form-control" %>
+				</p>
 			
-		<% when "private_group" %>
-			<p align="center">Make the group private</p>
+			<% when "private_group" %>
+				<p align="center">Make the group private</p>
 			
-		<% when "public_group" %>
-			<p align="center">Make the group public</p>
+			<% when "public_group" %>
+				<p align="center">Make the group public</p>
 			
-		<% when "name_change" %>
-			<p>
-				<%= f.text_area :submission, placeholder: "New name", class: "form-control" %>
-			</p>
+			<% when "name_change", "proposal_name_change" %>
+				<p>
+					<%= f.text_area :submission, placeholder: "New name", class: "form-control" %>
+				</p>
 			
-		<% when "icon_change" %>
-			<p>
-				<%= f.label "Choose a new icon image" %>
-				<%= f.file_field :icon, class: "form-control" %>
-			</p>
-	<% end %>
+			<% when "icon_change" %>
+				<p>
+					<%= f.label "Choose a new icon image" %>
+					<%= f.file_field :icon, class: "form-control" %>
+				</p>
+		<% end %>
 	
-	<p>
-		<%= f.text_area :why, placeholder: "Why (optional)", class: "form-control" %>
-	</p>
+		<p>
+			<%= f.text_area :why, placeholder: "Why (optional)", class: "form-control" %>
+		</p>
 
-	<p class="form-control">
-		<%= f.label :anonymous %>
-		<%= f.check_box :anonymous %>
-	</p>
+		<p class="form-control">
+			<%= f.label :anonymous %>
+			<%= f.check_box :anonymous %>
+		</p>
 	
-	<p>
-		<%= f.submit "Create proposal", class: "btn btn-default btn-lg btn-block" %>
-	</p>
+		<p>
+			<%= f.submit "Create proposal", class: "btn btn-default btn-lg btn-block" %>
+		</p>
+	<% end %>
+	</div>
+<% else %>
+	<div align="center">Try logging in or choosing a proposal type.</div>
 <% end %>
-</div>
 </div>

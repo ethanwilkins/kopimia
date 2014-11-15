@@ -43,6 +43,8 @@ Social::Application.routes.draw do
   
   get "posts/new_comment/:id", to: "posts#new_comment", as: "new_comment_ajax"
   
+  get "proposals/menu/:proposal_id", to: "proposals#menu", as: "change_proposal_menu"
+  
   get "groups/:group_id/proposals/menu", to: "proposals#menu", as: "proposal_menu"
   
   get "federations/:federation_id/proposals/menu", to: "proposals#menu", as: "federation_proposal_menu"
@@ -51,7 +53,11 @@ Social::Application.routes.draw do
   
   delete "users/destroy/:id", to: "users#destroy", as: "user_destroy"
   
-  get "users/:user_id/connections", to: "users#connections", as: "user_connections" 
+  get "users/:user_id/connections", to: "users#connections", as: "user_connections"
+  
+  get "proposals/new/:proposal_id", to: "proposals#new", as: "new_proposal"
+  
+  get "proposals/show/:id", to: "proposals#show", as: "proposal"
   
   post "folders/create", as: "create_folder"
   

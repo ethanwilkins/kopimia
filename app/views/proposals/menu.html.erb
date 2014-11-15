@@ -18,7 +18,7 @@
 			<% end %>
 		<% elsif @group %>
 			<div align="center">
-				Join this <%= link_to "group", group_path(@group) %> if you'd like to create a proposal.
+				Join this <%= link_to "group", group_path(@group) %> to create a proposal.
 			</div>
 		<% end %>
 		
@@ -41,8 +41,21 @@
 			<div align="center">
 				Join a <%= link_to "group", federation_members_path(@federation) %>
 				of the <%= link_to "federation", federation_path(@federation) %>
-				if you'd like to create a proposal.
+				to create a proposal.
 			</div>
+		<% end %>
+		
+		<% if @proposal %>
+			<%= form_tag new_proposal_path(@proposal), method: :get do %>
+				<%= hidden_field_tag :proposal_id, params[:proposal_id] %>
+				<p>Choose a proposal type</p>
+				<p>
+					<%= select_tag :proposal_type, options_for_select(@proposal.available_types), class: "form-control" %>
+				</p>
+				<p>
+					<%= submit_tag "Next", class: "btn btn-default btn-lg btn-block" %>
+				</p>
+			<% end %>
 		<% end %>
 		
 	<% else %>

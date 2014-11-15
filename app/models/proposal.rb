@@ -12,6 +12,19 @@ class Proposal < ActiveRecord::Base
   
   mount_uploader :icon, ImageUploader
   
+  def available_types
+    types = [["Proposal type", nil]]
+    case self.action
+      when "name_change"
+        types << ["Name change", "proposal_name_change"]
+      when "icon_change"
+        types << ["Icon change", "proposal_icon_change"]
+      when "add_module"
+        types << ["Change code or link", "proposal_module_change"]
+    end
+    return types
+  end
+  
   def ratify
     group = Group.find_by_id(group_id)
     federation = Federation.find_by_id(federation_id)
@@ -29,10 +42,6 @@ class Proposal < ActiveRecord::Base
           group.code_modules.create code: submission, icon: icon, name: item_name
         when "request_to_join"
           group.members.create user_id: user_id
-        when "private_group"
-          # group.update private: true
-        when "public_group"
-          group.update private: false
         when "req_to_join_federation" # requests to join federation
           federated_federation.proposals.create action: "join_federation", why: why,
             user_id: user_id, federated_group_id: group_id
