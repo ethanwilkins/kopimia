@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def create
     user = User.authenticate(params[:email], params[:password])
     if user
-      user.update_token
+      user.update_token if user.auth_token.nil?
       if params[:remember_me]
         cookies.permanent[:auth_token] = user.auth_token
       else
@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    current_user.update_token
     cookies.delete(:auth_token)
     flash[:notice] = "Log out successful."
     redirect_to root_url
