@@ -8,4 +8,8 @@
 	<%= link_to(federation_proposal_path(@federation, proposal), class: "btn btn-default") do %>
 		<span class="glyphicon glyphicon-comment"></span>
 	<% end %>
+<% else %>
+	<%= link_to(proposal_path(proposal), class: "btn btn-default") do %>
+		<span class="glyphicon glyphicon-comment"></span>
+	<% end %>
 <% end %>

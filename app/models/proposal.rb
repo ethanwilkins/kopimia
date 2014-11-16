@@ -66,6 +66,8 @@ class Proposal < ActiveRecord::Base
     Vote.score(self)
   end
   
+  private
+  
   def creator_up_vote
     if user_id or anonymous
       votes.create up: true, voter: user_id

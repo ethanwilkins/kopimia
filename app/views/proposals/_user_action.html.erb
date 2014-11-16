@@ -1,7 +1,7 @@
-<% name = @group.name %>
+<% name = @group.name if @group %>
 <% other_group = Group.find(proposal.federated_group_id) if proposal.federated_group_id %>
 
-<p align="center">
+<div align="center" id="proposal_action_text">
 	<% if proposal.anonymous %>
 		Anonymous
 	<% elsif other_group and proposal.action == "federate" %>
@@ -12,8 +12,8 @@
 
 	<% case proposal.action %>
 		<% when "name_change" %>
-			proposes that <%= link_to name, group_path(@group) %>
-			should change its name to "<%= proposal.submission.capitalize %>"
+			proposed that <%= link_to name, group_path(@group) %>
+			should change its name to "<%= proposal.submission %>"
 		<% when "description_change" %>
 			proposed that <%= link_to name, group_path(@group) %>
 			should change its description to "<%= proposal.submission %>"
@@ -38,5 +38,7 @@
 			proposed a federation with <%= link_to name, group_path(@group) %>
 		<% when "disband" %>
 			proposed that <%= link_to name, group_path(@group) %> should disband
+		<% when "proposal_name_change" %>
+			proposed that the name be changed to "<%= proposal.submission %>" instead
 	<% end %>
-</p>
+</div>

@@ -10,18 +10,7 @@
 
 <% @proposals.each do |proposal| %>
 	<% if proposal.federated_group_id.nil? or Group.find_by_id(proposal.federated_group_id) %>
-		<div id="card">
-			<%= render "user_action", proposal: proposal %>
-		
-			<%= render "content", proposal: proposal %>
-		
-			<div align="center">
-				<div class="btn-group">
-					<%= render "proposals/vote", proposal: proposal %>
-					<%= render "proposals/comment", proposal: proposal %>
-				</div>
-			</div>
-		</div>
+		<%= render "proposals/card", proposal: proposal %>
 	<% end %>
 <% end %>
 

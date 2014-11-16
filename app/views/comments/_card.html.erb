@@ -1,30 +1,24 @@
-<!-- comment card -->
+<!-- comments -->
 
 <div id="card">
 	<%= render "comments/time_ago", comment: comment %>
-	<div align="center">
-		<table id="comment_content">
-			<tr>
-				<td>
-					<%= link_to profile_picture(comment.commenter, "25x25", :commenter), user_path(comment.commenter) %>
-					<%= link_to comment.commenter.name, user_path(comment.commenter) %>
-					
-					<% for word in comment.text.split(' ') %>
-						<%= render "posts/embed", word: word %>
-					<% end %>
-					
-					<% comment.hashtags.each do |tag| %>
-						<%= link_to tag.tag, tagged_path(tag.tag) %>
-					<% end %>
-				</td>
-			</tr>
-		</table>
-		<!-- controls for comment -->
-		<% if current_user and current_user.id != comment.commenter_id %>
-			<div class="btn-group">
-				<%= render "comments/vote", comment: comment %>
-				<%= render "comments/reply_button", comment: comment %>
-			</div>
+	<div align="center" id="comment_content">
+		<%= link_to profile_picture(comment.commenter, "25x25", :commenter), user_path(comment.commenter) %>
+		<%= link_to comment.commenter.name, user_path(comment.commenter) %>
+		
+		<% for word in comment.text.split(' ') %>
+			<%= render "posts/embed", word: word %>
 		<% end %>
+		
+		<% comment.hashtags.each do |tag| %>
+			<%= link_to tag.tag, tagged_path(tag.tag) %>
+		<% end %>
+	</div>
+	<!-- controls for comment -->
+	<div id="post_buttons">
+		<div class="btn-group">
+			<%= render "comments/vote", comment: comment %>
+			<%= render "comments/reply_button", comment: comment %>
+		</div>
 	</div>
 </div>

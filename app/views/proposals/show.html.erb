@@ -6,26 +6,13 @@
 </div>
 <% end %>
 
-<div id="card">
-	<% if @group %>
-		<%= render "user_action", proposal: @proposal %>
-	<% elsif @federation %>
-		<%= render "federated_user_action", proposal: @proposal %>
-	<% end %>
-	
-	<%= render "content", proposal: @proposal %>
-	
-	<% if (@federation or @group.membership(current_user)) and \
-		current_user.id != @proposal.user_id and !@proposal.inactive %>
-		<div align="center">
-			<div class="btn-group">
-				<%= render "vote", proposal: @proposal %>
-			</div>
-		</div>
-	<% end %>
-</div>
+<%= render "proposals/card", proposal: @proposal %>
 
-<%= render "comments" %>
+<% for proposal in @proposal.proposals %>
+	<%= render "proposals/card", proposal: proposal %>
+<% end %>
+
+<%= render "proposals/comments" %>
 
 <%= render "comments/new", item: :proposal %>
 
