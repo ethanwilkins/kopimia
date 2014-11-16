@@ -30,6 +30,8 @@
 								<% elsif Proposal.find(note.item).federation_id %>
 									<%= link_to note.message, federation_proposal_path(Federation.find( \
 									Proposal.find(note.item).federation_id), note.item) %>
+								<% elsif Proposal.find(note.item).proposal_id %>
+									<%= link_to note.message, proposal_path(Proposal.find(note.item)) %>
 								<% end %>
 								
 							<% when :comment_share, :up_vote_share %>

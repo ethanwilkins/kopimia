@@ -1,6 +1,6 @@
 <!-- proposals vote -->
 
-<% if (@federation or @group.membership(current_user)) and current_user.id != proposal.user_id %>
+<% if (proposal.proposal_id or @federation or @group.membership(current_user)) and current_user.id != proposal.user_id %>
 	<% unless proposal.inactive %>
 		<%= link_to(up_vote_proposal_path(proposal), class: "btn btn-default") do %>
 			<span class="glyphicon glyphicon-chevron-up"></span>
