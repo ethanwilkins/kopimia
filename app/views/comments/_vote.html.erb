@@ -1,10 +1,10 @@
 <!-- comment vote buttons -->
 
 <% if current_user and current_user.id != comment.commenter_id %>
-	<%= link_to up_vote_comment_path(comment), class: "btn btn-default" do %>
+	<%= link_to up_vote_comment_path(comment), class: "btn btn-default", remote: true do %>
 		<span class="glyphicon glyphicon-chevron-up"></span>
 	<% end %>
-	<%= link_to down_vote_comment_path(comment), class: "btn btn-default" do %>
+	<%= link_to down_vote_comment_path(comment), class: "btn btn-default", remote: true do %>
 		<span class="glyphicon glyphicon-chevron-down"></span>
 	<% end %>
 <% end %>
