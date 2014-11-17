@@ -36,4 +36,10 @@ class SearchController < ApplicationController
     # logs the visit with the contextual data
     Activity.log_action(current_user, request.remote_ip.to_s, "search", nil, @query)
   end
+  
+  private
+  
+  def scan_all
+    
+  end
 end
