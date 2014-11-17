@@ -1,9 +1,11 @@
-<% if proposal.icon? %>
-	<div align="center">
-		<%= image_tag(proposal.icon, width: "50%") %>
-	</div></br>
-<% end %>
+<div align="center" id="proposals_content">
+	<% if proposal.icon? %>
+		<div>
+			<%= image_tag(proposal.icon, width: "50%") %>
+		</div></br>
+	<% end %>
 
-<% unless proposal.why.nil? or proposal.why.empty? %>
-	<p align="center"><strong>Why:</strong> <%= proposal.why %></p>
-<% end %>
+	<% unless proposal.why.nil? or proposal.why.empty? %>
+		<div><strong>Why:</strong> <%= proposal.why %></div>
+	<% end %>
+</div>
