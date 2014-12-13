@@ -24,7 +24,10 @@
 					<%= f.text_field :item_name, placeholder: "Module name", class: "form-control" %>
 				</p>
 				<p>
-					<%= f.text_area :submission, placeholder: "Provide a link or HTML", class: "form-control" %>
+					<%= f.text_area :submission, placeholder: "Provide the link or HTML", class: "form-control" %>
+				</p>
+				<p>
+					<%= f.text_area :description, placeholder: "Describe the module", class: "form-control" %>
 				</p>
 		
 			<% when "federate_request" %>

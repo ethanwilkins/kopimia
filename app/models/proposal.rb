@@ -14,13 +14,22 @@ class Proposal < ActiveRecord::Base
   
   def available_types
     types = [["Proposal type", nil]]
-    case self.action
-      when "name_change"
-        types << ["Name change", "proposal_name_change"]
-      when "icon_change"
+    case self.action.to_sym
+      when :icon_change
         types << ["Icon change", "proposal_icon_change"]
-      when "add_module"
-        types << ["Change code or link", "proposal_module_change"]
+      when :name_change
+        types << ["Name change", "proposal_name_change"]
+      when :description_change
+        types << ["Description change", "proposal_description_change"]
+      when :add_module
+        types << ["Change code or link", "proposal_module_code_change"]
+        types << ["Change module name", "proposal_module_name_change"]
+        types << ["Change module description", "proposal_module_description_change"]
+      when :req_to_join_federation
+        types << ["Join different federation", "proposal_req_to_join_dif_federation"]
+      when :federate_request
+        types << ["Federate with different group", "proposal_federate_w_dif_group"]
+        types << ["Change proposed federation name", "proposal_dif_federation_name"]
     end
     return types
   end
@@ -45,11 +54,11 @@ class Proposal < ActiveRecord::Base
         when "req_to_join_federation" # requests to join federation
           federated_federation.proposals.create action: "join_federation", why: why,
             user_id: user_id, federated_group_id: group_id
-        when "join_federation" # adds the group to the federation
-          federation.members.create federated_group_id: federated_group_id
         when "federate_request" # requests other group to federate
           Group.find(federated_group_id).proposals.create action: "federate",
             icon: icon, item_name: item_name, federated_group_id: group_id
+        when "join_federation" # adds the group to the federation
+          federation.members.create federated_group_id: federated_group_id
         when "federate" # other group ratifies and creates the federation
           federation = Federation.create name: item_name, icon: icon, description: submission
           federation.members.create federated_group_id: federated_group_id
@@ -58,7 +67,7 @@ class Proposal < ActiveRecord::Base
           group.destroy
       end
       # ends voting of proposal after ratification
-      update inactive: true
+      update ratified: true
     end
   end
   

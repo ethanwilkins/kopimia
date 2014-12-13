@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141115063903) do
+ActiveRecord::Schema.define(version: 20141212185338) do
 
   create_table "activities", force: true do |t|
     t.integer  "federation_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20141115063903) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "federation_id"
+    t.string   "description"
   end
 
   create_table "comments", force: true do |t|
@@ -143,7 +144,7 @@ ActiveRecord::Schema.define(version: 20141115063903) do
     t.string   "icon"
     t.string   "action"
     t.integer  "user_id"
-    t.boolean  "inactive"
+    t.boolean  "ratified"
     t.text     "submission"
     t.boolean  "anonymous"
     t.string   "item_name"
@@ -151,6 +152,7 @@ ActiveRecord::Schema.define(version: 20141115063903) do
     t.integer  "federated_group_id"
     t.integer  "federated_federation_id"
     t.integer  "proposal_id"
+    t.string   "description"
   end
 
   create_table "shares", force: true do |t|

@@ -1,6 +1,6 @@
 <!-- proposals -->
 
-<% if current_user and not @proposal.inactive %>
+<% if current_user and not @proposal.ratified %>
 <div id="large_button">
 	<%= link_to "Change the proposal", change_proposal_menu_path(@proposal), class: "btn btn-default btn-lg btn-block" %>
 </div>
