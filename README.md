@@ -1,3 +1,6 @@
-Kopimia (Alpha) http://www.kopimia.com
+Kopimia - Alpha http://www.kopimia.com
+
 ======
-Kopimia, a platform for the digital proletariat. Build communities and organizations through a proposal system that puts conesnsus and collaboration first.
+
+Kopimia is a social networking platform for the digital proletariat.
+To organize and build community through cooperation and consensus.
