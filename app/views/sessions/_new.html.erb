@@ -1,10 +1,9 @@
 <% unless current_user %>
 <div id="card">
 	<div id="form_padding">
+		<p id="sign_up_label">Log in</p>
+		<%= link_to "Sign up", root_url, id: :already_signed_up %>
 	<%= form_tag sessions_path do %>
-		<p align="center">
-			Log in or sign up <%= link_to "here", new_user_path %>
-		</p>
 		<p>
 			<%= text_field_tag :email, nil, placeholder: "Email", class: "form-control" %>
 		</p>

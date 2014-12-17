@@ -1,5 +1,8 @@
 <!-- welcome -->
-
-<%= render "sessions/new" %>
+<% if cookies[:logged_in_before] %>
+	<%= render "sessions/new" %>
+<% else %>
+	<%= render "users/new" %>
+<% end %>
 
 <%= render "feed" %>

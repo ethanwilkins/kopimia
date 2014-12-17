@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-  helper_method :current_user, :page_size, :decrypt_message, :color_theme
+  helper_method :current_user, :page_size, :reset_page, :decrypt_message, :color_theme
 
   private
   
@@ -25,6 +25,14 @@ class ApplicationController < ActionController::Base
 		encryptor = ActiveSupport::MessageEncryptor.new(key)
     message = encryptor.decrypt_and_verify(message.text)
     return message
+  end
+  
+  def reset_page
+    # goes back to top at refresh
+    unless session[:more]
+      session[:page] = nil
+    end
+    session[:more] = nil
   end
   
   # increments/decrements page flags

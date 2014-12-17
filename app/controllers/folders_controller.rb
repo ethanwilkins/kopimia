@@ -1,10 +1,6 @@
 class FoldersController < ApplicationController
   def index
-    unless session[:more]
-      session[:page] = nil
-    end
-    session[:more] = nil
-    
+    reset_page
     @folders = Folder.inbox_of(current_user).reverse.
         # drops first several posts if :feed_page
         drop((session[:page] ? session[:page] : 0) * page_size).

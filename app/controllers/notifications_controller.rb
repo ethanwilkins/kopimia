@@ -3,11 +3,7 @@
 
 class NotificationsController < ApplicationController
   def index
-    unless session[:more]
-      session[:page] = nil
-    end
-    session[:more] = nil
-    
+    reset_page
     if current_user then
       @notes = current_user.notifications.last(10).reverse.
       # drops first several posts if :feed_page

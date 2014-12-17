@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
       else
         cookies[:auth_token] = user.auth_token
       end
+      cookies.permanent[:logged_in_before] = true
       Activity.log_action(current_user, request.remote_ip.to_s, "sessions_create")
       redirect_to root_url
     else

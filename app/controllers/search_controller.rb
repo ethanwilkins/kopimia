@@ -1,10 +1,6 @@
 class SearchController < ApplicationController
   def search
-    unless session[:more]
-      session[:page] = nil
-    end
-    session[:more] = nil
-    
+    reset_page
     # saves in session for pages
     session[:query] = params[:query]
     if session[:query]

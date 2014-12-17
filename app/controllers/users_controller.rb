@@ -5,11 +5,7 @@ class UsersController < ApplicationController
   end
   
   def following
-    unless session[:more]
-      session[:page] = nil
-    end
-    session[:more] = nil
-    
+    reset_page
     @user = User.find(params[:id])
     @users = @user.followed_users.reverse.
       # drops first several posts if :feed_page
@@ -29,7 +25,12 @@ class UsersController < ApplicationController
     
     if @user.save
       user = User.last
-      cookies[:auth_token] = user.auth_token
+      if params[:remember_me]
+        cookies.permanent[:auth_token] = user.auth_token
+      else
+        cookies[:auth_token] = user.auth_token
+      end
+      cookies.permanent[:logged_in_before] = true
       Activity.log_action(current_user, request.remote_ip.to_s, "users_create")
       redirect_to root_url
     else
@@ -73,11 +74,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    # resets to front at refresh
-    unless session[:more]
-      session[:page] = nil
-    end
-    session[:more] = nil
+    reset_page
     # gets user and feed based on page
     @user = User.find(params[:id])
     @posts = @user.posts.reverse.
@@ -93,11 +90,7 @@ class UsersController < ApplicationController
   end
   
   def index
-    unless session[:more]
-      session[:page] = nil
-    end
-    session[:more] = nil
-    
+    reset_page
     @users = User.all.reverse.
       # drops first several posts if :feed_page
       drop((session[:page] ? session[:page] : 0) * page_size).

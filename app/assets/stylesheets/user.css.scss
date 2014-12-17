@@ -48,7 +48,17 @@ $card_width: 94.5%;
 	color: rgb(145, 151, 165);
 }
 
+#sign_up_label {
+	margin-left: 5px;
+}
+
 #remember {
 	margin-top: 7.5px;
 	margin-left: 5px;
+}
+
+#already_signed_up {
+	position: absolute;
+	right: 15px;
+	top: 16px;
 }
