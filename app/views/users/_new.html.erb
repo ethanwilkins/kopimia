@@ -1,5 +1,7 @@
-<div id="card">
-	<% unless current_user %>
+<!-- users -->
+
+<% unless current_user %>
+	<div id="card">
 		<div id="form_padding">
 			<p id="sign_up_label">Sign up</p>
 			<%= link_to "Already signed up?", sessions_new_path, id: :already_signed_up %>
@@ -26,5 +28,5 @@
 				Remember me <%= check_box_tag :remember_me, 1, params[:remember_me] %>
 			</div>
 		</div>
-	<% end %>
-</div>
+	</div>
+<% end %>
