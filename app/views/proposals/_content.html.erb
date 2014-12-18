@@ -1,8 +1,21 @@
 <div align="center" id="proposals_content">
+	<% if proposal.action == "add_module" %>
+		<strong><p><%= proposal.item_name %></p></strong>
+	<% end %>
+	
 	<% if proposal.icon? %>
 		<div>
 			<%= image_tag(proposal.icon, width: "50%") %>
 		</div></br>
+	<% end %>
+	
+	<% if proposal.action == "add_module" %>
+		<strong>Source:</strong>
+		<% if proposal.submission =~ /\A#{URI::regexp}\z/ %>
+			<%= link_to proposal.submission, proposal.submission %>
+		<% else %>
+			<pre align="left"><%= beautify proposal.submission %></pre>
+		<% end %>
 	<% end %>
 
 	<% unless proposal.why.nil? or proposal.why.empty? %>

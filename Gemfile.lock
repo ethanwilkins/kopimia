@@ -47,6 +47,7 @@ GEM
     erubis (2.7.0)
     execjs (2.2.2)
     hike (1.2.3)
+    htmlbeautifier (0.0.10)
     i18n (0.6.11)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
@@ -123,6 +124,7 @@ DEPENDENCIES
   bcrypt-ruby
   carrierwave
   coffee-rails
+  htmlbeautifier
   jbuilder (~> 1.2)
   jquery-rails
   mysql2

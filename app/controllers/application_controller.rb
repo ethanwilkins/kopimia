@@ -3,9 +3,15 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-  helper_method :current_user, :page_size, :reset_page, :decrypt_message, :color_theme
+  helper_method :current_user, :page_size, :reset_page, :decrypt_message, :color_theme, :beautify
 
   private
+  
+  def beautify(html)
+		output = ""
+    HtmlBeautifier::Beautifier.new(output).scan(html)
+    return output
+  end
   
   def color_theme(default)
     if current_user and current_user.color_theme
