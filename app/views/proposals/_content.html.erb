@@ -10,7 +10,6 @@
 	<% end %>
 	
 	<% if proposal.action == "add_module" %>
-		<strong>Source:</strong>
 		<% if proposal.submission =~ /\A#{URI::regexp}\z/ %>
 			<%= link_to proposal.submission, proposal.submission %>
 		<% else %>
