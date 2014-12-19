@@ -14,7 +14,6 @@
 				<p>
 					<%= f.text_area :description, placeholder: "New description", class: "form-control" %>
 				</p>
-			
 			<% when "add_module" %>
 				<p>
 					<%= f.label "Choose an icon for the module" %>
@@ -29,7 +28,6 @@
 				<p>
 					<%= f.text_area :description, placeholder: "Describe the module", class: "form-control" %>
 				</p>
-		
 			<% when "federate_request" %>
 				<p align="center">Create a federation of groups</p>
 				<p>
@@ -47,19 +45,16 @@
 				<p>
 					<%= f.text_field :description, placeholder: "Description", class: "form-control" %>
 				</p>
-			
 			<% when "req_to_join_federation" %>
 				<p>
 					The federation you want to join
 					<%= f.select :federated_federation_id, options_from_collection_for_select(@federations,
 						:id, :name), {}, class: "form-control" %>
 				</p>
-			
 			<% when "name_change" %>
 				<p>
 					<%= f.text_area :item_name, placeholder: "New name", class: "form-control" %>
 				</p>
-			
 			<% when "icon_change" %>
 				<p>
 					<%= f.label "Choose a new icon image" %>
@@ -68,62 +63,54 @@
 			
 			
 			<!-- fields for proposals to proposals -->
-			
 			<% when "proposal_icon_change" %>
 				<p>
 					<%= f.label "Propose a different icon for the group" %>
 					<%= f.file_field :icon, class: "form-control" %>
 				</p>
-			
 			<% when "proposal_name_change" %>
+				Proposed name change for the group: <%= @_proposal.item_name %>
 				<p>
 					<%= f.text_field :item_name, placeholder: "Propose a different name for the group", class: "form-control" %>
 				</p>
-			
 			<% when "proposal_description_change" %>
 				<p>
 					<%= f.text_area :description, placeholder: "Propose a different description for the group", class: "form-control" %>
 				</p>
-			
 			<% when "proposal_module_code_change" %>
 				<p>
 					<%= f.text_area :submission, placeholder: "Propose a different source for the module", class: "form-control" %>
 				</p>
-			
 			<% when "proposal_module_name_change" %>
+				Proposed name for the module: <%= @_proposal.item_name %>
 				<p>
 					<%= f.text_field :item_name, placeholder: "Propose a different name for the module", class: "form-control" %>
 				</p>
-			
 			<% when "proposal_module_description_change" %>
 				<p>
 					<%= f.text_area :description, placeholder: "Propose a different description for the module", class: "form-control" %>
 				</p>
-			
 			<% when "proposal_req_to_join_dif_federation" %>
 				<p>
 					Propose to join a different federation
 					<%= f.select :federated_federation_id, options_from_collection_for_select(@federations,
 						:id, :name), {}, class: "form-control" %>
 				</p>
-			
 			<% when "proposal_federate_w_dif_group" %>
 				<p>
 					Propose to join a different group
 					<%= f.select :federated_group_id, options_from_collection_for_select(@groups,
 						:id, :name), {}, class: "form-control" %>
 				</p>
-			
 			<% when "proposal_dif_federation_name" %>
+				Proposed name for the federation: <%= @_proposal.item_name %>
 				<p>
 					<%= f.text_field :item_name, placeholder: "Propose a different name for the federation", class: "form-control" %>
 				</p>
-			
 			<% when "proposal_dif_federation_description" %>
 				<p>
 					<%= f.text_field :description, placeholder: "Propose a different description for the federation", class: "form-control" %>
 				</p>
-			
 			<% when "proposal_dif_federation_icon" %>
 				<p>
 					Upload a different icon for the proposed federation

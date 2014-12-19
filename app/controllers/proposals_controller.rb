@@ -11,6 +11,7 @@ class ProposalsController < ApplicationController
   
   def new
     session[:proposal_type] = params[:proposal_type] if params[:proposal_type].present?
+    @_proposal = Proposal.find_by_id(params[:proposal_id]) # the old proposal being changed
     @federations = Federation.all
     @proposal = Proposal.new
     @groups = Group.all
