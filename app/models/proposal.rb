@@ -38,6 +38,7 @@ class Proposal < ActiveRecord::Base
   
   def ratify
     group = Group.find_by_id(group_id)
+    proposal = Proposal.find_by_id(proposal_id)
     federation = Federation.find_by_id(federation_id)
     federated_federation = Federation.find_by_id(federated_federation_id)
     if (group and ((votes.up_votes.size > group.members.size / 2 and votes.down_votes.empty?) or group.members.size < 2)) or \
@@ -68,6 +69,20 @@ class Proposal < ActiveRecord::Base
           federation.members.create federated_group_id: group_id
         when "disband"
           group.destroy
+          
+        # proposals to proposals
+        when "proposal_icon_change", "proposal_dif_federation_icon"
+          proposal.update icon: icon
+        when "proposal_name_change", "proposal_dif_federation_name", "proposal_module_name_change"
+          proposal.update item_name: item_name
+        when "proposal_description_change", "proposal_module_description_change", "proposal_dif_federation_description"
+          proposal.update description: description
+        when "proposal_req_to_join_dif_federation"
+          proposal.update federated_federation_id: federated_federation_id
+        when "proposal_federate_w_dif_group"
+          proposal.update federated_group_id: federated_group_id
+        when "proposal_module_code_change"
+          proposal.update submission: submission
       end
       # ends voting of proposal after ratification
       update ratified: true
