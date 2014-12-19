@@ -40,5 +40,25 @@
 			proposed that <%= link_to name, group_path(@group) %> should disband
 		<% when "proposal_name_change" %>
 			proposed that the name be changed to "<%= proposal.submission %>" instead
+		<% when "proposal_icon_change" %>
+			proposed a different icon
+		<% when "proposal_description_change" %>
+			proposed a different description
+		<% when "proposal_module_code_change" %>
+			proposed a different source
+		<% when "proposal_module_name_change" %>
+			proposed a different name 
+		<% when "proposal_module_description_change" %>
+			proposed a different description
+		<% when "proposal_req_to_join_dif_federation" %>
+			proposed the group request to join a different federation
+		<% when "proposal_federate_w_dif_group" %>
+			proposed the group federate with a different group
+		<% when "proposal_dif_federation_name" %>
+			proposed a different name
+		<% when "proposal_dif_federation_description" %>
+			proposed a different description
+		<% when "proposal_dif_federation_icon" %>
+			proposed a different icon
 	<% end %>
 </div>
