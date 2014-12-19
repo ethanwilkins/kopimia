@@ -12,7 +12,7 @@
 		<% case session[:proposal_type] %>
 			<% when "description_change" %>
 				<p>
-					<%= f.text_area :submission, placeholder: "New description", class: "form-control" %>
+					<%= f.text_area :description, placeholder: "New description", class: "form-control" %>
 				</p>
 			
 			<% when "add_module" %>
@@ -57,7 +57,7 @@
 			
 			<% when "name_change" %>
 				<p>
-					<%= f.text_area :submission, placeholder: "New name", class: "form-control" %>
+					<%= f.text_area :item_name, placeholder: "New name", class: "form-control" %>
 				</p>
 			
 			<% when "icon_change" %>
@@ -77,12 +77,12 @@
 			
 			<% when "proposal_name_change" %>
 				<p>
-					<%= f.text_field :submission, placeholder: "Propose a different name for the group", class: "form-control" %>
+					<%= f.text_field :item_name, placeholder: "Propose a different name for the group", class: "form-control" %>
 				</p>
 			
 			<% when "proposal_description_change" %>
 				<p>
-					<%= f.text_area :submission, placeholder: "Propose a different description for the group", class: "form-control" %>
+					<%= f.text_area :description, placeholder: "Propose a different description for the group", class: "form-control" %>
 				</p>
 			
 			<% when "proposal_module_code_change" %>
@@ -92,12 +92,12 @@
 			
 			<% when "proposal_module_name_change" %>
 				<p>
-					<%= f.text_field :submission, placeholder: "Propose a different name for the module", class: "form-control" %>
+					<%= f.text_field :item_name, placeholder: "Propose a different name for the module", class: "form-control" %>
 				</p>
 			
 			<% when "proposal_module_description_change" %>
 				<p>
-					<%= f.text_area :submission, placeholder: "Propose a different description for the module", class: "form-control" %>
+					<%= f.text_area :description, placeholder: "Propose a different description for the module", class: "form-control" %>
 				</p>
 			
 			<% when "proposal_req_to_join_dif_federation" %>

@@ -46,11 +46,12 @@ class Proposal < ActiveRecord::Base
         when "icon_change"
           group.update icon: icon
         when "name_change"
-          group.update name: submission
+          group.update name: item_name
         when "description_change"
-          group.update description: submission
+          group.update description: description
         when "add_module"
-          group.code_modules.create code: submission, icon: icon, name: item_name
+          group.code_modules.create code: submission, icon: icon,
+            name: item_name, description: description
         when "request_to_join"
           group.members.create user_id: user_id
         when "req_to_join_federation" # requests to join federation

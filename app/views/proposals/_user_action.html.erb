@@ -13,10 +13,10 @@
 	<% case proposal.action %>
 		<% when "name_change" %>
 			proposed that <%= link_to name, group_path(@group) %>
-			should change its name to "<%= proposal.submission %>"
+			should change its name to "<%= proposal.item_name %>"
 		<% when "description_change" %>
 			proposed that <%= link_to name, group_path(@group) %>
-			should change its description to "<%= proposal.submission %>"
+			should change its description to "<%= proposal.description %>"
 		<% when "add_module" %>
 			proposed to add a module to <%= link_to name, group_path(@group) %>
 		<% when "icon_change" %>
@@ -38,8 +38,12 @@
 			proposed a federation with <%= link_to name, group_path(@group) %>
 		<% when "disband" %>
 			proposed that <%= link_to name, group_path(@group) %> should disband
+		
+		
+		<!-- proposals to change proposals -->
+		
 		<% when "proposal_name_change" %>
-			proposed that the name be changed to "<%= proposal.submission %>" instead
+			proposed that the name be changed to "<%= proposal.item_name %>" instead
 		<% when "proposal_icon_change" %>
 			proposed a different icon
 		<% when "proposal_description_change" %>
@@ -47,7 +51,7 @@
 		<% when "proposal_module_code_change" %>
 			proposed a different source
 		<% when "proposal_module_name_change" %>
-			proposed a different name 
+			proposed different name for the module: "<%= proposal.item_name %>"
 		<% when "proposal_module_description_change" %>
 			proposed a different description
 		<% when "proposal_req_to_join_dif_federation" %>
@@ -55,7 +59,7 @@
 		<% when "proposal_federate_w_dif_group" %>
 			proposed the group federate with a different group
 		<% when "proposal_dif_federation_name" %>
-			proposed a different name
+			proposed different name for the federation: "<%= proposal.item_name %>"
 		<% when "proposal_dif_federation_description" %>
 			proposed a different description
 		<% when "proposal_dif_federation_icon" %>
