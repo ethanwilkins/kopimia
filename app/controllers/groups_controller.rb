@@ -15,10 +15,11 @@ class GroupsController < ApplicationController
   end
   
   def index
-    reset_page
-    session[:more] = nil
-    # gets groups based on page_size
-    @groups = paginate Group.groups_of(current_user).sort_by(&:rank)
+    if current_user
+      reset_page
+      session[:more] = nil
+      # gets groups based on page_size
+      @groups = paginate Group.groups_of(current_user).sort_by(&:rank)
     end
   end
   
