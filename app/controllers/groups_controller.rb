@@ -1,10 +1,6 @@
 class GroupsController < ApplicationController
   def groups_joined
-    unless session[:more]
-      session[:page] = nil
-    end
-    session[:more] = nil
-    
+    reset_page
     @user = User.find(params[:id])
     @groups = Group.groups_of(@user).
         # drops first several posts if :feed_page
@@ -19,18 +15,10 @@ class GroupsController < ApplicationController
   end
   
   def index
-    if current_user
-      # resets to front at refresh
-      unless session[:more]
-        session[:page] = nil
-      end
-      session[:more] = nil
-      # gets groups based on page_size
-      @groups = Group.groups_of(current_user).sort_by(&:rank).reverse.
-        # drops first several posts if :page
-        drop((session[:page] ? session[:page] : 0) * page_size).
-        # only shows first several posts of resulting array
-        first(page_size)
+    reset_page
+    session[:more] = nil
+    # gets groups based on page_size
+    @groups = paginate Group.groups_of(current_user).sort_by(&:rank)
     end
   end
   
@@ -52,18 +40,11 @@ class GroupsController < ApplicationController
   end
   
   def show
-    # resets back to front page at refresh
-    unless session[:more]
-      session[:page] = nil
-    end
+    reset_page
     session[:more] = nil
     # gets group and feed based on page
     @group = Group.find(params[:id])
-    @feed = @group.posts.sort_by(&:score).reverse.
-      # drops first several posts if :feed_page
-      drop((session[:page] ? session[:page] : 0) * page_size).
-      # only shows first several posts of resulting array
-      first(page_size)
+    @feed = paginate @group.posts.sort_by(&:score)
     @post = Post.new
   end
 end

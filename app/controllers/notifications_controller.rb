@@ -4,13 +4,8 @@
 class NotificationsController < ApplicationController
   def index
     reset_page
-    if current_user then
-      @notes = current_user.notifications.last(10).reverse.
-      # drops first several posts if :feed_page
-      drop((session[:page] ? session[:page] : 0) * page_size).
-      # only shows first several posts of resulting array
-      first(page_size)
-      
+    if current_user
+      @notes = paginate current_user.notifications.last(10)
       current_user.notifications.update_all checked: true
     end
   end

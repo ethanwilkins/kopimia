@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-  helper_method :current_user, :page_size, :reset_page, :decrypt_message, :color_theme, :beautify
+  helper_method :current_user, :page_size, :reset_page, :paginate, :decrypt_message, :color_theme, :beautify
 
   private
   
@@ -31,6 +31,14 @@ class ApplicationController < ActionController::Base
 		encryptor = ActiveSupport::MessageEncryptor.new(key)
     message = encryptor.decrypt_and_verify(message.text)
     return message
+  end
+  
+  def paginate(items)
+    return items.reverse.
+      # drops first several posts if :feed_page
+      drop((session[:page] ? session[:page] : 0) * page_size).
+      # only shows first several posts of resulting array
+      first(page_size)
   end
   
   def reset_page

@@ -7,11 +7,7 @@ class UsersController < ApplicationController
   def following
     reset_page
     @user = User.find(params[:id])
-    @users = @user.followed_users.reverse.
-      # drops first several posts if :feed_page
-      drop((session[:page] ? session[:page] : 0) * page_size).
-      # only shows first several posts of resulting array
-      first(page_size)
+    @users = paginate @user.followed_users
   end
   
   def new
@@ -77,11 +73,7 @@ class UsersController < ApplicationController
     reset_page
     # gets user and feed based on page
     @user = User.find(params[:id])
-    @posts = @user.posts.reverse.
-        # drops first several posts if :feed_page
-        drop((session[:page] ? session[:page] : 0) * page_size).
-        # only shows first several posts of resulting array
-        first(page_size)
+    @posts = paginate @user.posts
     @post = Post.new
     # finds a message folder if one exists
     if @user != current_user and Folder.folder_between(current_user, @user)
@@ -91,10 +83,6 @@ class UsersController < ApplicationController
   
   def index
     reset_page
-    @users = User.all.reverse.
-      # drops first several posts if :feed_page
-      drop((session[:page] ? session[:page] : 0) * page_size).
-      # only shows first several posts of resulting array
-      first(page_size)
+    @users = paginate User.all
   end
 end
