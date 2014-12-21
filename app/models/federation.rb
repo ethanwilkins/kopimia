@@ -12,6 +12,15 @@ class Federation < ActiveRecord::Base
   
   mount_uploader :icon, ImageUploader
   
+  def users
+    _users = []
+    for group in members
+      group = Group.find(group.federated_group_id)
+      group.members.each { |user| _users << user }
+    end
+    return _users
+  end
+  
   def relevant_activity
     activities.where federation_id: id
   end

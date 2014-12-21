@@ -42,16 +42,17 @@ class Proposal < ActiveRecord::Base
     federation = Federation.find_by_id(federation_id)
     federated_federation = Federation.find_by_id(federated_federation_id)
     if (group and ((votes.up_votes.size > group.members.size / 2 and votes.down_votes.empty?) or group.members.size < 2)) or \
-      (federation and ((votes.up_votes.size > federation.members.size / 2 and votes.down_votes.empty?) or federation.members.size < 2))
+      (federation and ((votes.up_votes.size > federation.users.size / 2 and votes.down_votes.empty?) or federation.members.size < 2))
+      entity = group ? group : federation
       case action
         when "icon_change"
-          group.update icon: icon
+          entity.update icon: icon
         when "name_change"
-          group.update name: item_name
+          entity.update name: item_name
         when "description_change"
-          group.update description: description
+          entity.update description: description
         when "add_module"
-          group.code_modules.create code: submission, icon: icon,
+          entity.code_modules.create code: submission, icon: icon,
             name: item_name, description: description
         when "request_to_join"
           group.members.create user_id: user_id
