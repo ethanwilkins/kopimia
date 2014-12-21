@@ -5,9 +5,9 @@ class SearchController < ApplicationController
     session[:query] = params[:query]
     if session[:query]
       @query = session[:query]
-      @users = User.where "name = ? OR name = ?", @query.capitalize, @query.downcase
-      @groups = Group.where "name = ? OR name = ?", @query.capitalize, @query.downcase
-      @modules = CodeModule.where "name = ? OR name = ?", @query.capitalize, @query.downcase
+      @users = User.where name: [@query.capitalize, @query.downcase]
+      @groups = Group.where name: [@query.capitalize, @query.downcase]
+      @modules = CodeModule.where name: [@query.capitalize, @query.downcase]
       @tags = Hashtag.tagged(session[:query])
 
       # show a listing of groups for empty searches
