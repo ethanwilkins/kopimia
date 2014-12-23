@@ -14,7 +14,12 @@ class ProposalsController < ApplicationController
     @_proposal = Proposal.find_by_id(params[:proposal_id]) # the old proposal being changed
     @federations = Federation.all
     @proposal = Proposal.new
-    @groups = Group.all
+    
+    if params[:group_id]
+      @groups = Group.where.not(id: params[:group_id])
+    else
+      @groups = Group.all
+    end
   end
   
   def up_vote

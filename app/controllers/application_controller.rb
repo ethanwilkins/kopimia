@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
       return default
     end
   end
+
+  def current_user
+    @current_user ||= User.find_by_auth_token(cookies[:auth_token]) if cookies[:auth_token]
+  end
   
   def decrypt_message(message)
 		key = ActiveSupport::KeyGenerator.new(message.created_at.to_s).generate_key(message.salt)
@@ -61,9 +65,5 @@ class ApplicationController < ActionController::Base
   
   def page_size
     @page_size = 5
-  end
-
-  def current_user
-    @current_user ||= User.find_by_auth_token(cookies[:auth_token]) if cookies[:auth_token]
   end
 end
