@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "bootstrap";
+
 $back: white;
 $back_dark: rgb(100, 100, 100);
 $button_color: rgb(240, 240, 240);
