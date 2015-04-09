@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(params[:user].permit(:email, :password, :name))
+    @user = User.new(params[:user].permit(:email, :password, :password_confirmation, :name))
     @user.ip = request.remote_ip.to_s
     
     if @user.save

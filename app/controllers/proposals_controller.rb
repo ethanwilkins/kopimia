@@ -57,7 +57,7 @@ class ProposalsController < ApplicationController
   def index
     if params[:group_id]
       @group = Group.find(params[:group_id])
-      @proposals = @group.proposals.where(ratified: nil).sort_by(&:score).reverse!
+      @proposals = @group.proposals.sort_by(&:score).reverse!
       
     elsif params[:federation_id]
       @federation = Federation.find(params[:federation_id])
